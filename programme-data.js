@@ -97,10 +97,10 @@ const PROGRAMME_WEEKS = [
           // --- Lecture 2 ---
           {
             id: "w1d1t5", type: "lecture",
-            title: "500+ dates importantes de l'histoire de France",
-            subtitle: "Les dates incontournables sur laculturegenerale.com",
-            url: "https://www.laculturegenerale.com/dates-importantes-histoire-france/",
-            duration: "15 min"
+            title: "L'Histoire de France en 100 dates importantes",
+            subtitle: "Vidéo YouTube — De la préhistoire à la Ve République (22 min)",
+            url: "https://www.youtube.com/watch?v=VM90PABJ2wQ",
+            duration: "22 min"
           },
           // --- Fiche 3 : Monarchie absolue & Lumières (1643–1789) ---
           {
@@ -207,9 +207,9 @@ const PROGRAMME_WEEKS = [
           // --- Lecture 1 ---
           {
             id: "w1d2t0", type: "lecture",
-            title: "Quiz Capitales du Monde — JetPunk",
-            subtitle: "Tester tes connaissances sur les capitales en mode quiz interactif",
-            url: "https://www.jetpunk.com/user-quizzes/29612/capitales-du-monde",
+            title: "Quiz Culture Générale — Capitales du Monde",
+            subtitle: "Vidéo YouTube — 170 pays en français, testez vos connaissances",
+            url: "https://www.youtube.com/watch?v=MUJc2cpSEvo",
             duration: "15 min"
           },
           // --- Fiche 1 : Capitales pièges d'Europe ---
@@ -286,9 +286,9 @@ const PROGRAMME_WEEKS = [
           // --- Lecture 2 ---
           {
             id: "w1d2t5", type: "lecture",
-            title: "Jeux Géographiques — Capitales",
-            subtitle: "S'entraîner sur les capitales avec un quiz visuel sur carte",
-            url: "https://www.jeux-geographiques.com/jeux-en-ligne-Quizz-Les-capitales-du-Monde-_pageid89.html",
+            title: "QUIZ — Les Capitales du Monde (80 Pays)",
+            subtitle: "Vidéo YouTube — Testez vos connaissances sur 80 capitales",
+            url: "https://www.youtube.com/watch?v=9AWctHsuLvM",
             duration: "15 min"
           },
           // --- Fiche 3 : Capitales Asie & Océanie ---
@@ -473,9 +473,9 @@ const PROGRAMME_WEEKS = [
           // --- Lecture 2 ---
           {
             id: "w1d3t5", type: "lecture",
-            title: "40 plus grandes avancées scientifiques",
-            subtitle: "Les découvertes majeures du XXe siècle sur Futura-Sciences",
-            url: "https://www.futura-sciences.com/sciences/questions-reponses/inventions-40-plus-grandes-avancees-scientifiques-xxe-siecle-12409/",
+            title: "77 Découvertes qui ont bouleversé le monde",
+            subtitle: "Vidéo YouTube — Les grandes avancées scientifiques — Doc Seven (34 min)",
+            url: "https://www.youtube.com/watch?v=9IpRIlM1X58",
             duration: "15 min"
           },
           // --- Fiche 3 : Médecine & corps humain ---
@@ -582,9 +582,9 @@ const PROGRAMME_WEEKS = [
           // --- Lecture 1 ---
           {
             id: "w1d4t0", type: "lecture",
-            title: "Grands auteurs français — Sherpas",
-            subtitle: "Panorama des auteurs et œuvres majeures de la littérature française",
-            url: "https://sherpas.com/p/francais/auteurs-oeuvres-litteraires-francaises.html",
+            title: "Histoire de la Littérature Française",
+            subtitle: "Vidéo YouTube — Tour d'horizon des mouvements littéraires",
+            url: "https://www.youtube.com/watch?v=UmC59d_CXH4",
             duration: "15 min"
           },
           // --- Fiche 1 : XVIIe–XVIIIe : classicisme & Lumières ---
@@ -662,9 +662,9 @@ const PROGRAMME_WEEKS = [
           // --- Lecture 2 ---
           {
             id: "w1d4t5", type: "lecture",
-            title: "162 classiques de la littérature française",
-            subtitle: "Les œuvres incontournables sur laculturegenerale.com",
-            url: "https://www.laculturegenerale.com/classiques-litterature-francaise/",
+            title: "20 Romans Français Incontournables",
+            subtitle: "Vidéo YouTube — Résumés des grands classiques (1h31)",
+            url: "https://www.youtube.com/watch?v=u4GtGFYECe0",
             duration: "15 min"
           },
           // --- Fiche 3 : XIXe : naturalisme & poésie ---
@@ -771,9 +771,9 @@ const PROGRAMME_WEEKS = [
           // --- Lecture 1 ---
           {
             id: "w1d5t0", type: "lecture",
-            title: "Les courants artistiques — Sherpas",
-            subtitle: "Panorama des mouvements artistiques de la Renaissance au XXe siècle",
-            url: "https://sherpas.com/blog/mouvement-artistique/",
+            title: "Histoire de l'Art — De la Renaissance à nos jours",
+            subtitle: "Vidéo YouTube — Tous les grands mouvements artistiques (28 min)",
+            url: "https://www.youtube.com/watch?v=RRjfQGPbDnc",
             duration: "15 min"
           },
           // --- Fiche 1 : Renaissance & Baroque ---
@@ -851,9 +851,9 @@ const PROGRAMME_WEEKS = [
           // --- Lecture 2 ---
           {
             id: "w1d5t5", type: "lecture",
-            title: "25 tableaux célèbres à connaître",
-            subtitle: "Les peintures les plus connues au monde sur amesauvage.com",
-            url: "https://www.amesauvage.com/blog/tableaux-celebres-peintures-connues-n856",
+            title: "QUIZ — Qui est le Peintre ? 40 Tableaux",
+            subtitle: "Vidéo YouTube — Reconnaissez-vous ces chefs-d'œuvre ? (12 min)",
+            url: "https://www.youtube.com/watch?v=Is-xzan9A1k",
             duration: "15 min"
           },
           // --- Fiche 3 : Post-impressionnisme & avant-gardes ---
@@ -1041,9 +1041,9 @@ const PROGRAMME_WEEKS = [
           // --- Lecture 2 ---
           {
             id: "w1d6t5", type: "lecture",
-            title: "Palmarès sportifs — Sport-Histoire",
-            subtitle: "Les palmarès des grandes compétitions sportives mondiales",
-            url: "https://www.sport-histoire.fr/Sport/Football/Coupe_du_Monde/index.php",
+            title: "QUIZ 100% Sport — 50 Questions Multi-sports",
+            subtitle: "Vidéo YouTube — Football, tennis, ski, athlétisme... (18 min)",
+            url: "https://www.youtube.com/watch?v=5C55d5UZbu8",
             duration: "15 min"
           },
           // --- Fiche 3 : Tennis & cyclisme ---
@@ -1149,9 +1149,9 @@ const PROGRAMME_WEEKS = [
           // --- Lecture : QPUC replay ---
           {
             id: "w1d7t0", type: "lecture",
-            title: "QPUC en replay — France 3",
-            subtitle: "Regarder une émission pour s'imprégner du rythme et du niveau des questions",
-            url: "https://www.france.tv/france-3/questions-pour-un-champion/",
+            title: "Questions pour un Champion — Episode complet",
+            subtitle: "Vidéo YouTube — Regarder une émission QPUC pour s'imprégner du rythme (37 min)",
+            url: "https://www.youtube.com/watch?v=pBIUUSsl0i0",
             duration: "26 min"
           },
           // --- Quiz section Histoire (8 questions) ---
