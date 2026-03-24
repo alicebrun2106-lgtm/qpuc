@@ -338,6 +338,14 @@
     document.getElementById("prog-fiche-fc-title").textContent = task.title;
     document.getElementById("prog-fc-total").textContent = ficheCards.length;
 
+    // Reset le container (peut avoir été remplacé par le résumé)
+    document.querySelector("#screen-programme-fiche-fc .prog-fc-card-container").innerHTML =
+      '<div class="prog-fc-prompt" id="prog-fc-prompt"></div>' +
+      '<div class="prog-fc-fact" id="prog-fc-fact"></div>' +
+      '<div class="prog-fc-reveal" id="prog-fc-reveal"></div>';
+    document.getElementById("prog-fc-buttons").innerHTML =
+      '<button class="btn-task-done" onclick="revealFicheCard()" id="btn-fc-reveal">Voir la réponse</button>';
+
     showScreen("programme-fiche-fc");
     showFicheCard();
   };
