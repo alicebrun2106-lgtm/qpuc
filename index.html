@@ -59,6 +59,13 @@
             <div class="mode-title">Programme</div>
             <div class="mode-desc">Programme de révision hebdomadaire avec lectures, fiches et quiz quotidiens.</div>
           </button>
+
+          <button class="mode-card" onclick="initRevisions()" id="mode-card-revisions">
+            <div class="mode-icon">🔁</div>
+            <div class="mode-title">Révisions du jour</div>
+            <div class="mode-desc">Révise les fiches déjà apprises. La répétition espacée consolide ta mémoire.</div>
+            <span class="rev-home-badge" id="rev-home-badge" style="display:none">0</span>
+          </button>
         </div>
 
         <div class="stats-bar">
@@ -429,6 +436,50 @@
       </div>
     </div>
 
+    <!-- ÉCRAN RÉVISIONS DASHBOARD -->
+    <div id="screen-revisions" class="screen">
+      <div class="game-header">
+        <button class="btn-back" onclick="goHome()">← Retour</button>
+        <h2>Révisions du jour</h2>
+        <div class="rev-due-badge" id="rev-due-badge">0</div>
+      </div>
+      <div class="rev-summary" id="rev-summary"></div>
+      <button class="btn-task-done" id="btn-start-revisions" onclick="startRevisionSession()" style="display:none">
+        Commencer la révision 🧠
+      </button>
+      <div class="rev-sections">
+        <div class="rev-section">
+          <h3 class="rev-section-title rev-due-title">📌 À revoir aujourd'hui</h3>
+          <div class="rev-packs-list" id="rev-due-list"></div>
+        </div>
+        <div class="rev-section">
+          <h3 class="rev-section-title rev-mastered-title">✅ Déjà révisé</h3>
+          <div class="rev-packs-list" id="rev-mastered-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ÉCRAN RÉVISION SESSION -->
+    <div id="screen-revision-session" class="screen">
+      <div class="game-header">
+        <button class="btn-back" onclick="backToRevisions()">← Retour</button>
+        <h2>Révision</h2>
+        <div class="fc-progress"><span id="rev-fc-num">1</span> / <span id="rev-fc-total">0</span></div>
+      </div>
+      <div class="prog-fc-card-container">
+        <div class="prog-fc-prompt" id="rev-fc-prompt">Question</div>
+        <div class="prog-fc-fact" id="rev-fc-fact"></div>
+        <div class="prog-fc-reveal" id="rev-fc-reveal"></div>
+      </div>
+      <div class="prog-fc-buttons" id="rev-fc-buttons">
+        <button class="btn-task-done" onclick="revealRevisionCard()" id="btn-rev-reveal">Voir la réponse</button>
+      </div>
+      <div class="prog-fc-rate" id="rev-fc-rate" style="display:none">
+        <button class="btn-quality btn-again" onclick="rateRevisionCard('again')">😬 À revoir</button>
+        <button class="btn-quality btn-easy" onclick="rateRevisionCard('ok')">👍 Je savais</button>
+      </div>
+    </div>
+
     <!-- ÉCRAN RÉSULTAT -->
     <div id="screen-result" class="screen">
       <div class="result-container">
@@ -450,6 +501,7 @@
   <script src="app.js"></script>
   <script src="flashcards.js"></script>
   <script src="lists.js"></script>
+  <script src="revisions.js"></script>
   <script src="programme.js"></script>
 </body>
 </html>

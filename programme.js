@@ -381,6 +381,10 @@
     // Mark fiche as done
     if (ficheCurrentTask) {
       markDone(ficheCurrentTask.id, { reviewed: ficheCards.length, retries: ficheAgainCount });
+      // Ajouter les cartes au pool de révision quotidienne
+      if (ficheCurrentTask.flashcards && typeof addFicheToRevisionPool === "function") {
+        addFicheToRevisionPool(ficheCurrentTask.id, ficheCurrentTask.title, ficheCurrentTask.flashcards);
+      }
     }
 
     const total = ficheCurrentTask ? ficheCurrentTask.items.length : ficheCards.length;

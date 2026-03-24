@@ -161,6 +161,7 @@ function goHome() {
   clearTimers();
   showScreen("home");
   updateStats();
+  if (typeof updateRevisionBadge === "function") updateRevisionBadge();
 }
 
 function clearTimers() {
@@ -686,3 +687,4 @@ document.getElementById("ff-answer").addEventListener("keydown", (e) => {
 
 // --- Init ---
 updateStats();
+if (typeof updateRevisionBadge === "function") updateRevisionBadge();

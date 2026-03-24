@@ -1730,3 +1730,88 @@ body {
   .prog-fiche-card { padding: 12px 14px; }
   .btn-task-done { font-size: 14px; padding: 14px; }
 }
+
+/* ===== RÉVISIONS DU JOUR ===== */
+#mode-card-revisions { position: relative; }
+.rev-home-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #e74c3c;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  min-width: 26px;
+  height: 26px;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+  box-shadow: 0 2px 8px rgba(231,76,60,0.5);
+}
+.rev-due-badge {
+  background: var(--orange, #f39c12);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 800;
+  min-width: 28px;
+  height: 28px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 8px;
+}
+.rev-summary {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text, #e0e0e0);
+  padding: 20px 0 10px;
+}
+.rev-count {
+  color: var(--accent, #f0c040);
+  font-size: 42px;
+  font-weight: 900;
+  display: block;
+  margin-bottom: 4px;
+}
+.rev-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 20px 0 40px;
+}
+.rev-section-title {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.rev-due-title { color: var(--orange, #f39c12); }
+.rev-mastered-title { color: var(--green, #2ecc71); }
+.rev-packs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.rev-pack-item {
+  background: var(--bg-card, #1a2332);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 10px;
+  padding: 14px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.rev-pack-name { font-weight: 700; font-size: 15px; }
+.rev-pack-count { font-size: 14px; color: var(--text-dim, #888); }
+.rev-pack-count.due { color: var(--orange, #f39c12); font-weight: 700; }
+.rev-pack-count.scheduled { color: var(--green, #2ecc71); }
+.rev-pack-empty { color: var(--text-dim, #888); font-style: italic; padding: 8px 0; }
+.rev-empty { text-align: center; padding: 60px 20px; color: var(--text-dim, #888); }
+.rev-empty-icon { font-size: 48px; margin-bottom: 16px; }
+.rev-empty-text { font-size: 16px; line-height: 1.6; }
