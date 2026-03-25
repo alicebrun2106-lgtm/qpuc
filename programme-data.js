@@ -1,1256 +1,924 @@
-// Programme QPUC - Semaines de révision (structure par micro-tâches)
+// Programme 12 Coups / QPUC - Fun facts & culture G large
 const PROGRAMME_WEEKS = [
   {
     week: 1,
     title: "Les Fondations",
-    description: "Couvrir les bases dans tous les grands domaines de culture générale",
+    description: "Culture G large : fun facts, détails insolites, tout ce qu'on te demande aux 12 Coups",
     days: [
-      // ===================== JOUR 1 : HISTOIRE DE FRANCE =====================
+      // ===================== JOUR 1 : ANIMAUX & NATURE =====================
       {
-        day: 1, label: "Lundi", theme: "Histoire de France", icon: "🏰",
-        objectif: "Maîtriser les grandes périodes et dates clés",
+        day: 1, label: "Lundi", theme: "Animaux & Nature insolites", icon: "🦎",
+        objectif: "Connaître les fun facts animaux que personne ne sait",
         tasks: [
-          // --- Lecture 1 ---
           {
             id: "w1d1t0", type: "lecture",
-            title: "L'histoire de France en 20 minutes",
-            subtitle: "Vidéo YouTube — Parcourir les grandes dates de l'histoire de France",
-            url: "https://www.youtube.com/watch?v=JDE2mNATuyM",
-            duration: "20 min"
+            title: "50 faits incroyables sur les animaux",
+            subtitle: "Vidéo YouTube — Les animaux les plus fous de la planète",
+            url: "https://www.youtube.com/watch?v=gKeBMgTEMOc",
+            duration: "15 min"
           },
-          // --- Fiche 1 : Moyen Âge (481–1453) ---
           {
             id: "w1d1t1", type: "fiche",
-            title: "Moyen Âge (481–1453)",
+            title: "Noms & cris des animaux",
             items: [
-              { fact: "481 — Clovis, roi des Francs", detail: "Baptisé à Reims par Saint Rémi vers 496. Premier roi barbare converti au catholicisme, ce qui lui assure le soutien de l'Église et unifie le royaume franc." },
-              { fact: "800 — Charlemagne couronné empereur", detail: "Couronné par le pape Léon III à Rome le 25 décembre 800. Son empire couvre la France, l'Allemagne et l'Italie actuelles. Il relance l'éducation (renaissance carolingienne)." },
-              { fact: "1066 — Guillaume le Conquérant envahit l'Angleterre", detail: "Duc de Normandie, il bat Harold II à la bataille d'Hastings. La Tapisserie de Bayeux (70 m de long) raconte cet événement. L'anglais moderne est rempli de mots français à cause de cette conquête." },
-              { fact: "1337–1453 — Guerre de Cent Ans", detail: "Conflit dynastique entre Valois (France) et Plantagenêts (Angleterre). Batailles clés : Crécy (1346), Azincourt (1415). Se termine par la victoire française à Castillon (1453)." },
-              { fact: "1431 — Jeanne d'Arc brûlée à Rouen", detail: "Capturée par les Bourguignons, vendue aux Anglais, condamnée pour hérésie. Elle avait fait sacrer Charles VII à Reims en 1429. Canonisée en 1920." }
+              { fact: "Le bébé du hérisson s'appelle le choupisson", detail: "Celui de la chouette est le poussin, celui du lièvre le levraut, celui du sanglier le marcassin." },
+              { fact: "Le cri du crocodile est le vagissement", detail: "Celui du corbeau est le croassement, celui de la grenouille le coassement (facile à confondre !)." },
+              { fact: "Le cri du rhinocéros s'appelle le barrissement", detail: "Comme l'éléphant ! Le cerf, lui, brame. Le chameau blatère. La hyène ricane." },
+              { fact: "Un groupe de flamants roses s'appelle une flamboyance", detail: "Un groupe de corbeaux : un assassinat. Un groupe de hiboux : un parlement." },
+              { fact: "Le mâle de l'abeille s'appelle le faux-bourdon", detail: "Il ne pique pas (pas de dard) et son seul rôle est la reproduction. Il meurt juste après." }
             ],
             flashcards: [
-              { q: "Par qui Clovis a-t-il été baptisé ?", r: "Saint Rémi" },
-              { q: "Dans quelle ville Clovis a-t-il été baptisé ?", r: "Reims" },
-              { q: "Vers quelle année Clovis a-t-il été baptisé ?", r: "496" },
-              { q: "Quel pape a couronné Charlemagne ?", r: "Léon III" },
-              { q: "Quel jour Charlemagne a-t-il été couronné en 800 ?", r: "25 décembre" },
-              { q: "Comment appelle-t-on la renaissance culturelle sous Charlemagne ?", r: "Renaissance carolingienne" },
-              { q: "Quelle bataille Guillaume le Conquérant remporte-t-il en 1066 ?", r: "Hastings" },
-              { q: "Quelle est la longueur de la Tapisserie de Bayeux ?", r: "70 mètres" },
-              { q: "Quelle bataille clé de la Guerre de Cent Ans a lieu en 1415 ?", r: "Azincourt" },
-              { q: "En quelle année la Guerre de Cent Ans se termine-t-elle ?", r: "1453" },
-              { q: "Quelle est la dernière bataille de la Guerre de Cent Ans ?", r: "Castillon" },
-              { q: "Par qui Jeanne d'Arc a-t-elle été capturée ?", r: "Les Bourguignons" },
-              { q: "En quelle année Jeanne d'Arc fait-elle sacrer Charles VII ?", r: "1429" },
-              { q: "En quelle année Jeanne d'Arc a-t-elle été canonisée ?", r: "1920" }
+              { q: "Comment s'appelle le bébé du hérisson ?", r: "Le choupisson" },
+              { q: "Comment s'appelle le bébé du sanglier ?", r: "Le marcassin" },
+              { q: "Comment s'appelle le bébé du lièvre ?", r: "Le levraut" },
+              { q: "Comment appelle-t-on le cri du crocodile ?", r: "Le vagissement" },
+              { q: "Comment appelle-t-on le cri du cerf ?", r: "Le brame" },
+              { q: "Comment appelle-t-on le cri du chameau ?", r: "Le blatèrement" },
+              { q: "Quelle est la différence entre croasser et coasser ?", r: "Le corbeau croasse, la grenouille coasse" },
+              { q: "Comment appelle-t-on un groupe de flamants roses ?", r: "Une flamboyance" },
+              { q: "Comment appelle-t-on un groupe de corbeaux ?", r: "Un assassinat" },
+              { q: "Comment appelle-t-on un groupe de hiboux ?", r: "Un parlement" },
+              { q: "Comment s'appelle le mâle de l'abeille ?", r: "Le faux-bourdon" },
+              { q: "Pourquoi le faux-bourdon ne pique-t-il pas ?", r: "Il n'a pas de dard" },
+              { q: "Comment appelle-t-on le cri du rhinocéros ?", r: "Le barrissement" },
+              { q: "Comment appelle-t-on le cri de la hyène ?", r: "Le ricanement" }
             ]
           },
-          // --- Mini-quiz 1 ---
           {
             id: "w1d1t2", type: "quiz",
-            title: "Mini-quiz : Moyen Âge",
+            title: "Mini-quiz : Noms & cris",
             questions: [
-              { q: "En quelle année Clovis est-il devenu roi des Francs ?", r: "481", hint: "Fin du Ve siècle, début du Moyen Âge franc" },
-              { q: "Qui a couronné Charlemagne empereur et en quelle année ?", r: "Le pape Léon III, en 800", hint: "Un soir de Noël à Rome" },
-              { q: "Quelle bataille de 1066 a permis à Guillaume de conquérir l'Angleterre ?", r: "La bataille d'Hastings", hint: "Racontée sur une célèbre tapisserie" },
-              { q: "En quelle année Jeanne d'Arc a-t-elle été brûlée à Rouen ?", r: "1431", hint: "Deux ans après le sacre de Charles VII à Reims" }
+              { q: "Comment appelle-t-on le bébé du sanglier ?", r: "Le marcassin", hint: "Ça commence par M" },
+              { q: "Quel animal brame ?", r: "Le cerf", hint: "Surtout pendant la saison des amours en forêt" },
+              { q: "Comment appelle-t-on un groupe de corbeaux ?", r: "Un assassinat", hint: "C'est assez sinistre comme nom !" },
+              { q: "Quel est le cri du crocodile ?", r: "Le vagissement", hint: "Comme les pleurs d'un bébé" }
             ]
           },
-          // --- Fiche 2 : Renaissance & guerres de religion (1515–1610) ---
           {
             id: "w1d1t3", type: "fiche",
-            title: "Renaissance & guerres de religion (1515–1610)",
+            title: "Records & bizarreries animales",
             items: [
-              { fact: "1515 — Bataille de Marignan (François Ier)", detail: "Victoire contre les Suisses en Italie du Nord. François Ier, sacré un an plus tôt, ramène Léonard de Vinci en France. C'est LA date que tout le monde connaît." },
-              { fact: "1539 — Ordonnance de Villers-Cotterêts", detail: "François Ier impose le français à la place du latin dans les actes officiels. C'est l'acte fondateur de la langue française comme langue administrative." },
-              { fact: "1572 — Massacre de la Saint-Barthélemy (24 août)", detail: "Des milliers de protestants assassinés à Paris et en province, sur ordre de Catherine de Médicis et Charles IX. Point culminant des guerres de religion." },
-              { fact: "1598 — Édit de Nantes (Henri IV)", detail: "Accorde la liberté de culte aux protestants. Henri IV, ancien protestant converti (« Paris vaut bien une messe »), met fin à 36 ans de guerres de religion." },
-              { fact: "1610 — Assassinat d'Henri IV par Ravaillac", detail: "Poignardé dans son carrosse rue de la Ferronnerie à Paris le 14 mai. Son fils Louis XIII n'a que 9 ans ; Marie de Médicis assure la régence." }
+              { fact: "Le cœur de la crevette est dans sa tête", detail: "Et le cœur de la baleine bleue pèse 600 kg — un enfant pourrait ramper dans ses artères." },
+              { fact: "Les empreintes digitales du koala sont quasi identiques à celles de l'homme", detail: "Au point que des empreintes de koala ont déjà été confondues avec des empreintes humaines sur des scènes de crime en Australie." },
+              { fact: "Un escargot peut dormir 3 ans d'affilée", detail: "Il entre en estivation quand il fait trop sec. Le record de sommeil animal revient au loir : jusqu'à 11 mois par an." },
+              { fact: "Les yeux de l'autruche sont plus gros que son cerveau", detail: "Chaque œil fait environ 5 cm de diamètre. C'est le plus gros œil de tous les animaux terrestres." },
+              { fact: "Le homard a du sang bleu", detail: "Son sang contient de l'hémocyanine (à base de cuivre) au lieu de l'hémoglobine (à base de fer). Les pieuvres aussi ont le sang bleu." },
+              { fact: "La langue du caméléon est 1,5 fois plus longue que son corps", detail: "Elle se déploie en 0,07 seconde pour attraper un insecte. C'est plus rapide qu'un clignement d'œil." }
             ],
             flashcards: [
-              { q: "Contre qui François Ier remporte-t-il Marignan ?", r: "Les Suisses" },
-              { q: "Quel artiste François Ier ramène-t-il d'Italie ?", r: "Léonard de Vinci" },
-              { q: "Quelle langue l'ordonnance de Villers-Cotterêts remplace-t-elle ?", r: "Le latin" },
-              { q: "Quel roi signe l'ordonnance de Villers-Cotterêts ?", r: "François Ier" },
-              { q: "Quel jour a lieu le massacre de la Saint-Barthélemy ?", r: "24 août 1572" },
-              { q: "Qui ordonne le massacre de la Saint-Barthélemy ?", r: "Catherine de Médicis" },
-              { q: "Quelle phrase célèbre attribue-t-on à Henri IV ?", r: "Paris vaut bien une messe" },
-              { q: "Combien d'années durent les guerres de religion en France ?", r: "36 ans" },
-              { q: "Dans quelle rue Henri IV est-il assassiné ?", r: "Rue de la Ferronnerie" },
-              { q: "Quel âge a Louis XIII à la mort d'Henri IV ?", r: "9 ans" },
-              { q: "Qui assure la régence après l'assassinat d'Henri IV ?", r: "Marie de Médicis" },
-              { q: "Quel jour Henri IV est-il assassiné en 1610 ?", r: "14 mai" }
+              { q: "Où se trouve le cœur de la crevette ?", r: "Dans sa tête" },
+              { q: "Combien pèse le cœur d'une baleine bleue ?", r: "Environ 600 kg" },
+              { q: "Quel animal a des empreintes digitales quasi identiques à l'homme ?", r: "Le koala" },
+              { q: "Combien de temps un escargot peut-il dormir ?", r: "Jusqu'à 3 ans" },
+              { q: "Quel animal peut dormir jusqu'à 11 mois par an ?", r: "Le loir" },
+              { q: "Qu'est-ce qui est plus gros que le cerveau de l'autruche ?", r: "Ses yeux" },
+              { q: "Pourquoi le homard a-t-il le sang bleu ?", r: "Son sang contient de l'hémocyanine (cuivre) au lieu de l'hémoglobine (fer)" },
+              { q: "Quel autre animal marin a aussi le sang bleu ?", r: "La pieuvre" },
+              { q: "Combien de fois la langue du caméléon est-elle plus longue que son corps ?", r: "1,5 fois" },
+              { q: "En combien de temps la langue du caméléon se déploie-t-elle ?", r: "0,07 seconde" },
+              { q: "Quel est le diamètre de l'œil de l'autruche ?", r: "Environ 5 cm" },
+              { q: "Comment s'appelle le repos prolongé de l'escargot quand il fait sec ?", r: "L'estivation" },
+              { q: "Quelle molécule donne sa couleur rouge au sang humain ?", r: "L'hémoglobine (à base de fer)" },
+              { q: "Quelle molécule donne sa couleur bleue au sang du homard ?", r: "L'hémocyanine (à base de cuivre)" },
+              { q: "Quel est le plus gros œil de tous les animaux terrestres ?", r: "Celui de l'autruche" }
             ]
           },
-          // --- Mini-quiz 2 ---
           {
             id: "w1d1t4", type: "quiz",
-            title: "Mini-quiz : Renaissance & guerres de religion",
+            title: "Mini-quiz : Records animaux",
             questions: [
-              { q: "Quelle ordonnance de 1539 impose le français dans les actes officiels ?", r: "L'ordonnance de Villers-Cotterêts", hint: "Signée par François Ier" },
-              { q: "Quel édit de 1598 accorde la liberté de culte aux protestants ?", r: "L'édit de Nantes", hint: "Signé par Henri IV" },
-              { q: "Quel roi est associé à la bataille de Marignan en 1515 ?", r: "François Ier", hint: "Il a aussi invité Léonard de Vinci en France" },
-              { q: "Qui a assassiné Henri IV en 1610 ?", r: "Ravaillac", hint: "Rue de la Ferronnerie à Paris" }
+              { q: "Quel animal a le sang bleu ?", r: "Le homard (et la pieuvre)", hint: "Crustacé qu'on mange au restaurant" },
+              { q: "Où se trouve le cœur de la crevette ?", r: "Dans sa tête", hint: "Pas dans le thorax comme nous !" },
+              { q: "Quel animal a des empreintes confondues avec celles des humains ?", r: "Le koala", hint: "Animal australien amateur d'eucalyptus" },
+              { q: "Combien de temps un escargot peut-il dormir ?", r: "3 ans", hint: "Quand il fait trop sec dehors" }
             ]
           },
-          // --- Lecture 2 ---
           {
             id: "w1d1t5", type: "lecture",
-            title: "L'Histoire de France en 100 dates importantes",
-            subtitle: "Vidéo YouTube — De la préhistoire à la Ve République (22 min)",
-            url: "https://www.youtube.com/watch?v=VM90PABJ2wQ",
-            duration: "22 min"
+            title: "Records incroyables du monde animal",
+            subtitle: "Vidéo YouTube — Les animaux les plus extrêmes",
+            url: "https://www.youtube.com/watch?v=4MqhHEMWFfo",
+            duration: "12 min"
           },
-          // --- Fiche 3 : Monarchie absolue & Lumières (1643–1789) ---
           {
             id: "w1d1t6", type: "fiche",
-            title: "Monarchie absolue & Lumières (1643–1789)",
+            title: "Animaux & expressions françaises",
             items: [
-              { fact: "1643–1715 — Règne de Louis XIV (72 ans)", detail: "Le Roi-Soleil, plus long règne d'Europe. Construit Versailles, révoque l'édit de Nantes (1685, édit de Fontainebleau). Ministre clé : Colbert (économie)." },
-              { fact: "1685 — Révocation de l'édit de Nantes", detail: "Louis XIV signe l'édit de Fontainebleau. Environ 200 000 protestants (huguenots) fuient la France, emportant savoir-faire et capitaux. Erreur économique majeure." },
-              { fact: "1715–1774 — Louis XV, le Bien-Aimé", detail: "Arrière-petit-fils de Louis XIV, roi à 5 ans. Perd le Canada au traité de Paris (1763). Fin de règne impopulaire. Meurt de la variole." },
-              { fact: "1751 — L'Encyclopédie de Diderot et d'Alembert", detail: "28 volumes, 17 ans de travail, 150 auteurs. Œuvre phare des Lumières, elle diffuse le savoir et critique l'autorité. Combattue par la censure royale." },
-              { fact: "1774–1792 — Louis XVI, dernier roi de l'Ancien Régime", detail: "Épouse Marie-Antoinette d'Autriche. Convoque les États généraux en 1789. Guillotiné le 21 janvier 1793 place de la Révolution (actuelle Concorde)." }
+              { fact: "« Avoir une mémoire d'éléphant » — Les éléphants se souviennent vraiment", detail: "Ils reconnaissent des congénères après 20 ans de séparation. Ils visitent aussi les os de leurs morts (comportement de deuil)." },
+              { fact: "« Myope comme une taupe » — FAUX ! La taupe voit un peu", detail: "Elle distingue la lumière mais sa vision est très faible. Elle compense avec un odorat et un toucher ultra-développés." },
+              { fact: "« Pleurer des larmes de crocodile » — Le croco pleure vraiment en mangeant", detail: "Ses glandes lacrymales s'activent quand il ouvre grand la mâchoire. C'est mécanique, pas émotionnel." },
+              { fact: "« Fier comme un paon » — Seul le mâle fait la roue", detail: "La femelle s'appelle la paonne. Les plumes de la « queue » sont en fait des plumes du dos (les couvertures sus-caudales)." },
+              { fact: "« Une hirondelle ne fait pas le printemps » — Elles parcourent 10 000 km", detail: "Les hirondelles migrent d'Afrique subsaharienne vers l'Europe chaque printemps. Elles dorment même en volant !" }
             ],
             flashcards: [
-              { q: "Combien d'années dure le règne de Louis XIV ?", r: "72 ans" },
-              { q: "Quel ministre gère l'économie sous Louis XIV ?", r: "Colbert" },
-              { q: "Quel édit Louis XIV signe-t-il en 1685 ?", r: "Édit de Fontainebleau" },
-              { q: "Combien de protestants fuient la France après 1685 ?", r: "200 000" },
-              { q: "De quelle maladie meurt Louis XV ?", r: "La variole" },
-              { q: "Quel traité fait perdre le Canada à la France ?", r: "Traité de Paris (1763)" },
-              { q: "Combien de volumes comporte l'Encyclopédie ?", r: "28 volumes" },
-              { q: "Combien d'auteurs ont contribué à l'Encyclopédie ?", r: "150 auteurs" },
-              { q: "Qui co-dirige l'Encyclopédie avec Diderot ?", r: "D'Alembert" },
-              { q: "Quelle est l'épouse de Louis XVI ?", r: "Marie-Antoinette" },
-              { q: "Quel jour Louis XVI est-il guillotiné ?", r: "21 janvier 1793" },
-              { q: "Comment s'appelle aujourd'hui la place de la Révolution ?", r: "Place de la Concorde" }
+              { q: "Combien d'années un éléphant peut-il se souvenir d'un congénère ?", r: "Plus de 20 ans" },
+              { q: "Vrai ou faux : la taupe est totalement aveugle ?", r: "Faux — elle distingue la lumière" },
+              { q: "Pourquoi le crocodile pleure-t-il en mangeant ?", r: "Ses glandes lacrymales s'activent quand il ouvre la mâchoire (c'est mécanique)" },
+              { q: "Comment s'appelle la femelle du paon ?", r: "La paonne" },
+              { q: "Les plumes de la roue du paon viennent de quelle partie du corps ?", r: "Du dos (couvertures sus-caudales), pas de la queue" },
+              { q: "Combien de km les hirondelles parcourent-elles pour migrer ?", r: "Environ 10 000 km" },
+              { q: "D'où viennent les hirondelles quand elles arrivent en Europe ?", r: "D'Afrique subsaharienne" },
+              { q: "Quel sens compense la mauvaise vue de la taupe ?", r: "L'odorat et le toucher" },
+              { q: "Les éléphants visitent-ils les restes de leurs morts ?", r: "Oui — ils ont un comportement de deuil" },
+              { q: "Vrai ou faux : les hirondelles peuvent dormir en volant ?", r: "Vrai" }
             ]
           },
-          // --- Mini-quiz 3 ---
           {
             id: "w1d1t7", type: "quiz",
-            title: "Mini-quiz : Monarchie absolue & Lumières",
+            title: "Quiz final : Animaux & Nature",
             questions: [
-              { q: "Combien d'années a duré le règne de Louis XIV ?", r: "72 ans (1643–1715)", hint: "Le plus long règne d'Europe" },
-              { q: "Quel édit de 1685 révoque la liberté de culte des protestants ?", r: "L'édit de Fontainebleau", hint: "Annule l'édit de Nantes" },
-              { q: "Qui sont les deux directeurs de l'Encyclopédie (1751) ?", r: "Diderot et d'Alembert", hint: "28 volumes au total" },
-              { q: "En quelle année Louis XVI a-t-il été guillotiné ?", r: "1793 (21 janvier)", hint: "Place de la Révolution, actuelle place de la Concorde" }
-            ]
-          },
-          // --- Fiche 4 : Révolution → XXe siècle (1789–1968) ---
-          {
-            id: "w1d1t8", type: "fiche",
-            title: "Révolution → XXe siècle (1789–1968)",
-            items: [
-              { fact: "14 juillet 1789 — Prise de la Bastille", detail: "Symbole du début de la Révolution. La Bastille ne contenait que 7 prisonniers ce jour-là. Le 14 juillet devient fête nationale en 1880." },
-              { fact: "1804 — Napoléon sacré empereur", detail: "Se couronne lui-même à Notre-Dame de Paris le 2 décembre, devant le pape Pie VII. Instaure le Code civil (encore en vigueur). Défait à Waterloo en 1815." },
-              { fact: "1870 — Chute du Second Empire, IIIe République", detail: "Napoléon III capitule à Sedan face à la Prusse. La IIIe République dure jusqu'en 1940 — c'est la plus longue république française (70 ans)." },
-              { fact: "1914–1918 — Première Guerre mondiale", detail: "1,4 million de morts français. Batailles clés : Verdun (1916, 300 jours), la Marne. Armistice le 11 novembre 1918. Traité de Versailles (1919)." },
-              { fact: "1958 — Ve République, De Gaulle président", detail: "Crise algérienne : De Gaulle revient au pouvoir, fait adopter une nouvelle constitution renforçant le pouvoir présidentiel. Élu président le 21 décembre 1958." }
-            ],
-            flashcards: [
-              { q: "Combien de prisonniers contenait la Bastille le 14 juillet 1789 ?", r: "7" },
-              { q: "En quelle année le 14 juillet devient-il fête nationale ?", r: "1880" },
-              { q: "Où Napoléon se couronne-t-il empereur ?", r: "Notre-Dame de Paris" },
-              { q: "Quel jour Napoléon est-il sacré en 1804 ?", r: "2 décembre" },
-              { q: "Quel pape assiste au sacre de Napoléon ?", r: "Pie VII" },
-              { q: "En quelle année Napoléon est-il défait à Waterloo ?", r: "1815" },
-              { q: "À quelle bataille Napoléon III capitule-t-il en 1870 ?", r: "Sedan" },
-              { q: "Combien d'années dure la IIIe République ?", r: "70 ans" },
-              { q: "Combien de morts français lors de la Première Guerre mondiale ?", r: "1,4 million" },
-              { q: "Combien de jours dure la bataille de Verdun en 1916 ?", r: "300 jours" },
-              { q: "Quel traité met fin à la Première Guerre mondiale ?", r: "Traité de Versailles" },
-              { q: "Quelle crise ramène De Gaulle au pouvoir en 1958 ?", r: "La crise algérienne" },
-              { q: "Quel jour De Gaulle est-il élu président en 1958 ?", r: "21 décembre" }
-            ]
-          },
-          // --- Mini-quiz 4 ---
-          {
-            id: "w1d1t9", type: "quiz",
-            title: "Mini-quiz : Révolution → XXe siècle",
-            questions: [
-              { q: "Combien de prisonniers se trouvaient dans la Bastille le 14 juillet 1789 ?", r: "7", hint: "Beaucoup moins que ce qu'on imagine" },
-              { q: "En quelle année Napoléon a-t-il été défait à Waterloo ?", r: "1815", hint: "Actuelle Belgique" },
-              { q: "Quelle bataille de 1916 a duré environ 300 jours ?", r: "La bataille de Verdun", hint: "Symbole de la guerre des tranchées" },
-              { q: "Qui a fondé la Ve République en 1958 ?", r: "Charles de Gaulle", hint: "Rappelé au pouvoir lors de la crise algérienne" }
-            ]
-          },
-          // --- Quiz final du jour ---
-          {
-            id: "w1d1t10", type: "quiz",
-            title: "Quiz final : Histoire de France",
-            questions: [
-              { q: "Quel roi franc a été baptisé à Reims vers 496 ?", r: "Clovis" },
-              { q: "Quelle guerre oppose la France et l'Angleterre de 1337 à 1453 ?", r: "La Guerre de Cent Ans" },
-              { q: "Quelle ordonnance impose le français dans les actes officiels en 1539 ?", r: "L'ordonnance de Villers-Cotterêts" },
-              { q: "Quel massacre de protestants a eu lieu le 24 août 1572 ?", r: "Le massacre de la Saint-Barthélemy" },
-              { q: "Quel château Louis XIV a-t-il fait construire ?", r: "Le château de Versailles" },
-              { q: "Quel traité de 1763 fait perdre le Canada à la France ?", r: "Le traité de Paris" },
-              { q: "Quel jour Napoléon s'est-il couronné empereur en 1804 ?", r: "Le 2 décembre", hint: "À Notre-Dame de Paris" },
-              { q: "Quel régime politique dure de 1870 à 1940 en France ?", r: "La IIIe République" },
-              { q: "En quelle année le traité de Versailles met-il fin à la Première Guerre mondiale ?", r: "1919" },
-              { q: "Quelle phrase célèbre attribue-t-on à Henri IV pour justifier sa conversion ?", r: "Paris vaut bien une messe" },
-              { q: "Qui a été régente après l'assassinat d'Henri IV en 1610 ?", r: "Marie de Médicis" },
-              { q: "Quel événement de mai 1968 a marqué la France ?", r: "Mai 68 — révolte étudiante et grève générale" }
+              { q: "Comment s'appelle le bébé du hérisson ?", r: "Le choupisson" },
+              { q: "Quel animal a le sang bleu à cause du cuivre ?", r: "Le homard" },
+              { q: "Comment appelle-t-on un groupe de flamants roses ?", r: "Une flamboyance" },
+              { q: "Combien pèse le cœur d'une baleine bleue ?", r: "600 kg" },
+              { q: "Quelle est la particularité des empreintes du koala ?", r: "Elles sont quasi identiques à celles de l'homme" },
+              { q: "La femelle du paon s'appelle... ?", r: "La paonne" }
             ]
           }
         ]
       },
 
-      // ===================== JOUR 2 : GÉOGRAPHIE MONDE =====================
+      // ===================== JOUR 2 : CORPS HUMAIN & SCIENCES ÉTONNANTES =====================
       {
-        day: 2, label: "Mardi", theme: "Géographie monde", icon: "🌍",
-        objectif: "Connaître les capitales pièges, fleuves et montagnes",
+        day: 2, label: "Mardi", theme: "Corps humain & Sciences", icon: "🧬",
+        objectif: "Fun facts sur le corps et la science qu'on ignore",
         tasks: [
-          // --- Lecture 1 ---
           {
             id: "w1d2t0", type: "lecture",
-            title: "Quiz Culture Générale — Capitales du Monde",
-            subtitle: "Vidéo YouTube — 170 pays en français, testez vos connaissances",
-            url: "https://www.youtube.com/watch?v=MUJc2cpSEvo",
+            title: "30 choses que vous ne savez pas sur votre corps",
+            subtitle: "Vidéo YouTube — Faits incroyables sur le corps humain",
+            url: "https://www.youtube.com/watch?v=B-FLZl9PnHM",
             duration: "15 min"
           },
-          // --- Fiche 1 : Capitales pièges d'Europe ---
           {
             id: "w1d2t1", type: "fiche",
-            title: "Capitales pièges d'Europe",
+            title: "Le corps humain en chiffres fous",
             items: [
-              { fact: "Suisse → Berne (pas Zurich ni Genève)", detail: "Zurich est la plus grande ville et Genève le siège de l'ONU, mais la capitale fédérale est Berne depuis 1848." },
-              { fact: "Turquie → Ankara (pas Istanbul)", detail: "Istanbul (ex-Constantinople) est la plus grande ville, mais Atatürk a déplacé la capitale à Ankara en 1923 pour marquer la rupture avec l'Empire ottoman." },
-              { fact: "Monténégro → Podgorica", detail: "Petit pays des Balkans indépendant depuis 2006. Anciennement Titograd sous la Yougoslavie. À ne pas confondre avec le Kosovo (Pristina)." },
-              { fact: "Lituanie → Vilnius / Lettonie → Riga / Estonie → Tallinn", detail: "Les trois pays baltes du nord au sud : Estonie-Tallinn, Lettonie-Riga, Lituanie-Vilnius. Moyen mnémotechnique : l'ordre alphabétique inverse (E-L-L) du nord au sud." },
-              { fact: "Slovaquie → Bratislava / Slovénie → Ljubljana", detail: "Deux pays souvent confondus. Bratislava est à 60 km de Vienne sur le Danube. Ljubljana est en ex-Yougoslavie, au nord de la Croatie." }
+              { fact: "Le corps humain contient assez de fer pour fabriquer un clou de 7 cm", detail: "Environ 3 à 4 grammes de fer dans le corps. Le fer est dans l'hémoglobine du sang." },
+              { fact: "L'estomac se renouvelle entièrement tous les 3-4 jours", detail: "Sans ce renouvellement, l'acide chlorhydrique (pH 1-2) digérerait l'estomac lui-même." },
+              { fact: "Un humain produit 25 000 litres de salive dans sa vie", detail: "Assez pour remplir deux piscines. La salive contient des antidouleurs 6 fois plus puissants que la morphine (opiorphine)." },
+              { fact: "Les os sont 4 fois plus résistants que le béton", detail: "À poids égal ! Le fémur peut supporter une charge de plus d'une tonne avant de se briser." },
+              { fact: "Le nez humain peut détecter plus de 1 000 milliards d'odeurs", detail: "Bien plus que les 10 000 qu'on croyait avant. Les femmes ont un odorat plus fin que les hommes." },
+              { fact: "On naît avec environ 300 os, mais adulte on n'en a plus que 206", detail: "Beaucoup d'os fusionnent en grandissant, surtout ceux du crâne et de la colonne vertébrale." }
             ],
             flashcards: [
-              { q: "Depuis quelle année Berne est-elle la capitale fédérale suisse ?", r: "1848" },
-              { q: "Quelle ville suisse est le siège de l'ONU ?", r: "Genève" },
-              { q: "En quelle année Atatürk déplace-t-il la capitale turque à Ankara ?", r: "1923" },
-              { q: "Depuis quelle année le Monténégro est-il indépendant ?", r: "2006" },
-              { q: "Comment s'appelait Podgorica sous la Yougoslavie ?", r: "Titograd" },
-              { q: "Quelle est la capitale de l'Estonie ?", r: "Tallinn" },
-              { q: "Quelle est la capitale de la Lettonie ?", r: "Riga" },
-              { q: "Quelle est la capitale de la Lituanie ?", r: "Vilnius" },
-              { q: "Sur quel fleuve se trouve Bratislava ?", r: "Le Danube" },
-              { q: "À combien de kilomètres de Vienne se trouve Bratislava ?", r: "60 km" },
-              { q: "Quelle est la capitale de la Slovénie ?", r: "Ljubljana" }
+              { q: "Combien de fer le corps humain contient-il ?", r: "3 à 4 grammes (assez pour un clou de 7 cm)" },
+              { q: "Tous les combien l'estomac se renouvelle-t-il ?", r: "Tous les 3-4 jours" },
+              { q: "Quel est le pH de l'acide de l'estomac ?", r: "pH 1-2 (très acide)" },
+              { q: "Combien de litres de salive produit-on dans une vie ?", r: "25 000 litres" },
+              { q: "Comment s'appelle l'antidouleur naturel dans la salive ?", r: "L'opiorphine" },
+              { q: "Combien de fois les os sont-ils plus résistants que le béton ?", r: "4 fois (à poids égal)" },
+              { q: "Quelle charge le fémur peut-il supporter ?", r: "Plus d'une tonne" },
+              { q: "Combien d'odeurs le nez humain peut-il détecter ?", r: "Plus de 1 000 milliards" },
+              { q: "Combien d'os a un bébé à la naissance ?", r: "Environ 300" },
+              { q: "Combien d'os a un adulte ?", r: "206" },
+              { q: "Pourquoi a-t-on moins d'os adulte qu'à la naissance ?", r: "Beaucoup d'os fusionnent en grandissant" },
+              { q: "Qui a un meilleur odorat : les hommes ou les femmes ?", r: "Les femmes" },
+              { q: "Quel os est le plus long et le plus solide du corps ?", r: "Le fémur" },
+              { q: "Quel acide se trouve dans l'estomac ?", r: "L'acide chlorhydrique" }
             ]
           },
-          // --- Mini-quiz 1 ---
           {
             id: "w1d2t2", type: "quiz",
-            title: "Mini-quiz : Capitales Europe",
+            title: "Mini-quiz : Corps humain",
             questions: [
-              { q: "Quelle est la capitale de la Suisse ?", r: "Berne", hint: "Ni Zurich ni Genève" },
-              { q: "Quelle est la capitale de la Turquie ?", r: "Ankara", hint: "Déplacée par Atatürk en 1923" },
-              { q: "Quelle est la capitale de la Lettonie ?", r: "Riga", hint: "Pays balte du milieu" },
-              { q: "Quelle est la capitale de la Slovénie ?", r: "Ljubljana", hint: "Ex-Yougoslavie, au nord de la Croatie" }
+              { q: "Combien d'os a un bébé à la naissance ?", r: "300 (206 chez l'adulte)", hint: "Beaucoup fusionnent en grandissant" },
+              { q: "Combien de litres de salive produit-on dans sa vie ?", r: "25 000 litres", hint: "De quoi remplir deux piscines" },
+              { q: "Quel est le pH de l'acide de l'estomac ?", r: "1 à 2", hint: "Très très acide" },
+              { q: "Combien d'odeurs le nez peut-il détecter ?", r: "Plus de 1 000 milliards", hint: "Bien plus que les 10 000 qu'on croyait" }
             ]
           },
-          // --- Fiche 2 : Capitales Afrique & Moyen-Orient ---
           {
             id: "w1d2t3", type: "fiche",
-            title: "Capitales Afrique & Moyen-Orient",
+            title: "Sciences étonnantes",
             items: [
-              { fact: "Maroc → Rabat (pas Casablanca ni Marrakech)", detail: "Casablanca est la capitale économique, Marrakech la touristique. Rabat est la capitale politique depuis le protectorat français (1912)." },
-              { fact: "Nigéria → Abuja (pas Lagos)", detail: "Lagos est la mégapole de 15 millions d'habitants, mais la capitale a été déplacée à Abuja en 1991, au centre du pays, pour des raisons ethniques et géographiques." },
-              { fact: "Afrique du Sud → Pretoria (exécutif), Le Cap (législatif), Bloemfontein (judiciaire)", detail: "Seul pays au monde avec trois capitales. Piège classique : Johannesburg n'est capitale de rien malgré ses 5 millions d'habitants." },
-              { fact: "Éthiopie → Addis-Abeba", detail: "Signifie « nouvelle fleur » en amharique. Siège de l'Union africaine. Située à 2 400 m d'altitude, c'est l'une des capitales les plus hautes d'Afrique." },
-              { fact: "Israël → Jérusalem (proclamée) / Tel-Aviv (ambassades)", detail: "Jérusalem est la capitale proclamée par Israël, mais la plupart des ambassades sont à Tel-Aviv. Statut contesté internationalement." }
+              { fact: "Une cuillère à café d'étoile à neutrons pèse 6 milliards de tonnes", detail: "La matière y est si comprimée qu'un morceau de la taille d'un sucre pèserait autant que le mont Everest." },
+              { fact: "La foudre est 5 fois plus chaude que la surface du Soleil", detail: "Un éclair atteint 30 000 °C, contre 5 500 °C pour la surface du Soleil. Chaque seconde, 100 éclairs frappent la Terre." },
+              { fact: "L'eau chaude gèle plus vite que l'eau froide", detail: "C'est l'effet Mpemba, découvert par un lycéen tanzanien en 1963. La science n'explique toujours pas totalement pourquoi." },
+              { fact: "Le son ne se propage pas dans l'espace", detail: "L'espace est un vide quasi-total — pas de molécules pour transporter les ondes sonores. Les explosions de films sont donc fausses !" },
+              { fact: "Le miel ne se périme jamais", detail: "On a trouvé du miel comestible dans des tombes égyptiennes vieilles de 3 000 ans. Son pH acide et sa faible teneur en eau empêchent les bactéries." },
+              { fact: "Les bananes sont naturellement radioactives", detail: "Elles contiennent du potassium-40. Il faudrait en manger 10 millions d'un coup pour que la dose soit dangereuse." }
             ],
             flashcards: [
-              { q: "Depuis quand Rabat est-elle capitale du Maroc ?", r: "1912" },
-              { q: "Quelle est la capitale économique du Maroc ?", r: "Casablanca" },
-              { q: "En quelle année la capitale du Nigéria a-t-elle été déplacée à Abuja ?", r: "1991" },
-              { q: "Combien d'habitants compte Lagos ?", r: "15 millions" },
-              { q: "Quelle est la capitale judiciaire de l'Afrique du Sud ?", r: "Bloemfontein" },
-              { q: "Quelle est la capitale législative de l'Afrique du Sud ?", r: "Le Cap" },
-              { q: "Que signifie Addis-Abeba en amharique ?", r: "Nouvelle fleur" },
-              { q: "Quelle organisation internationale a son siège à Addis-Abeba ?", r: "L'Union africaine" },
-              { q: "À quelle altitude se trouve Addis-Abeba ?", r: "2 400 m" },
-              { q: "Dans quelle ville se trouvent la plupart des ambassades en Israël ?", r: "Tel-Aviv" }
+              { q: "Combien pèse une cuillère à café d'étoile à neutrons ?", r: "6 milliards de tonnes" },
+              { q: "Quelle est la température d'un éclair ?", r: "30 000 °C" },
+              { q: "Quelle est la température de la surface du Soleil ?", r: "5 500 °C" },
+              { q: "Combien d'éclairs frappent la Terre chaque seconde ?", r: "100" },
+              { q: "Comment s'appelle l'effet où l'eau chaude gèle plus vite ?", r: "L'effet Mpemba" },
+              { q: "Qui a découvert l'effet Mpemba ?", r: "Un lycéen tanzanien en 1963" },
+              { q: "Pourquoi n'y a-t-il pas de son dans l'espace ?", r: "Il n'y a pas de molécules pour transporter les ondes sonores" },
+              { q: "Combien de temps du miel peut-il se conserver ?", r: "Indéfiniment — il ne se périme jamais" },
+              { q: "On a trouvé du miel comestible dans des tombes de quel âge ?", r: "3 000 ans (tombes égyptiennes)" },
+              { q: "Pourquoi les bananes sont-elles radioactives ?", r: "Elles contiennent du potassium-40" },
+              { q: "Combien de bananes faudrait-il manger d'un coup pour une dose dangereuse ?", r: "10 millions" },
+              { q: "Qu'est-ce qui empêche les bactéries de se développer dans le miel ?", r: "Son pH acide et sa faible teneur en eau" },
+              { q: "Combien de fois un éclair est-il plus chaud que le Soleil ?", r: "5 fois plus chaud que la surface" }
             ]
           },
-          // --- Mini-quiz 2 ---
           {
             id: "w1d2t4", type: "quiz",
-            title: "Mini-quiz : Capitales Afrique & Moyen-Orient",
+            title: "Mini-quiz : Sciences étonnantes",
             questions: [
-              { q: "Quelle est la capitale du Nigéria ?", r: "Abuja", hint: "Pas Lagos — déplacée en 1991" },
-              { q: "Quel pays a trois capitales : Pretoria, Le Cap et Bloemfontein ?", r: "L'Afrique du Sud" },
-              { q: "Quelle est la capitale du Maroc ?", r: "Rabat", hint: "Ni Casablanca ni Marrakech" },
-              { q: "Que signifie Addis-Abeba en amharique ?", r: "Nouvelle fleur", hint: "Capitale de l'Éthiopie" }
+              { q: "Quel aliment ne se périme jamais ?", r: "Le miel", hint: "On en a trouvé dans des tombes égyptiennes" },
+              { q: "Comment s'appelle l'effet où l'eau chaude gèle plus vite ?", r: "Effet Mpemba", hint: "Découvert par un lycéen africain" },
+              { q: "La foudre est combien de fois plus chaude que le Soleil ?", r: "5 fois", hint: "30 000 °C vs 5 500 °C" },
+              { q: "Pourquoi les bananes sont-elles radioactives ?", r: "Elles contiennent du potassium-40", hint: "Un isotope d'un élément chimique commun" }
             ]
           },
-          // --- Lecture 2 ---
           {
             id: "w1d2t5", type: "lecture",
-            title: "QUIZ — Les Capitales du Monde (80 Pays)",
-            subtitle: "Vidéo YouTube — Testez vos connaissances sur 80 capitales",
-            url: "https://www.youtube.com/watch?v=9AWctHsuLvM",
-            duration: "15 min"
-          },
-          // --- Fiche 3 : Capitales Asie & Océanie ---
-          {
-            id: "w1d2t6", type: "fiche",
-            title: "Capitales Asie & Océanie",
-            items: [
-              { fact: "Australie → Canberra (pas Sydney ni Melbourne)", detail: "Canberra a été construite exprès comme capitale en 1913 pour mettre fin à la rivalité entre Sydney et Melbourne. Ville planifiée par l'architecte américain Walter Burley Griffin." },
-              { fact: "Myanmar (Birmanie) → Naypyidaw (pas Rangoun)", detail: "Capitale déplacée en 2006 dans une ville fantôme construite en secret par la junte militaire. Rangoun (Yangon) reste la plus grande ville." },
-              { fact: "Sri Lanka → Sri Jayawardenapura Kotte (pas Colombo)", detail: "Plus longue capitale du monde à écrire. Colombo est la capitale commerciale, mais le parlement siège à Kotte depuis 1982." },
-              { fact: "Nouvelle-Zélande → Wellington (pas Auckland)", detail: "Auckland est la plus grande ville (1,7 million d'habitants), mais Wellington est la capitale depuis 1865, située à la pointe sud de l'île du Nord." },
-              { fact: "Pakistan → Islamabad (pas Karachi)", detail: "Karachi est la mégapole (15 millions), mais Islamabad a été construite comme capitale en 1960 pour remplacer Karachi, jugée trop excentrée." }
-            ],
-            flashcards: [
-              { q: "En quelle année Canberra a-t-elle été construite comme capitale ?", r: "1913" },
-              { q: "Quel architecte a conçu la ville de Canberra ?", r: "Walter Burley Griffin" },
-              { q: "En quelle année la capitale du Myanmar a-t-elle été déplacée à Naypyidaw ?", r: "2006" },
-              { q: "Quel est l'ancien nom de Rangoun ?", r: "Yangon" },
-              { q: "Quelle est la plus longue capitale du monde à écrire ?", r: "Sri Jayawardenapura Kotte" },
-              { q: "Depuis quelle année le parlement du Sri Lanka siège-t-il à Kotte ?", r: "1982" },
-              { q: "Depuis quelle année Wellington est-elle capitale de Nouvelle-Zélande ?", r: "1865" },
-              { q: "Combien d'habitants compte Auckland ?", r: "1,7 million" },
-              { q: "En quelle année Islamabad a-t-elle été construite comme capitale ?", r: "1960" },
-              { q: "Combien d'habitants compte Karachi ?", r: "15 millions" }
-            ]
-          },
-          // --- Mini-quiz 3 ---
-          {
-            id: "w1d2t7", type: "quiz",
-            title: "Mini-quiz : Capitales Asie & Océanie",
-            questions: [
-              { q: "Quelle est la capitale de l'Australie ?", r: "Canberra", hint: "Construite exprès en 1913" },
-              { q: "Quelle est la capitale du Myanmar (Birmanie) ?", r: "Naypyidaw", hint: "Déplacée en 2006, ville fantôme" },
-              { q: "Quelle est la capitale de la Nouvelle-Zélande ?", r: "Wellington", hint: "Pointe sud de l'île du Nord" },
-              { q: "Quelle est la capitale du Pakistan ?", r: "Islamabad", hint: "Pas Karachi — construite en 1960" }
-            ]
-          },
-          // --- Fiche 4 : Capitales Amériques + fleuves & montagnes ---
-          {
-            id: "w1d2t8", type: "fiche",
-            title: "Capitales Amériques + fleuves & montagnes",
-            items: [
-              { fact: "Canada → Ottawa (pas Toronto ni Montréal)", detail: "Choisie par la reine Victoria en 1857 comme compromis entre anglophones (Toronto) et francophones (Montréal/Québec). Située en Ontario, à la frontière du Québec." },
-              { fact: "Brésil → Brasília (pas Rio ni São Paulo)", detail: "Capitale depuis 1960, construite en 3 ans par l'architecte Niemeyer et l'urbaniste Lucio Costa. Vue du ciel, la ville a la forme d'un avion." },
-              { fact: "USA → Washington D.C. (pas New York)", detail: "District of Columbia, créé en 1790 comme capitale fédérale neutre, n'appartenant à aucun État. Nommée d'après George Washington." },
-              { fact: "Nil : 6 650 km — plus long fleuve du monde", detail: "Traverse 11 pays d'Afrique. Source au lac Victoria (Ouganda/Tanzanie). Le Nil Blanc et le Nil Bleu confluent à Khartoum (Soudan)." },
-              { fact: "Everest : 8 849 m — plus haut sommet du monde", detail: "Frontière Népal/Tibet. Première ascension par Edmund Hillary et Tensing Norgay le 29 mai 1953. En népalais : Sagarmatha (« front du ciel »)." }
-            ],
-            flashcards: [
-              { q: "Qui a choisi Ottawa comme capitale du Canada ?", r: "La reine Victoria" },
-              { q: "En quelle année Ottawa est-elle devenue capitale du Canada ?", r: "1857" },
-              { q: "Quel architecte a conçu Brasília ?", r: "Oscar Niemeyer" },
-              { q: "Quel urbaniste a planifié Brasília ?", r: "Lucio Costa" },
-              { q: "Quelle forme a Brasília vue du ciel ?", r: "Un avion" },
-              { q: "En quelle année Washington D.C. a-t-elle été créée ?", r: "1790" },
-              { q: "Combien de pays le Nil traverse-t-il ?", r: "11 pays" },
-              { q: "Où le Nil Blanc et le Nil Bleu confluent-ils ?", r: "Khartoum (Soudan)" },
-              { q: "Qui a réalisé la première ascension de l'Everest ?", r: "Hillary et Tensing Norgay" },
-              { q: "Quel jour l'Everest a-t-il été gravi pour la première fois ?", r: "29 mai 1953" },
-              { q: "Quel est le nom népalais de l'Everest ?", r: "Sagarmatha" },
-              { q: "Entre quels territoires se situe l'Everest ?", r: "Népal et Tibet" }
-            ]
-          },
-          // --- Mini-quiz 4 ---
-          {
-            id: "w1d2t9", type: "quiz",
-            title: "Mini-quiz : Amériques + fleuves & montagnes",
-            questions: [
-              { q: "Quelle est la capitale du Canada ?", r: "Ottawa", hint: "Compromis entre anglophones et francophones" },
-              { q: "Quel architecte a conçu Brasília ?", r: "Oscar Niemeyer", hint: "Ville en forme d'avion vue du ciel" },
-              { q: "Quel est le plus long fleuve du monde et quelle est sa longueur ?", r: "Le Nil, 6 650 km", hint: "Il traverse l'Égypte" },
-              { q: "Qui a réalisé la première ascension de l'Everest et en quelle année ?", r: "Edmund Hillary et Tensing Norgay, en 1953" }
-            ]
-          },
-          // --- Quiz final du jour ---
-          {
-            id: "w1d2t10", type: "quiz",
-            title: "Quiz final : Géographie monde",
-            questions: [
-              { q: "Quelle est la capitale de la Suisse ?", r: "Berne" },
-              { q: "Quelle est la capitale du Nigéria ?", r: "Abuja" },
-              { q: "Quelle est la capitale de l'Australie ?", r: "Canberra" },
-              { q: "Quelle est la capitale du Brésil ?", r: "Brasília" },
-              { q: "Quel pays a trois capitales ?", r: "L'Afrique du Sud" },
-              { q: "Quel est le plus haut sommet du monde et sa hauteur ?", r: "L'Everest, 8 849 m" },
-              { q: "Où le Nil Blanc et le Nil Bleu confluent-ils ?", r: "À Khartoum (Soudan)" },
-              { q: "Quelle est la capitale de la Slovénie ?", r: "Ljubljana" },
-              { q: "Pourquoi la capitale de la Turquie est-elle Ankara et non Istanbul ?", r: "Atatürk l'a déplacée en 1923 pour rompre avec l'Empire ottoman" },
-              { q: "Quelle est la capitale du Myanmar ?", r: "Naypyidaw" },
-              { q: "Quelle est la capitale du Sri Lanka ?", r: "Sri Jayawardenapura Kotte" },
-              { q: "Quel fleuve traverse le plus de capitales européennes ?", r: "Le Danube (Vienne, Bratislava, Budapest, Belgrade)" }
-            ]
-          }
-        ]
-      },
-
-      // ===================== JOUR 3 : SCIENCES & NATURE =====================
-      {
-        day: 3, label: "Mercredi", theme: "Sciences & Nature", icon: "🔬",
-        objectif: "Grandes découvertes, inventeurs, corps humain, espace",
-        tasks: [
-          // --- Lecture 1 ---
-          {
-            id: "w1d3t0", type: "lecture",
-            title: "Les plus grandes découvertes scientifiques",
-            subtitle: "Vidéo YouTube — Les grandes dates de l'histoire des sciences",
-            url: "https://www.youtube.com/watch?v=ScJW3gVSxSk",
-            duration: "15 min"
-          },
-          // --- Fiche 1 : Physique & astronomie ---
-          {
-            id: "w1d3t1", type: "fiche",
-            title: "Physique & astronomie",
-            items: [
-              { fact: "Newton (1687) — Lois de la gravitation universelle", detail: "Principia Mathematica : F = G×m₁×m₂/d². Légende de la pomme. Il découvre aussi la décomposition de la lumière blanche par un prisme et co-invente le calcul infinitésimal." },
-              { fact: "Einstein (1905) — Relativité restreinte, E=mc²", detail: "L'énergie égale la masse multipliée par la vitesse de la lumière au carré. Publie 4 articles révolutionnaires en 1905 (annus mirabilis). Nobel 1921 pour l'effet photoélectrique, pas la relativité." },
-              { fact: "Vitesse de la lumière : 299 792 km/s (≈ 300 000 km/s)", detail: "Notée c. Mesurée pour la première fois par Rømer en 1676 grâce aux éclipses des lunes de Jupiter. C'est la vitesse maximale dans l'univers selon Einstein." },
-              { fact: "Galilée (1610) — Confirme l'héliocentrisme de Copernic", detail: "Observe les lunes de Jupiter avec sa lunette astronomique. Condamné par l'Inquisition en 1633. « Et pourtant, elle tourne » (apocryphe). Copernic avait publié sa théorie en 1543." },
-              { fact: "Planètes du système solaire : Mercure, Vénus, Terre, Mars, Jupiter, Saturne, Uranus, Neptune", detail: "Moyen mnémotechnique : « Me Voici Toute Mignonne, Je Suis Une Nébuleuse ». Pluton reclassée en planète naine en 2006. Jupiter est la plus grande, Mercure la plus petite." }
-            ],
-            flashcards: [
-              { q: "Comment s'appelle l'ouvrage majeur de Newton (1687) ?", r: "Principia Mathematica" },
-              { q: "Que découvre Newton avec un prisme ?", r: "La décomposition de la lumière" },
-              { q: "Combien d'articles Einstein publie-t-il en 1905 ?", r: "4" },
-              { q: "Pour quelle découverte Einstein reçoit-il le Nobel en 1921 ?", r: "L'effet photoélectrique" },
-              { q: "Qui mesure la vitesse de la lumière pour la première fois en 1676 ?", r: "Rømer" },
-              { q: "Comment Rømer mesure-t-il la vitesse de la lumière ?", r: "Éclipses des lunes de Jupiter" },
-              { q: "En quelle année Galilée est-il condamné par l'Inquisition ?", r: "1633" },
-              { q: "En quelle année Copernic publie-t-il sa théorie héliocentrique ?", r: "1543" },
-              { q: "En quelle année Pluton est-elle reclassée en planète naine ?", r: "2006" },
-              { q: "Quelle est la plus grande planète du système solaire ?", r: "Jupiter" },
-              { q: "Quelle est la plus petite planète du système solaire ?", r: "Mercure" }
-            ]
-          },
-          // --- Mini-quiz 1 ---
-          {
-            id: "w1d3t2", type: "quiz",
-            title: "Mini-quiz : Physique & astronomie",
-            questions: [
-              { q: "Quelle est la formule de la relativité restreinte d'Einstein ?", r: "E=mc²" },
-              { q: "Pour quelle découverte Einstein a-t-il reçu le Nobel en 1921 ?", r: "L'effet photoélectrique", hint: "Pas pour la relativité" },
-              { q: "Quelle est la vitesse de la lumière ?", r: "Environ 300 000 km/s (299 792 km/s)" },
-              { q: "Qui a confirmé l'héliocentrisme en 1610 grâce à sa lunette ?", r: "Galilée", hint: "Il a observé les lunes de Jupiter" }
-            ]
-          },
-          // --- Fiche 2 : Chimie & biologie ---
-          {
-            id: "w1d3t3", type: "fiche",
-            title: "Chimie & biologie",
-            items: [
-              { fact: "Lavoisier (XVIIIe) — Père de la chimie moderne", detail: "Identifie l'oxygène et l'hydrogène, énonce la loi de conservation de la masse : « Rien ne se perd, rien ne se crée, tout se transforme. » Guillotiné en 1794." },
-              { fact: "Mendeleïev (1869) — Tableau périodique des éléments", detail: "Classe les 63 éléments connus par masse atomique et prédit l'existence d'éléments inconnus. Aujourd'hui : 118 éléments. L'hydrogène (H) est le premier, l'oganesson (Og) le dernier." },
-              { fact: "Darwin (1859) — L'Origine des espèces", detail: "Théorie de l'évolution par sélection naturelle. Voyage sur le HMS Beagle aux Galápagos (1831-1836). Les pinsons de Darwin illustrent l'adaptation." },
-              { fact: "Watson & Crick (1953) — Structure en double hélice de l'ADN", detail: "Découverte au laboratoire Cavendish de Cambridge grâce aux clichés de diffraction de Rosalind Franklin (photo 51). Nobel de médecine en 1962." },
-              { fact: "Symboles chimiques courants : H (hydrogène), O (oxygène), Fe (fer), Au (or), Na (sodium)", detail: "Fe vient du latin Ferrum, Au de Aurum, Na de Natrium. L'or (Au) a le numéro atomique 79. Le fer (Fe) 26. Le sodium (Na) 11." }
-            ],
-            flashcards: [
-              { q: "Comment Lavoisier meurt-il en 1794 ?", r: "Guillotiné" },
-              { q: "Quels gaz Lavoisier identifie-t-il ?", r: "Oxygène et hydrogène" },
-              { q: "Combien d'éléments Mendeleïev classe-t-il en 1869 ?", r: "63" },
-              { q: "Combien d'éléments compte le tableau périodique actuel ?", r: "118" },
-              { q: "Sur quel navire Darwin voyage-t-il aux Galápagos ?", r: "HMS Beagle" },
-              { q: "En quelle année Darwin publie-t-il L'Origine des espèces ?", r: "1859" },
-              { q: "Quel cliché de Rosalind Franklin est clé pour la découverte de l'ADN ?", r: "Photo 51" },
-              { q: "Dans quel laboratoire Watson et Crick découvrent-ils l'ADN ?", r: "Laboratoire Cavendish" },
-              { q: "Quel est le numéro atomique de l'or ?", r: "79" },
-              { q: "De quel mot latin vient le symbole Na (sodium) ?", r: "Natrium" },
-              { q: "Quel est le numéro atomique du fer ?", r: "26" }
-            ]
-          },
-          // --- Mini-quiz 2 ---
-          {
-            id: "w1d3t4", type: "quiz",
-            title: "Mini-quiz : Chimie & biologie",
-            questions: [
-              { q: "Quelle phrase célèbre de Lavoisier résume la conservation de la masse ?", r: "Rien ne se perd, rien ne se crée, tout se transforme" },
-              { q: "Combien d'éléments compte le tableau périodique actuel ?", r: "118", hint: "Créé par Mendeleïev en 1869" },
-              { q: "Quel est le symbole chimique du fer ?", r: "Fe", hint: "Du latin Ferrum" },
-              { q: "Quelle chercheuse a réalisé la photo 51, clé de la structure de l'ADN ?", r: "Rosalind Franklin", hint: "Watson et Crick ont reçu le Nobel" }
-            ]
-          },
-          // --- Lecture 2 ---
-          {
-            id: "w1d3t5", type: "lecture",
             title: "77 Découvertes qui ont bouleversé le monde",
             subtitle: "Vidéo YouTube — Les grandes avancées scientifiques — Doc Seven (34 min)",
             url: "https://www.youtube.com/watch?v=9IpRIlM1X58",
-            duration: "15 min"
+            duration: "34 min"
           },
-          // --- Fiche 3 : Médecine & corps humain ---
           {
-            id: "w1d3t6", type: "fiche",
-            title: "Médecine & corps humain",
+            id: "w1d2t6", type: "fiche",
+            title: "Inventions & origines surprenantes",
             items: [
-              { fact: "Pasteur (1885) — Vaccin contre la rage", detail: "Aussi inventeur de la pasteurisation (1863). Réfute la génération spontanée. Premier vacciné contre la rage : Joseph Meister, un garçon de 9 ans mordu par un chien." },
-              { fact: "Fleming (1928) — Découverte de la pénicilline", detail: "Découverte accidentelle : une moisissure (Penicillium notatum) tue les bactéries dans une boîte de Petri oubliée. Nobel 1945. Premier antibiotique, il sauvera des millions de vies." },
-              { fact: "Corps humain : 206 os, ~600 muscles, 5 litres de sang", detail: "Le plus petit os : l'étrier dans l'oreille (3 mm). Le plus grand : le fémur. Le cœur bat environ 100 000 fois par jour, soit 3 milliards de fois dans une vie." },
-              { fact: "Le pancréas produit l'insuline", detail: "Insuline découverte par Banting et Best en 1921 (Nobel 1923). Le diabète de type 1 est dû à une destruction des cellules bêta du pancréas. Avant l'insuline, le diabète était mortel." },
-              { fact: "46 chromosomes (23 paires) dans chaque cellule humaine", detail: "22 paires d'autosomes + 1 paire de chromosomes sexuels (XX femme, XY homme). La trisomie 21 est causée par un chromosome 21 surnuméraire." }
+              { fact: "Le micro-ondes a été inventé par accident", detail: "Percy Spencer, ingénieur chez Raytheon, a remarqué en 1945 qu'une barre de chocolat avait fondu dans sa poche près d'un magnétron radar." },
+              { fact: "Le Coca-Cola était à l'origine un médicament", detail: "Inventé en 1886 par le pharmacien John Pemberton à Atlanta. Il contenait de la cocaïne (retirée en 1903) et était vendu comme tonique." },
+              { fact: "Les Post-it sont nés d'une colle ratée", detail: "Spencer Silver chez 3M a créé une colle trop faible en 1968. Son collègue Art Fry a eu l'idée de l'utiliser pour ses marque-pages en 1974." },
+              { fact: "La Tour Eiffel grandit de 15 cm en été", detail: "La dilatation thermique du fer. Elle devait être démontée après 20 ans (1909) mais a été sauvée par les antennes radio." },
+              { fact: "Internet a été inventé en France et aux USA", detail: "Le réseau ARPANET (1969, USA) est le plus connu, mais le Minitel français (1982) a été le premier réseau grand public." }
             ],
             flashcards: [
-              { q: "Qu'a inventé Pasteur en 1863 ?", r: "La pasteurisation" },
-              { q: "Comment s'appelle le premier vacciné contre la rage ?", r: "Joseph Meister" },
-              { q: "Quel âge avait Joseph Meister lors de la vaccination ?", r: "9 ans" },
-              { q: "Quelle moisissure est à l'origine de la pénicilline ?", r: "Penicillium notatum" },
-              { q: "En quelle année Fleming reçoit-il le Nobel ?", r: "1945" },
-              { q: "Quel est le plus petit os du corps humain ?", r: "L'étrier" },
-              { q: "Combien de fois le cœur bat-il par jour environ ?", r: "100 000 fois" },
-              { q: "Qui découvre l'insuline en 1921 ?", r: "Banting et Best" },
-              { q: "Quelles cellules du pancréas sont détruites dans le diabète de type 1 ?", r: "Cellules bêta" },
-              { q: "Combien de paires d'autosomes chez l'humain ?", r: "22 paires" },
-              { q: "Quelle anomalie chromosomique cause la trisomie 21 ?", r: "Chromosome 21 surnuméraire" },
-              { q: "Quels chromosomes sexuels définissent une femme ?", r: "XX" }
+              { q: "Qui a inventé le micro-ondes par accident ?", r: "Percy Spencer" },
+              { q: "Quel objet a fondu dans la poche de Spencer en 1945 ?", r: "Une barre de chocolat" },
+              { q: "Qui a inventé le Coca-Cola ?", r: "John Pemberton, pharmacien à Atlanta" },
+              { q: "En quelle année le Coca-Cola a-t-il été inventé ?", r: "1886" },
+              { q: "Quand la cocaïne a-t-elle été retirée du Coca-Cola ?", r: "1903" },
+              { q: "Qui a inventé la colle des Post-it ?", r: "Spencer Silver (chez 3M)" },
+              { q: "Qui a eu l'idée d'utiliser cette colle pour des Post-it ?", r: "Art Fry (pour ses marque-pages)" },
+              { q: "De combien la Tour Eiffel grandit-elle en été ?", r: "15 cm" },
+              { q: "Pourquoi la Tour Eiffel grandit-elle en été ?", r: "La dilatation thermique du fer" },
+              { q: "Quand la Tour Eiffel devait-elle être démontée ?", r: "En 1909 (après 20 ans)" },
+              { q: "Qu'est-ce qui a sauvé la Tour Eiffel de la démolition ?", r: "Les antennes radio installées dessus" },
+              { q: "En quelle année le Minitel a-t-il été lancé en France ?", r: "1982" },
+              { q: "Comment s'appelle le premier réseau internet américain ?", r: "ARPANET (1969)" }
             ]
           },
-          // --- Mini-quiz 3 ---
           {
-            id: "w1d3t7", type: "quiz",
-            title: "Mini-quiz : Médecine & corps humain",
+            id: "w1d2t7", type: "quiz",
+            title: "Quiz final : Corps & Sciences",
             questions: [
-              { q: "Qui a été le premier enfant vacciné contre la rage par Pasteur ?", r: "Joseph Meister", hint: "En 1885, mordu par un chien enragé" },
-              { q: "Combien d'os compte le squelette humain adulte ?", r: "206" },
-              { q: "Quel organe produit l'insuline ?", r: "Le pancréas", hint: "Découverte par Banting et Best en 1921" },
-              { q: "Combien de chromosomes dans une cellule humaine ?", r: "46 (23 paires)" }
-            ]
-          },
-          // --- Fiche 4 : Inventions & découvertes ---
-          {
-            id: "w1d3t8", type: "fiche",
-            title: "Inventions & découvertes",
-            items: [
-              { fact: "Marie Curie (1898) — Découverte du radium et du polonium", detail: "Première femme Nobel (physique 1903 avec Pierre Curie, chimie 1911 seule). Seule personne à avoir reçu deux Nobel dans deux sciences différentes. Meurt en 1934 d'une anémie aplasique due aux radiations." },
-              { fact: "Gutenberg (v. 1450) — Imprimerie à caractères mobiles", detail: "Premier livre imprimé : la Bible de Gutenberg (180 exemplaires). Révolutionne la diffusion du savoir en Europe. L'imprimerie existait en Chine depuis le XIe siècle." },
-              { fact: "Frères Lumière (1895) — Première projection cinématographique", detail: "28 décembre 1895 au Grand Café à Paris, boulevard des Capucines. Premier film : La Sortie de l'usine Lumière à Lyon. 46 secondes." },
-              { fact: "Graham Bell (1876) — Brevet du téléphone", detail: "Conteste avec Elisha Gray qui dépose son brevet le même jour. Antonio Meucci est reconnu en 2002 comme le véritable inventeur par le Congrès américain." },
-              { fact: "Neil Armstrong (20 juillet 1969) — Premier homme sur la Lune", detail: "Mission Apollo 11. Buzz Aldrin le rejoint sur la Lune, Michael Collins reste en orbite. Armstrong prononce : « Un petit pas pour l'homme, un bond de géant pour l'humanité. »" }
-            ],
-            flashcards: [
-              { q: "Combien de Nobel Marie Curie a-t-elle reçus ?", r: "Deux" },
-              { q: "En quelle année Marie Curie reçoit-elle le Nobel de chimie ?", r: "1911" },
-              { q: "De quoi meurt Marie Curie en 1934 ?", r: "Anémie aplasique" },
-              { q: "Combien d'exemplaires de la Bible Gutenberg a-t-on imprimés ?", r: "180" },
-              { q: "Quel jour a lieu la première projection des frères Lumière ?", r: "28 décembre 1895" },
-              { q: "Où a lieu la première projection cinématographique ?", r: "Grand Café, boulevard des Capucines" },
-              { q: "Combien de temps dure le premier film des Lumière ?", r: "46 secondes" },
-              { q: "Qui est reconnu en 2002 comme véritable inventeur du téléphone ?", r: "Antonio Meucci" },
-              { q: "En quelle année Graham Bell dépose-t-il le brevet du téléphone ?", r: "1876" },
-              { q: "Quel astronaute d'Apollo 11 reste en orbite lunaire ?", r: "Michael Collins" },
-              { q: "Quel astronaute rejoint Armstrong sur la Lune ?", r: "Buzz Aldrin" },
-              { q: "Quelle est la mission de la première marche lunaire ?", r: "Apollo 11" }
-            ]
-          },
-          // --- Mini-quiz 4 ---
-          {
-            id: "w1d3t9", type: "quiz",
-            title: "Mini-quiz : Inventions & découvertes",
-            questions: [
-              { q: "Combien de prix Nobel Marie Curie a-t-elle reçus et dans quelles disciplines ?", r: "Deux : physique (1903) et chimie (1911)" },
-              { q: "En quelle année les frères Lumière ont-ils projeté le premier film ?", r: "1895", hint: "Au Grand Café, boulevard des Capucines à Paris" },
-              { q: "Quel astronaute a posé le premier pas sur la Lune ?", r: "Neil Armstrong", hint: "20 juillet 1969, mission Apollo 11" },
-              { q: "Vers quelle année Gutenberg a-t-il inventé l'imprimerie à caractères mobiles ?", r: "Vers 1450", hint: "Premier livre imprimé : la Bible" }
-            ]
-          },
-          // --- Quiz final du jour ---
-          {
-            id: "w1d3t10", type: "quiz",
-            title: "Quiz final : Sciences & Nature",
-            questions: [
-              { q: "Quelle est la formule de Newton pour la gravitation universelle ?", r: "F = G×m₁×m₂/d²" },
-              { q: "Quel gaz les plantes absorbent-elles pendant la photosynthèse ?", r: "Le dioxyde de carbone (CO₂)" },
-              { q: "Quel est le plus petit os du corps humain ?", r: "L'étrier (dans l'oreille)", hint: "Environ 3 mm" },
-              { q: "Qui a créé le tableau périodique des éléments en 1869 ?", r: "Dmitri Mendeleïev" },
-              { q: "Quelle planète est la plus grande du système solaire ?", r: "Jupiter" },
-              { q: "Quel est le symbole chimique de l'or ?", r: "Au", hint: "Du latin Aurum" },
-              { q: "Qui a découvert la pénicilline en 1928 ?", r: "Alexander Fleming" },
-              { q: "Quel vaisseau a permis à Darwin de voyager aux Galápagos ?", r: "Le HMS Beagle" },
-              { q: "En quelle année Pluton a-t-elle été reclassée en planète naine ?", r: "2006" },
-              { q: "Quel organe filtre le sang dans le corps humain ?", r: "Les reins" },
-              { q: "Qui a inventé la pasteurisation ?", r: "Louis Pasteur", hint: "En 1863" },
-              { q: "Qui était le troisième astronaute d'Apollo 11, resté en orbite ?", r: "Michael Collins" }
+              { q: "Combien d'os a un adulte ?", r: "206" },
+              { q: "Quel aliment ne périme jamais ?", r: "Le miel" },
+              { q: "Qui a inventé le Coca-Cola et en quelle année ?", r: "John Pemberton, 1886" },
+              { q: "De combien la Tour Eiffel grandit-elle en été ?", r: "15 cm" },
+              { q: "Combien pèse le cœur d'une baleine bleue ?", r: "600 kg" },
+              { q: "Comment s'appelle l'effet où l'eau chaude gèle plus vite ?", r: "L'effet Mpemba" }
             ]
           }
         ]
       },
 
-      // ===================== JOUR 4 : LITTÉRATURE FRANÇAISE =====================
+      // ===================== JOUR 3 : GASTRONOMIE & RÉGIONS DE FRANCE =====================
       {
-        day: 4, label: "Jeudi", theme: "Littérature française", icon: "📚",
-        objectif: "Grands auteurs, œuvres majeures et prix littéraires",
+        day: 3, label: "Mercredi", theme: "Gastronomie & Régions", icon: "🧀",
+        objectif: "Fromages, plats régionaux, spécialités — tout pour briller",
         tasks: [
-          // --- Lecture 1 ---
+          {
+            id: "w1d3t0", type: "lecture",
+            title: "Tour de France des spécialités régionales",
+            subtitle: "Vidéo YouTube — Gastronomie française région par région",
+            url: "https://www.youtube.com/watch?v=Hl77r5MOI2o",
+            duration: "18 min"
+          },
+          {
+            id: "w1d3t1", type: "fiche",
+            title: "Fromages de France",
+            items: [
+              { fact: "La France compte plus de 1 200 variétés de fromages", detail: "Le général de Gaulle disait : « Comment voulez-vous gouverner un pays qui a 246 variétés de fromage ? ». En réalité, c'est bien plus !" },
+              { fact: "Le Roquefort est le plus ancien fromage français connu", detail: "Mentionné dès 1070 ! Affiné dans les caves naturelles de Roquefort-sur-Soulzon (Aveyron). C'est un bleu au lait de brebis." },
+              { fact: "Le Comté est le fromage AOP le plus produit en France", detail: "Plus de 60 000 tonnes par an. Il faut 400 litres de lait pour un meule de 40 kg. Affiné dans le Jura." },
+              { fact: "Le Camembert a été « inventé » par Marie Harel en 1791", detail: "Paysanne normande qui aurait aidé un prêtre réfractaire. La boîte en bois date de 1890 pour faciliter le transport par train." },
+              { fact: "Le Brie de Meaux était surnommé « le roi des fromages »", detail: "Au Congrès de Vienne (1815), il a été élu meilleur fromage du monde dans un concours entre diplomates européens." }
+            ],
+            flashcards: [
+              { q: "Combien de variétés de fromages la France compte-t-elle ?", r: "Plus de 1 200" },
+              { q: "Quelle citation de Gaulle sur les fromages ?", r: "« Comment voulez-vous gouverner un pays qui a 246 variétés de fromage ? »" },
+              { q: "Quel est le plus ancien fromage français connu ?", r: "Le Roquefort (mentionné en 1070)" },
+              { q: "Avec quel lait le Roquefort est-il fabriqué ?", r: "Lait de brebis" },
+              { q: "Quel est le fromage AOP le plus produit en France ?", r: "Le Comté" },
+              { q: "Combien de litres de lait faut-il pour une meule de Comté ?", r: "400 litres" },
+              { q: "Qui a « inventé » le Camembert ?", r: "Marie Harel, en 1791" },
+              { q: "Pourquoi le Camembert est-il vendu dans une boîte en bois ?", r: "Pour faciliter le transport par train (depuis 1890)" },
+              { q: "Quel fromage est surnommé « le roi des fromages » ?", r: "Le Brie de Meaux" },
+              { q: "Lors de quel événement le Brie a-t-il été élu meilleur fromage ?", r: "Le Congrès de Vienne (1815)" },
+              { q: "Dans quelle région le Comté est-il affiné ?", r: "Le Jura" },
+              { q: "Dans quel département se trouvent les caves du Roquefort ?", r: "L'Aveyron (Roquefort-sur-Soulzon)" }
+            ]
+          },
+          {
+            id: "w1d3t2", type: "quiz",
+            title: "Mini-quiz : Fromages",
+            questions: [
+              { q: "Quel est le fromage AOP le plus produit en France ?", r: "Le Comté", hint: "Fromage du Jura" },
+              { q: "Qui a inventé le Camembert ?", r: "Marie Harel en 1791", hint: "Une paysanne normande" },
+              { q: "Avec quel lait fait-on le Roquefort ?", r: "Lait de brebis", hint: "Ce n'est pas du lait de vache" },
+              { q: "Quel fromage a été élu meilleur au Congrès de Vienne ?", r: "Le Brie de Meaux", hint: "Le « roi des fromages »" }
+            ]
+          },
+          {
+            id: "w1d3t3", type: "fiche",
+            title: "Plats régionaux & spécialités",
+            items: [
+              { fact: "La bouillabaisse est un plat marseillais de pêcheurs", detail: "Originalement les poissons invendus cuits dans un bouillon. Doit contenir au minimum 4 espèces de poissons de roche. Le mot vient de « quand ça bout, tu baisses » (le feu)." },
+              { fact: "Le cassoulet tire son nom de la cassole", detail: "Plat en terre cuite de Castelnaudary. Guerre des cassoulets : Castelnaudary (le père), Carcassonne (le fils), Toulouse (le Saint-Esprit)." },
+              { fact: "La quiche Lorraine ne contient PAS de fromage traditionnellement", detail: "La recette originale : pâte brisée, crème, œufs, lardons. Le gruyère a été ajouté plus tard. « Quiche » vient de l'allemand « Kuchen » (gâteau)." },
+              { fact: "Le croissant n'est PAS français à l'origine", detail: "Il vient du kipferl autrichien. Importé à Paris par August Zang en 1838. La version feuilletée au beurre est française (années 1920)." },
+              { fact: "La tarte Tatin est née d'une erreur", detail: "Les sœurs Tatin à Lamotte-Beuvron (Sologne) ont oublié la pâte et l'ont posée sur les pommes déjà cuites. C'est un dessert « renversé »." }
+            ],
+            flashcards: [
+              { q: "D'où vient le mot « bouillabaisse » ?", r: "« Quand ça bout, tu baisses » (le feu)" },
+              { q: "Combien d'espèces de poisson doit contenir une bouillabaisse ?", r: "Au minimum 4 (poissons de roche)" },
+              { q: "D'où vient le nom « cassoulet » ?", r: "De la cassole (plat en terre cuite)" },
+              { q: "Quelle ville est considérée comme le « père » du cassoulet ?", r: "Castelnaudary" },
+              { q: "Vrai ou faux : la quiche Lorraine traditionnelle contient du fromage ?", r: "Faux — la recette originale n'a pas de fromage" },
+              { q: "D'où vient le mot « quiche » ?", r: "De l'allemand « Kuchen » (gâteau)" },
+              { q: "De quel pays vient le croissant à l'origine ?", r: "L'Autriche (le kipferl)" },
+              { q: "Qui a importé le croissant à Paris ?", r: "August Zang, en 1838" },
+              { q: "Qui a inventé la tarte Tatin ?", r: "Les sœurs Tatin à Lamotte-Beuvron" },
+              { q: "Comment la tarte Tatin a-t-elle été inventée ?", r: "Par erreur — elles ont oublié la pâte et l'ont posée par-dessus" },
+              { q: "Dans quelle région se trouve Lamotte-Beuvron (tarte Tatin) ?", r: "La Sologne" },
+              { q: "Depuis quand le croissant est-il feuilleté au beurre ?", r: "Les années 1920" },
+              { q: "Quels sont les 3 ingrédients de base de la quiche Lorraine ?", r: "Crème, œufs, lardons (+ pâte brisée)" }
+            ]
+          },
+          {
+            id: "w1d3t4", type: "quiz",
+            title: "Mini-quiz : Plats régionaux",
+            questions: [
+              { q: "De quel pays vient le croissant ?", r: "L'Autriche", hint: "Le kipferl, importé à Paris en 1838" },
+              { q: "La quiche Lorraine contient-elle du fromage dans sa recette originale ?", r: "Non", hint: "Juste crème, œufs et lardons" },
+              { q: "Qui a inventé la tarte Tatin ?", r: "Les sœurs Tatin", hint: "Par accident, dans une auberge de Sologne" },
+              { q: "D'où vient le mot bouillabaisse ?", r: "Quand ça bout, tu baisses (le feu)", hint: "C'est du provençal" }
+            ]
+          },
+          {
+            id: "w1d3t5", type: "lecture",
+            title: "Les secrets de la gastronomie française",
+            subtitle: "Vidéo YouTube — Cuisine et traditions régionales",
+            url: "https://www.youtube.com/watch?v=Q3EKDsVKbKM",
+            duration: "20 min"
+          },
+          {
+            id: "w1d3t6", type: "fiche",
+            title: "Régions & chefs-lieux pièges",
+            items: [
+              { fact: "Le chef-lieu de la Corse-du-Sud est Ajaccio, pas Bastia", detail: "Bastia est le chef-lieu de Haute-Corse. Napoléon Bonaparte est né à Ajaccio le 15 août 1769." },
+              { fact: "Strasbourg est la capitale de l'Alsace mais aussi siège du Parlement européen", detail: "Elle accueille aussi le Conseil de l'Europe et la Cour européenne des droits de l'homme. 3 institutions majeures." },
+              { fact: "Le Mont-Saint-Michel est en Normandie, pas en Bretagne", detail: "Depuis 2009, il est rattaché au département de la Manche. Mais le Couesnon, la rivière frontière, « a mis le Mont en Normandie »." },
+              { fact: "La plus grande région de France est la Nouvelle-Aquitaine", detail: "84 000 km² — plus grande que l'Autriche ! Son chef-lieu est Bordeaux." },
+              { fact: "Le plus petit département de France métropolitaine est Paris", detail: "105 km² seulement. Le plus grand est la Gironde (10 000 km²). Le département le moins peuplé est la Lozère." }
+            ],
+            flashcards: [
+              { q: "Quel est le chef-lieu de la Corse-du-Sud ?", r: "Ajaccio" },
+              { q: "Quel est le chef-lieu de la Haute-Corse ?", r: "Bastia" },
+              { q: "Où est né Napoléon Bonaparte ?", r: "Ajaccio, le 15 août 1769" },
+              { q: "Quelles 3 institutions européennes sont à Strasbourg ?", r: "Parlement européen, Conseil de l'Europe, Cour européenne des droits de l'homme" },
+              { q: "Le Mont-Saint-Michel est dans quel département ?", r: "La Manche (Normandie)" },
+              { q: "Quelle rivière sépare la Normandie de la Bretagne au Mont-Saint-Michel ?", r: "Le Couesnon" },
+              { q: "Quelle est la plus grande région de France ?", r: "La Nouvelle-Aquitaine (84 000 km²)" },
+              { q: "Quel est le chef-lieu de la Nouvelle-Aquitaine ?", r: "Bordeaux" },
+              { q: "Quel est le plus petit département de France métropolitaine ?", r: "Paris (105 km²)" },
+              { q: "Quel est le plus grand département de France ?", r: "La Gironde (10 000 km²)" },
+              { q: "Quel est le département le moins peuplé de France ?", r: "La Lozère" },
+              { q: "Vrai ou faux : la Nouvelle-Aquitaine est plus grande que l'Autriche ?", r: "Vrai" }
+            ]
+          },
+          {
+            id: "w1d3t7", type: "quiz",
+            title: "Quiz final : Gastronomie & Régions",
+            questions: [
+              { q: "Combien de variétés de fromages en France ?", r: "Plus de 1 200" },
+              { q: "De quel pays vient le croissant ?", r: "L'Autriche" },
+              { q: "Quel est le chef-lieu de la Corse-du-Sud ?", r: "Ajaccio" },
+              { q: "Quel est le plus grand département de France ?", r: "La Gironde" },
+              { q: "Quelle est la plus grande région de France ?", r: "La Nouvelle-Aquitaine" },
+              { q: "Qui a inventé la tarte Tatin ?", r: "Les sœurs Tatin (par accident)" }
+            ]
+          }
+        ]
+      },
+
+      // ===================== JOUR 4 : CÉLÉBRITÉS & CULTURE POP =====================
+      {
+        day: 4, label: "Jeudi", theme: "Célébrités & Culture Pop", icon: "🌟",
+        objectif: "Vrais noms, anecdotes de stars, show-biz — le cœur des 12 Coups",
+        tasks: [
           {
             id: "w1d4t0", type: "lecture",
-            title: "Histoire de la Littérature Française",
-            subtitle: "Vidéo YouTube — Tour d'horizon des mouvements littéraires",
-            url: "https://www.youtube.com/watch?v=UmC59d_CXH4",
-            duration: "15 min"
+            title: "Les vrais noms des célébrités françaises",
+            subtitle: "Vidéo YouTube — Découvre les vrais noms des stars",
+            url: "https://www.youtube.com/watch?v=zPH0hQWQtZg",
+            duration: "12 min"
           },
-          // --- Fiche 1 : XVIIe–XVIIIe : classicisme & Lumières ---
           {
             id: "w1d4t1", type: "fiche",
-            title: "XVIIe–XVIIIe : classicisme & Lumières",
+            title: "Vrais noms des célébrités",
             items: [
-              { fact: "Molière (1622–1673) — Tartuffe, Le Misanthrope, L'Avare", detail: "De son vrai nom Jean-Baptiste Poquelin. Comédien et dramaturge favori de Louis XIV. Meurt sur scène en jouant Le Malade imaginaire. Père de la comédie française." },
-              { fact: "Racine (1639–1699) — Phèdre, Andromaque, Britannicus", detail: "Maître de la tragédie classique en alexandrins. Rival de Corneille. Phèdre (1677) est considérée comme le sommet de la tragédie française. Thème : passions destructrices." },
-              { fact: "La Fontaine (1621–1695) — Fables (12 livres, 243 fables)", detail: "S'inspire d'Ésope et Phèdre. « La Cigale et la Fourmi », « Le Corbeau et le Renard ». Morale souvent satirique envers les puissants. Élu à l'Académie française en 1684." },
-              { fact: "Voltaire (1694–1778) — Candide (1759), Zadig", detail: "Philosophe des Lumières. Candide critique l'optimisme de Leibniz (« Tout est pour le mieux dans le meilleur des mondes »). Défenseur de la tolérance (affaire Calas). Exilé à Ferney." },
-              { fact: "Rousseau (1712–1778) — Du Contrat social, Les Confessions", detail: "« L'homme naît bon, c'est la société qui le corrompt. » Précurseur du romantisme et de la démocratie moderne. Enterré au Panthéon face à Voltaire, son rival intellectuel." }
+              { fact: "Johnny Hallyday s'appelait Jean-Philippe Smet", detail: "Né à Paris en 1943. Hallyday est le nom de son beau-père américain Lee Hallyday qui l'a élevé." },
+              { fact: "Édith Piaf s'appelait Édith Giovanna Gassion", detail: "Surnommée « la Môme Piaf » par le directeur de cabaret Louis Leplée (piaf = moineau en argot). Mesure 1m47." },
+              { fact: "Coluche s'appelait Michel Colucci", detail: "Fils d'un immigré italien. Il s'est présenté à l'élection présidentielle de 1981 et a créé les Restos du Cœur en 1985." },
+              { fact: "Voltaire s'appelait François-Marie Arouet", detail: "« Voltaire » est probablement l'anagramme de AROUET L.J. (le jeune) en latin. Il a passé 11 mois à la Bastille." },
+              { fact: "Molière s'appelait Jean-Baptiste Poquelin", detail: "Fils d'un tapissier du roi. Il est mort après la 4e représentation du Malade imaginaire, sur scène (presque)." },
+              { fact: "Le Corbusier s'appelait Charles-Édouard Jeanneret", detail: "Architecte suisse naturalisé français. Son pseudonyme vient du nom de son grand-père maternel : Lecorbésier." }
             ],
             flashcards: [
+              { q: "Quel est le vrai nom de Johnny Hallyday ?", r: "Jean-Philippe Smet" },
+              { q: "D'où vient le nom « Hallyday » ?", r: "De son beau-père américain Lee Hallyday" },
+              { q: "Quel est le vrai nom d'Édith Piaf ?", r: "Édith Giovanna Gassion" },
+              { q: "Que signifie « piaf » en argot ?", r: "Moineau" },
+              { q: "Quelle était la taille d'Édith Piaf ?", r: "1m47" },
+              { q: "Quel est le vrai nom de Coluche ?", r: "Michel Colucci" },
+              { q: "Quelle association Coluche a-t-il créée ?", r: "Les Restos du Cœur (1985)" },
+              { q: "Quel est le vrai nom de Voltaire ?", r: "François-Marie Arouet" },
+              { q: "Combien de temps Voltaire a-t-il passé à la Bastille ?", r: "11 mois" },
               { q: "Quel est le vrai nom de Molière ?", r: "Jean-Baptiste Poquelin" },
-              { q: "En jouant quelle pièce Molière meurt-il ?", r: "Le Malade imaginaire" },
-              { q: "Quel roi est le protecteur de Molière ?", r: "Louis XIV" },
-              { q: "Quel est le thème principal des tragédies de Racine ?", r: "Les passions destructrices" },
-              { q: "Combien de fables La Fontaine a-t-il écrites ?", r: "243" },
-              { q: "En quelle année La Fontaine est-il élu à l'Académie française ?", r: "1684" },
-              { q: "Quel philosophe Candide de Voltaire critique-t-il ?", r: "Leibniz" },
-              { q: "Où Voltaire vit-il en exil ?", r: "Ferney" },
-              { q: "Quelle affaire judiciaire Voltaire défend-il ?", r: "L'affaire Calas" },
-              { q: "Où Rousseau est-il enterré ?", r: "Au Panthéon" },
-              { q: "Face à quel rival Rousseau est-il enterré au Panthéon ?", r: "Voltaire" }
+              { q: "Quel était le métier du père de Molière ?", r: "Tapissier du roi" },
+              { q: "Après quelle représentation Molière est-il mort ?", r: "La 4e du Malade imaginaire" },
+              { q: "Quel est le vrai nom de Le Corbusier ?", r: "Charles-Édouard Jeanneret" },
+              { q: "De quelle nationalité était Le Corbusier à l'origine ?", r: "Suisse" },
+              { q: "En quelle année Coluche s'est-il présenté à la présidentielle ?", r: "1981" }
             ]
           },
-          // --- Mini-quiz 1 ---
           {
             id: "w1d4t2", type: "quiz",
-            title: "Mini-quiz : XVIIe–XVIIIe",
+            title: "Mini-quiz : Vrais noms",
             questions: [
-              { q: "Quel est le vrai nom de Molière ?", r: "Jean-Baptiste Poquelin", hint: "Mort en jouant Le Malade imaginaire" },
-              { q: "Quelle tragédie de Racine est considérée comme le sommet du genre ?", r: "Phèdre (1677)" },
-              { q: "Quel conte philosophique de Voltaire critique l'optimisme de Leibniz ?", r: "Candide" },
-              { q: "Quel philosophe a écrit « L'homme naît bon, c'est la société qui le corrompt » ?", r: "Jean-Jacques Rousseau" }
+              { q: "Quel est le vrai nom de Johnny Hallyday ?", r: "Jean-Philippe Smet", hint: "Prénom composé français classique" },
+              { q: "Que signifie « piaf » ?", r: "Moineau (en argot)", hint: "Surnom donné à Édith Gassion" },
+              { q: "Quel est le vrai nom de Molière ?", r: "Jean-Baptiste Poquelin", hint: "Fils d'un tapissier" },
+              { q: "Quelle association Coluche a-t-il créée ?", r: "Les Restos du Cœur", hint: "En 1985" }
             ]
           },
-          // --- Fiche 2 : XIXe : romantisme & réalisme ---
           {
             id: "w1d4t3", type: "fiche",
-            title: "XIXe : romantisme & réalisme",
+            title: "Anecdotes cinéma & séries",
             items: [
-              { fact: "Hugo (1802–1885) — Les Misérables, Notre-Dame de Paris", detail: "Chef de file du romantisme. Aussi poète (Les Contemplations) et homme politique (exilé 19 ans par Napoléon III à Guernesey). Funérailles nationales : 2 millions de personnes." },
-              { fact: "Balzac (1799–1850) — La Comédie humaine (91 romans)", detail: "Projet titanesque de décrire toute la société française. Le Père Goriot, Eugénie Grandet, Illusions perdues. Travaillait 16h/jour, buvait 50 cafés quotidiens." },
-              { fact: "Stendhal (1783–1842) — Le Rouge et le Noir, La Chartreuse de Parme", detail: "De son vrai nom Henri Beyle. Le Rouge et le Noir (1830) : Julien Sorel, ambition et hypocrisie sociale. Inventeur du concept de cristallisation amoureuse (De l'Amour)." },
-              { fact: "Flaubert (1821–1880) — Madame Bovary (1857)", detail: "Poursuivi pour immoralité à la publication. Emma Bovary rêve de passion romanesque dans sa vie de province. Le « bovarysme » : se concevoir autrement qu'on n'est." },
-              { fact: "Dumas (1802–1870) — Les Trois Mousquetaires, Le Comte de Monte-Cristo", detail: "Maître du roman-feuilleton. « Tous pour un, un pour tous » est la devise des mousquetaires. Petit-fils d'une esclave haïtienne. Transféré au Panthéon en 2002." }
+              { fact: "Le film le plus cher de l'histoire est Pirates des Caraïbes 4", detail: "Budget de 379 millions de dollars. Mais le plus rentable est Avatar (2009) avec 2,9 milliards de recettes." },
+              { fact: "Le rôle de Gandalf a d'abord été proposé à Sean Connery", detail: "Il a refusé car il « ne comprenait pas le scénario ». Ian McKellen a pris le rôle. Connery a aussi refusé le rôle de Morpheus (Matrix)." },
+              { fact: "Shrek est basé sur un vrai livre pour enfants (1990)", detail: "Écrit par William Steig. « Shrek » vient du yiddish « Schreck » qui signifie peur/monstre." },
+              { fact: "Le son de sabre laser Star Wars = TV défaillante + câble de micro", detail: "Ben Burtt, ingénieur du son, a combiné le bourdonnement d'un vieux téléviseur avec le bruit d'un câble de micro passant près d'un haut-parleur." },
+              { fact: "Intouchables (2011) est le film français le plus vu à l'étranger", detail: "Plus de 50 millions d'entrées dans le monde. Basé sur l'histoire vraie de Philippe Pozzo di Borgo et Abdel Sellou." }
             ],
             flashcards: [
-              { q: "Combien d'années Hugo est-il exilé par Napoléon III ?", r: "19 ans" },
-              { q: "Où Hugo est-il exilé ?", r: "Guernesey" },
-              { q: "Combien de personnes assistent aux funérailles de Hugo ?", r: "2 millions" },
-              { q: "Combien de romans composent La Comédie humaine ?", r: "91" },
-              { q: "Combien de cafés Balzac buvait-il par jour ?", r: "50" },
-              { q: "Quel est le vrai nom de Stendhal ?", r: "Henri Beyle" },
-              { q: "Quel concept amoureux Stendhal invente-t-il ?", r: "La cristallisation" },
-              { q: "Pour quel motif Flaubert est-il poursuivi en 1857 ?", r: "Immoralité" },
-              { q: "Comment appelle-t-on le fait de se concevoir autrement qu'on est ?", r: "Le bovarysme" },
-              { q: "En quelle année Dumas est-il transféré au Panthéon ?", r: "2002" },
-              { q: "Quel genre littéraire Dumas maîtrise-t-il ?", r: "Le roman-feuilleton" }
+              { q: "Quel est le film le plus cher de l'histoire ?", r: "Pirates des Caraïbes 4 (379 M$)" },
+              { q: "Quel est le film le plus rentable de l'histoire ?", r: "Avatar (2009) — 2,9 milliards $" },
+              { q: "À qui le rôle de Gandalf a-t-il été proposé en premier ?", r: "Sean Connery" },
+              { q: "Pourquoi Connery a-t-il refusé Gandalf ?", r: "Il ne comprenait pas le scénario" },
+              { q: "D'où vient le mot « Shrek » ?", r: "Du yiddish « Schreck » = peur/monstre" },
+              { q: "Qui a écrit le livre Shrek (1990) ?", r: "William Steig" },
+              { q: "Comment a été créé le son du sabre laser Star Wars ?", r: "TV défaillante + câble de micro (par Ben Burtt)" },
+              { q: "Quel est le film français le plus vu à l'étranger ?", r: "Intouchables (2011)" },
+              { q: "Sur quelle histoire vraie Intouchables est-il basé ?", r: "Philippe Pozzo di Borgo et Abdel Sellou" },
+              { q: "Combien d'entrées Intouchables a-t-il fait dans le monde ?", r: "Plus de 50 millions" },
+              { q: "Quel autre rôle célèbre Sean Connery a-t-il refusé ?", r: "Morpheus dans Matrix" }
             ]
           },
-          // --- Mini-quiz 2 ---
           {
             id: "w1d4t4", type: "quiz",
-            title: "Mini-quiz : XIXe romantisme & réalisme",
+            title: "Mini-quiz : Cinéma",
             questions: [
-              { q: "Combien de romans composent La Comédie humaine de Balzac ?", r: "91 romans", hint: "Projet de décrire toute la société française" },
-              { q: "Quel roman de Flaubert lui a valu un procès pour immoralité ?", r: "Madame Bovary (1857)" },
-              { q: "Quel est le vrai nom de Stendhal ?", r: "Henri Beyle", hint: "Auteur du Rouge et le Noir" },
-              { q: "Quelle est la devise des Trois Mousquetaires ?", r: "Tous pour un, un pour tous" }
+              { q: "Quel est le film le plus rentable de tous les temps ?", r: "Avatar (2,9 milliards $)", hint: "Film de James Cameron, 2009" },
+              { q: "D'où vient le mot Shrek ?", r: "Du yiddish Schreck (peur)", hint: "C'est une langue germanique" },
+              { q: "Quel film français a fait 50M d'entrées à l'étranger ?", r: "Intouchables", hint: "Omar Sy et François Cluzet" },
+              { q: "Qui a refusé le rôle de Gandalf ?", r: "Sean Connery", hint: "L'ancien James Bond" }
             ]
           },
-          // --- Lecture 2 ---
           {
             id: "w1d4t5", type: "lecture",
             title: "20 Romans Français Incontournables",
             subtitle: "Vidéo YouTube — Résumés des grands classiques (1h31)",
             url: "https://www.youtube.com/watch?v=u4GtGFYECe0",
-            duration: "15 min"
+            duration: "20 min"
           },
-          // --- Fiche 3 : XIXe : naturalisme & poésie ---
           {
             id: "w1d4t6", type: "fiche",
-            title: "XIXe : naturalisme & poésie",
+            title: "Musique & émissions TV cultes",
             items: [
-              { fact: "Zola (1840–1902) — Germinal, L'Assommoir, J'accuse", detail: "Chef du naturalisme. Les Rougon-Macquart : 20 romans sur l'hérédité et le milieu social. « J'accuse » (1898) dans L'Aurore défend Dreyfus. Mort asphyxié (accident ou assassinat ?)." },
-              { fact: "Baudelaire (1821–1867) — Les Fleurs du mal (1857)", detail: "Condamné pour outrage aux bonnes mœurs la même année que Flaubert. Invente le poème en prose (Le Spleen de Paris). Le « spleen » baudelairien : mélancolie existentielle." },
-              { fact: "Rimbaud (1854–1891) — Le Bateau ivre, Une saison en enfer", detail: "Écrit toute son œuvre entre 15 et 20 ans, puis abandonne la poésie pour devenir trafiquant en Afrique. Relation tumultueuse avec Verlaine (qui lui tire dessus en 1873)." },
-              { fact: "Verlaine (1844–1896) — Poèmes saturniens, Romances sans paroles", detail: "Poète de la musicalité : « De la musique avant toute chose ». Emprisonné 2 ans pour avoir tiré sur Rimbaud à Bruxelles. Élu « Prince des poètes » en 1894." },
-              { fact: "Maupassant (1850–1893) — Boule de Suif, Le Horla, Bel-Ami", detail: "Protégé de Flaubert. Maître de la nouvelle (plus de 300). Boule de Suif (1880) le rend célèbre en un jour. Sombre dans la folie (syphilis) et meurt à 42 ans." }
+              { fact: "La Marseillaise a 15 couplets, pas un seul", detail: "Composée par Rouget de Lisle à Strasbourg en 1792. Le fameux « Allons enfants » n'est que le 1er couplet. Le 7e est le plus violent." },
+              { fact: "« Que je t'aime » de Johnny a été écrite par Gilles Thibaut", detail: "Jean Renard a composé la musique. Hallyday l'a interprétée pour la 1re fois au Palais des Sports en 1969." },
+              { fact: "« Questions pour un Champion » existe depuis 1988", detail: "Présenté par Julien Lepers de 1988 à 2015 (27 ans !), puis Samuel Étienne. Le « 4 à la suite » est le moment le plus redouté." },
+              { fact: "« Les 12 Coups de Midi » existe depuis 2010", detail: "Présenté par Jean-Luc Reichmann sur TF1. Le record de victoires est détenu par Paul (153 participations, 691 000 € en 2019)." },
+              { fact: "The Voice France existe depuis 2012", detail: "Les premiers coachs étaient Jenifer, Garou, Louis Bertignac et Florent Pagny. Maître Gims et Kendji Girac n'ont pas gagné l'émission." }
             ],
             flashcards: [
-              { q: "Combien de romans composent Les Rougon-Macquart ?", r: "20" },
-              { q: "Dans quel journal Zola publie-t-il « J'accuse » ?", r: "L'Aurore" },
-              { q: "Quelle affaire Zola défend-il avec « J'accuse » ?", r: "L'affaire Dreyfus" },
-              { q: "Quel recueil de Baudelaire est condamné en 1857 ?", r: "Les Fleurs du mal" },
-              { q: "Comment s'appelle la mélancolie existentielle chez Baudelaire ?", r: "Le spleen" },
-              { q: "À quel âge Rimbaud arrête-t-il la poésie ?", r: "20 ans" },
-              { q: "Que fait Rimbaud après la poésie ?", r: "Trafiquant en Afrique" },
-              { q: "En quelle année Verlaine tire-t-il sur Rimbaud ?", r: "1873" },
-              { q: "Dans quelle ville Verlaine tire-t-il sur Rimbaud ?", r: "Bruxelles" },
-              { q: "Combien de nouvelles Maupassant a-t-il écrites ?", r: "Plus de 300" },
-              { q: "Qui est le mentor littéraire de Maupassant ?", r: "Flaubert" },
-              { q: "À quel âge Maupassant meurt-il ?", r: "42 ans" }
+              { q: "Combien de couplets a la Marseillaise ?", r: "15 couplets" },
+              { q: "Qui a composé la Marseillaise ?", r: "Rouget de Lisle" },
+              { q: "Dans quelle ville la Marseillaise a-t-elle été composée ?", r: "Strasbourg (en 1792)" },
+              { q: "Qui a présenté QPUC de 1988 à 2015 ?", r: "Julien Lepers" },
+              { q: "Combien d'années Julien Lepers a-t-il présenté QPUC ?", r: "27 ans" },
+              { q: "Qui présente Les 12 Coups de Midi ?", r: "Jean-Luc Reichmann" },
+              { q: "Depuis quelle année Les 12 Coups de Midi existe-t-il ?", r: "2010" },
+              { q: "Qui détient le record de victoires aux 12 Coups ?", r: "Paul (153 participations, 691 000 €)" },
+              { q: "En quelle année a débuté The Voice France ?", r: "2012" },
+              { q: "Qui étaient les 4 premiers coachs de The Voice France ?", r: "Jenifer, Garou, Louis Bertignac, Florent Pagny" },
+              { q: "Qui a écrit les paroles de « Que je t'aime » ?", r: "Gilles Thibaut" },
+              { q: "Sur quelle chaîne sont diffusés Les 12 Coups de Midi ?", r: "TF1" }
             ]
           },
-          // --- Mini-quiz 3 ---
           {
             id: "w1d4t7", type: "quiz",
-            title: "Mini-quiz : XIXe naturalisme & poésie",
+            title: "Quiz final : Célébrités & Culture Pop",
             questions: [
-              { q: "Combien de romans composent le cycle des Rougon-Macquart de Zola ?", r: "20 romans" },
-              { q: "Quel recueil de Baudelaire a été condamné pour outrage en 1857 ?", r: "Les Fleurs du mal" },
-              { q: "À quel âge Rimbaud a-t-il cessé d'écrire de la poésie ?", r: "20 ans", hint: "Parti ensuite en Afrique" },
-              { q: "Quelle nouvelle de Maupassant l'a rendu célèbre en 1880 ?", r: "Boule de Suif" }
-            ]
-          },
-          // --- Fiche 4 : XXe : existentialisme & prix Nobel ---
-          {
-            id: "w1d4t8", type: "fiche",
-            title: "XXe : existentialisme & prix Nobel",
-            items: [
-              { fact: "Proust (1871–1922) — À la recherche du temps perdu (7 tomes)", detail: "3 000 pages, considéré comme le plus grand roman du XXe siècle. La madeleine de Proust est devenue une expression courante pour la mémoire involontaire. Vivait en reclus dans une chambre tapissée de liège." },
-              { fact: "Camus (1913–1960) — L'Étranger, La Peste — Nobel 1957", detail: "Né en Algérie. L'absurde : Meursault tue « à cause du soleil ». La Peste (1947) : allégorie du nazisme. Plus jeune Nobel français (44 ans). Mort dans un accident de voiture." },
-              { fact: "Sartre (1905–1980) — La Nausée, Huis clos — Nobel refusé 1964", detail: "« L'enfer, c'est les autres » (Huis clos). Philosophe de l'existentialisme : « L'existence précède l'essence. » Seul auteur à avoir refusé le Nobel. Compagnon de Simone de Beauvoir." },
-              { fact: "Beauvoir (1908–1986) — Le Deuxième Sexe (1949)", detail: "« On ne naît pas femme, on le devient. » Texte fondateur du féminisme moderne. Couple libre avec Sartre pendant 50 ans. Aussi romancière : Les Mandarins (prix Goncourt 1954)." },
-              { fact: "Saint-Exupéry (1900–1944) — Le Petit Prince (1943)", detail: "Pilote et écrivain. Le Petit Prince est le livre le plus traduit au monde après la Bible (300 langues). Disparu en vol au-dessus de la Méditerranée. Son avion retrouvé en 2004." }
-            ],
-            flashcards: [
-              { q: "Combien de tomes compte À la recherche du temps perdu ?", r: "7" },
-              { q: "Combien de pages fait l'œuvre de Proust ?", r: "3 000" },
-              { q: "De quel matériau Proust tapissait-il sa chambre ?", r: "Liège" },
-              { q: "Dans quel pays Camus est-il né ?", r: "Algérie" },
-              { q: "À quel âge Camus reçoit-il le Nobel ?", r: "44 ans" },
-              { q: "En quelle année Camus reçoit-il le Nobel ?", r: "1957" },
-              { q: "Quelle phrase célèbre vient de Huis clos de Sartre ?", r: "L'enfer, c'est les autres" },
-              { q: "Qui est la compagne de Sartre pendant 50 ans ?", r: "Simone de Beauvoir" },
-              { q: "Quel prix Beauvoir reçoit-elle pour Les Mandarins ?", r: "Prix Goncourt (1954)" },
-              { q: "En combien de langues Le Petit Prince est-il traduit ?", r: "300 langues" },
-              { q: "En quelle année l'avion de Saint-Exupéry est-il retrouvé ?", r: "2004" },
-              { q: "Au-dessus de quelle mer Saint-Exupéry disparaît-il ?", r: "La Méditerranée" }
-            ]
-          },
-          // --- Mini-quiz 4 ---
-          {
-            id: "w1d4t9", type: "quiz",
-            title: "Mini-quiz : XXe existentialisme & Nobel",
-            questions: [
-              { q: "Combien de tomes compte À la recherche du temps perdu de Proust ?", r: "7 tomes", hint: "Environ 3 000 pages" },
-              { q: "Quel philosophe français a refusé le Nobel de littérature en 1964 ?", r: "Jean-Paul Sartre" },
-              { q: "Quelle phrase célèbre de Beauvoir résume Le Deuxième Sexe ?", r: "On ne naît pas femme, on le devient" },
-              { q: "Quel est le livre le plus traduit au monde après la Bible ?", r: "Le Petit Prince de Saint-Exupéry", hint: "Traduit en plus de 300 langues" }
-            ]
-          },
-          // --- Quiz final du jour ---
-          {
-            id: "w1d4t10", type: "quiz",
-            title: "Quiz final : Littérature française",
-            questions: [
-              { q: "Quel dramaturge du XVIIe est mort sur scène en jouant Le Malade imaginaire ?", r: "Molière" },
-              { q: "Quel auteur a écrit 91 romans dans La Comédie humaine ?", r: "Honoré de Balzac" },
-              { q: "Quel recueil de fables compte 243 textes en 12 livres ?", r: "Les Fables de La Fontaine" },
-              { q: "Quel article de Zola défend Dreyfus en 1898 ?", r: "J'accuse", hint: "Publié dans L'Aurore" },
-              { q: "Quel poète a écrit toute son œuvre entre 15 et 20 ans ?", r: "Arthur Rimbaud" },
-              { q: "Quel auteur français a reçu le Nobel en 1957 ?", r: "Albert Camus" },
-              { q: "Comment s'appelle le concept de Stendhal sur l'amour idéalisé ?", r: "La cristallisation amoureuse" },
-              { q: "Quel roman de Camus commence par la mort de la mère du narrateur ?", r: "L'Étranger" },
-              { q: "Quelle expression courante vient de l'œuvre de Proust ?", r: "La madeleine de Proust", hint: "Liée à la mémoire involontaire" },
-              { q: "Qui a écrit « L'enfer, c'est les autres » ?", r: "Jean-Paul Sartre", hint: "Dans Huis clos" },
-              { q: "Quel prix Simone de Beauvoir a-t-elle obtenu pour Les Mandarins ?", r: "Le prix Goncourt (1954)" },
-              { q: "Quel poète a été élu « Prince des poètes » en 1894 ?", r: "Paul Verlaine" }
+              { q: "Quel est le vrai nom d'Édith Piaf ?", r: "Édith Giovanna Gassion" },
+              { q: "Combien de couplets a la Marseillaise ?", r: "15" },
+              { q: "Qui présente Les 12 Coups de Midi ?", r: "Jean-Luc Reichmann" },
+              { q: "Quel est le film français le plus vu à l'étranger ?", r: "Intouchables" },
+              { q: "Depuis quelle année QPUC existe-t-il ?", r: "1988" },
+              { q: "Quel est le vrai nom de Coluche ?", r: "Michel Colucci" }
             ]
           }
         ]
       },
 
-      // ===================== JOUR 5 : ARTS & PEINTURE =====================
+      // ===================== JOUR 5 : LANGUE FRANÇAISE & ÉTYMOLOGIE =====================
       {
-        day: 5, label: "Vendredi", theme: "Arts & Peinture", icon: "🎨",
-        objectif: "Courants artistiques et œuvres emblématiques",
+        day: 5, label: "Vendredi", theme: "Langue & Étymologie", icon: "📖",
+        objectif: "Origines des mots, expressions, pièges de vocabulaire",
         tasks: [
-          // --- Lecture 1 ---
           {
             id: "w1d5t0", type: "lecture",
-            title: "Histoire de l'Art — De la Renaissance à nos jours",
-            subtitle: "Vidéo YouTube — Tous les grands mouvements artistiques (28 min)",
-            url: "https://www.youtube.com/watch?v=RRjfQGPbDnc",
+            title: "L'histoire de la langue française",
+            subtitle: "Vidéo YouTube — D'où vient le français ?",
+            url: "https://www.youtube.com/watch?v=jFCLgEcajm0",
             duration: "15 min"
           },
-          // --- Fiche 1 : Renaissance & Baroque ---
           {
             id: "w1d5t1", type: "fiche",
-            title: "Renaissance & Baroque",
+            title: "Étymologies surprenantes",
             items: [
-              { fact: "Léonard de Vinci (1452–1519) — La Joconde, La Cène", detail: "La Joconde (Mona Lisa) est au Louvre, peinte entre 1503 et 1519. La Cène est une fresque à Milan. Vinci est aussi ingénieur, anatomiste, inventeur. Meurt à Amboise, invité par François Ier." },
-              { fact: "Michel-Ange (1475–1564) — Plafond de la Chapelle Sixtine, David", detail: "Peint le plafond de la Sixtine en 4 ans (1508-1512), allongé sur un échafaudage. Le David (1504) mesure 5,17 m, à Florence. Aussi architecte de la coupole de Saint-Pierre de Rome." },
-              { fact: "Raphaël (1483–1520) — L'École d'Athènes (Vatican)", detail: "Troisième génie de la Renaissance italienne avec Vinci et Michel-Ange. L'École d'Athènes réunit Platon et Aristote. Mort à 37 ans le jour de son anniversaire." },
-              { fact: "Caravage (1571–1610) — Maître du clair-obscur baroque", detail: "Révolutionne la peinture avec des contrastes violents de lumière. La Vocation de saint Matthieu (Rome). Assassin en fuite, meurt à 38 ans. Influence majeure sur Rembrandt et Vermeer." },
-              { fact: "Vermeer (1632–1675) — La Jeune Fille à la perle", detail: "Seulement 34 tableaux connus. La Jeune Fille à la perle est au Mauritshuis (La Haye). Maître de la lumière hollandaise. Redécouvert au XIXe siècle par le critique Thoré-Bürger." }
+              { fact: "« Salaire » vient de « sal » (sel) en latin", detail: "Les soldats romains étaient payés en sel. D'où aussi « soldat » (solidus = pièce d'or donnée pour acheter du sel)." },
+              { fact: "« Cravate » vient des Croates", detail: "Les cavaliers croates au service de Louis XIV portaient un foulard noué. Les Français ont copié le style et l'ont appelé « à la croate » → cravate." },
+              { fact: "« Bikini » vient de l'atoll de Bikini (îles Marshall)", detail: "Louis Réard l'a nommé ainsi en 1946 car l'effet devait être « explosif comme une bombe atomique » (les essais nucléaires venaient d'y avoir lieu)." },
+              { fact: "« Algorithme » vient du mathématicien Al-Khwarizmi", detail: "Mathématicien perse du IXe siècle. « Algèbre » vient aussi de son livre « Al-jabr ». Il a introduit les chiffres arabes en Occident." },
+              { fact: "« Assassin » vient du mot arabe « haschischin »", detail: "Les Haschischins étaient une secte de tueurs au XIe siècle qui consommaient du haschich avant leurs missions." }
             ],
             flashcards: [
-              { q: "Dans quel musée se trouve La Joconde ?", r: "Le Louvre" },
-              { q: "Où Léonard de Vinci meurt-il ?", r: "Amboise" },
-              { q: "Quel roi invite Vinci en France ?", r: "François Ier" },
-              { q: "Combien d'années Michel-Ange met-il pour peindre la Sixtine ?", r: "4 ans" },
-              { q: "Quelle est la taille du David de Michel-Ange ?", r: "5,17 m" },
-              { q: "Dans quelle ville se trouve le David de Michel-Ange ?", r: "Florence" },
-              { q: "À quel âge Raphaël meurt-il ?", r: "37 ans" },
-              { q: "Quelle technique le Caravage révolutionne-t-il ?", r: "Le clair-obscur" },
-              { q: "Combien de tableaux connus Vermeer a-t-il laissés ?", r: "34" },
-              { q: "Dans quel musée se trouve La Jeune Fille à la perle ?", r: "Mauritshuis (La Haye)" },
-              { q: "Quel critique redécouvre Vermeer au XIXe siècle ?", r: "Thoré-Bürger" }
+              { q: "D'où vient le mot « salaire » ?", r: "Du latin « sal » (sel) — les soldats romains étaient payés en sel" },
+              { q: "D'où vient le mot « cravate » ?", r: "Des cavaliers croates de Louis XIV (« à la croate »)" },
+              { q: "Pourquoi le bikini s'appelle-t-il ainsi ?", r: "Nommé d'après l'atoll de Bikini (essais nucléaires) — effet « explosif »" },
+              { q: "Qui a inventé le bikini ?", r: "Louis Réard, en 1946" },
+              { q: "D'où vient le mot « algorithme » ?", r: "Du mathématicien perse Al-Khwarizmi (IXe siècle)" },
+              { q: "D'où vient le mot « algèbre » ?", r: "Du livre « Al-jabr » d'Al-Khwarizmi" },
+              { q: "D'où vient le mot « assassin » ?", r: "De l'arabe « haschischin » (consommateurs de haschich)" },
+              { q: "D'où vient le mot « soldat » ?", r: "De « solidus » (pièce d'or pour acheter du sel)" },
+              { q: "Quel roi français a popularisé la cravate ?", r: "Louis XIV" },
+              { q: "Quel événement a eu lieu sur l'atoll de Bikini ?", r: "Des essais nucléaires américains (1946)" }
             ]
           },
-          // --- Mini-quiz 1 ---
           {
             id: "w1d5t2", type: "quiz",
-            title: "Mini-quiz : Renaissance & Baroque",
+            title: "Mini-quiz : Étymologie",
             questions: [
-              { q: "Dans quel musée se trouve La Joconde ?", r: "Le Musée du Louvre (Paris)", hint: "Peinte par Léonard de Vinci" },
-              { q: "Combien d'années Michel-Ange a-t-il mis pour peindre le plafond de la Sixtine ?", r: "4 ans (1508–1512)" },
-              { q: "Quel peintre baroque est le maître du clair-obscur ?", r: "Le Caravage" },
-              { q: "Dans quel musée se trouve La Jeune Fille à la perle de Vermeer ?", r: "Le Mauritshuis à La Haye" }
+              { q: "D'où vient le mot salaire ?", r: "Du sel (sal en latin)", hint: "Lien avec les soldats romains" },
+              { q: "D'où vient le mot cravate ?", r: "Des Croates", hint: "Foulard porté par des cavaliers au service de Louis XIV" },
+              { q: "D'où vient le mot algorithme ?", r: "D'Al-Khwarizmi", hint: "Mathématicien perse du IXe siècle" },
+              { q: "Qui a inventé le bikini ?", r: "Louis Réard en 1946", hint: "Nommé d'après un atoll des îles Marshall" }
             ]
           },
-          // --- Fiche 2 : Romantisme & Impressionnisme ---
           {
             id: "w1d5t3", type: "fiche",
-            title: "Romantisme & Impressionnisme",
+            title: "Pièges & records de la langue française",
             items: [
-              { fact: "Delacroix (1798–1863) — La Liberté guidant le peuple (1830)", detail: "Tableau inspiré par la révolution de Juillet 1830 (les Trois Glorieuses). Au Louvre. La femme au drapeau tricolore symbolise Marianne. Delacroix est le chef de file du romantisme en peinture." },
-              { fact: "Géricault (1791–1824) — Le Radeau de la Méduse (1819)", detail: "Au Louvre. S'inspire du naufrage réel de la frégate Méduse en 1816 (147 naufragés sur un radeau, 15 survivants). Scandale politique car il dénonce l'incompétence de l'officier royaliste." },
-              { fact: "Monet (1840–1926) — Impression, soleil levant (1872)", detail: "Ce tableau, exposé en 1874, donne son nom à l'impressionnisme (un critique l'utilise avec mépris). Les Nymphéas : 250 tableaux de son jardin de Giverny. Au Musée Marmottan (Paris)." },
-              { fact: "Renoir (1841–1919) — Bal du moulin de la Galette (1876)", detail: "Au Musée d'Orsay. Spécialiste des scènes de vie joyeuses et des nus féminins. Peint malgré ses rhumatismes en fin de vie, le pinceau attaché à la main." },
-              { fact: "Degas (1834–1917) — Les danseuses (série de pastels)", detail: "Peintre et sculpteur des danseuses de l'Opéra de Paris. Petite Danseuse de quatorze ans (sculpture, 1881). Considéré comme impressionniste mais lui préférait le terme « réaliste »." }
+              { fact: "Le mot le plus long du dictionnaire : « anticonstitutionnellement » (25 lettres)", detail: "Mais « intergouvernementalisations » (27 lettres) existe aussi. En médecine : « hippopotomonstrosesquipédaliophobie » = la peur des mots longs !" },
+              { fact: "« Oiseau » est le plus long mot dont on ne prononce aucune lettre normalement", detail: "O-I-S-E-A-U : aucune de ces 6 lettres ne se prononce comme dans l'alphabet. C'est aussi le plus court mot contenant les 5 voyelles." },
+              { fact: "Un palindrome se lit dans les deux sens : « kayak », « ressasser »", detail: "« Ressasser » est le plus long palindrome français. Phrase palindrome célèbre : « Ésope reste ici et se repose »." },
+              { fact: "Le français a 13 temps de conjugaison", detail: "Le passé simple est quasi-mort à l'oral. Le subjonctif imparfait (« qu'il chantât ») est le temps le plus moqué de France." },
+              { fact: "80 % du vocabulaire anglais vient du français ou du latin", detail: "Après la conquête normande de 1066, le français était la langue de la cour anglaise pendant 300 ans." }
             ],
             flashcards: [
-              { q: "Quelle révolution inspire La Liberté guidant le peuple ?", r: "Révolution de Juillet 1830" },
-              { q: "Comment s'appellent les trois jours de la révolution de 1830 ?", r: "Les Trois Glorieuses" },
-              { q: "Combien de naufragés y avait-il sur le radeau de la Méduse ?", r: "147" },
-              { q: "Combien de survivants sur le radeau de la Méduse ?", r: "15" },
-              { q: "En quelle année le tableau Impression, soleil levant est-il exposé ?", r: "1874" },
-              { q: "Combien de Nymphéas Monet a-t-il peints ?", r: "250" },
-              { q: "Où se trouve le jardin de Monet ?", r: "Giverny" },
-              { q: "Dans quel musée se trouve Impression, soleil levant ?", r: "Musée Marmottan" },
-              { q: "Dans quel musée se trouve le Bal du moulin de la Galette ?", r: "Musée d'Orsay" },
-              { q: "Quel terme Degas préférait-il à « impressionniste » ?", r: "Réaliste" },
-              { q: "En quelle année Degas crée-t-il la Petite Danseuse de quatorze ans ?", r: "1881" }
+              { q: "Quel est le mot le plus long du dictionnaire français ?", r: "Anticonstitutionnellement (25 lettres)" },
+              { q: "Comment s'appelle la peur des mots longs ?", r: "Hippopotomonstrosesquipédaliophobie" },
+              { q: "Quel est le plus court mot français contenant les 5 voyelles ?", r: "Oiseau" },
+              { q: "Quel est le plus long palindrome français ?", r: "Ressasser" },
+              { q: "Qu'est-ce qu'un palindrome ?", r: "Un mot ou phrase qui se lit dans les deux sens" },
+              { q: "Quelle phrase palindrome célèbre contient « Ésope » ?", r: "« Ésope reste ici et se repose »" },
+              { q: "Combien de temps de conjugaison le français a-t-il ?", r: "13" },
+              { q: "Quel pourcentage du vocabulaire anglais vient du français ?", r: "80 %" },
+              { q: "Pendant combien d'années le français était-il la langue de la cour anglaise ?", r: "300 ans (après 1066)" },
+              { q: "Quel temps de conjugaison est le plus moqué en français ?", r: "Le subjonctif imparfait (« qu'il chantât »)" },
+              { q: "Pourquoi « oiseau » est-il un mot remarquable ?", r: "Aucune de ses 6 lettres ne se prononce normalement" }
             ]
           },
-          // --- Mini-quiz 2 ---
           {
             id: "w1d5t4", type: "quiz",
-            title: "Mini-quiz : Romantisme & Impressionnisme",
+            title: "Mini-quiz : Langue française",
             questions: [
-              { q: "Quel tableau de Delacroix représente une femme au drapeau tricolore ?", r: "La Liberté guidant le peuple (1830)" },
-              { q: "Quel tableau a donné son nom au mouvement impressionniste ?", r: "Impression, soleil levant de Monet (1872)" },
-              { q: "Quel naufrage réel inspire Le Radeau de la Méduse ?", r: "Le naufrage de la frégate Méduse en 1816", hint: "147 naufragés, 15 survivants" },
-              { q: "Quel peintre impressionniste est célèbre pour ses danseuses ?", r: "Edgar Degas" }
+              { q: "Quel est le plus long palindrome français ?", r: "Ressasser", hint: "7 lettres, même sens dans les deux sens" },
+              { q: "Quel est le mot le plus long du dictionnaire ?", r: "Anticonstitutionnellement", hint: "25 lettres" },
+              { q: "Quel % du vocabulaire anglais vient du français ?", r: "80 %", hint: "Grâce à la conquête normande" },
+              { q: "Comment s'appelle la peur des mots longs ?", r: "Hippopotomonstrosesquipédaliophobie", hint: "C'est ironiquement un mot très long" }
             ]
           },
-          // --- Lecture 2 ---
           {
             id: "w1d5t5", type: "lecture",
-            title: "QUIZ — Qui est le Peintre ? 40 Tableaux",
-            subtitle: "Vidéo YouTube — Reconnaissez-vous ces chefs-d'œuvre ? (12 min)",
-            url: "https://www.youtube.com/watch?v=Is-xzan9A1k",
+            title: "Les expressions françaises et leurs origines",
+            subtitle: "Vidéo YouTube — D'où viennent nos expressions ?",
+            url: "https://www.youtube.com/watch?v=1gM2T8F3bMc",
             duration: "15 min"
           },
-          // --- Fiche 3 : Post-impressionnisme & avant-gardes ---
           {
             id: "w1d5t6", type: "fiche",
-            title: "Post-impressionnisme & avant-gardes",
+            title: "Expressions françaises décryptées",
             items: [
-              { fact: "Van Gogh (1853–1890) — La Nuit étoilée, Les Tournesols", detail: "Hollandais installé en France. Se coupe l'oreille à Arles en 1888 (dispute avec Gauguin). La Nuit étoilée peinte à l'asile de Saint-Rémy. Vendu seulement 1 tableau de son vivant. Suicide à 37 ans." },
-              { fact: "Cézanne (1839–1906) — Les Joueurs de cartes, La Montagne Sainte-Victoire", detail: "Précurseur du cubisme. Peint la montagne Sainte-Victoire (Aix-en-Provence) plus de 80 fois. Picasso l'appelle « le père de nous tous »." },
-              { fact: "Gauguin (1848–1903) — D'où venons-nous ? Que sommes-nous ? Où allons-nous ?", detail: "Quitte tout pour peindre à Tahiti en 1891. Couleurs vives et aplats. Son plus grand tableau (4,6 m) est au Museum of Fine Arts de Boston." },
-              { fact: "Picasso (1881–1973) — Guernica (1937), Les Demoiselles d'Avignon (1907)", detail: "Co-fondateur du cubisme avec Braque. Guernica dénonce le bombardement de la ville basque par les nazis. Au Musée Reina Sofía (Madrid). Périodes : bleue, rose, cubiste, surréaliste." },
-              { fact: "Cubisme (1907) — Décompose les formes en géométrie", detail: "Lancé par Picasso (Les Demoiselles d'Avignon) et Braque. Cubisme analytique (1907-12) puis synthétique (1912-19). Influencé par Cézanne et les masques africains." }
+              { fact: "« Être au pied du mur » = vient de l'escrime", detail: "Quand le duelliste recule jusqu'au mur, il ne peut plus fuir et doit se battre. Rien à voir avec la maçonnerie !" },
+              { fact: "« Avoir la flemme » vient du grec « phlegma »", detail: "Dans la théorie des humeurs, le flegme (mucus) rendait apathique et mou. Un flegmatique = quelqu'un de lent." },
+              { fact: "« OK » viendrait de « Oll Korrect » (all correct, mal orthographié)", detail: "Blague de journalistes américains dans les années 1830. Devenu populaire pendant la campagne de Martin Van Buren (« Old Kinderhook ») en 1840." },
+              { fact: "« Poser un lapin » = ne pas payer une prostituée au XIXe siècle", detail: "« Lapin » signifiait « ne pas payer ». L'expression a évolué vers « ne pas venir au rendez-vous »." },
+              { fact: "« Tomber dans les pommes » ne vient PAS des pommes", detail: "Viendrait de « tomber dans les pâmes » (s'évanouir, du verbe « se pâmer »). La déformation en « pommes » est apparue au XIXe siècle." }
             ],
             flashcards: [
-              { q: "Dans quelle ville Van Gogh se coupe-t-il l'oreille ?", r: "Arles" },
-              { q: "Avec quel peintre Van Gogh se dispute-t-il à Arles ?", r: "Gauguin" },
-              { q: "Où Van Gogh peint-il La Nuit étoilée ?", r: "Asile de Saint-Rémy" },
-              { q: "Combien de tableaux Van Gogh vend-il de son vivant ?", r: "Un seul" },
-              { q: "Combien de fois Cézanne peint-il la montagne Sainte-Victoire ?", r: "Plus de 80 fois" },
-              { q: "Qui appelle Cézanne « le père de nous tous » ?", r: "Picasso" },
-              { q: "En quelle année Gauguin part-il à Tahiti ?", r: "1891" },
-              { q: "Dans quel musée se trouve le grand tableau de Gauguin ?", r: "Museum of Fine Arts de Boston" },
-              { q: "Dans quel musée se trouve Guernica ?", r: "Musée Reina Sofía (Madrid)" },
-              { q: "Quelle ville basque Guernica dénonce-t-il ?", r: "Guernica" },
-              { q: "Quelles sont les deux phases du cubisme ?", r: "Analytique et synthétique" },
-              { q: "Quelles influences inspirent le cubisme ?", r: "Cézanne et masques africains" }
+              { q: "D'où vient l'expression « être au pied du mur » ?", r: "De l'escrime — quand on recule jusqu'au mur" },
+              { q: "D'où vient le mot « flemme » ?", r: "Du grec « phlegma » (mucus — rendait apathique)" },
+              { q: "D'où viendrait le mot « OK » ?", r: "De « Oll Korrect » (all correct, mal orthographié)" },
+              { q: "Que signifiait « poser un lapin » à l'origine ?", r: "Ne pas payer (une prostituée, au XIXe siècle)" },
+              { q: "D'où vient « tomber dans les pommes » ?", r: "De « tomber dans les pâmes » (se pâmer = s'évanouir)" },
+              { q: "Pendant quelle campagne électorale « OK » est-il devenu populaire ?", r: "Celle de Martin Van Buren (1840)" },
+              { q: "Qu'est-ce qu'un « flegmatique » dans la théorie des humeurs ?", r: "Quelqu'un de lent et apathique" },
+              { q: "De quel sport vient « être au pied du mur » ?", r: "L'escrime" }
             ]
           },
-          // --- Mini-quiz 3 ---
           {
             id: "w1d5t7", type: "quiz",
-            title: "Mini-quiz : Post-impressionnisme & avant-gardes",
+            title: "Quiz final : Langue & Étymologie",
             questions: [
-              { q: "Combien de tableaux Van Gogh a-t-il vendu de son vivant ?", r: "Un seul", hint: "Il s'est suicidé à 37 ans" },
-              { q: "Quel peintre Picasso appelle-t-il « le père de nous tous » ?", r: "Paul Cézanne" },
-              { q: "Dans quel musée se trouve Guernica de Picasso ?", r: "Le Musée Reina Sofía à Madrid" },
-              { q: "Où Gauguin est-il parti peindre en 1891 ?", r: "À Tahiti" }
-            ]
-          },
-          // --- Fiche 4 : Art moderne & contemporain ---
-          {
-            id: "w1d5t8", type: "fiche",
-            title: "Art moderne & contemporain",
-            items: [
-              { fact: "Dalí (1904–1989) — La Persistance de la mémoire (1931)", detail: "Montres molles dans un paysage de Port Lligat (Catalogne). Au MoMA (New York). Surréaliste excentrique, moustache iconique. Méthode « paranoïaque-critique »." },
-              { fact: "Magritte (1898–1967) — La Trahison des images (Ceci n'est pas une pipe)", detail: "Surréaliste belge. « Ceci n'est pas une pipe » questionne la relation entre image et réalité. Au LACMA (Los Angeles). Aussi : Le Fils de l'homme (homme au chapeau melon avec pomme)." },
-              { fact: "Warhol (1928–1987) — Marilyn Monroe, Campbell's Soup Cans", detail: "Père du Pop Art américain. Sa Factory à New York produit sérigraphies et films. « À l'avenir, chacun aura droit à 15 minutes de célébrité mondiale. » Au MoMA et Whitney Museum." },
-              { fact: "Mondrian (1872–1944) — Compositions en rouge, jaune et bleu", detail: "Néoplasticisme / De Stijl : lignes noires, couleurs primaires, angles droits. Influence le design, l'architecture et la mode (robe Yves Saint Laurent 1965). Hollandais installé à New York." },
-              { fact: "Duchamp (1887–1968) — Fontaine (1917, urinoir signé R. Mutt)", detail: "Révolutionne l'art avec le ready-made : un objet ordinaire devient œuvre d'art par le choix de l'artiste. Français naturalisé américain. La Fontaine est souvent élue œuvre la plus influente du XXe siècle." }
-            ],
-            flashcards: [
-              { q: "Dans quel musée se trouve La Persistance de la mémoire ?", r: "MoMA (New York)" },
-              { q: "Quel paysage Dalí représente-t-il dans ses montres molles ?", r: "Port Lligat" },
-              { q: "Comment s'appelle la méthode créative de Dalí ?", r: "Méthode paranoïaque-critique" },
-              { q: "Dans quel musée se trouve Ceci n'est pas une pipe ?", r: "LACMA (Los Angeles)" },
-              { q: "Comment s'appelle le tableau de Magritte avec un homme et une pomme ?", r: "Le Fils de l'homme" },
-              { q: "Comment s'appelle l'atelier de Warhol ?", r: "La Factory" },
-              { q: "Quelle technique artistique Warhol utilise-t-il principalement ?", r: "La sérigraphie" },
-              { q: "Quel mouvement artistique Mondrian fonde-t-il ?", r: "De Stijl (néoplasticisme)" },
-              { q: "Quel créateur de mode s'inspire de Mondrian en 1965 ?", r: "Yves Saint Laurent" },
-              { q: "Sous quel pseudonyme Duchamp signe-t-il sa Fontaine ?", r: "R. Mutt" },
-              { q: "Comment appelle-t-on un objet ordinaire devenu œuvre d'art ?", r: "Ready-made" }
-            ]
-          },
-          // --- Mini-quiz 4 ---
-          {
-            id: "w1d5t9", type: "quiz",
-            title: "Mini-quiz : Art moderne & contemporain",
-            questions: [
-              { q: "Quel artiste est célèbre pour ses montres molles dans La Persistance de la mémoire ?", r: "Salvador Dalí", hint: "Au MoMA de New York" },
-              { q: "Quel artiste a créé la Fontaine (urinoir) en 1917 ?", r: "Marcel Duchamp", hint: "Inventeur du ready-made" },
-              { q: "Quel mouvement artistique Andy Warhol représente-t-il ?", r: "Le Pop Art" },
-              { q: "Quel peintre hollandais utilise uniquement des lignes noires et des couleurs primaires ?", r: "Piet Mondrian", hint: "Mouvement De Stijl" }
-            ]
-          },
-          // --- Quiz final du jour ---
-          {
-            id: "w1d5t10", type: "quiz",
-            title: "Quiz final : Arts & Peinture",
-            questions: [
-              { q: "Qui a peint le plafond de la Chapelle Sixtine ?", r: "Michel-Ange" },
-              { q: "Quel tableau de Monet a donné son nom à l'impressionnisme ?", r: "Impression, soleil levant (1872)" },
-              { q: "Où Van Gogh s'est-il coupé l'oreille ?", r: "À Arles, en 1888" },
-              { q: "Quel artiste du Pop Art est célèbre pour ses sérigraphies de Marilyn Monroe ?", r: "Andy Warhol" },
-              { q: "Quel tableau de Géricault dénonce le naufrage de 1816 ?", r: "Le Radeau de la Méduse" },
-              { q: "Quel surréaliste belge a peint Ceci n'est pas une pipe ?", r: "René Magritte" },
-              { q: "Combien de fois Cézanne a-t-il peint la montagne Sainte-Victoire ?", r: "Plus de 80 fois" },
-              { q: "Quel peintre baroque hollandais a laissé seulement 34 tableaux connus ?", r: "Johannes Vermeer" },
-              { q: "Quel courant artistique Picasso et Braque ont-ils fondé vers 1907 ?", r: "Le cubisme" },
-              { q: "Quelle robe d'Yves Saint Laurent de 1965 s'inspire de Mondrian ?", r: "La robe Mondrian" },
-              { q: "Dans quel musée parisien se trouve le Bal du moulin de la Galette de Renoir ?", r: "Le Musée d'Orsay" },
-              { q: "Quel architecte est aussi Michel-Ange : coupole de quel édifice ?", r: "La basilique Saint-Pierre de Rome" }
+              { q: "D'où vient le mot salaire ?", r: "Du sel" },
+              { q: "D'où vient le mot bikini ?", r: "De l'atoll de Bikini (essais nucléaires)" },
+              { q: "Quel est le plus long palindrome français ?", r: "Ressasser" },
+              { q: "D'où vient « OK » ?", r: "De « Oll Korrect »" },
+              { q: "D'où vient « être au pied du mur » ?", r: "De l'escrime" },
+              { q: "D'où vient le mot cravate ?", r: "Des Croates" }
             ]
           }
         ]
       },
 
-      // ===================== JOUR 6 : SPORT =====================
+      // ===================== JOUR 6 : GÉOGRAPHIE INSOLITE & RECORDS =====================
       {
-        day: 6, label: "Samedi", theme: "Sport", icon: "⚽",
-        objectif: "Palmarès, records, grands événements sportifs",
+        day: 6, label: "Samedi", theme: "Géographie & Records", icon: "🌍",
+        objectif: "Capitales pièges, records géographiques, fun facts monde",
         tasks: [
-          // --- Lecture 1 ---
           {
             id: "w1d6t0", type: "lecture",
-            title: "L'histoire des Jeux Olympiques",
-            subtitle: "Vidéo YouTube — Découvrir l'histoire des Jeux Olympiques et leurs grands champions",
-            url: "https://www.youtube.com/watch?v=D4qBjgsgsEI",
-            duration: "15 min"
+            title: "Quiz Culture Générale — Capitales du Monde",
+            subtitle: "Vidéo YouTube — 170 pays en français",
+            url: "https://www.youtube.com/watch?v=MUJc2cpSEvo",
+            duration: "20 min"
           },
-          // --- Fiche 1 : Football : Coupe du monde & Euro ---
           {
             id: "w1d6t1", type: "fiche",
-            title: "Football : Coupe du monde & Euro",
+            title: "Capitales pièges",
             items: [
-              { fact: "Brésil : 5 Coupes du monde (1958, 1962, 1970, 1994, 2002)", detail: "Record absolu. Pelé a participé aux trois premières (seul triple champion). Le Brésil est le seul pays à avoir disputé toutes les éditions de la Coupe du monde." },
-              { fact: "France : 2 Coupes du monde (1998, 2018)", detail: "1998 : à domicile, France 3-0 Brésil en finale (doublé de Zidane). 2018 : France 4-2 Croatie en finale à Moscou (Mbappé, Griezmann, Pogba)." },
-              { fact: "Argentine : 3 Coupes du monde (1978, 1986, 2022)", detail: "Maradona en 1986 (« Main de Dieu » et « But du siècle » vs Angleterre). Messi en 2022 au Qatar, finale épique contre la France (3-3, tirs au but)." },
-              { fact: "Euro : l'Allemagne et l'Espagne détiennent le record (3 titres chacun)", detail: "Allemagne : 1972, 1980, 1996. Espagne : 1964, 2008, 2012. La France a gagné 2 fois : 1984 (Platini) et 2000 (Zidane, but en or vs Italie)." },
-              { fact: "Pelé : seul joueur triple champion du monde (1958, 1962, 1970)", detail: "Né Edson Arantes do Nascimento. 1 281 buts en carrière (record officieux). Surnommé « O Rei » (le Roi). Champion du monde à 17 ans en 1958 (plus jeune vainqueur)." }
+              { fact: "La capitale de l'Australie n'est PAS Sydney — c'est Canberra", detail: "Canberra a été construite exprès entre Sydney et Melbourne pour régler la rivalité entre les deux villes. Le nom viendrait d'un mot aborigène signifiant « lieu de rencontre »." },
+              { fact: "La capitale du Brésil n'est PAS Rio — c'est Brasília", detail: "Construite en 41 mois (1956-1960) en plein centre du pays. Vue du ciel, la ville a la forme d'un avion. Architecte : Oscar Niemeyer." },
+              { fact: "La capitale de la Turquie n'est PAS Istanbul — c'est Ankara", detail: "Istanbul (ex-Constantinople, ex-Byzance) est la plus grande ville mais Atatürk a choisi Ankara comme capitale en 1923." },
+              { fact: "La capitale du Myanmar (Birmanie) est Naypyidaw, pas Rangoun", detail: "Déplacée en 2006 dans le secret. Naypyidaw est une ville fantôme avec des autoroutes à 20 voies quasi-vides." },
+              { fact: "La capitale du Maroc n'est PAS Casablanca — c'est Rabat", detail: "Casablanca est la plus grande ville et le centre économique. Rabat est la capitale politique depuis 1912." }
             ],
             flashcards: [
-              { q: "Combien de Coupes du monde le Brésil a-t-il gagnées ?", r: "5" },
-              { q: "Quel est le score de la finale France-Brésil 1998 ?", r: "3-0" },
-              { q: "Qui marque un doublé en finale de la Coupe du monde 1998 ?", r: "Zidane" },
-              { q: "Quel est le score de la finale 2018 France-Croatie ?", r: "4-2" },
-              { q: "Quel geste de Maradona est célèbre en 1986 ?", r: "La Main de Dieu" },
-              { q: "Quel est le score de la finale 2022 Argentine-France ?", r: "3-3 (tirs au but)" },
-              { q: "Combien de titres de champion d'Europe l'Allemagne a-t-elle ?", r: "3" },
-              { q: "Combien de fois la France a-t-elle gagné l'Euro ?", r: "2 fois (1984, 2000)" },
-              { q: "Quel est le vrai nom de Pelé ?", r: "Edson Arantes do Nascimento" },
-              { q: "Combien de buts Pelé a-t-il marqués en carrière ?", r: "1 281" },
-              { q: "À quel âge Pelé devient-il champion du monde en 1958 ?", r: "17 ans" },
-              { q: "Quel est le surnom de Pelé ?", r: "O Rei" }
+              { q: "Quelle est la capitale de l'Australie ?", r: "Canberra" },
+              { q: "Pourquoi Canberra a-t-elle été construite ?", r: "Pour régler la rivalité entre Sydney et Melbourne" },
+              { q: "Quelle est la capitale du Brésil ?", r: "Brasília" },
+              { q: "En combien de temps Brasília a-t-elle été construite ?", r: "41 mois (1956-1960)" },
+              { q: "Quelle forme a Brasília vue du ciel ?", r: "Un avion" },
+              { q: "Qui est l'architecte de Brasília ?", r: "Oscar Niemeyer" },
+              { q: "Quelle est la capitale de la Turquie ?", r: "Ankara" },
+              { q: "Quels sont les 3 noms historiques d'Istanbul ?", r: "Byzance → Constantinople → Istanbul" },
+              { q: "Quelle est la capitale du Myanmar ?", r: "Naypyidaw" },
+              { q: "Quelle est la capitale du Maroc ?", r: "Rabat" },
+              { q: "Depuis quand Rabat est-elle la capitale du Maroc ?", r: "1912" },
+              { q: "Qui a déplacé la capitale turque de Constantinople à Ankara ?", r: "Atatürk (en 1923)" },
+              { q: "Combien de voies ont les autoroutes de Naypyidaw ?", r: "20 voies (quasi-vides)" }
             ]
           },
-          // --- Mini-quiz 1 ---
           {
             id: "w1d6t2", type: "quiz",
-            title: "Mini-quiz : Football",
+            title: "Mini-quiz : Capitales pièges",
             questions: [
-              { q: "Quel pays détient le record de Coupes du monde avec 5 titres ?", r: "Le Brésil" },
-              { q: "Quel est le score de la finale 1998 France-Brésil ?", r: "3-0 pour la France", hint: "Doublé de Zidane" },
-              { q: "Qui est le seul joueur triple champion du monde ?", r: "Pelé (1958, 1962, 1970)" },
-              { q: "En quelle année la France a-t-elle gagné l'Euro avec un but en or de Trezeguet ?", r: "2000", hint: "Finale contre l'Italie" }
+              { q: "Quelle est la capitale de l'Australie ?", r: "Canberra", hint: "Ni Sydney, ni Melbourne" },
+              { q: "Quelle est la capitale de la Turquie ?", r: "Ankara", hint: "Pas Istanbul" },
+              { q: "Quelle est la capitale du Maroc ?", r: "Rabat", hint: "Pas Casablanca" },
+              { q: "Quelle forme a Brasília vue du ciel ?", r: "Un avion", hint: "Construite en 41 mois" }
             ]
           },
-          // --- Fiche 2 : JO & athlétisme ---
           {
             id: "w1d6t3", type: "fiche",
-            title: "JO & athlétisme",
+            title: "Records & fun facts géographiques",
             items: [
-              { fact: "JO modernes : Pierre de Coubertin, 1896 à Athènes", detail: "Coubertin, baron français, fonde le CIO en 1894. Premiers JO modernes : 241 athlètes, 14 pays, 9 sports. Devise : « Citius, Altius, Fortius — Communiter » (Plus vite, Plus haut, Plus fort — Ensemble)." },
-              { fact: "Michael Phelps : 28 médailles olympiques dont 23 en or", detail: "Nageur américain, recordman absolu. Surnommé « le Baltimore Bullet ». A participé à 5 JO (2000 à 2016). 23 titres olympiques, record impensable." },
-              { fact: "Usain Bolt : 100 m en 9 s 58 / 200 m en 19 s 19 (records du monde)", detail: "Records établis aux Mondiaux de Berlin 2009. Jamaïcain, triple champion olympique du 100 m (2008, 2012, 2016). Surnommé « Lightning Bolt » (l'Éclair)." },
-              { fact: "Carl Lewis : 9 médailles d'or olympiques (athlétisme)", detail: "Américain, domine les années 1980-90. Vainqueur du 100 m, 200 m, longueur et relais 4×100 m. Comparé à Jesse Owens (4 médailles d'or à Berlin 1936 devant Hitler)." },
-              { fact: "JO de Paris : 1900, 1924, 2024", detail: "Paris est la 2e ville après Londres (1908, 1948, 2012) à accueillir 3 fois les JO. 2024 : cérémonie d'ouverture sur la Seine, 10 714 athlètes, 32 sports." }
+              { fact: "La France est le pays avec le plus de fuseaux horaires : 12", detail: "Grâce aux territoires d'outre-mer ! Les USA en ont 11, la Russie 11. La Chine n'en a qu'un seul (malgré sa taille)." },
+              { fact: "Le point le plus éloigné de tout océan est en Chine", detail: "Le « pôle d'inaccessibilité » est dans le désert du Xinjiang, à 2 648 km de la mer la plus proche." },
+              { fact: "Monaco est plus petit que Central Park à New York", detail: "Monaco : 2 km². Central Park : 3,4 km². C'est le 2e plus petit pays (après le Vatican : 0,44 km²)." },
+              { fact: "Le Nil et l'Amazone se disputent le titre de plus long fleuve", detail: "Le Nil fait ~6 650 km, l'Amazone ~6 400 km. Mais de nouvelles mesures donnent parfois l'Amazone gagnant." },
+              { fact: "La Russie a 11 fuseaux horaires et est plus grande que Pluton", detail: "Surface : 17,1 millions km². Pluton : 16,6 millions km². Quand il est midi à Moscou, il est 21h à l'est du pays." }
             ],
             flashcards: [
-              { q: "En quelle année le CIO est-il fondé ?", r: "1894" },
-              { q: "Combien de pays participent aux premiers JO modernes de 1896 ?", r: "14" },
-              { q: "Combien de sports aux premiers JO modernes ?", r: "9" },
-              { q: "Combien de médailles d'or Michael Phelps a-t-il ?", r: "23" },
-              { q: "Quel est le surnom de Michael Phelps ?", r: "Baltimore Bullet" },
-              { q: "Où Usain Bolt établit-il ses records du monde en 2009 ?", r: "Mondiaux de Berlin" },
-              { q: "Quel est le record du monde du 200 m ?", r: "19 s 19" },
-              { q: "Quel est le surnom d'Usain Bolt ?", r: "Lightning Bolt" },
-              { q: "Combien de médailles d'or olympiques Carl Lewis a-t-il ?", r: "9" },
-              { q: "Quelle ville a accueilli les JO le plus de fois ?", r: "Londres (3 fois)" },
-              { q: "Combien d'athlètes aux JO de Paris 2024 ?", r: "10 714" },
-              { q: "Où a lieu la cérémonie d'ouverture des JO 2024 ?", r: "Sur la Seine" }
+              { q: "Quel pays a le plus de fuseaux horaires ?", r: "La France (12)" },
+              { q: "Pourquoi la France a-t-elle 12 fuseaux horaires ?", r: "Grâce aux territoires d'outre-mer" },
+              { q: "Combien de fuseaux horaires la Chine a-t-elle ?", r: "Un seul" },
+              { q: "Quel pays est plus petit que Central Park ?", r: "Monaco" },
+              { q: "Quelle est la surface de Monaco ?", r: "2 km²" },
+              { q: "Quel est le plus petit pays du monde ?", r: "Le Vatican (0,44 km²)" },
+              { q: "Quels sont les deux fleuves qui se disputent le titre de plus long ?", r: "Le Nil et l'Amazone" },
+              { q: "Quelle est la longueur du Nil ?", r: "~6 650 km" },
+              { q: "Vrai ou faux : la Russie est plus grande que Pluton ?", r: "Vrai (17,1 vs 16,6 millions km²)" },
+              { q: "Combien de fuseaux horaires la Russie a-t-elle ?", r: "11" },
+              { q: "Où se trouve le pôle d'inaccessibilité (point le plus éloigné de tout océan) ?", r: "Dans le désert du Xinjiang (Chine)" },
+              { q: "Quelle est la surface de Central Park ?", r: "3,4 km²" }
             ]
           },
-          // --- Mini-quiz 2 ---
           {
             id: "w1d6t4", type: "quiz",
-            title: "Mini-quiz : JO & athlétisme",
+            title: "Mini-quiz : Records géo",
             questions: [
-              { q: "Qui a fondé les JO modernes et en quelle année ont eu lieu les premiers ?", r: "Pierre de Coubertin, 1896 à Athènes" },
-              { q: "Quel nageur détient le record de 28 médailles olympiques ?", r: "Michael Phelps" },
-              { q: "Quel est le record du monde du 100 m et qui le détient ?", r: "9 s 58 par Usain Bolt", hint: "Mondiaux de Berlin 2009" },
-              { q: "Combien de fois Paris a-t-elle accueilli les JO d'été ?", r: "3 fois (1900, 1924, 2024)" }
+              { q: "Quel pays a le plus de fuseaux horaires ?", r: "La France (12)", hint: "Grâce à l'outre-mer" },
+              { q: "Quel est le plus petit pays du monde ?", r: "Le Vatican", hint: "0,44 km²" },
+              { q: "Vrai ou faux : la Russie est plus grande que Pluton ?", r: "Vrai", hint: "17,1 vs 16,6 millions km²" },
+              { q: "Combien de fuseaux horaires la Chine a-t-elle ?", r: "Un seul", hint: "Malgré sa taille énorme" }
             ]
           },
-          // --- Lecture 2 ---
           {
             id: "w1d6t5", type: "lecture",
-            title: "QUIZ 100% Sport — 50 Questions Multi-sports",
-            subtitle: "Vidéo YouTube — Football, tennis, ski, athlétisme... (18 min)",
-            url: "https://www.youtube.com/watch?v=5C55d5UZbu8",
+            title: "QUIZ — Les Capitales du Monde (80 Pays)",
+            subtitle: "Vidéo YouTube — Testez vos connaissances sur 80 capitales",
+            url: "https://www.youtube.com/watch?v=9AWctHsuLvM",
             duration: "15 min"
           },
-          // --- Fiche 3 : Tennis & cyclisme ---
           {
             id: "w1d6t6", type: "fiche",
-            title: "Tennis & cyclisme",
+            title: "Surnoms de villes & pays",
             items: [
-              { fact: "4 Grands Chelems : Open d'Australie, Roland-Garros, Wimbledon, US Open", detail: "Open d'Australie (janvier, dur), Roland-Garros (mai-juin, terre battue), Wimbledon (juin-juillet, gazon), US Open (août-septembre, dur). Wimbledon est le plus ancien (1877)." },
-              { fact: "Novak Djokovic : record de 24 Grands Chelems masculins", detail: "Serbe, né en 1987. Dépasse Nadal (22) et Federer (20). A remporté chaque Grand Chelem au moins 3 fois. Médaille d'or olympique en 2024 à Paris." },
-              { fact: "Rafael Nadal : record de 14 victoires à Roland-Garros", detail: "Surnommé « le Roi de la terre battue ». Espagnol, gaucher. 22 Grands Chelems au total. Rivalité légendaire avec Federer (40 confrontations)." },
-              { fact: "Tour de France : créé en 1903, maillot jaune depuis 1919", detail: "Créé par le journal L'Auto (Henri Desgrange). Environ 3 500 km en 21 étapes sur 3 semaines en juillet. Le maillot jaune est la couleur du papier du journal L'Auto." },
-              { fact: "Records Tour de France : Jacques Anquetil, Eddy Merckx, Bernard Hinault, Miguel Indurain, chacun 5 victoires", detail: "Quatre coureurs à 5 victoires. Merckx (belge) surnommé « le Cannibale ». Hinault est le dernier Français vainqueur (1985). Lance Armstrong déchu de ses 7 titres pour dopage." }
+              { fact: "Bruges = la Venise du Nord", detail: "À cause de ses canaux. D'autres « Venise du Nord » : Amsterdam, Stockholm, Saint-Pétersbourg." },
+              { fact: "Las Vegas est surnommée « Sin City » (la ville du péché)", detail: "Elle est dans le Nevada, en plein désert. Son nom signifie « les prairies » en espagnol (il y avait des sources d'eau)." },
+              { fact: "Istanbul était Constantinople, elle-même Byzance", detail: "Seule ville au monde à cheval sur deux continents (Europe et Asie). Le détroit du Bosphore les sépare." },
+              { fact: "La Finlande est le « pays aux mille lacs » — en fait 188 000", detail: "Plus de 188 000 lacs ! Et le pays compte plus de saunas que de voitures. Aussi le pays le plus heureux du monde selon l'ONU." },
+              { fact: "Le Japon est « le pays du Soleil levant »", detail: "En japonais : Nihon (日本) = « origine du soleil ». Le drapeau (cercle rouge) représente le soleil. L'empereur est censé descendre d'Amaterasu, déesse du soleil." }
             ],
             flashcards: [
-              { q: "Quel Grand Chelem se joue sur gazon ?", r: "Wimbledon" },
-              { q: "Quel est le plus ancien Grand Chelem de tennis ?", r: "Wimbledon (1877)" },
-              { q: "Combien de Grands Chelems Djokovic a-t-il gagnés ?", r: "24" },
-              { q: "Combien de Grands Chelems Federer a-t-il gagnés ?", r: "20" },
-              { q: "Combien de fois Nadal a-t-il gagné Roland-Garros ?", r: "14" },
-              { q: "Combien de confrontations entre Nadal et Federer ?", r: "40" },
-              { q: "Quel journal crée le Tour de France ?", r: "L'Auto" },
-              { q: "En quelle année le Tour de France est-il créé ?", r: "1903" },
-              { q: "Depuis quelle année le maillot jaune existe-t-il ?", r: "1919" },
-              { q: "Quel est le surnom d'Eddy Merckx ?", r: "Le Cannibale" },
-              { q: "Quel est le dernier Français vainqueur du Tour de France ?", r: "Bernard Hinault (1985)" },
-              { q: "Pourquoi Lance Armstrong a-t-il perdu ses 7 titres ?", r: "Dopage" }
+              { q: "Quelle ville est surnommée « la Venise du Nord » ?", r: "Bruges (aussi Amsterdam, Stockholm, Saint-Pétersbourg)" },
+              { q: "Dans quel état américain se trouve Las Vegas ?", r: "Le Nevada" },
+              { q: "Que signifie « Las Vegas » en espagnol ?", r: "Les prairies" },
+              { q: "Quelle ville est à cheval sur deux continents ?", r: "Istanbul (Europe et Asie)" },
+              { q: "Quel détroit sépare la partie européenne et asiatique d'Istanbul ?", r: "Le Bosphore" },
+              { q: "Combien de lacs la Finlande compte-t-elle ?", r: "Plus de 188 000" },
+              { q: "Que signifie « Nihon » (Japon) ?", r: "Origine du soleil" },
+              { q: "Quelle déesse est l'ancêtre mythique de l'empereur du Japon ?", r: "Amaterasu (déesse du soleil)" },
+              { q: "Quel est le surnom de Las Vegas ?", r: "Sin City (la ville du péché)" },
+              { q: "Quel pays est le plus heureux du monde selon l'ONU ?", r: "La Finlande" },
+              { q: "Qu'est-ce que la Finlande a en plus grand nombre que les voitures ?", r: "Des saunas" }
             ]
           },
-          // --- Mini-quiz 3 ---
           {
             id: "w1d6t7", type: "quiz",
-            title: "Mini-quiz : Tennis & cyclisme",
+            title: "Quiz final : Géographie & Records",
             questions: [
-              { q: "Quel Grand Chelem de tennis se joue sur terre battue ?", r: "Roland-Garros" },
-              { q: "Quel joueur détient le record de 24 Grands Chelems masculins ?", r: "Novak Djokovic" },
-              { q: "Combien de fois Nadal a-t-il gagné Roland-Garros ?", r: "14 fois" },
-              { q: "Pourquoi le maillot du leader du Tour de France est-il jaune ?", r: "C'était la couleur du papier du journal L'Auto qui a créé la course" }
-            ]
-          },
-          // --- Fiche 4 : Rugby, sports divers & records ---
-          {
-            id: "w1d6t8", type: "fiche",
-            title: "Rugby, sports divers & records",
-            items: [
-              { fact: "All Blacks (Nouvelle-Zélande) : 3 Coupes du monde de rugby (1987, 2011, 2015)", detail: "Équipe la plus titrée et la plus mythique du rugby. Haka avant chaque match. L'Afrique du Sud est aussi à 4 titres (1995, 2007, 2019, 2023). La France n'a jamais gagné (3 finales perdues)." },
-              { fact: "Teddy Riner : 3 médailles d'or olympiques en judo (2012, 2016, 2024)", detail: "Français, catégorie +100 kg. 11 titres de champion du monde (record absolu tous sports de combat confondus). Invaincu pendant 154 combats consécutifs (2010-2020)." },
-              { fact: "Record marathon : Kelvin Kiptum, 2 h 00 min 35 s (Chicago 2023)", detail: "Kenyan, premier homme sous les 2h01 en compétition officielle. Décédé dans un accident de voiture en février 2024 à 24 ans. Le précédent record était celui d'Eliud Kipchoge (2 h 01 min 09 s)." },
-              { fact: "NBA : Michael Jordan, 6 titres avec les Chicago Bulls", detail: "Considéré comme le meilleur joueur de basket de l'histoire. 6 finales, 6 victoires, 6 titres de MVP des finales (1991-93, 1996-98). Marque Air Jordan." },
-              { fact: "Formule 1 : Lewis Hamilton et Michael Schumacher, 7 titres mondiaux chacun", detail: "Schumacher : 5 titres consécutifs avec Ferrari (2000-2004). Hamilton : premier pilote noir champion du monde (2008 à 2020). Max Verstappen en compte 4 (2021-2024)." }
-            ],
-            flashcards: [
-              { q: "Combien de Coupes du monde l'Afrique du Sud a-t-elle en rugby ?", r: "4" },
-              { q: "Combien de finales de Coupe du monde la France a-t-elle perdues en rugby ?", r: "3" },
-              { q: "Quel rituel les All Blacks pratiquent-ils avant chaque match ?", r: "Le haka" },
-              { q: "Combien de titres mondiaux Teddy Riner a-t-il ?", r: "11" },
-              { q: "Combien de combats consécutifs Riner remporte-t-il sans défaite ?", r: "154" },
-              { q: "Quel est le record du marathon de Kelvin Kiptum ?", r: "2 h 00 min 35 s" },
-              { q: "Où Kiptum établit-il son record du marathon ?", r: "Chicago (2023)" },
-              { q: "Combien de titres NBA Michael Jordan a-t-il ?", r: "6" },
-              { q: "Combien de titres consécutifs Schumacher remporte-t-il avec Ferrari ?", r: "5" },
-              { q: "Combien de titres mondiaux Max Verstappen a-t-il ?", r: "4" },
-              { q: "Quelle marque de baskets porte le nom de Michael Jordan ?", r: "Air Jordan" }
-            ]
-          },
-          // --- Mini-quiz 4 ---
-          {
-            id: "w1d6t9", type: "quiz",
-            title: "Mini-quiz : Rugby, sports divers & records",
-            questions: [
-              { q: "Quel pays de rugby est surnommé les All Blacks ?", r: "La Nouvelle-Zélande" },
-              { q: "Combien de titres mondiaux Teddy Riner a-t-il en judo ?", r: "11 titres de champion du monde" },
-              { q: "Quel est le record du monde du marathon et qui le détient ?", r: "2 h 00 min 35 s par Kelvin Kiptum", hint: "Chicago 2023" },
-              { q: "Combien de titres de champion du monde de F1 partagent Hamilton et Schumacher ?", r: "7 chacun" }
-            ]
-          },
-          // --- Quiz final du jour ---
-          {
-            id: "w1d6t10", type: "quiz",
-            title: "Quiz final : Sport",
-            questions: [
-              { q: "Quel pays a gagné le plus de Coupes du monde de football ?", r: "Le Brésil (5 titres)" },
-              { q: "Quel est le record du monde du 200 m ?", r: "19 s 19 par Usain Bolt" },
-              { q: "Quel tennisman a gagné Roland-Garros 14 fois ?", r: "Rafael Nadal" },
-              { q: "Combien de médailles d'or olympiques Michael Phelps a-t-il remportées ?", r: "23" },
-              { q: "Quel pays a le plus de titres en Coupe du monde de rugby ?", r: "L'Afrique du Sud (4 titres)" },
-              { q: "En quelle année le Tour de France a-t-il été créé ?", r: "1903" },
-              { q: "Quelle est la devise olympique ?", r: "Plus vite, plus haut, plus fort — ensemble" },
-              { q: "Quel basketteur a remporté 6 titres NBA avec les Chicago Bulls ?", r: "Michael Jordan" },
-              { q: "Quel judoka français a été invaincu pendant 154 combats ?", r: "Teddy Riner" },
-              { q: "Combien de victoires au Tour de France détiennent Merckx, Anquetil, Hinault et Indurain chacun ?", r: "5 chacun" },
-              { q: "Qui est le plus jeune vainqueur de Coupe du monde de football ?", r: "Pelé, à 17 ans en 1958" },
-              { q: "Quel Grand Chelem de tennis est le plus ancien ?", r: "Wimbledon (1877)" }
+              { q: "Quelle est la capitale de l'Australie ?", r: "Canberra" },
+              { q: "Quel pays a 12 fuseaux horaires ?", r: "La France" },
+              { q: "Que signifie Las Vegas en espagnol ?", r: "Les prairies" },
+              { q: "Combien de lacs la Finlande a-t-elle ?", r: "188 000" },
+              { q: "Quel est le plus petit pays du monde ?", r: "Le Vatican" },
+              { q: "Quelle ville est sur deux continents ?", r: "Istanbul" }
             ]
           }
         ]
       },
 
-      // ===================== JOUR 7 : TEST BLANC #1 =====================
+      // ===================== JOUR 7 : SPORT & DIVERTISSEMENT =====================
       {
-        day: 7, label: "Dimanche", theme: "Test blanc #1", icon: "📝",
-        objectif: "Évaluer ton niveau — objectif : 30/50",
+        day: 7, label: "Dimanche", theme: "Sport & Records", icon: "🏆",
+        objectif: "Anecdotes sportives, records, fun facts — quiz final mixte",
         tasks: [
-          // --- Lecture : QPUC replay ---
           {
             id: "w1d7t0", type: "lecture",
+            title: "QUIZ 100% Sport — 50 Questions",
+            subtitle: "Vidéo YouTube — Football, tennis, ski, athlétisme... (18 min)",
+            url: "https://www.youtube.com/watch?v=5C55d5UZbu8",
+            duration: "18 min"
+          },
+          {
+            id: "w1d7t1", type: "fiche",
+            title: "Football : fun facts",
+            items: [
+              { fact: "Le Brésil est le seul pays à avoir disputé toutes les Coupes du monde", detail: "5 titres (record) : 1958, 1962, 1970, 1994, 2002. Pelé est le seul joueur à avoir gagné 3 Coupes du monde." },
+              { fact: "Le score le plus large en football est 149-0", detail: "En 2002, à Madagascar : le SO l'Emyrne a marqué 149 buts contre soi (contre-goals volontaires) pour protester contre l'arbitrage." },
+              { fact: "Zinédine Zidane a mis un coup de tête à Materazzi en finale 2006", detail: "Materazzi l'aurait insulté en parlant de sa sœur. C'était le dernier match de la carrière de Zidane. L'Italie a gagné aux tirs au but." },
+              { fact: "Le ballon d'or féminin n'existe que depuis 2018", detail: "La première lauréate est la Norvégienne Ada Hegerberg. Le ballon d'or masculin existe depuis 1956 (premier : Stanley Matthews)." },
+              { fact: "Lionel Messi a remporté 8 Ballons d'Or", detail: "Record absolu. Cristiano Ronaldo en a 5. Messi a finalement gagné la Coupe du monde en 2022 au Qatar avec l'Argentine." }
+            ],
+            flashcards: [
+              { q: "Combien de Coupes du monde le Brésil a-t-il remportées ?", r: "5 (1958, 1962, 1970, 1994, 2002)" },
+              { q: "Quel joueur a gagné 3 Coupes du monde ?", r: "Pelé" },
+              { q: "Quel est le score le plus large de l'histoire du football ?", r: "149-0 (Madagascar, 2002)" },
+              { q: "Pourquoi ce score de 149-0 ?", r: "Buts contre soi volontaires pour protester contre l'arbitrage" },
+              { q: "Qu'a fait Zidane en finale de la Coupe du monde 2006 ?", r: "Un coup de tête à Materazzi" },
+              { q: "Qui a gagné la finale 2006 ?", r: "L'Italie (aux tirs au but)" },
+              { q: "Depuis quand le Ballon d'Or féminin existe-t-il ?", r: "2018" },
+              { q: "Qui est la première lauréate du Ballon d'Or féminin ?", r: "Ada Hegerberg (Norvégienne)" },
+              { q: "Combien de Ballons d'Or Messi a-t-il ?", r: "8" },
+              { q: "Combien de Ballons d'Or Ronaldo a-t-il ?", r: "5" },
+              { q: "En quelle année Messi a-t-il gagné la Coupe du monde ?", r: "2022 (au Qatar)" },
+              { q: "Qui a été le premier Ballon d'Or masculin en 1956 ?", r: "Stanley Matthews" }
+            ]
+          },
+          {
+            id: "w1d7t2", type: "quiz",
+            title: "Mini-quiz : Football",
+            questions: [
+              { q: "Combien de Ballons d'Or Messi a-t-il ?", r: "8", hint: "Record absolu" },
+              { q: "Quel est le score le plus large de l'histoire ?", r: "149-0", hint: "Match de protestation à Madagascar" },
+              { q: "Depuis quand le Ballon d'Or féminin existe-t-il ?", r: "2018", hint: "La première lauréate est norvégienne" },
+              { q: "Combien de Coupes du monde le Brésil a-t-il ?", r: "5", hint: "Record, devant l'Italie et l'Allemagne" }
+            ]
+          },
+          {
+            id: "w1d7t3", type: "fiche",
+            title: "JO, tennis & records sportifs",
+            items: [
+              { fact: "Les anneaux olympiques représentent les 5 continents habités", detail: "Bleu (Europe), noir (Afrique), rouge (Amériques), jaune (Asie), vert (Océanie). Créés par Pierre de Coubertin en 1913." },
+              { fact: "Usain Bolt a couru le 100m en 9,58 secondes", detail: "Record du monde établi à Berlin en 2009. Sa vitesse max : 44,72 km/h. Il mesure 1m96 — inhabituellement grand pour un sprinter." },
+              { fact: "Rafael Nadal a gagné 14 fois Roland-Garros", detail: "Record absolu sur un même Grand Chelem. Surnommé « le roi de la terre battue ». Il est gaucher au tennis mais droitier dans la vie." },
+              { fact: "Le marathon tire son nom de la bataille de Marathon (490 av. J.-C.)", detail: "Le soldat Philippidès aurait couru 42 km jusqu'à Athènes pour annoncer la victoire. La distance officielle (42,195 km) date des JO de Londres 1908." },
+              { fact: "Michael Jordan a été coupé de son équipe de basket au lycée", detail: "Jugé trop petit en seconde. Il a ensuite remporté 6 titres NBA avec les Chicago Bulls et 5 MVP." }
+            ],
+            flashcards: [
+              { q: "Que représentent les 5 anneaux olympiques ?", r: "Les 5 continents habités" },
+              { q: "Qui a créé les anneaux olympiques ?", r: "Pierre de Coubertin (1913)" },
+              { q: "Quel est le record du monde du 100m ?", r: "9,58 secondes (Usain Bolt, Berlin 2009)" },
+              { q: "Quelle est la vitesse max d'Usain Bolt ?", r: "44,72 km/h" },
+              { q: "Quelle est la taille d'Usain Bolt ?", r: "1m96" },
+              { q: "Combien de fois Nadal a-t-il gagné Roland-Garros ?", r: "14 fois" },
+              { q: "Nadal est gaucher au tennis. Et dans la vie ?", r: "Il est droitier" },
+              { q: "D'où vient le mot « marathon » ?", r: "De la bataille de Marathon (490 av. J.-C.)" },
+              { q: "Quelle est la distance exacte d'un marathon ?", r: "42,195 km" },
+              { q: "Depuis quand le marathon fait-il 42,195 km ?", r: "Les JO de Londres 1908" },
+              { q: "Combien de titres NBA Michael Jordan a-t-il ?", r: "6 (avec les Chicago Bulls)" },
+              { q: "Pourquoi Jordan a-t-il été coupé de son équipe au lycée ?", r: "Jugé trop petit" },
+              { q: "Quelle couleur représente l'Europe dans les anneaux olympiques ?", r: "Bleu" },
+              { q: "Quel surnom donne-t-on à Nadal ?", r: "Le roi de la terre battue" }
+            ]
+          },
+          {
+            id: "w1d7t4", type: "quiz",
+            title: "Mini-quiz : Sport",
+            questions: [
+              { q: "Quel est le record du monde du 100m ?", r: "9,58 s (Bolt)", hint: "Berlin, 2009" },
+              { q: "Combien de fois Nadal a-t-il gagné Roland-Garros ?", r: "14", hint: "Le roi de la terre battue" },
+              { q: "Quelle est la distance exacte d'un marathon ?", r: "42,195 km", hint: "Fixée aux JO de Londres 1908" },
+              { q: "Combien de titres NBA Michael Jordan a-t-il ?", r: "6", hint: "Tous avec les Chicago Bulls" }
+            ]
+          },
+          {
+            id: "w1d7t5", type: "lecture",
             title: "Questions pour un Champion — Episode complet",
             subtitle: "Vidéo YouTube — Regarder une émission QPUC pour s'imprégner du rythme (37 min)",
             url: "https://www.youtube.com/watch?v=pBIUUSsl0i0",
-            duration: "26 min"
+            duration: "37 min"
           },
-          // --- Quiz section Histoire (8 questions) ---
           {
-            id: "w1d7t1", type: "quiz",
-            title: "Section Histoire (8 questions)",
-            questions: [
-              { q: "Quel événement de 1539 impose le français dans les documents officiels ?", r: "L'ordonnance de Villers-Cotterêts" },
-              { q: "Quel roi de France a régné 72 ans ?", r: "Louis XIV (1643–1715)" },
-              { q: "Quelle héroïne a fait sacrer Charles VII à Reims en 1429 ?", r: "Jeanne d'Arc" },
-              { q: "Quel traité de 1919 met fin à la Première Guerre mondiale ?", r: "Le traité de Versailles" },
-              { q: "En quelle année Napoléon a-t-il été sacré empereur ?", r: "1804" },
-              { q: "Quel édit met fin aux guerres de religion en 1598 ?", r: "L'édit de Nantes", hint: "Signé par Henri IV" },
-              { q: "Quelle bataille de 1916 symbolise la guerre des tranchées ?", r: "Verdun" },
-              { q: "Qui a guillotiné Louis XVI le 21 janvier 1793 ?", r: "La Convention nationale (durant la Révolution)", hint: "Place de la Révolution" }
+            id: "w1d7t6", type: "fiche",
+            title: "Mix culture G — détails improbables",
+            items: [
+              { fact: "Le cœur des demi-sœurs de Cendrillon s'appellent Javotte et Anastasie", detail: "Dans la version Disney (1950). Dans le conte de Perrault (1697), elles n'ont pas de nom. Le soulier est en verre, pas en vair (fourrure)." },
+              { fact: "Picasso a peint Guernica en réaction au bombardement de la ville en 1937", detail: "Le tableau fait 3,5 m × 7,8 m. Il est au Musée Reina Sofía à Madrid. Picasso a dit : « Non, c'est vous qui avez fait ça » à un officier nazi." },
+              { fact: "Le vrai nom de Batman est Bruce Wayne", detail: "Bruce Wayne est milliardaire à Gotham City. Son majordome s'appelle Alfred. Premier comic : Detective Comics #27 (1939)." },
+              { fact: "La Tour Eiffel a été construite pour l'Exposition universelle de 1889", detail: "Gustave Eiffel. 324 mètres de haut. 18 038 pièces métalliques. 2,5 millions de rivets. Elle reçoit 7 millions de visiteurs par an." },
+              { fact: "Le nom complet de Barbie est Barbara Millicent Roberts", detail: "Créée par Ruth Handler (Mattel) en 1959. Ken s'appelle Kenneth Sean Carson. Barbie a eu plus de 200 métiers différents." }
+            ],
+            flashcards: [
+              { q: "Comment s'appellent les demi-sœurs de Cendrillon (Disney) ?", r: "Javotte et Anastasie" },
+              { q: "Le soulier de Cendrillon est en verre ou en vair ?", r: "En verre (dans la version de Perrault)" },
+              { q: "Où est exposé Guernica de Picasso ?", r: "Au Musée Reina Sofía à Madrid" },
+              { q: "Quelles sont les dimensions de Guernica ?", r: "3,5 m × 7,8 m" },
+              { q: "Quel événement a inspiré Guernica ?", r: "Le bombardement de la ville de Guernica en 1937" },
+              { q: "Quel est le vrai nom de Batman ?", r: "Bruce Wayne" },
+              { q: "Comment s'appelle le majordome de Batman ?", r: "Alfred" },
+              { q: "En quelle année la Tour Eiffel a-t-elle été construite ?", r: "1889 (Exposition universelle)" },
+              { q: "Combien de rivets la Tour Eiffel contient-elle ?", r: "2,5 millions" },
+              { q: "Combien de visiteurs la Tour Eiffel reçoit-elle par an ?", r: "7 millions" },
+              { q: "Quel est le nom complet de Barbie ?", r: "Barbara Millicent Roberts" },
+              { q: "Qui a créé Barbie ?", r: "Ruth Handler (Mattel), en 1959" },
+              { q: "Quel est le nom complet de Ken (petit ami de Barbie) ?", r: "Kenneth Sean Carson" },
+              { q: "Combien de métiers Barbie a-t-elle eus ?", r: "Plus de 200" },
+              { q: "Quelle hauteur fait la Tour Eiffel ?", r: "324 mètres" }
             ]
           },
-          // --- Quiz section Géographie (8 questions) ---
-          {
-            id: "w1d7t2", type: "quiz",
-            title: "Section Géographie (8 questions)",
-            questions: [
-              { q: "Quelle est la capitale du Canada ?", r: "Ottawa" },
-              { q: "Quelle est la capitale de l'Australie ?", r: "Canberra" },
-              { q: "Quel pays a trois capitales officielles ?", r: "L'Afrique du Sud (Pretoria, Le Cap, Bloemfontein)" },
-              { q: "Quel est le plus long fleuve du monde ?", r: "Le Nil (6 650 km)" },
-              { q: "Quelle est la hauteur de l'Everest ?", r: "8 849 m" },
-              { q: "Quelle est la capitale de la Birmanie (Myanmar) ?", r: "Naypyidaw" },
-              { q: "Quel détroit sépare l'Europe de l'Asie à Istanbul ?", r: "Le Bosphore" },
-              { q: "Quelle est la capitale du Nigéria ?", r: "Abuja", hint: "Pas Lagos" }
-            ]
-          },
-          // --- Quiz section Sciences (8 questions) ---
-          {
-            id: "w1d7t3", type: "quiz",
-            title: "Section Sciences (8 questions)",
-            questions: [
-              { q: "Quelle est la formule d'Einstein sur l'énergie et la masse ?", r: "E=mc²" },
-              { q: "Combien d'os compte le squelette humain adulte ?", r: "206" },
-              { q: "Qui a découvert la structure de l'ADN en 1953 ?", r: "Watson et Crick (grâce aux travaux de Rosalind Franklin)" },
-              { q: "Combien d'éléments compte le tableau périodique actuel ?", r: "118" },
-              { q: "Qui a formulé la loi de conservation de la masse ?", r: "Lavoisier" },
-              { q: "Quel astronaute a marché en premier sur la Lune ?", r: "Neil Armstrong (20 juillet 1969)" },
-              { q: "Combien de chromosomes dans une cellule humaine ?", r: "46 (23 paires)" },
-              { q: "Qui a inventé l'imprimerie à caractères mobiles vers 1450 ?", r: "Gutenberg" }
-            ]
-          },
-          // --- Quiz section Littérature (8 questions) ---
-          {
-            id: "w1d7t4", type: "quiz",
-            title: "Section Littérature (8 questions)",
-            questions: [
-              { q: "Quel est le vrai nom de Molière ?", r: "Jean-Baptiste Poquelin" },
-              { q: "Combien de tomes compte À la recherche du temps perdu ?", r: "7 tomes" },
-              { q: "Quel auteur a écrit Germinal et J'accuse ?", r: "Émile Zola" },
-              { q: "Quel philosophe existentialiste a refusé le Nobel en 1964 ?", r: "Jean-Paul Sartre" },
-              { q: "Qui a écrit Les Misérables ?", r: "Victor Hugo" },
-              { q: "Quel roman de Flaubert a été poursuivi pour immoralité en 1857 ?", r: "Madame Bovary" },
-              { q: "Quel poète a été surnommé « Prince des poètes » en 1894 ?", r: "Paul Verlaine" },
-              { q: "Quel est le livre le plus traduit au monde après la Bible ?", r: "Le Petit Prince de Saint-Exupéry" }
-            ]
-          },
-          // --- Quiz section Arts (6 questions) ---
-          {
-            id: "w1d7t5", type: "quiz",
-            title: "Section Arts (6 questions)",
-            questions: [
-              { q: "Dans quel musée se trouve La Joconde ?", r: "Le Musée du Louvre (Paris)" },
-              { q: "Quel peintre est le maître du clair-obscur baroque ?", r: "Le Caravage" },
-              { q: "Qui a peint La Nuit étoilée ?", r: "Vincent van Gogh" },
-              { q: "Quel courant artistique a été fondé par Picasso et Braque vers 1907 ?", r: "Le cubisme" },
-              { q: "Quel artiste a créé la Fontaine (urinoir) en 1917 ?", r: "Marcel Duchamp" },
-              { q: "Quel tableau de Delacroix (1830) est une allégorie de la liberté ?", r: "La Liberté guidant le peuple" }
-            ]
-          },
-          // --- Quiz section Sport (6 questions) ---
-          {
-            id: "w1d7t6", type: "quiz",
-            title: "Section Sport (6 questions)",
-            questions: [
-              { q: "Quel pays a remporté le plus de Coupes du monde de football ?", r: "Le Brésil (5 titres)" },
-              { q: "Quel est le record du monde du 100 m ?", r: "9 s 58 par Usain Bolt" },
-              { q: "Quel nageur détient 28 médailles olympiques ?", r: "Michael Phelps" },
-              { q: "Quel joueur de tennis détient le record de 24 Grands Chelems ?", r: "Novak Djokovic" },
-              { q: "Quel judoka français détient 11 titres de champion du monde ?", r: "Teddy Riner" },
-              { q: "En quelle année les premiers JO modernes ont-ils eu lieu ?", r: "1896 à Athènes" }
-            ]
-          },
-          // --- Quiz final mixte (6 questions) ---
           {
             id: "w1d7t7", type: "quiz",
-            title: "Quiz final mixte (toutes catégories)",
+            title: "Quiz final mixte — Semaine 1",
             questions: [
-              { q: "Quel empereur franc a été couronné par le pape en l'an 800 ?", r: "Charlemagne" },
-              { q: "Quelle est la capitale du Sri Lanka ?", r: "Sri Jayawardenapura Kotte" },
-              { q: "Quel symbole chimique correspond au sodium ?", r: "Na (du latin Natrium)" },
-              { q: "Qui a écrit Le Deuxième Sexe en 1949 ?", r: "Simone de Beauvoir" },
-              { q: "Dans quel musée se trouve Guernica de Picasso ?", r: "Le Musée Reina Sofía à Madrid" },
-              { q: "Quel basketteur a remporté 6 titres NBA avec les Chicago Bulls ?", r: "Michael Jordan" }
+              { q: "Comment s'appelle le bébé du hérisson ?", r: "Le choupisson" },
+              { q: "Combien d'os a un adulte ?", r: "206" },
+              { q: "Qui a inventé le Camembert ?", r: "Marie Harel" },
+              { q: "Quel est le vrai nom de Johnny Hallyday ?", r: "Jean-Philippe Smet" },
+              { q: "D'où vient le mot salaire ?", r: "Du sel" },
+              { q: "Quelle est la capitale de l'Australie ?", r: "Canberra" },
+              { q: "Combien de Ballons d'Or Messi a-t-il ?", r: "8" },
+              { q: "Comment s'appellent les demi-sœurs de Cendrillon ?", r: "Javotte et Anastasie" },
+              { q: "Quel aliment ne périme jamais ?", r: "Le miel" },
+              { q: "De quel pays vient le croissant ?", r: "L'Autriche" }
             ]
           }
         ]
