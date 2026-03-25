@@ -924,5 +924,668 @@ const PROGRAMME_WEEKS = [
         ]
       }
     ]
+  },
+
+  // ======================== SEMAINE 2 : PARAMNÉSIE ========================
+  {
+    week: 2,
+    title: "Paramnésie",
+    description: "Littérature, arts, architecture, vocabulaire rare, sciences, monnaies, botanique",
+    days: [
+      // ===================== JOUR 1 : LITTÉRATURE =====================
+      {
+        day: 1, label: "Lundi", theme: "Littérature : qui a écrit quoi ?", icon: "📚",
+        objectif: "Associer auteurs et œuvres — classiques et prix littéraires",
+        tasks: [
+          {
+            id: "w2d1t0", type: "lecture",
+            title: "20 Romans Français Incontournables",
+            subtitle: "Vidéo YouTube — Résumés des grands classiques",
+            url: "https://www.youtube.com/watch?v=u4GtGFYECe0",
+            duration: "20 min"
+          },
+          {
+            id: "w2d1t1", type: "fiche",
+            title: "Livres cultes anglo-saxons",
+            items: [
+              { fact: "Orange mécanique — Anthony Burgess", detail: "Dystopie sur la violence. Adapté par Stanley Kubrick en 1971. Le « nadsat » est un argot inventé pour le roman." },
+              { fact: "Fondation — Isaac Asimov", detail: "Cycle de science-fiction sur la chute d'un empire galactique. Asimov a aussi créé les 3 lois de la robotique." },
+              { fact: "Le Meilleur des mondes — Aldous Huxley", detail: "Dystopie de 1932 sur une société de consommation parfaite. Le soma y remplace les émotions." },
+              { fact: "L'Attrape-Cœurs — J.D. Salinger", detail: "Holden Caulfield, ado paumé à New York. Salinger est devenu reclus après le succès du livre." },
+              { fact: "Ne tirez pas sur l'oiseau moqueur — Harper Lee", detail: "Atticus Finch défend un Noir accusé à tort dans l'Alabama des années 30. Prix Pulitzer 1961." }
+            ],
+            flashcards: [
+              { q: "Qui a écrit Orange mécanique ?", r: "Anthony Burgess" },
+              { q: "Qui a écrit Fondation ?", r: "Isaac Asimov" },
+              { q: "Qui a écrit Le Meilleur des mondes ?", r: "Aldous Huxley" },
+              { q: "Qui a écrit L'Attrape-Cœurs ?", r: "Salinger" },
+              { q: "Qui a écrit Ne tirez pas sur l'oiseau moqueur ?", r: "Harper Lee" },
+              { q: "Qui a écrit Rebecca ?", r: "Daphné du Maurier" },
+              { q: "Qui a écrit Le Grand Sommeil ?", r: "Raymond Chandler" },
+              { q: "Qui a écrit American Psycho ?", r: "Bret Easton Ellis" },
+              { q: "Qui a écrit Manhattan Transfer ?", r: "John Dos Passos" },
+              { q: "Qui a écrit Ulysse ?", r: "James Joyce" },
+              { q: "Qui a écrit Le Bruit et la Fureur ?", r: "William Faulkner" },
+              { q: "Qui a écrit Au cœur des ténèbres ?", r: "Joseph Conrad" },
+              { q: "Qui a écrit Sapiens ?", r: "Yuval Noah Harari" },
+              { q: "Qui a écrit Les Sorcières de Salem ?", r: "Arthur Miller" },
+              { q: "Qui a écrit La Servante écarlate ?", r: "Margaret Atwood" }
+            ]
+          },
+          {
+            id: "w2d1t2", type: "quiz",
+            title: "Mini-quiz : Littérature anglo-saxonne",
+            questions: [
+              { q: "Qui a écrit Fondation ?", r: "Isaac Asimov", hint: "Aussi créateur des 3 lois de la robotique" },
+              { q: "Qui a écrit Le Meilleur des mondes ?", r: "Aldous Huxley", hint: "Dystopie de 1932" },
+              { q: "Qui a écrit Rebecca ?", r: "Daphné du Maurier", hint: "Adapté par Hitchcock" },
+              { q: "Qui a écrit Sapiens ?", r: "Yuval Noah Harari", hint: "Historien israélien" }
+            ]
+          },
+          {
+            id: "w2d1t3", type: "fiche",
+            title: "Littérature française & étrangère",
+            items: [
+              { fact: "Tous les matins du monde — Pascal Quignard", detail: "Sur les violistes Sainte-Colombe et Marin Marais. Film avec Depardieu. Goncourt 2002 pour Les Ombres errantes." },
+              { fact: "L'Élégance du hérisson — Muriel Barbery", detail: "Renée, concierge cultivée, et Paloma, 12 ans surdouée, dans un immeuble parisien chic." },
+              { fact: "Persépolis — Marjane Satrapi", detail: "BD autobiographique sur la révolution iranienne de 1979 vue par une petite fille. Adaptée en film d'animation." },
+              { fact: "Le Décaméron — Boccace", detail: "100 nouvelles racontées par 10 jeunes gens fuyant la peste à Florence (1353). Chef-d'œuvre de la Renaissance italienne." },
+              { fact: "La Case de l'Oncle Tom — Harriet Beecher Stowe", detail: "Roman anti-esclavagiste de 1852. Lincoln aurait dit à Stowe : « Alors c'est vous la petite dame qui a déclenché cette grande guerre »." }
+            ],
+            flashcards: [
+              { q: "Qui a écrit Tous les matins du monde ?", r: "Pascal Quignard" },
+              { q: "Qui a écrit L'Élégance du hérisson ?", r: "Muriel Barbery" },
+              { q: "Qui a écrit Persépolis ?", r: "Marjane Satrapi" },
+              { q: "Qui a écrit Le Décaméron ?", r: "Boccace" },
+              { q: "Qui a écrit La Case de l'Oncle Tom ?", r: "Harriet Beecher Stowe" },
+              { q: "Qui a écrit Autant en emporte le vent ?", r: "Margaret Mitchell" },
+              { q: "Qui a écrit Le Loup des Steppes ?", r: "Hermann Hesse" },
+              { q: "Qui a écrit Le Tambour ?", r: "Günter Grass" },
+              { q: "Qui a écrit Le Maître et Marguerite ?", r: "Mikhaïl Boulgakov" },
+              { q: "Qui a écrit Le Journal de Bridget Jones ?", r: "Helen Fielding" },
+              { q: "Qui a écrit Winnie l'Ourson ?", r: "A.A. Milne" },
+              { q: "Qui a écrit Peter Pan ?", r: "J.M. Barrie" },
+              { q: "Qui a écrit Heidi ?", r: "Johanna Spyri" },
+              { q: "Qui a écrit Hunger Games ?", r: "Suzanne Collins" },
+              { q: "Écuyer de Don Quichotte ?", r: "Sancho Panza" },
+              { q: "Personnage du Misanthrope de Molière ?", r: "Alceste" },
+              { q: "Personnage de L'Avare de Molière ?", r: "Harpagon" },
+              { q: "Femme dans Les Trois Mousquetaires ?", r: "Milady" }
+            ]
+          },
+          {
+            id: "w2d1t4", type: "quiz",
+            title: "Quiz final : Littérature",
+            questions: [
+              { q: "Qui a écrit Persépolis ?", r: "Marjane Satrapi" },
+              { q: "Qui a écrit Orange mécanique ?", r: "Anthony Burgess" },
+              { q: "Écuyer de Don Quichotte ?", r: "Sancho Panza" },
+              { q: "Qui a écrit Autant en emporte le vent ?", r: "Margaret Mitchell" },
+              { q: "Qui a écrit Le Meilleur des mondes ?", r: "Aldous Huxley" },
+              { q: "Qui a écrit La Case de l'Oncle Tom ?", r: "Harriet Beecher Stowe" }
+            ]
+          }
+        ]
+      },
+
+      // ===================== JOUR 2 : ARTS & ARCHITECTURE =====================
+      {
+        day: 2, label: "Mardi", theme: "Arts & Architecture", icon: "🏛️",
+        objectif: "Peintres, mouvements, architectes — qui a fait quoi ?",
+        tasks: [
+          {
+            id: "w2d2t0", type: "lecture",
+            title: "Histoire de l'Art — De la Renaissance à nos jours",
+            subtitle: "Vidéo YouTube — Tous les grands mouvements artistiques (28 min)",
+            url: "https://www.youtube.com/watch?v=RRjfQGPbDnc",
+            duration: "28 min"
+          },
+          {
+            id: "w2d2t1", type: "fiche",
+            title: "Mouvements artistiques & peintres",
+            items: [
+              { fact: "Die Brücke — Groupe expressionniste allemand, Dresde 1905", detail: "Mouvement radical qui influence tout l'art moderne. Les artistes : Kirchner, Heckel, Schmidt-Rottluff." },
+              { fact: "Le Nouveau Réalisme — Pierre Restany, 1960", detail: "Arman = Accumulations, César = Compressions. Utilise des objets du quotidien comme matériaux artistiques." },
+              { fact: "Le Futurisme — Marinetti, 1909", detail: "Mouvement italien qui glorifie la vitesse, la machine et la modernité. Premier manifeste publié dans Le Figaro." },
+              { fact: "L'Arte Povera — Giuseppe Penone & Manzoni", detail: "Art « pauvre » italien qui utilise des matériaux naturels et humbles. Manzoni est connu pour ses « Merdes d'artiste » en boîte." },
+              { fact: "Yayoi Kusama — Artiste japonaise des pois infinis", detail: "Née en 1929, vit en hôpital psychiatrique depuis 1977 par choix. Ses installations immersives de pois sont mondialement célèbres." }
+            ],
+            flashcards: [
+              { q: "Quel groupe expressionniste a été fondé à Dresde en 1905 ?", r: "Die Brücke" },
+              { q: "Qui a fondé le Nouveau Réalisme ?", r: "Pierre Restany" },
+              { q: "Quel artiste est connu pour les Accumulations ?", r: "Arman" },
+              { q: "Quel artiste est connu pour les Compressions ?", r: "César" },
+              { q: "Qui a théorisé le futurisme ?", r: "Marinetti (1909)" },
+              { q: "Quelle artiste japonaise est connue pour ses pois ?", r: "Yayoi Kusama" },
+              { q: "Qui a créé le terme « impressionnisme » ?", r: "Louis Leroy" },
+              { q: "Qui est le théoricien des Nabis ?", r: "Maurice Denis" },
+              { q: "Qui a peint Le Talisman ?", r: "Paul Sérusier" },
+              { q: "Qui a peint Ophélie ?", r: "John Everett Millais" },
+              { q: "Qui a peint Le Cauchemar ?", r: "Füssli" },
+              { q: "Qui était le maître de Léonard de Vinci ?", r: "Verrocchio" },
+              { q: "Qui a créé le logo d'Antenne 2 ?", r: "Georges Mathieu" },
+              { q: "Qui a dessiné La Semeuse (pièces de monnaie) ?", r: "Oscar Roty" },
+              { q: "Muse de Modigliani ?", r: "Jeanne Hébuterne" },
+              { q: "Muse de Rubens ?", r: "Hélène Fourment" }
+            ]
+          },
+          {
+            id: "w2d2t2", type: "quiz",
+            title: "Mini-quiz : Arts",
+            questions: [
+              { q: "Qui a fondé le Nouveau Réalisme ?", r: "Pierre Restany", hint: "Arman et César en font partie" },
+              { q: "Qui a créé le terme impressionnisme ?", r: "Louis Leroy", hint: "Critique d'art" },
+              { q: "Qui était le maître de Léonard de Vinci ?", r: "Verrocchio", hint: "À Florence" },
+              { q: "Quel artiste est connu pour les Compressions ?", r: "César", hint: "Nouveau Réalisme" }
+            ]
+          },
+          {
+            id: "w2d2t3", type: "fiche",
+            title: "Architectes de monuments célèbres",
+            items: [
+              { fact: "Panthéon de Paris → Soufflot", detail: "Style néoclassique, construit entre 1758 et 1790. Abrite les dépouilles de Victor Hugo, Émile Zola, Marie Curie..." },
+              { fact: "Arc de Triomphe → Chalgrin", detail: "Commandé par Napoléon en 1806, inauguré en 1836. Sous l'arc se trouve la tombe du Soldat inconnu." },
+              { fact: "Centre Pompidou → Richard Rogers & Renzo Piano", detail: "Style high-tech avec tuyaux apparents colorés. Inauguré en 1977. Les couleurs codent les fonctions : bleu = air, vert = eau, jaune = électricité." },
+              { fact: "Viaduc de Millau → Norman Foster", detail: "Le plus haut viaduc du monde : 343 m. Achevé en 2004 dans l'Aveyron. Plus haut que la Tour Eiffel." },
+              { fact: "Maison sur la cascade → Frank Lloyd Wright", detail: "Fallingwater, en Pennsylvanie (1935). Chef-d'œuvre de l'architecture organique, construite au-dessus d'une chute d'eau." }
+            ],
+            flashcards: [
+              { q: "Qui a conçu le Panthéon de Paris ?", r: "Soufflot" },
+              { q: "Qui a conçu l'Arc de Triomphe ?", r: "Chalgrin" },
+              { q: "Qui a conçu le Centre Pompidou ?", r: "Richard Rogers et Renzo Piano" },
+              { q: "Qui a conçu le Viaduc de Millau ?", r: "Norman Foster" },
+              { q: "Qui a conçu la Maison sur la cascade ?", r: "Frank Lloyd Wright" },
+              { q: "Qui a conçu le MUCEM à Marseille ?", r: "Rudy Ricciotti" },
+              { q: "Qui a conçu le Sacré-Cœur ?", r: "Paul Abadie" },
+              { q: "Qui a conçu l'Opéra Bastille ?", r: "Carlos Ott" },
+              { q: "Qui a conçu l'Arche de la Défense ?", r: "Spreckelsen" },
+              { q: "Qui a conçu la BNF ?", r: "Dominique Perrault" },
+              { q: "Qui a conçu la Gare du Nord ?", r: "Hittorff" },
+              { q: "Qui a conçu le Petit Trianon ?", r: "Gabriel" },
+              { q: "Qui a conçu Saint-Paul de Londres ?", r: "Christopher Wren" },
+              { q: "Qui a conçu le Musée Guggenheim de Bilbao ?", r: "Frank Gehry" },
+              { q: "Qui a conçu le Palais de l'Élysée ?", r: "Armand-Claude Mollet" }
+            ]
+          },
+          {
+            id: "w2d2t4", type: "quiz",
+            title: "Quiz final : Arts & Architecture",
+            questions: [
+              { q: "Qui a conçu le Panthéon ?", r: "Soufflot" },
+              { q: "Qui a conçu le Viaduc de Millau ?", r: "Norman Foster" },
+              { q: "Quelle artiste japonaise est célèbre pour ses pois ?", r: "Yayoi Kusama" },
+              { q: "Qui a dessiné La Semeuse ?", r: "Oscar Roty" },
+              { q: "Qui a conçu le Centre Pompidou ?", r: "Rogers et Piano" },
+              { q: "Quel artiste fait des Accumulations ?", r: "Arman" }
+            ]
+          }
+        ]
+      },
+
+      // ===================== JOUR 3 : VOCABULAIRE RARE =====================
+      {
+        day: 3, label: "Mercredi", theme: "Vocabulaire rare & insolite", icon: "🔤",
+        objectif: "Mots rares que personne ne connaît — parfait pour les 12 Coups",
+        tasks: [
+          {
+            id: "w2d3t0", type: "lecture",
+            title: "Les mots français les plus rares",
+            subtitle: "Vidéo YouTube — Vocabulaire insolite",
+            url: "https://www.youtube.com/watch?v=1gM2T8F3bMc",
+            duration: "12 min"
+          },
+          {
+            id: "w2d3t1", type: "fiche",
+            title: "Vocabulaire du quotidien rare",
+            items: [
+              { fact: "L'odeur de la pluie s'appelle le petrichor", detail: "Du grec petra (pierre) + ichor (sang des dieux). Causé par une bactérie du sol (géosmine) libérée quand il pleut." },
+              { fact: "Un dragon qui se mord la queue = ouroboros", detail: "Symbole d'éternité et de cycle infini. Présent dans la mythologie égyptienne, grecque et nordique." },
+              { fact: "Le meneur d'éléphant s'appelle le cornac", detail: "En Inde et en Asie du Sud-Est. Le cornac forme un lien étroit avec son éléphant dès la naissance de l'animal." },
+              { fact: "La vague d'estuaire s'appelle le mascaret", detail: "Phénomène spectaculaire sur la Dordogne et la Garonne. Peut atteindre 2-3 m de haut." },
+              { fact: "La tête d'une bague (avec la pierre) s'appelle le chaton", detail: "Du vieux français « chas » (enchâssure). Rien à voir avec le petit chat !" },
+              { fact: "La forme d'un donut s'appelle un tore", detail: "En mathématiques, c'est une surface de révolution. La Terre n'est pas un tore, mais certaines théories quantiques y font référence." }
+            ],
+            flashcards: [
+              { q: "Comment appelle-t-on l'odeur de la pluie ?", r: "Petrichor" },
+              { q: "Comment appelle-t-on un dragon qui se mord la queue ?", r: "Ouroboros" },
+              { q: "Comment appelle-t-on un meneur d'éléphant ?", r: "Cornac" },
+              { q: "Comment appelle-t-on une vague d'estuaire ?", r: "Mascaret" },
+              { q: "Comment appelle-t-on la tête d'une bague ?", r: "Chaton" },
+              { q: "Comment appelle-t-on la forme d'un donut ?", r: "Tore" },
+              { q: "Comment appelle-t-on un barde africain ?", r: "Griot" },
+              { q: "Comment appelle-t-on la ceinture du kimono ?", r: "Obi" },
+              { q: "Comment appelle-t-on un édit du tsar ?", r: "Oukase" },
+              { q: "Comment appelle-t-on un tapis mural iranien ?", r: "Kilim" },
+              { q: "Comment appelle-t-on un ancien cadran solaire ?", r: "Gnomon" },
+              { q: "Comment appelle-t-on une branche de vigne ?", r: "Sarment" },
+              { q: "Comment appelle-t-on la casserole pour fondue ?", r: "Caquelon" },
+              { q: "Comment appelle-t-on un fleuve d'Afrique du Nord ?", r: "Oued" }
+            ]
+          },
+          {
+            id: "w2d3t2", type: "quiz",
+            title: "Mini-quiz : Vocabulaire courant",
+            questions: [
+              { q: "Comment appelle-t-on l'odeur de la pluie ?", r: "Petrichor", hint: "Du grec pierre + sang des dieux" },
+              { q: "Comment appelle-t-on un meneur d'éléphant ?", r: "Cornac", hint: "En Inde et Asie du Sud-Est" },
+              { q: "Comment appelle-t-on la forme d'un donut ?", r: "Tore", hint: "Terme mathématique" },
+              { q: "Comment appelle-t-on un dragon qui se mord la queue ?", r: "Ouroboros", hint: "Symbole d'éternité" }
+            ]
+          },
+          {
+            id: "w2d3t3", type: "fiche",
+            title: "Vocabulaire savant & historique",
+            items: [
+              { fact: "Le jaune d'œuf s'appelle le vitellus", detail: "Du latin vitellus (petit veau). Le blanc s'appelle l'albumen." },
+              { fact: "Un poète de la Grèce antique s'appelle un aède", detail: "Homère était un aède. Ils chantaient les épopées en s'accompagnant de la lyre." },
+              { fact: "La pièce centrale d'un temple grec s'appelle le naos", detail: "C'est là que se trouvait la statue du dieu. Le Parthénon abritait Athéna Parthénos dans son naos." },
+              { fact: "Un fourneau d'alchimiste s'appelle un athanor", detail: "Du grec « athanatos » = immortel. Il maintenait une chaleur constante pour les transmutations." },
+              { fact: "Un livre antique à feuilles cousues s'appelle un codex", detail: "Remplace le rouleau (volumen) au IVe siècle. Ancêtre de nos livres modernes." },
+              { fact: "La partie entre deux créneaux s'appelle un merlon", detail: "Les merlons protègent les défenseurs. Les ouvertures entre merlons s'appellent les créneaux." }
+            ],
+            flashcards: [
+              { q: "Comment appelle-t-on le jaune d'œuf ?", r: "Vitellus" },
+              { q: "Comment appelle-t-on un poète de la Grèce antique ?", r: "Aède" },
+              { q: "Comment appelle-t-on la pièce centrale d'un temple grec ?", r: "Naos" },
+              { q: "Comment appelle-t-on un fourneau d'alchimiste ?", r: "Athanor" },
+              { q: "Comment appelle-t-on un livre antique à feuilles cousues ?", r: "Codex" },
+              { q: "Comment appelle-t-on la partie entre deux créneaux ?", r: "Merlon" },
+              { q: "Comment appelle-t-on un porteur d'encens ?", r: "Thuriféraire" },
+              { q: "Comment appelle-t-on une peinture en rond ?", r: "Tondo" },
+              { q: "Comment appelle-t-on un panneau japonais vertical ?", r: "Kakémono (horizontal = makemono)" },
+              { q: "Comment appelle-t-on un délateur en Grèce antique ?", r: "Sycophante" },
+              { q: "Comment appelle-t-on un employé de change ?", r: "Cambiste" },
+              { q: "Qu'est-ce que l'impeachment ?", r: "Procédure de destitution aux USA" },
+              { q: "Qu'est-ce qu'un mont-de-piété ?", r: "Établissement de prêt sur gage (surnommé « ma tante »)" },
+              { q: "Comment appelle-t-on la réincarnation ?", r: "Métempsychose" },
+              { q: "Comment appelle-t-on la ponte des poissons ?", r: "Frai (lieu = frayère)" },
+              { q: "Quels sont les Saints de Glace ?", r: "Saint Mamert, Saint Pancrace, Saint Servais" }
+            ]
+          },
+          {
+            id: "w2d3t4", type: "quiz",
+            title: "Quiz final : Vocabulaire rare",
+            questions: [
+              { q: "Comment appelle-t-on le jaune d'œuf ?", r: "Vitellus" },
+              { q: "Comment appelle-t-on l'odeur de la pluie ?", r: "Petrichor" },
+              { q: "Comment appelle-t-on un dragon qui se mord la queue ?", r: "Ouroboros" },
+              { q: "Comment appelle-t-on un fourneau d'alchimiste ?", r: "Athanor" },
+              { q: "Comment appelle-t-on un barde africain ?", r: "Griot" },
+              { q: "Comment appelle-t-on la ceinture du kimono ?", r: "Obi" }
+            ]
+          }
+        ]
+      },
+
+      // ===================== JOUR 4 : ANIMAUX — NOMS ALTERNATIFS =====================
+      {
+        day: 4, label: "Jeudi", theme: "Animaux : l'autre nom", icon: "🦎",
+        objectif: "Noms scientifiques, surnoms et alter egos des animaux",
+        tasks: [
+          {
+            id: "w2d4t0", type: "lecture",
+            title: "50 faits incroyables sur les animaux",
+            subtitle: "Vidéo YouTube — Les animaux les plus fous",
+            url: "https://www.youtube.com/watch?v=gKeBMgTEMOc",
+            duration: "15 min"
+          },
+          {
+            id: "w2d4t1", type: "fiche",
+            title: "Animaux : surnoms & noms cachés (1/2)",
+            items: [
+              { fact: "Le basilic = lézard Jésus-Christ", detail: "Il court sur l'eau grâce à ses pattes arrière palmées et sa vitesse. Vit en Amérique centrale." },
+              { fact: "Le harfang = chouette des neiges", detail: "Rapace emblématique de l'Arctique. Hedwige dans Harry Potter est un harfang." },
+              { fact: "L'once = panthère des neiges", detail: "Vit dans les montagnes d'Asie centrale. Menacée d'extinction, il en resterait 4 000 à 6 500." },
+              { fact: "Le dronte = dodo", detail: "Oiseau éteint de l'île Maurice depuis le XVIIe siècle. Incapable de voler." },
+              { fact: "Le forficule = perce-oreille", detail: "Insecte inoffensif malgré ses « pinces ». Son nom vient du latin forficula (petits ciseaux)." }
+            ],
+            flashcards: [
+              { q: "Autre nom du lézard Jésus-Christ ?", r: "Basilic" },
+              { q: "Autre nom de la chouette des neiges ?", r: "Harfang" },
+              { q: "Autre nom de la panthère des neiges ?", r: "Once" },
+              { q: "Autre nom du dodo ?", r: "Dronte" },
+              { q: "Autre nom du perce-oreille ?", r: "Forficule" },
+              { q: "Autre nom du poisson-lune ?", r: "Môle" },
+              { q: "Autre nom du cerf-volant (insecte) ?", r: "Lucane" },
+              { q: "Autre nom de la courtilière ?", r: "Taupe-grillon" },
+              { q: "Autre nom du coq de bruyère ?", r: "Grand tétras" },
+              { q: "Autre nom de l'oiseau-lyre ?", r: "Ménure" },
+              { q: "Autre nom de l'aiglefin ?", r: "Haddock" },
+              { q: "Comment s'appelle la femelle du yack ?", r: "Dri" },
+              { q: "Quel est le poney basque ?", r: "Pottok" },
+              { q: "Autre nom du singe-écureuil ?", r: "Saïmiri" }
+            ]
+          },
+          {
+            id: "w2d4t2", type: "quiz",
+            title: "Mini-quiz : Noms d'animaux (1)",
+            questions: [
+              { q: "Autre nom de la panthère des neiges ?", r: "Once", hint: "Vit en Asie centrale" },
+              { q: "Autre nom du dodo ?", r: "Dronte", hint: "Éteint à l'île Maurice" },
+              { q: "Autre nom de la chouette des neiges ?", r: "Harfang", hint: "Hedwige dans Harry Potter" },
+              { q: "Autre nom du perce-oreille ?", r: "Forficule", hint: "Du latin « petits ciseaux »" }
+            ]
+          },
+          {
+            id: "w2d4t3", type: "fiche",
+            title: "Animaux : surnoms & noms cachés (2/2)",
+            items: [
+              { fact: "Le thylacine = loup marsupial (éteint)", detail: "Vivait en Tasmanie. Le dernier est mort au zoo de Hobart en 1936. Des projets de dé-extinction sont en cours." },
+              { fact: "Le crotale = serpent à sonnette", detail: "Ses anneaux de kératine vibrent pour avertir les prédateurs. Le son est audible à 30 m." },
+              { fact: "L'anophèle = moustique du paludisme", detail: "Responsable de 600 000 morts par an. Seule la femelle pique, elle a besoin de sang pour ses œufs." },
+              { fact: "Le boto = dauphin rose d'Amazonie", detail: "Peut atteindre 2,5 m. Dans la mythologie brésilienne, il se transforme en bel homme la nuit." },
+              { fact: "Le magot = singe de Gibraltar", detail: "Seul primate sauvage d'Europe. Légende : tant qu'il y a des magots à Gibraltar, les Britanniques y resteront." }
+            ],
+            flashcards: [
+              { q: "Autre nom du loup marsupial ?", r: "Thylacine" },
+              { q: "Autre nom du serpent à sonnette ?", r: "Crotale" },
+              { q: "Autre nom du moustique du paludisme ?", r: "Anophèle" },
+              { q: "Autre nom du dauphin rose d'Amazonie ?", r: "Boto" },
+              { q: "Quel singe vit à Gibraltar ?", r: "Le magot" },
+              { q: "Autre nom du lycaon ?", r: "Loup-peint" },
+              { q: "Autre nom du fennec (latin) ?", r: "Vulpes zerda" },
+              { q: "Autre nom du chat-ours ?", r: "Binturong" },
+              { q: "Autre nom du caribou ?", r: "Renne" },
+              { q: "Autre nom de l'orignal ?", r: "Élan" },
+              { q: "Quel rapace est endémique de La Réunion ?", r: "Busard de Maillard (papangue)" },
+              { q: "Quel oiseau est endémique de Nouvelle-Calédonie ?", r: "Le cagou" },
+              { q: "Quel papillon ravage le buis ?", r: "La pyrale" },
+              { q: "Quel papillon est le grand migrateur ?", r: "Le monarque" },
+              { q: "Autre nom de la bergeronnette ?", r: "Hochequeue" },
+              { q: "Quel chien sibérien est connu pour son sourire ?", r: "Le samoyède" }
+            ]
+          },
+          {
+            id: "w2d4t4", type: "quiz",
+            title: "Quiz final : Animaux noms alternatifs",
+            questions: [
+              { q: "Autre nom du basilic (animal) ?", r: "Lézard Jésus-Christ" },
+              { q: "Autre nom du crotale ?", r: "Serpent à sonnette" },
+              { q: "Autre nom du thylacine ?", r: "Loup marsupial" },
+              { q: "Quel singe vit à Gibraltar ?", r: "Le magot" },
+              { q: "Autre nom du boto ?", r: "Dauphin rose d'Amazonie" },
+              { q: "Autre nom de l'anophèle ?", r: "Moustique du paludisme" }
+            ]
+          }
+        ]
+      },
+
+      // ===================== JOUR 5 : MUSIQUE & CINÉMA =====================
+      {
+        day: 5, label: "Vendredi", theme: "Musique & Cinéma", icon: "🎬",
+        objectif: "Compositeurs classiques, chanteurs, acteurs, réalisateurs",
+        tasks: [
+          {
+            id: "w2d5t0", type: "lecture",
+            title: "QUIZ — Qui est le Peintre ? 40 Tableaux",
+            subtitle: "Vidéo YouTube — Quiz culture artistique (12 min)",
+            url: "https://www.youtube.com/watch?v=Is-xzan9A1k",
+            duration: "12 min"
+          },
+          {
+            id: "w2d5t1", type: "fiche",
+            title: "Musique classique & compositeurs",
+            items: [
+              { fact: "Carl Orff — O Fortuna (Carmina Burana)", detail: "Composé en 1937. Utilisé dans des centaines de films et pubs. Le texte est en latin médiéval." },
+              { fact: "Gershwin — Porgy and Bess", detail: "Premier opéra avec un casting entièrement noir (1935). « Summertime » en est l'air le plus célèbre." },
+              { fact: "Rameau — Les Indes Galantes", detail: "Opéra-ballet de 1735. La scène des « Sauvages » a été reprise par un collectif de danseurs de krump en 2017 à l'Opéra de Paris." },
+              { fact: "Ravel — L'Enfant et les Sortilèges", detail: "Opéra pour enfants (1925). Les objets et animaux prennent vie. Livret de Colette." },
+              { fact: "Fela Kuti — Créateur de l'afrobeat", detail: "Musicien nigérian, activiste politique. Ses concerts duraient des heures. Il a épousé 27 femmes le même jour." }
+            ],
+            flashcards: [
+              { q: "Qui a composé O Fortuna (Carmina Burana) ?", r: "Carl Orff" },
+              { q: "Qui a composé Porgy and Bess ?", r: "Gershwin" },
+              { q: "Qui a composé Les Indes Galantes ?", r: "Rameau" },
+              { q: "Qui a composé L'Enfant et les Sortilèges ?", r: "Ravel" },
+              { q: "Qui a créé l'afrobeat ?", r: "Fela Kuti" },
+              { q: "Grand compositeur finlandais ?", r: "Jean Sibelius" },
+              { q: "Grand compositeur norvégien ?", r: "Edvard Grieg" },
+              { q: "Compositeur estonien minimaliste ?", r: "Arvo Pärt" },
+              { q: "Qui a composé Le Prince Igor ?", r: "Alexandre Borodine" },
+              { q: "Qui a composé le Te Deum ?", r: "Marc-Antoine Charpentier" },
+              { q: "Qui a composé la musique d'Amélie Poulain ?", r: "Yann Tiersen" },
+              { q: "Quelles sœurs françaises sont toutes deux compositrices ?", r: "Lili et Nadia Boulanger" },
+              { q: "Quel pianiste chinois est mondialement célèbre ?", r: "Lang-Lang" },
+              { q: "Quel genre musical vient de Trinité-et-Tobago ?", r: "Le calypso" },
+              { q: "Quel genre musical portugais est célèbre ?", r: "Le fado (Amália Rodrigues)" }
+            ]
+          },
+          {
+            id: "w2d5t2", type: "quiz",
+            title: "Mini-quiz : Musique",
+            questions: [
+              { q: "Qui a composé Carmina Burana ?", r: "Carl Orff", hint: "O Fortuna" },
+              { q: "Qui a créé l'afrobeat ?", r: "Fela Kuti", hint: "Nigérian, activiste politique" },
+              { q: "Qui a composé Les Indes Galantes ?", r: "Rameau", hint: "Opéra-ballet de 1735" },
+              { q: "Quel genre musical vient du Portugal ?", r: "Le fado", hint: "Amália Rodrigues" }
+            ]
+          },
+          {
+            id: "w2d5t3", type: "fiche",
+            title: "Cinéma & TV : anecdotes",
+            items: [
+              { fact: "Alice Guy — Première cinéaste de l'histoire", detail: "Elle réalise La Fée aux Choux en 1896, un an après les frères Lumière. Oubliée pendant des décennies." },
+              { fact: "Rémy Julienne — Le plus grand cascadeur français", detail: "A travaillé sur les James Bond, les films de Louis de Funès. Plus de 1 400 cascades dans sa carrière." },
+              { fact: "Leni Riefenstahl — Réalisatrice controversée", detail: "Le Triomphe de la Volonté (1935) = propagande nazie. Les Dieux du Stade (1938) = JO de Berlin. Révolutionnaire techniquement." },
+              { fact: "Ed Wood — Considéré comme le pire réalisateur", detail: "Plan 9 from Outer Space (1959) est régulièrement élu « pire film de tous les temps ». Tim Burton lui a consacré un biopic." },
+              { fact: "Simone Signoret — Première actrice française à avoir un Oscar", detail: "Pour Les Chemins de la haute ville (1960). Mariée à Yves Montand." }
+            ],
+            flashcards: [
+              { q: "Qui est la première cinéaste de l'histoire ?", r: "Alice Guy" },
+              { q: "Qui est le célèbre cascadeur français ?", r: "Rémy Julienne" },
+              { q: "Qui est considéré comme le pire réalisateur ?", r: "Ed Wood" },
+              { q: "Quelle actrice française a eu le premier Oscar ?", r: "Simone Signoret" },
+              { q: "Qui a réalisé Le Triomphe de la Volonté ?", r: "Leni Riefenstahl" },
+              { q: "Qui jouait Angélique au cinéma ?", r: "Michèle Mercier" },
+              { q: "Qui jouait Emmanuelle ?", r: "Sylvia Kristel" },
+              { q: "Qui jouait Black Panther ?", r: "Chadwick Boseman" },
+              { q: "Qui a réalisé Slumdog Millionaire ?", r: "Danny Boyle" },
+              { q: "Qui jouait Robin des Bois (Michael Curtiz) ?", r: "Errol Flynn" },
+              { q: "Qui joue Cloclo au cinéma ?", r: "Jérémie Renier" }
+            ]
+          },
+          {
+            id: "w2d5t4", type: "quiz",
+            title: "Quiz final : Musique & Cinéma",
+            questions: [
+              { q: "Qui est la première cinéaste ?", r: "Alice Guy" },
+              { q: "Qui a composé Carmina Burana ?", r: "Carl Orff" },
+              { q: "Qui est le pire réalisateur ?", r: "Ed Wood" },
+              { q: "Qui a créé l'afrobeat ?", r: "Fela Kuti" },
+              { q: "Première française à avoir un Oscar ?", r: "Simone Signoret" },
+              { q: "Qui jouait Black Panther ?", r: "Chadwick Boseman" }
+            ]
+          }
+        ]
+      },
+
+      // ===================== JOUR 6 : SCIENCES, MÉDECINE & MONNAIES =====================
+      {
+        day: 6, label: "Samedi", theme: "Sciences & Monnaies du monde", icon: "🔬",
+        objectif: "Inventeurs, termes médicaux, monnaies — le mix qui tue",
+        tasks: [
+          {
+            id: "w2d6t0", type: "lecture",
+            title: "77 Découvertes qui ont bouleversé le monde",
+            subtitle: "Vidéo YouTube — Doc Seven (34 min)",
+            url: "https://www.youtube.com/watch?v=9IpRIlM1X58",
+            duration: "20 min"
+          },
+          {
+            id: "w2d6t1", type: "fiche",
+            title: "Inventeurs & pionniers",
+            items: [
+              { fact: "André-Jacques Garnerin — Inventeur du parachute", detail: "Premier saut en parachute en 1797 depuis un ballon à 900 m au-dessus de Paris." },
+              { fact: "Ada Lovelace — Premier programme informatique", detail: "Fille du poète Lord Byron. A écrit le premier algorithme pour la machine analytique de Babbage en 1843." },
+              { fact: "Valentina Terechkova — Première femme dans l'espace", detail: "Cosmonaute soviétique, vol en 1963 à bord de Vostok 6. 48 orbites autour de la Terre en 3 jours." },
+              { fact: "Jonas Salk — Vaccin contre la polio", detail: "A refusé de breveter son vaccin en 1955 : « Peut-on breveter le soleil ? ». A sauvé des millions de vies." },
+              { fact: "Gregor Mendel — Lois de l'hérédité", detail: "Moine autrichien qui a découvert la génétique grâce à des croisements de petits pois. Ignoré de son vivant." }
+            ],
+            flashcards: [
+              { q: "Qui a inventé le parachute ?", r: "André-Jacques Garnerin" },
+              { q: "Qui a écrit le premier programme informatique ?", r: "Ada Lovelace (fille de Lord Byron)" },
+              { q: "Première femme dans l'espace ?", r: "Valentina Terechkova (1963)" },
+              { q: "Qui a inventé le vaccin contre la polio ?", r: "Jonas Salk" },
+              { q: "Qui a découvert les lois de l'hérédité ?", r: "Gregor Mendel (avec des petits pois)" },
+              { q: "Qui a inventé l'ascenseur ?", r: "Félix Léon Édoux" },
+              { q: "Qui a inventé le vaccin contre la variole ?", r: "Jenner" },
+              { q: "Qui a créé le système binaire ?", r: "George Boole" },
+              { q: "Qui a inventé le microscope ?", r: "Van Leeuwenhoek" },
+              { q: "Qui a fait la première greffe du cœur ?", r: "Barnard (chirurgien sud-africain)" },
+              { q: "Premier Américain dans l'espace ?", r: "Alan Shepard" },
+              { q: "Qui a fondé l'homéopathie ?", r: "Samuel Hahnemann" }
+            ]
+          },
+          {
+            id: "w2d6t2", type: "quiz",
+            title: "Mini-quiz : Sciences",
+            questions: [
+              { q: "Qui a inventé le parachute ?", r: "Garnerin", hint: "Premier saut en 1797" },
+              { q: "Première femme dans l'espace ?", r: "Terechkova", hint: "1963, Vostok 6" },
+              { q: "Qui a écrit le premier programme informatique ?", r: "Ada Lovelace", hint: "Fille de Lord Byron" },
+              { q: "Qui a découvert l'hérédité avec des petits pois ?", r: "Gregor Mendel", hint: "Moine autrichien" }
+            ]
+          },
+          {
+            id: "w2d6t3", type: "fiche",
+            title: "Termes médicaux & monnaies",
+            items: [
+              { fact: "Alopécie = chute de cheveux", detail: "Du grec alopex (renard) car le renard perd ses poils. L'alopécie androgénétique touche 70 % des hommes." },
+              { fact: "Halitose = mauvaise haleine", detail: "Vient du latin halitus (souffle). 90 % des cas sont d'origine buccale (bactéries sur la langue)." },
+              { fact: "Éphélides = taches de rousseur", detail: "Du grec ephelis (sur le soleil). Plus fréquentes chez les roux. Causées par une surproduction de mélanine." },
+              { fact: "Shekel = monnaie d'Israël", detail: "Le mot vient de l'hébreu ancien signifiant « peser ». Existait déjà dans la Bible." },
+              { fact: "Baht = monnaie de Thaïlande", detail: "1 baht ≈ 0,03 €. Les billets thaïlandais ont tous le portrait du roi." }
+            ],
+            flashcards: [
+              { q: "Comment appelle-t-on la chute de cheveux ?", r: "Alopécie" },
+              { q: "Comment appelle-t-on la mauvaise haleine ?", r: "Halitose" },
+              { q: "Comment appelle-t-on les taches de rousseur ?", r: "Éphélides" },
+              { q: "Comment appelle-t-on un grain de beauté ?", r: "Naevus" },
+              { q: "Comment appelle-t-on une ampoule/cloque ?", r: "Phlyctène" },
+              { q: "Comment appelle-t-on le blanchiment des cheveux ?", r: "Canitie" },
+              { q: "Comment appelle-t-on le mal de mer ?", r: "Naupathie" },
+              { q: "Monnaie d'Israël ?", r: "Shekel" },
+              { q: "Monnaie de Thaïlande ?", r: "Baht" },
+              { q: "Monnaie de Hongrie ?", r: "Forint" },
+              { q: "Monnaie du Brésil ?", r: "Real" },
+              { q: "Monnaie d'Ukraine ?", r: "Hryvnia" },
+              { q: "Monnaie d'Iran ?", r: "Rial" },
+              { q: "Monnaie du Vietnam ?", r: "Dong" },
+              { q: "Monnaie de Mongolie ?", r: "Tugrik" },
+              { q: "Monnaie du Pérou ?", r: "Sol" },
+              { q: "Monnaie de Madagascar ?", r: "Ariary" }
+            ]
+          },
+          {
+            id: "w2d6t4", type: "quiz",
+            title: "Quiz final : Sciences & Monnaies",
+            questions: [
+              { q: "Comment appelle-t-on les taches de rousseur ?", r: "Éphélides" },
+              { q: "Monnaie d'Israël ?", r: "Shekel" },
+              { q: "Monnaie de Thaïlande ?", r: "Baht" },
+              { q: "Comment appelle-t-on la chute de cheveux ?", r: "Alopécie" },
+              { q: "Qui a inventé le parachute ?", r: "Garnerin" },
+              { q: "Monnaie du Brésil ?", r: "Real" }
+            ]
+          }
+        ]
+      },
+
+      // ===================== JOUR 7 : GÉOGRAPHIE & HISTOIRE — RÉVOLUTIONS =====================
+      {
+        day: 7, label: "Dimanche", theme: "Géographie avancée & Histoire", icon: "🗺️",
+        objectif: "Noms romains, points culminants, révolutions colorées — quiz mixte",
+        tasks: [
+          {
+            id: "w2d7t0", type: "lecture",
+            title: "Quiz Culture Générale — Capitales du Monde",
+            subtitle: "Vidéo YouTube — 170 pays",
+            url: "https://www.youtube.com/watch?v=MUJc2cpSEvo",
+            duration: "20 min"
+          },
+          {
+            id: "w2d7t1", type: "fiche",
+            title: "Noms romains des villes françaises",
+            items: [
+              { fact: "Bourges = Avaricum", detail: "Assiégée et prise par Jules César en -52, pendant la Guerre des Gaules. César décrit le siège dans ses mémoires." },
+              { fact: "Strasbourg = Argentoratum", detail: "Du celte « forteresse sur le fleuve ». La bataille d'Argentoratum (357) est une victoire romaine sur les Alamans." },
+              { fact: "Orléans = Cenabum", detail: "Centre stratégique de la Gaule. Le massacre de marchands romains à Cenabum déclenche la révolte de Vercingétorix." },
+              { fact: "Tours = Caesarodunum", detail: "« La colline de César ». Devient un grand centre religieux avec Saint Martin de Tours." },
+              { fact: "Poitiers = Limonum", detail: "Du gaulois limo (orme). Charles Martel y arrête les Arabes en 732." }
+            ],
+            flashcards: [
+              { q: "Nom romain de Bourges ?", r: "Avaricum" },
+              { q: "Nom romain de Strasbourg ?", r: "Argentoratum" },
+              { q: "Nom romain d'Orléans ?", r: "Cenabum" },
+              { q: "Nom romain de Tours ?", r: "Caesarodunum" },
+              { q: "Nom romain de Poitiers ?", r: "Limonum" },
+              { q: "Nom romain de Rennes ?", r: "Condate" },
+              { q: "Nom romain de Chartres ?", r: "Autricum" },
+              { q: "Point culminant de l'Allemagne ?", r: "Zugspitze" },
+              { q: "Point culminant du Canada ?", r: "Mont Logan" },
+              { q: "Point culminant de la Suisse ?", r: "Pointe Dufour" },
+              { q: "Point culminant de la Corse ?", r: "Monte Cinto" },
+              { q: "Point culminant de l'Autriche ?", r: "Grossglockner" },
+              { q: "Point culminant de l'Antarctique ?", r: "Mont Vinson" },
+              { q: "Ancien nom des Dardanelles ?", r: "Hellespont" },
+              { q: "Ancien nom de la mer de Marmara ?", r: "Propontide" }
+            ]
+          },
+          {
+            id: "w2d7t2", type: "quiz",
+            title: "Mini-quiz : Géographie avancée",
+            questions: [
+              { q: "Nom romain de Strasbourg ?", r: "Argentoratum", hint: "Du celte « forteresse sur le fleuve »" },
+              { q: "Point culminant du Canada ?", r: "Mont Logan", hint: "Au Yukon" },
+              { q: "Ancien nom des Dardanelles ?", r: "Hellespont", hint: "Détroit entre Europe et Asie" },
+              { q: "Nom romain de Bourges ?", r: "Avaricum", hint: "Assiégée par César" }
+            ]
+          },
+          {
+            id: "w2d7t3", type: "fiche",
+            title: "Révolutions colorées & Histoire",
+            items: [
+              { fact: "Révolution des Œillets — Portugal, 1974", detail: "Coup d'État militaire pacifique contre la dictature de Salazar. Les soldats ont mis des œillets dans leurs fusils." },
+              { fact: "Révolution de Velours — Tchécoslovaquie, 1989", detail: "Fin pacifique du régime communiste. Václav Havel, dramaturge dissident, devient président." },
+              { fact: "Révolution Orange — Ukraine, 2004", detail: "Manifestations massives contre la fraude électorale. Viktor Iouchtchenko (empoisonné à la dioxine) finit par gagner." },
+              { fact: "Révolution de Jasmin — Tunisie, 2011", detail: "Déclenchée par l'immolation de Mohamed Bouazizi. Première du « Printemps arabe ». Chute de Ben Ali." },
+              { fact: "Révolution des Parapluies — Hong-Kong, 2014", detail: "Manifestations pro-démocratie. Les manifestants utilisaient des parapluies contre les gaz lacrymogènes." }
+            ],
+            flashcards: [
+              { q: "Révolution des Œillets : quel pays ?", r: "Portugal, 1974" },
+              { q: "Révolution de Velours : quel pays ?", r: "Tchécoslovaquie, 1989" },
+              { q: "Révolution Orange : quel pays ?", r: "Ukraine, 2004" },
+              { q: "Révolution de Jasmin : quel pays ?", r: "Tunisie, 2011" },
+              { q: "Révolution des Parapluies : quel pays ?", r: "Hong-Kong, 2014" },
+              { q: "Révolution des Roses : quel pays ?", r: "Géorgie, 2003" },
+              { q: "Révolution des Tulipes : quel pays ?", r: "Kirghizistan, 2005" },
+              { q: "Qui est la première femme ministre en France ?", r: "Germaine Poinso-Chapuis" },
+              { q: "Compagnon de Jean Moulin ?", r: "Daniel Cordier" },
+              { q: "Comment s'appelle le cheval de Caligula ?", r: "Incitatus" },
+              { q: "Quel héros national albanais ?", r: "Skanderbeg" },
+              { q: "Monnaie de la Révolution française ?", r: "L'assignat" },
+              { q: "Qui a nommé les mois du calendrier républicain ?", r: "Fabre d'Églantine" },
+              { q: "Voiture typique de la RDA ?", r: "La Trabant" }
+            ]
+          },
+          {
+            id: "w2d7t4", type: "quiz",
+            title: "Quiz final mixte — Semaine 2",
+            questions: [
+              { q: "Qui a écrit Fondation ?", r: "Isaac Asimov" },
+              { q: "Qui a conçu le Panthéon ?", r: "Soufflot" },
+              { q: "Comment appelle-t-on l'odeur de la pluie ?", r: "Petrichor" },
+              { q: "Autre nom de la panthère des neiges ?", r: "Once" },
+              { q: "Qui a créé l'afrobeat ?", r: "Fela Kuti" },
+              { q: "Monnaie d'Israël ?", r: "Shekel" },
+              { q: "Révolution de Jasmin : quel pays ?", r: "Tunisie" },
+              { q: "Nom romain de Strasbourg ?", r: "Argentoratum" },
+              { q: "Autre nom du dodo ?", r: "Dronte" },
+              { q: "Première cinéaste de l'histoire ?", r: "Alice Guy" }
+            ]
+          }
+        ]
+      }
+    ]
   }
 ];
