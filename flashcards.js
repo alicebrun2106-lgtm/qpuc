@@ -132,7 +132,7 @@
 
     document.getElementById("fc-progress-text").textContent = `${index + 1} / ${queue.length}`;
     document.getElementById("fc-card-front").textContent = card.front;
-    document.getElementById("fc-card-back").textContent = card.back;
+    document.getElementById("fc-card-back").textContent = "";
 
     const cardEl = document.getElementById("fc-card");
     cardEl.classList.remove("flipped");
@@ -145,6 +145,10 @@
   window.flipFlashcard = function () {
     if (session.flipped) return;
     session.flipped = true;
+    // Mettre la réponse au moment du flip seulement
+    const cardIdx = session.queue[session.index];
+    const card = session.pack.cards[cardIdx];
+    document.getElementById("fc-card-back").textContent = card.back;
     document.getElementById("fc-card").classList.add("flipped");
     document.getElementById("fc-quality-buttons").style.display = "";
     document.getElementById("fc-flip-btn").style.display = "none";
