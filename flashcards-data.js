@@ -5,6 +5,7 @@ const FLASHCARD_PACKS = [
     name: "Chefs-lieux des départements",
     icon: "🏛️",
     description: "Les 101 préfectures de France",
+    difficulty: "debutant",
     cards: [
       { front: "Ain (01)", back: "Bourg-en-Bresse" },
       { front: "Aisne (02)", back: "Laon" },
@@ -114,6 +115,7 @@ const FLASHCARD_PACKS = [
     name: "Termes médicaux",
     icon: "🩺",
     description: "Suffixes, inflammations et vocabulaire médical",
+    difficulty: "expert",
     cards: [
       { front: "Inflammation de l'estomac", back: "Gastrite" },
       { front: "Inflammation du foie", back: "Hépatite" },
@@ -164,6 +166,7 @@ const FLASHCARD_PACKS = [
     name: "Figures de style",
     icon: "✒️",
     description: "Rhétorique et procédés littéraires",
+    difficulty: "expert",
     cards: [
       { front: "Atténuation d'une idée pour en renforcer l'effet\nEx : « Va, je ne te hais point »", back: "Litote" },
       { front: "Répétition d'un mot en tête de plusieurs phrases\nEx : « Moi président... Moi président... »", back: "Anaphore" },
@@ -197,6 +200,7 @@ const FLASHCARD_PACKS = [
     name: "Vocabulaire botanique",
     icon: "🌿",
     description: "Termes techniques de botanique",
+    difficulty: "intermediaire",
     cards: [
       { front: "Fruit charnu à noyau (cerise, pêche, olive)", back: "Drupe" },
       { front: "Fruit sec qui s'ouvre à maturité (haricot, pois)", back: "Gousse (ou légume)" },
@@ -234,6 +238,7 @@ const FLASHCARD_PACKS = [
     name: "Vins et cépages",
     icon: "🍷",
     description: "Appellations, cépages et vignobles français",
+    difficulty: "intermediaire",
     cards: [
       { front: "Seul cépage autorisé en Pouilly-Fumé", back: "Sauvignon blanc" },
       { front: "Cépage du Condrieu (Rhône nord)", back: "Viognier" },
@@ -262,6 +267,7 @@ const FLASHCARD_PACKS = [
     name: "Vocabulaire technique",
     icon: "🔧",
     description: "Termes d'artisanat, mécanique et métiers",
+    difficulty: "expert",
     cards: [
       { front: "Four alchimique tirant son nom d'un mot arabe", back: "Athanor" },
       { front: "Outil pour frapper le cuir et y imprimer un motif", back: "Matoir" },
@@ -290,6 +296,7 @@ const FLASHCARD_PACKS = [
     name: "Géologie et géographie",
     icon: "🌍",
     description: "Relief, formations et termes géographiques",
+    difficulty: "expert",
     cards: [
       { front: "Pli dont la convexité est orientée vers le haut", back: "Anticlinal" },
       { front: "Pli dont la convexité est orientée vers le bas", back: "Synclinal" },
@@ -318,6 +325,7 @@ const FLASHCARD_PACKS = [
     name: "Compositeurs classiques",
     icon: "🎵",
     description: "Œuvres et compositeurs à connaître",
+    difficulty: "intermediaire",
     cards: [
       { front: "L'Orfeo (1607, Mantoue), premier chef-d'œuvre de l'opéra", back: "Monteverdi" },
       { front: "Organiste à Lübeck, influença le jeune Bach", back: "Dietrich Buxtehude" },
@@ -346,6 +354,7 @@ const FLASHCARD_PACKS = [
     name: "Peintres et leurs œuvres",
     icon: "🎨",
     description: "Peintres, surnoms et œuvres majeures",
+    difficulty: "intermediaire",
     cards: [
       { front: "La Mort de Marat (Bruxelles), né en 1748", back: "Jacques-Louis David" },
       { front: "Jacopo Robusti, surnommé le Petit Teinturier (Venise, XVIe)", back: "Le Tintoret" },
@@ -369,6 +378,7 @@ const FLASHCARD_PACKS = [
     name: "Dates et traités historiques",
     icon: "📜",
     description: "Batailles, traités et dates clés",
+    difficulty: "expert",
     cards: [
       { front: "Bataille de Bouvines", back: "1214 — Philippe Auguste bat la coalition anglo-germano-flamande" },
       { front: "Fin de la guerre de Trente Ans", back: "1648 — Traités de Westphalie" },
@@ -397,6 +407,7 @@ const FLASHCARD_PACKS = [
     name: "Littérature et écrivains",
     icon: "📚",
     description: "Auteurs, œuvres et prix Nobel",
+    difficulty: "expert",
     cards: [
       { front: "Hérodiade, Un coup de dés, poète symboliste", back: "Stéphane Mallarmé" },
       { front: "L'Astrée, roman pastoral fleuve (XVIIe), inachevé", back: "Honoré d'Urfé" },

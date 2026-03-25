@@ -3,74 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>QPUC - Questions pour un Champion</title>
+  <title>12 Coups de Midi — Entraînement</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div id="app">
-    <!-- ÉCRAN D'ACCUEIL -->
+    <!-- ACCUEIL -->
     <div id="screen-home" class="screen active">
       <div class="home-container">
         <div class="logo">
-          <div class="logo-q">Q</div>
+          <div class="logo-q">12</div>
           <div class="logo-text">
-            <span>Questions pour un</span>
-            <span class="logo-champion">Champion</span>
+            <span>Coups de</span>
+            <span class="logo-champion">Midi</span>
           </div>
         </div>
         <p class="home-subtitle">Entraînement</p>
 
         <div class="mode-cards">
-          <button class="mode-card" onclick="startGame('neufPoints')">
-            <div class="mode-icon">9</div>
-            <div class="mode-title">9 Points Gagnants</div>
-            <div class="mode-desc">Questions rapides au buzzer. Atteignez 9 points pour vous qualifier.</div>
+          <button class="mode-card" onclick="initQuiz12Coups()">
+            <div class="mode-icon">⚡</div>
+            <div class="mode-title">Quiz 12 Coups</div>
+            <div class="mode-desc">QCM à choix multiples. Rapide, par thème ou progressif.</div>
           </button>
 
-          <button class="mode-card" onclick="startGame('quatreALaSuite')">
-            <div class="mode-icon">4</div>
-            <div class="mode-title">4 à la Suite</div>
-            <div class="mode-desc">Répondez à 4 questions d'affilée sur un thème. Une erreur = retour à zéro.</div>
-          </button>
-
-          <button class="mode-card" onclick="startGame('faceAFace')">
-            <div class="mode-icon">FF</div>
-            <div class="mode-title">Face à Face</div>
-            <div class="mode-desc">Indices progressifs : de 4 à 1 point. Trouvez avant le dernier indice !</div>
-          </button>
-        </div>
-
-        <p class="section-label">Outils de révision</p>
-        <div class="mode-cards revision-cards">
           <button class="mode-card" onclick="initFlashcards()">
             <div class="mode-icon">🃏</div>
             <div class="mode-title">Flashcards</div>
-            <div class="mode-desc">Révisez avec la répétition espacée. L'algorithme adapte le rythme à votre mémoire.</div>
-          </button>
-
-          <button class="mode-card" onclick="initLists()">
-            <div class="mode-icon">📋</div>
-            <div class="mode-title">Listes</div>
-            <div class="mode-desc">Parcourez des listes de référence pour mémoriser les incontournables.</div>
+            <div class="mode-desc">Débutant, Intermédiaire ou Expert. Répétition espacée Anki.</div>
           </button>
 
           <button class="mode-card" onclick="initProgramme()">
             <div class="mode-icon">📅</div>
             <div class="mode-title">Programme</div>
-            <div class="mode-desc">Programme de révision hebdomadaire avec lectures, fiches et quiz quotidiens.</div>
+            <div class="mode-desc">3 semaines progressives : bases → culture G → expert.</div>
           </button>
 
           <button class="mode-card" onclick="initRevisions()" id="mode-card-revisions">
             <div class="mode-icon">🔁</div>
             <div class="mode-title">Révisions du jour</div>
-            <div class="mode-desc">Révise les fiches déjà apprises. La répétition espacée consolide ta mémoire.</div>
+            <div class="mode-desc">Cartes dues aujourd'hui. La répétition espacée consolide ta mémoire.</div>
             <span class="rev-home-badge" id="rev-home-badge" style="display:none">0</span>
           </button>
         </div>
 
         <div class="stats-bar">
           <div class="stat">
-            <span class="stat-label">Parties jouées</span>
+            <span class="stat-label">Quiz joués</span>
             <span class="stat-value" id="stat-games">0</span>
           </div>
           <div class="stat">
@@ -78,136 +57,75 @@
             <span class="stat-value" id="stat-correct">0</span>
           </div>
           <div class="stat">
-            <span class="stat-label">Taux de réussite</span>
+            <span class="stat-label">Taux</span>
             <span class="stat-value" id="stat-rate">-</span>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ÉCRAN 9 POINTS GAGNANTS -->
-    <div id="screen-neufPoints" class="screen">
+    <!-- QUIZ 12 COUPS — Mode selection -->
+    <div id="screen-quiz" class="screen">
       <div class="game-header">
         <button class="btn-back" onclick="goHome()">← Retour</button>
-        <h2>9 Points Gagnants</h2>
-        <div class="score-display">
-          <span class="score-current" id="np-score">0</span>
-          <span class="score-target">/ 9</span>
-        </div>
+        <h2>Quiz 12 Coups</h2>
+        <div></div>
       </div>
-
-      <div class="progress-bar">
-        <div class="progress-fill" id="np-progress"></div>
-      </div>
-
-      <div class="difficulty-indicator" id="np-difficulty">
-        <span class="diff-dot"></span>
-        <span class="diff-text">1 point</span>
-      </div>
-
-      <div class="timer-bar">
-        <div class="timer-fill" id="np-timer"></div>
-      </div>
-
-      <div class="question-container">
-        <div class="question-number" id="np-qnum">Question 1</div>
-        <div class="question-text" id="np-question"></div>
-      </div>
-
-      <div class="answer-section">
-        <input type="text" id="np-answer" class="answer-input" placeholder="Votre réponse..." autocomplete="off">
-        <div class="answer-buttons">
-          <button class="btn-validate" id="np-validate" onclick="validateNeufPoints()">Valider</button>
-          <button class="btn-skip" onclick="skipNeufPoints()">Passer</button>
-        </div>
-      </div>
-
-      <div class="feedback-container" id="np-feedback"></div>
-
-      <div class="question-history" id="np-history"></div>
+      <div class="mode-cards" id="quiz-mode-list"></div>
     </div>
 
-    <!-- ÉCRAN 4 À LA SUITE -->
-    <div id="screen-quatreALaSuite" class="screen">
+    <!-- QUIZ 12 COUPS — Session QCM -->
+    <div id="screen-quiz-session" class="screen">
       <div class="game-header">
-        <button class="btn-back" onclick="goHome()">← Retour</button>
-        <h2>4 à la Suite</h2>
-        <div class="score-display">
-          <span class="score-current" id="qs-streak">0</span>
-          <span class="score-target">/ 4</span>
+        <button class="btn-back" onclick="backToQuizModes()">← Retour</button>
+        <h2 id="quiz-session-title">Quiz</h2>
+        <div class="quiz-header-right">
+          <span id="quiz-progress">1 / 15</span>
+          <span id="quiz-score-display">Score : 0</span>
         </div>
       </div>
 
-      <div class="streak-dots" id="qs-dots">
-        <div class="streak-dot"></div>
-        <div class="streak-dot"></div>
-        <div class="streak-dot"></div>
-        <div class="streak-dot"></div>
+      <div class="quiz-timer-bar">
+        <div class="quiz-timer-fill" id="quiz-timer-fill"></div>
+      </div>
+      <div class="quiz-timer-text" id="quiz-timer-text">20s</div>
+
+      <div class="quiz-badges">
+        <span class="diff-badge" id="quiz-diff-badge"></span>
+        <span class="quiz-theme-label" id="quiz-theme-badge"></span>
       </div>
 
-      <div class="theme-banner" id="qs-theme">Thème</div>
-
-      <div class="timer-bar">
-        <div class="timer-fill" id="qs-timer"></div>
+      <div class="quiz-question-box">
+        <div class="quiz-question-text" id="quiz-question-text"></div>
       </div>
 
-      <div class="question-container">
-        <div class="question-text" id="qs-question"></div>
-      </div>
+      <div class="quiz-choices" id="quiz-choices"></div>
 
-      <div class="answer-section">
-        <input type="text" id="qs-answer" class="answer-input" placeholder="Votre réponse..." autocomplete="off">
-        <div class="answer-buttons">
-          <button class="btn-validate" id="qs-validate" onclick="validateQuatre()">Valider</button>
-          <button class="btn-skip" onclick="skipQuatre()">Passer</button>
+      <div class="quiz-feedback" id="quiz-feedback"></div>
+
+      <button class="btn-quiz-next" id="quiz-next-btn" onclick="nextQuizQuestion()" style="display:none">
+        Question suivante →
+      </button>
+    </div>
+
+    <!-- QUIZ 12 COUPS — Résultat -->
+    <div id="screen-quiz-result" class="screen">
+      <div class="result-container">
+        <div class="result-icon">⭐</div>
+        <h2 class="result-title" id="quiz-result-msg">Résultat</h2>
+        <div class="quiz-result-score">
+          <span class="quiz-result-big" id="quiz-result-score">0 / 0</span>
+          <span class="quiz-result-pct" id="quiz-result-pct">0%</span>
         </div>
-      </div>
-
-      <div class="feedback-container" id="qs-feedback"></div>
-
-      <div class="qs-score-section">
-        <div class="qs-total">Thèmes complétés : <span id="qs-themes-done">0</span></div>
+        <div class="quiz-result-review" id="quiz-result-review"></div>
+        <div class="result-buttons">
+          <button class="btn-replay" onclick="replayQuiz()">Rejouer</button>
+          <button class="btn-home" onclick="goHome()">Accueil</button>
+        </div>
       </div>
     </div>
 
-    <!-- ÉCRAN FACE À FACE -->
-    <div id="screen-faceAFace" class="screen">
-      <div class="game-header">
-        <button class="btn-back" onclick="goHome()">← Retour</button>
-        <h2>Face à Face</h2>
-        <div class="score-display">
-          <span class="score-current" id="ff-score">0</span>
-          <span class="score-target">/ 15</span>
-        </div>
-      </div>
-
-      <div class="progress-bar">
-        <div class="progress-fill" id="ff-progress"></div>
-      </div>
-
-      <div class="ff-theme" id="ff-theme">Thème</div>
-
-      <div class="ff-points-indicator">
-        <div class="ff-point-dot active" id="ff-dot-4">4 pts</div>
-        <div class="ff-point-dot" id="ff-dot-3">3 pts</div>
-        <div class="ff-point-dot" id="ff-dot-2">2 pts</div>
-        <div class="ff-point-dot" id="ff-dot-1">1 pt</div>
-      </div>
-
-      <div class="ff-indices-container" id="ff-indices"></div>
-
-      <div class="answer-section">
-        <input type="text" id="ff-answer" class="answer-input" placeholder="Votre réponse..." autocomplete="off">
-        <div class="answer-buttons">
-          <button class="btn-validate" id="ff-validate" onclick="validateFaceAFace()">Valider</button>
-          <button class="btn-next-indice" id="ff-next" onclick="nextIndice()">Indice suivant</button>
-        </div>
-      </div>
-
-      <div class="feedback-container" id="ff-feedback"></div>
-    </div>
-
-    <!-- ÉCRAN FLASHCARDS - Sélection du pack -->
+    <!-- FLASHCARDS — Sélection du pack -->
     <div id="screen-flashcards" class="screen">
       <div class="game-header">
         <button class="btn-back" onclick="goHome()">← Retour</button>
@@ -217,14 +135,13 @@
       <div class="packs-container" id="flashcard-packs"></div>
     </div>
 
-    <!-- ÉCRAN FLASHCARD SESSION -->
+    <!-- FLASHCARD SESSION -->
     <div id="screen-flashcard-session" class="screen">
       <div class="game-header">
         <button class="btn-back" onclick="backToFlashcards()">← Retour</button>
         <h2 id="fc-session-title">Pack</h2>
         <div class="fc-progress" id="fc-progress-text">0 / 0</div>
       </div>
-
       <div class="fc-card-wrapper">
         <div class="fc-card" id="fc-card" onclick="flipFlashcard()">
           <div class="fc-card-face fc-front">
@@ -237,51 +154,26 @@
           </div>
         </div>
       </div>
-
-      <button class="btn-flip" id="fc-flip-btn" onclick="flipFlashcard()">Retourner la carte</button>
-
+      <button class="btn-flip" id="fc-flip-btn" onclick="flipFlashcard()">Voir la réponse</button>
       <div class="fc-quality-buttons" id="fc-quality-buttons">
-        <button class="btn-quality btn-again" onclick="rateFlashcard(1)">
-          <span class="quality-key">1</span> À revoir
-        </button>
-        <button class="btn-quality btn-hard" onclick="rateFlashcard(3)">
-          <span class="quality-key">2</span> Difficile
-        </button>
-        <button class="btn-quality btn-good" onclick="rateFlashcard(4)">
-          <span class="quality-key">3</span> Bien
-        </button>
-        <button class="btn-quality btn-easy" onclick="rateFlashcard(5)">
-          <span class="quality-key">4</span> Facile
-        </button>
+        <button class="btn-quality btn-again" onclick="rateFlashcard(1)"><span class="quality-key">1</span> À revoir</button>
+        <button class="btn-quality btn-hard" onclick="rateFlashcard(3)"><span class="quality-key">2</span> Difficile</button>
+        <button class="btn-quality btn-good" onclick="rateFlashcard(4)"><span class="quality-key">3</span> Bien</button>
+        <button class="btn-quality btn-easy" onclick="rateFlashcard(5)"><span class="quality-key">4</span> Facile</button>
       </div>
     </div>
 
-    <!-- ÉCRAN FLASHCARD RÉSULTAT -->
+    <!-- FLASHCARD RÉSULTAT -->
     <div id="screen-flashcard-result" class="screen">
       <div class="result-container">
         <div class="result-icon">🃏</div>
         <h2 class="result-title" id="fc-result-title">Session terminée</h2>
         <div class="fc-result-stats">
-          <div class="fc-result-row">
-            <span>Cartes révisées</span>
-            <span class="fc-result-val" id="fc-result-total">0</span>
-          </div>
-          <div class="fc-result-row again">
-            <span>À revoir</span>
-            <span class="fc-result-val" id="fc-result-again">0</span>
-          </div>
-          <div class="fc-result-row hard">
-            <span>Difficile</span>
-            <span class="fc-result-val" id="fc-result-hard">0</span>
-          </div>
-          <div class="fc-result-row good">
-            <span>Bien</span>
-            <span class="fc-result-val" id="fc-result-good">0</span>
-          </div>
-          <div class="fc-result-row easy">
-            <span>Facile</span>
-            <span class="fc-result-val" id="fc-result-easy">0</span>
-          </div>
+          <div class="fc-result-row"><span>Cartes révisées</span><span class="fc-result-val" id="fc-result-total">0</span></div>
+          <div class="fc-result-row again"><span>À revoir</span><span class="fc-result-val" id="fc-result-again">0</span></div>
+          <div class="fc-result-row hard"><span>Difficile</span><span class="fc-result-val" id="fc-result-hard">0</span></div>
+          <div class="fc-result-row good"><span>Bien</span><span class="fc-result-val" id="fc-result-good">0</span></div>
+          <div class="fc-result-row easy"><span>Facile</span><span class="fc-result-val" id="fc-result-easy">0</span></div>
         </div>
         <div class="result-buttons">
           <button class="btn-replay" onclick="backToFlashcards()">Autre pack</button>
@@ -290,30 +182,7 @@
       </div>
     </div>
 
-    <!-- ÉCRAN LISTES - Sélection -->
-    <div id="screen-lists" class="screen">
-      <div class="game-header">
-        <button class="btn-back" onclick="goHome()">← Retour</button>
-        <h2>Listes de révision</h2>
-        <div></div>
-      </div>
-      <div class="lists-main" id="lists-container"></div>
-    </div>
-
-    <!-- ÉCRAN LISTE DÉTAIL -->
-    <div id="screen-list-detail" class="screen">
-      <div class="game-header">
-        <button class="btn-back" onclick="backToLists()">← Retour</button>
-        <h2 id="list-detail-title">Liste</h2>
-        <button class="btn-quiz" id="list-quiz-toggle">Mode quiz</button>
-      </div>
-      <div class="list-search-bar">
-        <input type="text" id="list-search" class="answer-input" placeholder="Rechercher..." autocomplete="off">
-      </div>
-      <div class="list-detail-content" id="list-detail-content"></div>
-    </div>
-
-    <!-- ÉCRAN PROGRAMME - Sélection semaine -->
+    <!-- PROGRAMME — Sélection semaine -->
     <div id="screen-programme" class="screen">
       <div class="game-header">
         <button class="btn-back" onclick="goHome()">← Retour</button>
@@ -323,7 +192,7 @@
       <div class="programme-container" id="programme-weeks"></div>
     </div>
 
-    <!-- ÉCRAN PROGRAMME - Vue semaine (7 jours) -->
+    <!-- PROGRAMME — Vue semaine -->
     <div id="screen-programme-week" class="screen">
       <div class="game-header">
         <button class="btn-back" onclick="backToProgramme()">← Retour</button>
@@ -334,7 +203,7 @@
       <div class="prog-days-grid" id="prog-days-grid"></div>
     </div>
 
-    <!-- ÉCRAN PROGRAMME - Tâches du jour -->
+    <!-- PROGRAMME — Tâches du jour -->
     <div id="screen-programme-day" class="screen">
       <div class="game-header">
         <button class="btn-back" onclick="backToWeek()">← Retour</button>
@@ -345,86 +214,78 @@
       <div class="prog-task-list" id="prog-task-list"></div>
     </div>
 
-    <!-- ÉCRAN PROGRAMME - Lecture -->
+    <!-- PROGRAMME — Vidéo -->
     <div id="screen-programme-lecture" class="screen">
       <div class="game-header">
         <button class="btn-back" onclick="backToDay()">← Retour</button>
-        <h2 id="prog-lecture-title">Lecture</h2>
+        <h2 id="prog-lecture-title">Vidéo</h2>
         <div></div>
       </div>
       <div class="prog-lecture-card">
         <p class="prog-lecture-subtitle" id="prog-lecture-subtitle"></p>
         <a class="prog-lecture-link-big" id="prog-lecture-url" href="#" target="_blank" rel="noopener">
-          <span class="prog-lecture-link-icon">📖</span>
-          <span>Ouvrir la lecture</span>
+          <span class="prog-lecture-link-icon">🎬</span>
+          <span>Regarder la vidéo</span>
           <span class="prog-lecture-dur" id="prog-lecture-dur"></span>
         </a>
-        <p class="prog-lecture-tip">Lis attentivement puis reviens marquer comme fait.</p>
-        <button class="btn-task-done" onclick="markTaskDone()">J'ai lu ✓</button>
+        <p class="prog-lecture-tip">Regarde la vidéo puis reviens marquer comme fait.</p>
+        <button class="btn-task-done" onclick="markTaskDone()">J'ai regardé ✓</button>
       </div>
     </div>
 
-    <!-- ÉCRAN PROGRAMME - Fiche (lecture) -->
+    <!-- PROGRAMME — Fiche -->
     <div id="screen-programme-fiche" class="screen">
       <div class="game-header">
         <button class="btn-back" onclick="backToDay()">← Retour</button>
         <h2 id="prog-fiche-title">Fiche</h2>
         <div></div>
       </div>
-      <p class="prog-fiche-intro">Lis bien chaque point, puis teste-toi avec les flashcards 👇</p>
+      <p class="prog-fiche-intro">Lis bien chaque point, puis teste-toi 👇</p>
       <div class="prog-fiche-items" id="prog-fiche-items"></div>
       <button class="btn-task-done" onclick="startFicheFlashcards()" id="btn-fiche-next">Tester ma mémoire 🧠</button>
     </div>
 
-    <!-- ÉCRAN PROGRAMME - Fiche Flashcards (révision active) -->
+    <!-- PROGRAMME — Fiche Flashcards -->
     <div id="screen-programme-fiche-fc" class="screen">
       <div class="game-header">
         <button class="btn-back" onclick="backToFicheRead()">← Relire</button>
         <h2 id="prog-fiche-fc-title">Flashcards</h2>
         <div class="fc-progress"><span id="prog-fc-num">1</span> / <span id="prog-fc-total">0</span></div>
       </div>
-
       <div class="prog-fc-card-container">
-        <div class="prog-fc-prompt" id="prog-fc-prompt">Quel détail retiens-tu ?</div>
+        <div class="prog-fc-prompt" id="prog-fc-prompt">Question</div>
         <div class="prog-fc-fact" id="prog-fc-fact"></div>
         <div class="prog-fc-reveal" id="prog-fc-reveal"></div>
       </div>
-
       <div class="prog-fc-buttons" id="prog-fc-buttons">
         <button class="btn-task-done" onclick="revealFicheCard()" id="btn-fc-reveal">Voir la réponse</button>
       </div>
       <div class="prog-fc-rate" id="prog-fc-rate" style="display:none">
-        <button class="btn-quality btn-again" onclick="rateFicheCard('again')">😬 À revoir</button>
-        <button class="btn-quality btn-easy" onclick="rateFicheCard('ok')">👍 Je savais</button>
+        <button class="btn-quality btn-again" onclick="rateFicheCard(1)"><span class="quality-key">1</span> À revoir</button>
+        <button class="btn-quality btn-hard" onclick="rateFicheCard(3)"><span class="quality-key">2</span> Difficile</button>
+        <button class="btn-quality btn-good" onclick="rateFicheCard(4)"><span class="quality-key">3</span> Bien</button>
+        <button class="btn-quality btn-easy" onclick="rateFicheCard(5)"><span class="quality-key">4</span> Facile</button>
       </div>
     </div>
 
-    <!-- ÉCRAN PROGRAMME - Quiz -->
+    <!-- PROGRAMME — Quiz QCM -->
     <div id="screen-programme-quiz" class="screen">
       <div class="game-header">
         <button class="btn-back" onclick="backToDay()">← Retour</button>
         <h2 id="prog-quiz-title">Quiz</h2>
         <div class="fc-progress"><span id="prog-quiz-num">1</span> / <span id="prog-quiz-total">0</span></div>
       </div>
-
-      <div class="question-container">
-        <div class="question-text" id="prog-quiz-question"></div>
-        <div class="prog-quiz-hint" id="prog-quiz-hint"></div>
+      <div class="quiz-question-box">
+        <div class="quiz-question-text" id="prog-quiz-question"></div>
       </div>
-
-      <div class="answer-section">
-        <input type="text" id="prog-quiz-answer" class="answer-input" placeholder="Votre réponse..." autocomplete="off">
-        <div class="answer-buttons">
-          <button class="btn-validate" onclick="validateProgQuiz()">Valider</button>
-          <button class="btn-hint" id="prog-hint-btn" onclick="showProgHint()">Indice</button>
-          <button class="btn-skip" onclick="skipProgQuiz()">Passer</button>
-        </div>
-      </div>
-
-      <div class="feedback-container" id="prog-quiz-feedback"></div>
+      <div class="quiz-choices" id="prog-quiz-choices"></div>
+      <div class="quiz-feedback" id="prog-quiz-feedback"></div>
+      <button class="btn-quiz-next" id="prog-quiz-next-btn" onclick="nextProgQuizQuestion()" style="display:none">
+        Question suivante →
+      </button>
     </div>
 
-    <!-- ÉCRAN PROGRAMME - Résultat quiz -->
+    <!-- PROGRAMME — Résultat quiz -->
     <div id="screen-programme-quiz-result" class="screen">
       <div class="result-container">
         <div class="result-icon" id="prog-result-icon">📝</div>
@@ -436,7 +297,7 @@
       </div>
     </div>
 
-    <!-- ÉCRAN RÉVISIONS DASHBOARD -->
+    <!-- RÉVISIONS DASHBOARD -->
     <div id="screen-revisions" class="screen">
       <div class="game-header">
         <button class="btn-back" onclick="goHome()">← Retour</button>
@@ -444,9 +305,7 @@
         <div class="rev-due-badge" id="rev-due-badge">0</div>
       </div>
       <div class="rev-summary" id="rev-summary"></div>
-      <button class="btn-task-done" id="btn-start-revisions" onclick="startRevisionSession()" style="display:none">
-        Commencer la révision 🧠
-      </button>
+      <button class="btn-task-done" id="btn-start-revisions" onclick="startRevisionSession()" style="display:none">Commencer la révision 🧠</button>
       <div class="rev-sections">
         <div class="rev-section">
           <h3 class="rev-section-title rev-due-title">📌 À revoir aujourd'hui</h3>
@@ -459,7 +318,7 @@
       </div>
     </div>
 
-    <!-- ÉCRAN RÉVISION SESSION -->
+    <!-- RÉVISION SESSION -->
     <div id="screen-revision-session" class="screen">
       <div class="game-header">
         <button class="btn-back" onclick="backToRevisions()">← Retour</button>
@@ -472,42 +331,30 @@
         <div class="prog-fc-reveal" id="rev-fc-reveal"></div>
       </div>
       <div class="prog-fc-buttons" id="rev-fc-buttons">
-        <button class="btn-task-done" onclick="revealRevisionCard()" id="btn-rev-reveal">Voir la réponse</button>
+        <button class="btn-task-done" onclick="revealRevisionCard()">Voir la réponse</button>
       </div>
       <div class="prog-fc-rate" id="rev-fc-rate" style="display:none">
-        <button class="btn-quality btn-again" onclick="rateRevisionCard('again')">😬 À revoir</button>
-        <button class="btn-quality btn-easy" onclick="rateRevisionCard('ok')">👍 Je savais</button>
-      </div>
-    </div>
-
-    <!-- ÉCRAN RÉSULTAT -->
-    <div id="screen-result" class="screen">
-      <div class="result-container">
-        <div class="result-icon" id="result-icon">🏆</div>
-        <h2 class="result-title" id="result-title">Bravo !</h2>
-        <div class="result-stats" id="result-stats"></div>
-        <div class="result-buttons">
-          <button class="btn-replay" onclick="replay()">Rejouer</button>
-          <button class="btn-home" onclick="goHome()">Accueil</button>
-        </div>
+        <button class="btn-quality btn-again" onclick="rateRevisionCard(1)"><span class="quality-key">1</span> À revoir</button>
+        <button class="btn-quality btn-hard" onclick="rateRevisionCard(3)"><span class="quality-key">2</span> Difficile</button>
+        <button class="btn-quality btn-good" onclick="rateRevisionCard(4)"><span class="quality-key">3</span> Bien</button>
+        <button class="btn-quality btn-easy" onclick="rateRevisionCard(5)"><span class="quality-key">4</span> Facile</button>
       </div>
     </div>
   </div>
 
-  <script src="questions.js"></script>
+  <!-- Scripts -->
   <script src="flashcards-data.js"></script>
   <script src="funfacts-data.js"></script>
   <script>
-    // Merge fun facts packs into flashcard packs
     if (typeof FUNFACTS_PACKS !== "undefined") {
       FUNFACTS_PACKS.forEach(function(p) { FLASHCARD_PACKS.push(p); });
     }
   </script>
-  <script src="lists-data.js"></script>
   <script src="programme-data.js"></script>
+  <script src="srs.js"></script>
   <script src="app.js"></script>
   <script src="flashcards.js"></script>
-  <script src="lists.js"></script>
+  <script src="quiz-12coups.js"></script>
   <script src="revisions.js"></script>
   <script src="programme.js"></script>
 </body>

@@ -1,155 +1,138 @@
-/* ===== RÉVISIONS QUOTIDIENNES — Répétition espacée ===== */
+/* ===== RÉVISIONS QUOTIDIENNES — SM-2 Spaced Repetition ===== */
 (function () {
   "use strict";
   const REV_KEY = "qpuc-revisions";
-  const INTERVALS = [1, 3, 7, 14, 30]; // jours
   const DAY_MS = 86400000;
 
-  // --- Storage ---
   function getData() {
-    try { return JSON.parse(localStorage.getItem(REV_KEY)) || { cards: [] }; }
-    catch (e) { return { cards: [] }; }
+    try { return JSON.parse(localStorage.getItem(REV_KEY)) || { cards: [], v: 2 }; }
+    catch (e) { return { cards: [], v: 2 }; }
   }
   function save(d) { localStorage.setItem(REV_KEY, JSON.stringify(d)); }
 
-  // --- Helpers ---
+  // --- Migration from old format (streak → SM-2) ---
+  function migrateIfNeeded() {
+    const data = getData();
+    if (data.v >= 2) return;
+    data.cards.forEach(c => {
+      if (c.streak !== undefined) {
+        c.ef = 2.5;
+        c.reps = c.streak || 0;
+        c.interval = c.interval || 1;
+        c.next = c.nextReview || Date.now();
+        delete c.streak;
+        delete c.nextReview;
+      }
+    });
+    data.v = 2;
+    save(data);
+  }
+
   function todayStart() {
     const d = new Date(); d.setHours(0, 0, 0, 0); return d.getTime();
   }
   function getDueCards() {
     const now = Date.now();
-    return getData().cards.filter(function (c) { return c.nextReview <= now; });
+    return getData().cards.filter(c => (c.next || c.nextReview || 0) <= now);
   }
   function shuffle(a) {
-    for (var i = a.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var t = a[i]; a[i] = a[j]; a[j] = t;
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
     }
     return a;
   }
   function formatNextReview(ts) {
-    var diff = Math.ceil((ts - Date.now()) / DAY_MS);
+    const diff = Math.ceil((ts - Date.now()) / DAY_MS);
     if (diff <= 0) return "aujourd'hui";
     if (diff === 1) return "demain";
     return "dans " + diff + " jours";
   }
 
-  // ============================================
-  // PUBLIC: Ajouter les cartes après une fiche
-  // ============================================
+  // --- Add fiche cards to revision pool (SM-2 format) ---
   window.addFicheToRevisionPool = function (taskId, taskTitle, flashcards) {
-    var data = getData();
-    var existing = {};
-    data.cards.forEach(function (c) { existing[c.source + "|" + c.q] = true; });
-    var tomorrow = todayStart() + DAY_MS;
-    flashcards.forEach(function (fc) {
-      var key = taskId + "|" + fc.q;
+    const data = getData();
+    const existing = {};
+    data.cards.forEach(c => { existing[c.source + "|" + c.q] = true; });
+    const tomorrow = todayStart() + DAY_MS;
+    flashcards.forEach(fc => {
+      const key = taskId + "|" + fc.q;
       if (!existing[key]) {
         data.cards.push({
           q: fc.q, r: fc.r,
           source: taskId,
           sourceTitle: taskTitle,
-          interval: 1,
-          nextReview: tomorrow,
-          streak: 0
+          ef: 2.5, interval: 1, reps: 0,
+          next: tomorrow
         });
       }
     });
     save(data);
   };
 
-  // PUBLIC: Nombre de cartes dues (pour badge)
   window.getRevisionsDueCount = function () { return getDueCards().length; };
 
-  // ============================================
-  // DASHBOARD
-  // ============================================
+  // --- DASHBOARD ---
   window.initRevisions = function () {
+    migrateIfNeeded();
     showScreen("revisions");
     renderDashboard();
   };
 
   function renderDashboard() {
-    var data = getData();
-    var now = Date.now();
-    var dueList = document.getElementById("rev-due-list");
-    var masteredList = document.getElementById("rev-mastered-list");
-    var summary = document.getElementById("rev-summary");
-    var btnStart = document.getElementById("btn-start-revisions");
-    var badge = document.getElementById("rev-due-badge");
+    const data = getData();
+    const now = Date.now();
+    const dueList = document.getElementById("rev-due-list");
+    const masteredList = document.getElementById("rev-mastered-list");
+    const summary = document.getElementById("rev-summary");
+    const btnStart = document.getElementById("btn-start-revisions");
+    const badge = document.getElementById("rev-due-badge");
 
-    // Group by source
-    var groups = {};
-    data.cards.forEach(function (c) {
-      if (!groups[c.sourceTitle]) {
-        groups[c.sourceTitle] = { title: c.sourceTitle, due: 0, scheduled: 0, nextDate: Infinity };
-      }
-      if (c.nextReview <= now) {
-        groups[c.sourceTitle].due++;
-      } else {
-        groups[c.sourceTitle].scheduled++;
-        if (c.nextReview < groups[c.sourceTitle].nextDate) groups[c.sourceTitle].nextDate = c.nextReview;
-      }
+    const groups = {};
+    data.cards.forEach(c => {
+      const next = c.next || c.nextReview || 0;
+      if (!groups[c.sourceTitle]) groups[c.sourceTitle] = { title: c.sourceTitle, due: 0, scheduled: 0, nextDate: Infinity };
+      if (next <= now) groups[c.sourceTitle].due++;
+      else { groups[c.sourceTitle].scheduled++; if (next < groups[c.sourceTitle].nextDate) groups[c.sourceTitle].nextDate = next; }
     });
-    var packs = Object.values(groups);
-    var totalDue = data.cards.filter(function (c) { return c.nextReview <= now; }).length;
-    var totalCards = data.cards.length;
 
-    // Badge
+    const packs = Object.values(groups);
+    const totalDue = data.cards.filter(c => (c.next || c.nextReview || 0) <= now).length;
+    const totalCards = data.cards.length;
+
     badge.textContent = totalDue;
     badge.style.background = totalDue > 0 ? "var(--orange, #f39c12)" : "var(--green, #2ecc71)";
 
-    // Summary
     if (totalCards === 0) {
-      summary.innerHTML = '<div class="rev-empty"><div class="rev-empty-icon">📭</div>' +
-        '<div class="rev-empty-text">Pas encore de cartes à réviser.<br>Termine des fiches dans le Programme pour remplir ton pool !</div></div>';
-      btnStart.style.display = "none";
-      dueList.innerHTML = "";
-      masteredList.innerHTML = "";
+      summary.innerHTML = '<div class="rev-empty"><div class="rev-empty-icon">📭</div><div class="rev-empty-text">Pas encore de cartes.<br>Termine des fiches dans le Programme !</div></div>';
+      btnStart.style.display = "none"; dueList.innerHTML = ""; masteredList.innerHTML = "";
       return;
     }
     if (totalDue === 0) {
-      summary.innerHTML = '<div class="rev-empty"><div class="rev-empty-icon">🎉</div>' +
-        '<div class="rev-empty-text">Tout est révisé pour aujourd\'hui !<br>' + totalCards + ' cartes dans ton pool.</div></div>';
+      summary.innerHTML = '<div class="rev-empty"><div class="rev-empty-icon">🎉</div><div class="rev-empty-text">Tout révisé !' + totalCards + ' cartes dans le pool.</div></div>';
       btnStart.style.display = "none";
     } else {
-      summary.innerHTML = '<div class="rev-count">' + totalDue + '</div>carte' + (totalDue > 1 ? "s" : "") + ' à revoir aujourd\'hui';
+      summary.innerHTML = '<div class="rev-count">' + totalDue + '</div>carte' + (totalDue > 1 ? "s" : "") + ' à revoir';
       btnStart.style.display = "";
     }
 
-    // Due packs
-    var dueHtml = "";
-    packs.forEach(function (p) {
-      if (p.due > 0) {
-        dueHtml += '<div class="rev-pack-item"><span class="rev-pack-name">' + p.title +
-          '</span><span class="rev-pack-count due">' + p.due + ' carte' + (p.due > 1 ? "s" : "") + '</span></div>';
-      }
-    });
+    let dueHtml = "";
+    packs.forEach(p => { if (p.due > 0) dueHtml += '<div class="rev-pack-item"><span class="rev-pack-name">' + p.title + '</span><span class="rev-pack-count due">' + p.due + '</span></div>'; });
     dueList.innerHTML = dueHtml || '<div class="rev-pack-empty">Aucune carte due</div>';
 
-    // Mastered packs
-    var mastHtml = "";
-    packs.forEach(function (p) {
-      if (p.scheduled > 0) {
-        mastHtml += '<div class="rev-pack-item"><span class="rev-pack-name">' + p.title +
-          '</span><span class="rev-pack-count scheduled">✓ ' + p.scheduled + ' — ' +
-          formatNextReview(p.nextDate) + '</span></div>';
-      }
-    });
+    let mastHtml = "";
+    packs.forEach(p => { if (p.scheduled > 0) mastHtml += '<div class="rev-pack-item"><span class="rev-pack-name">' + p.title + '</span><span class="rev-pack-count scheduled">✓ ' + p.scheduled + ' — ' + formatNextReview(p.nextDate) + '</span></div>'; });
     masteredList.innerHTML = mastHtml || '<div class="rev-pack-empty">—</div>';
   }
 
-  // ============================================
-  // REVIEW SESSION
-  // ============================================
-  var revCards = [], revIndex = 0, revAgainCount = 0;
+  // --- REVIEW SESSION (SM-2) ---
+  let revCards = [], revIndex = 0, revAgainCount = 0;
 
   window.startRevisionSession = function () {
-    var due = getDueCards();
+    const due = getDueCards();
     if (due.length === 0) return;
     revCards = shuffle(due.slice());
-    revIndex = 0;
-    revAgainCount = 0;
+    revIndex = 0; revAgainCount = 0;
     document.getElementById("rev-fc-total").textContent = revCards.length;
     showScreen("revision-session");
     showRevCard();
@@ -157,18 +140,19 @@
 
   function showRevCard() {
     if (revIndex >= revCards.length) { endRevSession(); return; }
-    var c = revCards[revIndex];
+    const c = revCards[revIndex];
     document.getElementById("rev-fc-num").textContent = revIndex + 1;
     document.getElementById("rev-fc-prompt").textContent = "Question";
     document.getElementById("rev-fc-fact").textContent = c.q;
     document.getElementById("rev-fc-reveal").textContent = "";
     document.getElementById("rev-fc-reveal").style.display = "none";
+    document.getElementById("rev-fc-buttons").innerHTML = '<button class="btn-task-done" onclick="revealRevisionCard()">Voir la réponse</button>';
     document.getElementById("rev-fc-buttons").style.display = "";
     document.getElementById("rev-fc-rate").style.display = "none";
   }
 
   window.revealRevisionCard = function () {
-    var c = revCards[revIndex];
+    const c = revCards[revIndex];
     document.getElementById("rev-fc-prompt").textContent = "Réponse";
     document.getElementById("rev-fc-reveal").textContent = c.r;
     document.getElementById("rev-fc-reveal").style.display = "";
@@ -176,69 +160,46 @@
     document.getElementById("rev-fc-rate").style.display = "";
   };
 
-  window.rateRevisionCard = function (rating) {
-    var card = revCards[revIndex];
-    var data = getData();
-    // Find matching card in storage
-    for (var i = 0; i < data.cards.length; i++) {
+  window.rateRevisionCard = function (quality) {
+    // quality: 1=again, 3=hard, 4=good, 5=easy
+    const card = revCards[revIndex];
+    const data = getData();
+    for (let i = 0; i < data.cards.length; i++) {
       if (data.cards[i].source === card.source && data.cards[i].q === card.q) {
-        if (rating === "ok") {
-          data.cards[i].streak++;
-          data.cards[i].interval = INTERVALS[Math.min(data.cards[i].streak, INTERVALS.length - 1)];
-        } else {
-          data.cards[i].streak = 0;
-          data.cards[i].interval = 1;
-          revAgainCount++;
-          // Push to end of current session too
-          revCards.push(card);
-          document.getElementById("rev-fc-total").textContent = revCards.length;
-        }
-        data.cards[i].nextReview = Date.now() + data.cards[i].interval * DAY_MS;
+        const state = { ef: data.cards[i].ef || 2.5, interval: data.cards[i].interval || 0, reps: data.cards[i].reps || 0, next: 0 };
+        const newState = SRS.update(state, quality);
+        data.cards[i].ef = newState.ef;
+        data.cards[i].interval = newState.interval;
+        data.cards[i].reps = newState.reps;
+        data.cards[i].next = newState.next;
         break;
       }
     }
     save(data);
+    if (quality <= 1) { revAgainCount++; revCards.push(card); document.getElementById("rev-fc-total").textContent = revCards.length; }
     revIndex++;
     showRevCard();
   };
 
   function endRevSession() {
-    var total = getDueCards().length === 0 ? revCards.length : revCards.length;
-    var unique = revCards.length - revAgainCount;
-    var icon = revAgainCount === 0 ? "🏆" : revAgainCount <= 3 ? "👍" : "📖";
-    var container = document.getElementById("rev-fc-fact");
-    var prompt = document.getElementById("rev-fc-prompt");
-    var reveal = document.getElementById("rev-fc-reveal");
-
-    prompt.textContent = "";
-    container.innerHTML = '<div class="prog-fc-summary"><div class="prog-fc-summary-icon">' + icon +
-      '</div><div class="prog-fc-summary-text">Révision terminée !</div>' +
-      '<div class="prog-fc-summary-detail">' + unique + ' cartes révisées' +
-      (revAgainCount > 0 ? ", " + revAgainCount + " à revoir" : "") + '</div></div>';
-    reveal.style.display = "none";
+    const unique = revCards.length - revAgainCount;
+    const icon = revAgainCount === 0 ? "🏆" : revAgainCount <= 3 ? "👍" : "📖";
+    document.getElementById("rev-fc-prompt").textContent = "";
+    document.getElementById("rev-fc-fact").innerHTML = '<div class="prog-fc-summary"><div class="prog-fc-summary-icon">' + icon + '</div><div class="prog-fc-summary-text">Révision terminée !</div><div class="prog-fc-summary-detail">' + unique + ' cartes révisées' + (revAgainCount > 0 ? ", " + revAgainCount + " à revoir" : "") + '</div></div>';
+    document.getElementById("rev-fc-reveal").style.display = "none";
     document.getElementById("rev-fc-rate").style.display = "none";
-    document.getElementById("rev-fc-buttons").innerHTML =
-      '<button class="btn-task-done" onclick="backToRevisions()">Continuer ✓</button>';
+    document.getElementById("rev-fc-buttons").innerHTML = '<button class="btn-task-done" onclick="backToRevisions()">Continuer ✓</button>';
     document.getElementById("rev-fc-buttons").style.display = "";
   }
 
   window.backToRevisions = function () {
-    // Reset the reveal button for next time
-    document.getElementById("rev-fc-buttons").innerHTML =
-      '<button class="btn-task-done" onclick="revealRevisionCard()" id="btn-rev-reveal">Voir la réponse</button>';
     showScreen("revisions");
     renderDashboard();
   };
 
-  // ============================================
-  // Update badge on home (called externally)
-  // ============================================
   window.updateRevisionBadge = function () {
-    var due = getDueCards().length;
-    var badge = document.getElementById("rev-home-badge");
-    if (badge) {
-      badge.textContent = due;
-      badge.style.display = due > 0 ? "" : "none";
-    }
+    const due = getDueCards().length;
+    const badge = document.getElementById("rev-home-badge");
+    if (badge) { badge.textContent = due; badge.style.display = due > 0 ? "" : "none"; }
   };
 })();
