@@ -496,6 +496,13 @@
 
   <script src="questions.js"></script>
   <script src="flashcards-data.js"></script>
+  <script src="funfacts-data.js"></script>
+  <script>
+    // Merge fun facts packs into flashcard packs
+    if (typeof FUNFACTS_PACKS !== "undefined") {
+      FUNFACTS_PACKS.forEach(function(p) { FLASHCARD_PACKS.push(p); });
+    }
+  </script>
   <script src="lists-data.js"></script>
   <script src="programme-data.js"></script>
   <script src="app.js"></script>
