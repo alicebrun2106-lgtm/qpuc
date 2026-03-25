@@ -149,14 +149,21 @@
     const rawQuestions = shuffleArray(task.questions || []);
     progQuizQuestions = rawQuestions.map(q => {
       if (q.choices && q.choices.length >= 2) return q; // already QCM
-      // Auto-generate choices from other answers in the day
+      // Auto-generate plausible choices from other answers in the day
       const correct = q.r;
       const normCorrect = (correct || "").toLowerCase().trim();
-      const distractors = shuffleArray(
-        dayAnswers.filter(a => a && a.toLowerCase().trim() !== normCorrect && a.length < 60)
-      ).slice(0, 3);
-      // If not enough distractors, use generic ones
-      while (distractors.length < 3) distractors.push("Aucune de ces réponses");
+      const correctLen = correct.length;
+      // Filter candidates: similar length, not the answer, not too long
+      const candidates = dayAnswers.filter(a =>
+        a && a.toLowerCase().trim() !== normCorrect && a.length < 60 && Math.abs(a.length - correctLen) < 25
+      );
+      // Sort by length similarity to correct answer (most plausible)
+      candidates.sort((a, b) => Math.abs(a.length - correctLen) - Math.abs(b.length - correctLen));
+      const distractors = shuffleArray(candidates).slice(0, 3);
+      // If not enough, use generic plausible fillers
+      const fillers = ["Aucune de ces réponses", "Je ne sais pas", "Autre chose"];
+      let fi = 0;
+      while (distractors.length < 3) distractors.push(fillers[fi++] || "?");
       const choices = shuffleArray([correct, ...distractors]);
       return { ...q, choices, r: correct };
     });

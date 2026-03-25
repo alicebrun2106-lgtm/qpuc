@@ -31,44 +31,91 @@
     return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
   }
 
+  // --- Classify answer type for smart distractor matching ---
+  function classifyAnswer(answer) {
+    const a = answer.trim();
+    // Numbers / quantities
+    if (/^\d/.test(a) || /\d\s*(km|kg|m|cm|mm|ans|jours|heures|°)/.test(a)) return "number";
+    // Single short proper noun (likely a name, place, animal)
+    if (a.split(" ").length <= 3 && a.length < 30 && /^[A-ZÀ-Ü]/.test(a)) return "proper";
+    // Short factual (Le/La/Les + noun)
+    if (/^(Le |La |Les |L'|Un |Une )/.test(a) && a.length < 40) return "noun";
+    // Long explanatory
+    if (a.length > 50) return "long";
+    return "short";
+  }
+
   // --- Generate MCQ from flashcard data ---
   function generateMCQ(sourceCards, count) {
     const shuffled = shuffle(sourceCards);
     const selected = shuffled.slice(0, Math.min(count, shuffled.length));
-    const allAnswers = sourceCards.map(c => c.r);
 
     return selected.map(card => {
-      // Get distractors from same pack first
-      const samePackAnswers = sourceCards
-        .filter(c => c.packId === card.packId && normalize(c.r) !== normalize(card.r))
-        .map(c => c.r);
-
-      const otherAnswers = sourceCards
-        .filter(c => c.packId !== card.packId && normalize(c.r) !== normalize(card.r))
-        .map(c => c.r);
-
+      const correctType = classifyAnswer(card.r);
+      const correctLen = card.r.length;
       const distractors = [];
       const usedNorm = new Set([normalize(card.r)]);
 
-      // Pick from same pack first (more plausible distractors)
-      const shuffledSame = shuffle(samePackAnswers);
-      for (const d of shuffledSame) {
+      function addDistractor(d) {
         const n = normalize(d);
-        if (!usedNorm.has(n) && d.length < 80) { usedNorm.add(n); distractors.push(d); }
-        if (distractors.length >= 3) break;
-      }
-
-      // Fill from other packs if needed
-      if (distractors.length < 3) {
-        const shuffledOther = shuffle(otherAnswers);
-        for (const d of shuffledOther) {
-          const n = normalize(d);
-          if (!usedNorm.has(n) && d.length < 80) { usedNorm.add(n); distractors.push(d); }
-          if (distractors.length >= 3) break;
+        if (!usedNorm.has(n) && d.length < 80) {
+          usedNorm.add(n);
+          distractors.push(d);
+          return true;
         }
+        return false;
       }
 
-      // Build choices array
+      // Priority 1: Same pack (most plausible — same topic)
+      const samePack = shuffle(
+        sourceCards.filter(c => c.packId === card.packId && normalize(c.r) !== normalize(card.r)).map(c => c.r)
+      );
+      for (const d of samePack) { if (distractors.length >= 3) break; addDistractor(d); }
+
+      // Priority 2: Same difficulty + similar answer type (keeps it believable)
+      if (distractors.length < 3) {
+        const similarType = shuffle(
+          sourceCards.filter(c =>
+            c.packId !== card.packId &&
+            c.difficulty === card.difficulty &&
+            classifyAnswer(c.r) === correctType &&
+            Math.abs(c.r.length - correctLen) < 20 &&
+            normalize(c.r) !== normalize(card.r)
+          ).map(c => c.r)
+        );
+        for (const d of similarType) { if (distractors.length >= 3) break; addDistractor(d); }
+      }
+
+      // Priority 3: Same difficulty, any type but similar length
+      if (distractors.length < 3) {
+        const sameDiff = shuffle(
+          sourceCards.filter(c =>
+            c.packId !== card.packId &&
+            c.difficulty === card.difficulty &&
+            Math.abs(c.r.length - correctLen) < 30 &&
+            normalize(c.r) !== normalize(card.r)
+          ).map(c => c.r)
+        );
+        for (const d of sameDiff) { if (distractors.length >= 3) break; addDistractor(d); }
+      }
+
+      // Priority 4: Any card with similar answer type
+      if (distractors.length < 3) {
+        const anyType = shuffle(
+          sourceCards.filter(c =>
+            classifyAnswer(c.r) === correctType &&
+            normalize(c.r) !== normalize(card.r)
+          ).map(c => c.r)
+        );
+        for (const d of anyType) { if (distractors.length >= 3) break; addDistractor(d); }
+      }
+
+      // Last resort: any answer
+      if (distractors.length < 3) {
+        const any = shuffle(sourceCards.filter(c => normalize(c.r) !== normalize(card.r)).map(c => c.r));
+        for (const d of any) { if (distractors.length >= 3) break; addDistractor(d); }
+      }
+
       const choices = shuffle([card.r, ...distractors.slice(0, 3)]);
       const correctIndex = choices.findIndex(c => normalize(c) === normalize(card.r));
 
