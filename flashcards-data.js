@@ -6,6 +6,7 @@ const FLASHCARD_PACKS = [
     icon: "🏛️",
     description: "Les 101 préfectures de France",
     difficulty: "debutant",
+    reversible: true,
     cards: [
       { front: "Ain (01)", back: "Bourg-en-Bresse" },
       { front: "Aisne (02)", back: "Laon" },

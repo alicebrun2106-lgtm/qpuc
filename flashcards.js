@@ -91,11 +91,20 @@
     if (!pack) return;
     const srsData = SRS.getData(SRS_KEY);
 
+    // Build card list — include reverse cards for reversible packs
+    const allCards = pack.cards.map((card, i) => ({ front: card.front, back: card.back, srsKey: getCardKey(packId, i) }));
+    if (pack.reversible) {
+      pack.cards.forEach((card, i) => {
+        if (card.back.length < 60) {
+          allCards.push({ front: card.back, back: card.front, srsKey: getCardKey(packId, i) + "_r" });
+        }
+      });
+    }
+
     const dueCards = [];
     const newCards = [];
-    pack.cards.forEach((card, i) => {
-      const key = getCardKey(packId, i);
-      const st = srsData[key];
+    allCards.forEach((card, i) => {
+      const st = srsData[card.srsKey];
       if (!st) newCards.push(i);
       else if (st.next <= Date.now()) dueCards.push(i);
     });
@@ -115,7 +124,7 @@
       return;
     }
 
-    session = { packId, pack, queue, index: 0, flipped: false, results: { again: 0, hard: 0, good: 0, easy: 0 } };
+    session = { packId, pack, allCards, queue, index: 0, flipped: false, results: { again: 0, hard: 0, good: 0, easy: 0 } };
     document.getElementById("fc-session-title").textContent = pack.name;
     document.getElementById("fc-quality-buttons").style.display = "none";
     document.getElementById("fc-flip-btn").style.display = "";
@@ -124,8 +133,8 @@
   }
 
   function showFlashcard() {
-    const { pack, queue, index } = session;
-    const card = pack.cards[queue[index]];
+    const { allCards, queue, index } = session;
+    const card = allCards[queue[index]];
     document.getElementById("fc-progress-text").textContent = `${index + 1} / ${queue.length}`;
     document.getElementById("fc-card-front").textContent = card.front;
     document.getElementById("fc-card-back").textContent = "";
@@ -138,7 +147,7 @@
   window.flipFlashcard = function () {
     if (session.flipped) return;
     session.flipped = true;
-    const card = session.pack.cards[session.queue[session.index]];
+    const card = session.allCards[session.queue[session.index]];
     document.getElementById("fc-card-back").textContent = card.back;
     document.getElementById("fc-card").classList.add("flipped");
     document.getElementById("fc-quality-buttons").style.display = "";
@@ -146,11 +155,11 @@
   };
 
   window.rateFlashcard = function (quality) {
-    const { packId, queue, index } = session;
-    const key = getCardKey(packId, queue[index]);
-    const state = SRS.getState(SRS_KEY, key);
+    const { allCards, queue, index } = session;
+    const card = allCards[queue[index]];
+    const state = SRS.getState(SRS_KEY, card.srsKey);
     const newState = SRS.update(state, quality);
-    SRS.save(SRS_KEY, key, newState);
+    SRS.save(SRS_KEY, card.srsKey, newState);
 
     if (quality <= 1) { session.results.again++; session.queue.push(queue[index]); }
     else if (quality === 3) session.results.hard++;

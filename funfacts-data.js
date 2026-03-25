@@ -1212,6 +1212,7 @@ const FUNFACTS_PACKS = [
     icon: "🏙️",
     description: "197 pays — toutes les capitales à connaître",
     difficulty: "debutant",
+    reversible: true,
     cards: [
       // Europe
       { front: "Capitale de l'Albanie ?", back: "Tirana" },
@@ -1370,42 +1371,6 @@ const FUNFACTS_PACKS = [
     ],
   },
 
-  // ===== FLEUVES DU MONDE =====
-  {
-    id: "fleuves-monde",
-    name: "Fleuves & Rivières du monde",
-    icon: "🌊",
-    description: "Les grands fleuves, leurs longueurs et où ils coulent",
-    difficulty: "debutant",
-    cards: [
-      {front: "Quel est le plus long fleuve du monde ?", back: "Le Nil (6 650 km)"},
-      {front: "Quel fleuve traverse Paris ?", back: "La Seine"},
-      {front: "Quel est le fleuve le plus long d'Europe ?", back: "La Volga (3 530 km)"},
-      {front: "Dans quel océan se jette l'Amazone ?", back: "L'océan Atlantique"},
-      {front: "Quel fleuve traverse Londres ?", back: "La Tamise"},
-      {front: "Quel fleuve traverse Rome ?", back: "Le Tibre"},
-      {front: "Quel fleuve forme la frontière entre les USA et le Mexique ?", back: "Le Rio Grande"},
-      {front: "Quel est le plus long fleuve d'Afrique ?", back: "Le Nil"},
-      {front: "Quel fleuve traverse Le Caire ?", back: "Le Nil"},
-      {front: "Quel fleuve traverse Budapest ?", back: "Le Danube"},
-      {front: "Dans quelle mer se jette le Danube ?", back: "La mer Noire"},
-      {front: "Quel fleuve traverse Bordeaux ?", back: "La Garonne"},
-      {front: "Quel est le plus long fleuve de France ?", back: "La Loire (1 006 km)"},
-      {front: "Quel fleuve traverse Lyon ?", back: "Le Rhône (et la Saône)"},
-      {front: "Quel fleuve traverse Strasbourg ?", back: "Le Rhin (et l'Ill)"},
-      {front: "Quel fleuve traverse Bagdad ?", back: "Le Tigre"},
-      {front: "Quel fleuve a donné son nom à l'Inde ?", back: "L'Indus"},
-      {front: "Quel fleuve traverse Shanghai ?", back: "Le Yangtsé (fleuve Bleu)"},
-      {front: "Quel est le fleuve le plus long d'Asie ?", back: "Le Yangtsé (6 300 km)"},
-      {front: "Quel fleuve traverse Lisbonne ?", back: "Le Tage"},
-      {front: "Quel fleuve traverse Vienne et Bratislava ?", back: "Le Danube"},
-      {front: "Quel fleuve traverse Washington D.C. ?", back: "Le Potomac"},
-      {front: "Quel fleuve sépare la Pologne de l'Allemagne ?", back: "L'Oder"},
-      {front: "Quel fleuve traverse Séville ?", back: "Le Guadalquivir"},
-      {front: "Quel fleuve sacré traverse Varanasi en Inde ?", back: "Le Gange"},
-    ],
-  },
-
   // ===== PRÉSIDENTS FRANÇAIS =====
   {
     id: "presidents-francais",
@@ -1469,6 +1434,7 @@ const FUNFACTS_PACKS = [
     name: "Fleuves du monde",
     icon: "🌊",
     description: "Les grands fleuves, où ils coulent, où ils se jettent",
+    reversible: true,
     difficulty: "debutant",
     cards: [
       {front: "Quel est le plus long fleuve du monde ?", back: "Le Nil (6 695 km) — traverse 10 pays d'Afrique"},
@@ -1581,6 +1547,7 @@ const FUNFACTS_PACKS = [
     id: "fleuves-france",
     name: "Fleuves & rivières de France",
     icon: "🏞️",
+    reversible: true,
     description: "Loire, Seine, Rhône, Garonne, Rhin et affluents",
     difficulty: "debutant",
     cards: [
