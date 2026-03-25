@@ -142,6 +142,7 @@
     session.flipped = false;
     document.getElementById("fc-quality-buttons").style.display = "none";
     document.getElementById("fc-flip-btn").style.display = "";
+    if (typeof MEMO !== "undefined") MEMO.hideTip("fc-memo-tip");
   }
 
   window.flipFlashcard = function () {
@@ -152,6 +153,8 @@
     document.getElementById("fc-card").classList.add("flipped");
     document.getElementById("fc-quality-buttons").style.display = "";
     document.getElementById("fc-flip-btn").style.display = "none";
+    // Show memo tip
+    if (typeof MEMO !== "undefined") MEMO.showTip("fc-memo-tip", card.front, card.back);
   };
 
   window.rateFlashcard = function (quality) {

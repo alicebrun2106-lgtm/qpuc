@@ -275,6 +275,7 @@
     document.getElementById("prog-fc-buttons").style.display = "";
     document.getElementById("btn-fc-reveal").style.display = "";
     document.getElementById("prog-fc-rate").style.display = "none";
+    if (typeof MEMO !== "undefined") MEMO.hideTip("prog-fc-memo-tip");
   }
 
   window.revealFicheCard = function () {
@@ -284,6 +285,8 @@
     document.getElementById("btn-fc-reveal").style.display = "none";
     document.getElementById("prog-fc-buttons").style.display = "none";
     document.getElementById("prog-fc-rate").style.display = "";
+    // Show memo tip
+    if (typeof MEMO !== "undefined") MEMO.showTip("prog-fc-memo-tip", card.q, card.r);
   };
 
   window.rateFicheCard = function (quality) {

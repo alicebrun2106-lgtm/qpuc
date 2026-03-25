@@ -248,13 +248,23 @@
     // Feedback
     const fb = document.getElementById("quiz-feedback");
     if (timeout) {
-      fb.innerHTML = "⏰ Temps écoulé ! La réponse était : <strong>" + q.choices[q.correctIndex] + "</strong>";
+      let memoHtml = "";
+      if (typeof MEMO !== "undefined") {
+        const memo = MEMO.generateMemo(q.question, q.choices[q.correctIndex]);
+        if (memo) memoHtml = '<div class="quiz-memo-tip">' + memo + '</div>';
+      }
+      fb.innerHTML = "⏰ Temps écoulé ! La réponse était : <strong>" + q.choices[q.correctIndex] + "</strong>" + memoHtml;
       fb.className = "quiz-feedback quiz-feedback-wrong";
     } else if (correct) {
       fb.innerHTML = "✅ Bonne réponse !";
       fb.className = "quiz-feedback quiz-feedback-correct";
     } else {
-      fb.innerHTML = "❌ Raté ! La bonne réponse était : <strong>" + q.choices[q.correctIndex] + "</strong>";
+      let memoHtml = "";
+      if (typeof MEMO !== "undefined") {
+        const memo = MEMO.generateMemo(q.question, q.choices[q.correctIndex]);
+        if (memo) memoHtml = '<div class="quiz-memo-tip">' + memo + '</div>';
+      }
+      fb.innerHTML = "❌ Raté ! La bonne réponse était : <strong>" + q.choices[q.correctIndex] + "</strong>" + memoHtml;
       fb.className = "quiz-feedback quiz-feedback-wrong";
     }
 
