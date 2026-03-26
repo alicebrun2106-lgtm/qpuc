@@ -292,8 +292,13 @@
     document.getElementById("btn-fc-reveal").style.display = "none";
     document.getElementById("prog-fc-buttons").style.display = "none";
     document.getElementById("prog-fc-rate").style.display = "";
-    // Show memo tip
-    if (typeof MEMO !== "undefined") MEMO.showTip("prog-fc-memo-tip", card.q, card.r);
+    // Show memo tip: prefer card.memo field, then fallback to MEMO lookup
+    var memoEl = document.getElementById("prog-fc-memo-tip");
+    if (memoEl) {
+      if (card.memo) { memoEl.textContent = "🧠 " + card.memo; memoEl.style.display = ""; }
+      else if (typeof MEMO !== "undefined") { MEMO.showTip("prog-fc-memo-tip", card.q, card.r); }
+      else { memoEl.textContent = ""; memoEl.style.display = "none"; }
+    }
   };
 
   window.rateFicheCard = function (quality) {

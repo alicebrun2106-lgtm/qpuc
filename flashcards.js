@@ -92,11 +92,11 @@
     const srsData = SRS.getData(SRS_KEY);
 
     // Build card list — include reverse cards for reversible packs
-    const allCards = pack.cards.map((card, i) => ({ front: card.front, back: card.back, srsKey: getCardKey(packId, i) }));
+    const allCards = pack.cards.map((card, i) => ({ front: card.front, back: card.back, memo: card.memo || null, srsKey: getCardKey(packId, i) }));
     if (pack.reversible) {
       pack.cards.forEach((card, i) => {
         if (card.back.length < 60) {
-          allCards.push({ front: card.back, back: card.front, srsKey: getCardKey(packId, i) + "_r" });
+          allCards.push({ front: card.back, back: card.front, memo: card.memo || null, srsKey: getCardKey(packId, i) + "_r" });
         }
       });
     }
@@ -164,8 +164,13 @@
     document.getElementById("fc-card").classList.add("flipped");
     document.getElementById("fc-quality-buttons").style.display = "";
     document.getElementById("fc-flip-btn").style.display = "none";
-    // Show memo tip
-    if (typeof MEMO !== "undefined") MEMO.showTip("fc-memo-tip", card.front, card.back);
+    // Show memo tip: prefer card.memo field, then fallback to MEMO lookup
+    const memoEl = document.getElementById("fc-memo-tip");
+    if (memoEl) {
+      if (card.memo) { memoEl.textContent = "🧠 " + card.memo; memoEl.style.display = ""; }
+      else if (typeof MEMO !== "undefined") { MEMO.showTip("fc-memo-tip", card.front, card.back); }
+      else { memoEl.textContent = ""; memoEl.style.display = "none"; }
+    }
   };
 
   window.rateFlashcard = function (quality) {

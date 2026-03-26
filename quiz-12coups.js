@@ -11,7 +11,7 @@
     if (typeof FLASHCARD_PACKS !== "undefined") {
       FLASHCARD_PACKS.forEach(pack => {
         pack.cards.forEach(card => {
-          cards.push({ q: card.front, r: card.back, packId: pack.id, packName: pack.name, difficulty: pack.difficulty || "intermediaire" });
+          cards.push({ q: card.front, r: card.back, memo: card.memo || null, packId: pack.id, packName: pack.name, difficulty: pack.difficulty || "intermediaire" });
         });
       });
     }
@@ -119,7 +119,7 @@
       const choices = shuffle([card.r, ...distractors.slice(0, 3)]);
       const correctIndex = choices.findIndex(c => normalize(c) === normalize(card.r));
 
-      return { question: card.q, choices, correctIndex, packName: card.packName, difficulty: card.difficulty };
+      return { question: card.q, choices, correctIndex, packName: card.packName, difficulty: card.difficulty, memo: card.memo || null };
     });
   }
 
@@ -292,26 +292,27 @@
       if (i === choiceIndex && !correct) btn.classList.add("quiz-choice-wrong");
     });
 
-    // Feedback
+    // Feedback — show memo from card data first, fallback to MEMO lookup
     const fb = document.getElementById("quiz-feedback");
-    if (timeout) {
-      let memoHtml = "";
+    function getMemoHtml() {
+      // Priority 1: memo from the card itself
+      if (q.memo) return '<div class="quiz-memo-tip">🧠 ' + q.memo + '</div>';
+      // Priority 2: MEMO module lookup
       if (typeof MEMO !== "undefined") {
-        const memo = MEMO.generateMemo(q.question, q.choices[q.correctIndex]);
-        if (memo) memoHtml = '<div class="quiz-memo-tip">' + memo + '</div>';
+        const m = MEMO.generateMemo(q.question, q.choices[q.correctIndex]);
+        if (m) return '<div class="quiz-memo-tip">' + m + '</div>';
       }
-      fb.innerHTML = "⏰ Temps écoulé ! La réponse était : <strong>" + q.choices[q.correctIndex] + "</strong>" + memoHtml;
+      return "";
+    }
+    if (timeout) {
+      fb.innerHTML = "⏰ Temps écoulé ! La réponse était : <strong>" + q.choices[q.correctIndex] + "</strong>" + getMemoHtml();
       fb.className = "quiz-feedback quiz-feedback-wrong";
     } else if (correct) {
-      fb.innerHTML = "✅ Bonne réponse !";
+      const mh = getMemoHtml();
+      fb.innerHTML = "✅ Bonne réponse !" + (mh ? mh : "");
       fb.className = "quiz-feedback quiz-feedback-correct";
     } else {
-      let memoHtml = "";
-      if (typeof MEMO !== "undefined") {
-        const memo = MEMO.generateMemo(q.question, q.choices[q.correctIndex]);
-        if (memo) memoHtml = '<div class="quiz-memo-tip">' + memo + '</div>';
-      }
-      fb.innerHTML = "❌ Raté ! La bonne réponse était : <strong>" + q.choices[q.correctIndex] + "</strong>" + memoHtml;
+      fb.innerHTML = "❌ Raté ! La bonne réponse était : <strong>" + q.choices[q.correctIndex] + "</strong>" + getMemoHtml();
       fb.className = "quiz-feedback quiz-feedback-wrong";
     }
 
