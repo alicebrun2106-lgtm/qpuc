@@ -67,78 +67,98 @@
 
   function buildSVG() {
     var wrap = document.getElementById("carte2-svg-wrap");
-    var svg = svgEl("svg", { viewBox: SVG_VIEWBOX, width: "100%", height: "100%", preserveAspectRatio: "xMidYMid meet" });
-    // Background
-    svg.appendChild(svgEl("rect", { x:"0",y:"-5",width:"650",height:"600",fill:"#0a0e27",rx:"8" }));
+    // BIGGER viewBox with padding for labels outside regions
+    var svg = svgEl("svg", { viewBox: "-20 -20 660 640", width: "100%", height: "100%", preserveAspectRatio: "xMidYMid meet" });
 
-    // Regions
+    // Background
+    svg.appendChild(svgEl("rect", { x:"-20",y:"-20",width:"680",height:"660",fill:"#060b1a",rx:"8" }));
+
+    // Regions — brighter colors, thicker borders
     REGIONS.forEach(function(reg) {
       var p = svgEl("path", {
-        d: reg.path, fill: reg.color, stroke: "#1a1f3d", "stroke-width": "2",
-        "data-id": reg.id, class: "carte2-region", cursor: "pointer", opacity: "0.9"
+        d: reg.path, fill: reg.color, stroke: "#ffffff", "stroke-width": "1.2",
+        "data-id": reg.id, class: "carte2-region", cursor: "pointer", opacity: "0.85"
       });
-      p.addEventListener("mouseenter", function() { p.setAttribute("opacity","1"); p.setAttribute("stroke","#f0c040"); p.setAttribute("stroke-width","3.5"); showTooltip(reg.name, p); });
-      p.addEventListener("mouseleave", function() { if (selectedRegion !== reg.id) { p.setAttribute("opacity","0.9"); p.setAttribute("stroke","#1a1f3d"); p.setAttribute("stroke-width","2"); } hideTooltip(); });
+      p.addEventListener("mouseenter", function() { p.setAttribute("opacity","1"); p.setAttribute("stroke","#f0c040"); p.setAttribute("stroke-width","3"); showTooltip(reg.name, p); });
+      p.addEventListener("mouseleave", function() { if (selectedRegion !== reg.id) { p.setAttribute("opacity","0.85"); p.setAttribute("stroke","#ffffff"); p.setAttribute("stroke-width","1.2"); } hideTooltip(); });
       p.addEventListener("click", function() { handleRegionClick(reg); });
       svg.appendChild(p);
     });
 
-    // Rivers — ALWAYS visible, thick, bright cyan
+    // Rivers — thick, bright, with CLEAR labels
     var rg = svgEl("g", { id: "rivers-group" });
+    // Specific label positions for each river (hand-placed to avoid overlap)
+    var riverLabels = {
+      "La Seine": { x: 220, y: 125, rot: -15 },
+      "La Loire": { x: 210, y: 288, rot: -8 },
+      "Le Rhône": { x: 455, y: 350, rot: -80 },
+      "La Garonne": { x: 248, y: 458, rot: -40 },
+      "Le Rhin": { x: 525, y: 155, rot: -85 }
+    };
     RIVERS.forEach(function(r) {
-      // Glow effect
-      rg.appendChild(svgEl("path", { d: r.path, fill: "none", stroke: "#00e5ff", "stroke-width": "6", "stroke-linecap": "round", "stroke-linejoin": "round", opacity: "0.25", "pointer-events": "none" }));
-      // Main river line
-      rg.appendChild(svgEl("path", { d: r.path, fill: "none", stroke: "#00e5ff", "stroke-width": "3", "stroke-linecap": "round", "stroke-linejoin": "round", opacity: "0.9", "pointer-events": "none" }));
-      // Label with background
-      var m = r.path.match(/[\d.]+/g);
-      if (m && m.length >= 4) {
-        var lx = parseFloat(m[Math.floor(m.length/2)]), ly = parseFloat(m[Math.floor(m.length/2)+1]) - 10;
-        // Text shadow
-        rg.appendChild(svgEl("text", { x: lx, y: ly, fill: "#00e5ff", "font-size": "11", "font-weight": "800", "text-anchor": "middle", "font-family": "sans-serif", "pointer-events": "none", "paint-order": "stroke", stroke: "#0a0e27", "stroke-width": "4" }, [document.createTextNode(r.name)]));
+      // Glow
+      rg.appendChild(svgEl("path", { d: r.path, fill: "none", stroke: "#00bcd4", "stroke-width": "8", "stroke-linecap": "round", "stroke-linejoin": "round", opacity: "0.2", "pointer-events": "none" }));
+      // Main line
+      rg.appendChild(svgEl("path", { d: r.path, fill: "none", stroke: "#00e5ff", "stroke-width": "3.5", "stroke-linecap": "round", "stroke-linejoin": "round", opacity: "0.9", "pointer-events": "none" }));
+      // Label — positioned manually, with background rect
+      var lbl = riverLabels[r.name];
+      if (lbl) {
+        var g = svgEl("g", { transform: "translate("+lbl.x+","+lbl.y+") rotate("+(lbl.rot||0)+")", "pointer-events": "none" });
+        g.appendChild(svgEl("rect", { x: "-30", y: "-9", width: String(r.name.length * 7 + 10), height: "16", rx: "4", fill: "rgba(0,229,255,0.2)", stroke: "rgba(0,229,255,0.4)", "stroke-width": "0.5" }));
+        g.appendChild(svgEl("text", { x: String(r.name.length * 3.5 - 25), y: "4", fill: "#00e5ff", "font-size": "10", "font-weight": "800", "text-anchor": "middle", "font-family": "system-ui, sans-serif" }, [document.createTextNode(r.name)]));
+        rg.appendChild(g);
       }
     });
     svg.appendChild(rg);
 
-    // Region labels — FULL names, big, with text outline for readability
+    // Region names — BIG, CLEAR, with dark background pill for readability
     var labelPositions = {
-      hdf:[305,85],ges:[465,145],nor:[170,148],idf:[297,190],bre:[78,200],pdl:[135,278],cvl:[255,255],bfc:[418,265],naq:[180,395],ara:[435,358],occ:[285,478],pac:[468,438],cor:[560,468]
+      hdf:[305,82],ges:[462,148],nor:[175,152],idf:[300,192],bre:[80,205],pdl:[140,280],cvl:[255,252],bfc:[415,262],naq:[178,398],ara:[432,352],occ:[282,478],pac:[465,442],cor:[555,472]
     };
-    // Full readable names (2 lines for long ones)
     var fullNames = {
-      hdf:"Hauts-de-France",ges:"Grand Est",nor:"Normandie",idf:"Ile-de-Fr.",bre:"Bretagne",pdl:"Pays de la Loire",cvl:"Centre-VdL",bfc:"Bourgogne-FC",naq:"Nouvelle-Aquitaine",ara:"Auvergne-RA",occ:"Occitanie",pac:"PACA",cor:"Corse"
+      hdf:"HAUTS-DE-FRANCE",ges:"GRAND EST",nor:"NORMANDIE",idf:"ÎLE-DE-FR.",bre:"BRETAGNE",pdl:"PAYS DE LA LOIRE",cvl:"CENTRE-VDL",bfc:"BOURGOGNE-FC",naq:"NOUVELLE-AQUIT.",ara:"AUVERGNE-RA",occ:"OCCITANIE",pac:"PACA",cor:"CORSE"
     };
     REGIONS.forEach(function(reg) {
       var pos = labelPositions[reg.id];
       if (!pos) return;
       var name = fullNames[reg.id] || reg.name;
-      svg.appendChild(svgEl("text", { x: pos[0], y: pos[1], fill: "#ffffff", "font-size": "13", "font-weight": "900", "text-anchor": "middle", "font-family": "system-ui, sans-serif", "pointer-events": "none", "paint-order": "stroke", stroke: "rgba(10,14,39,0.9)", "stroke-width": "4", "letter-spacing": "0.5" }, [document.createTextNode(name)]));
+      var fontSize = name.length > 14 ? "8" : name.length > 10 ? "9" : "11";
+      // Dark background pill
+      var textWidth = name.length * (parseFloat(fontSize) * 0.55);
+      var g = svgEl("g", { "pointer-events": "none" });
+      g.appendChild(svgEl("rect", { x: pos[0] - textWidth/2 - 4, y: pos[1] - parseFloat(fontSize) + 1, width: textWidth + 8, height: parseFloat(fontSize) + 6, rx: "4", fill: "rgba(6,11,26,0.75)" }));
+      g.appendChild(svgEl("text", { x: pos[0], y: pos[1] + 2, fill: "#ffffff", "font-size": fontSize, "font-weight": "900", "text-anchor": "middle", "font-family": "system-ui, sans-serif", "letter-spacing": "0.8" }, [document.createTextNode(name)]));
+      svg.appendChild(g);
     });
 
-    // Department numbers overlaid — small, subtle but readable
+    // Department numbers — BIGGER, with dark background circles for readability
     var deptPositions = {
-      "59":[310,62],"62":[270,70],"80":[285,97],"02":[340,105],"60":[300,120],
-      "76":[205,115],"27":[225,148],"14":[155,155],"50":[110,155],"61":[190,175],
-      "29":[45,200],"22":[90,185],"56":[70,225],"35":[120,215],
-      "53":[135,245],"72":[175,245],"44":[100,285],"49":[140,285],"85":[100,320],
-      "28":[250,205],"45":[285,225],"41":[255,240],"37":[225,270],"36":[255,285],"18":[290,290],
-      "75":[300,180],"77":[325,195],"78":[278,192],"91":[295,200],"92":[288,182],"93":[308,178],"94":[302,195],"95":[290,170],
-      "08":[400,100],"51":[385,130],"10":[370,160],"52":[400,175],"55":[420,115],"54":[445,135],"57":[465,110],"67":[500,125],"68":[500,165],"88":[465,170],
-      "89":[340,240],"21":[390,250],"58":[345,275],"71":[385,295],"39":[425,285],"25":[450,265],"70":[445,240],"90":[470,240],
-      "17":[115,355],"86":[170,330],"79":[140,330],"16":[155,370],"87":[195,355],"23":[225,350],"19":[230,385],"24":[185,400],"33":[130,415],"47":[170,430],"40":[130,460],"64":[140,490],"86":[170,330],
-      "15":[315,370],"63":[335,345],"03":[330,310],"42":[385,340],"69":[415,325],"01":[440,305],"74":[475,295],"73":[470,335],"38":[450,355],"07":[400,385],"26":[425,395],"43":[360,375],
-      "46":[235,415],"12":[290,420],"48":[330,415],"30":[355,440],"34":[320,475],"81":[270,450],"82":[250,440],"31":[225,480],"32":[205,465],"65":[195,505],"09":[230,515],"11":[300,505],"66":[270,530],
-      "04":[440,430],"05":[470,400],"06":[510,430],"84":[415,435],"13":[430,470],"83":[470,460],
-      "2A":[535,495],"2B":[545,465]
+      "59":[312,58],"62":[268,68],"80":[288,95],"02":[342,108],"60":[302,124],
+      "76":[208,118],"27":[228,150],"14":[158,158],"50":[112,158],"61":[192,178],
+      "29":[48,205],"22":[92,188],"56":[72,228],"35":[122,218],
+      "53":[138,248],"72":[178,248],"44":[102,288],"49":[142,288],"85":[102,322],
+      "28":[252,208],"45":[288,228],"41":[258,242],"37":[228,272],"36":[258,288],"18":[292,292],
+      "77":[325,198],"78":[278,195],
+      "08":[402,102],"51":[388,132],"10":[372,162],"52":[402,178],"55":[422,118],"54":[448,138],"57":[468,112],"67":[502,128],"68":[502,168],"88":[468,172],
+      "89":[342,242],"21":[392,252],"58":[348,278],"71":[388,298],"39":[428,288],"25":[452,268],"70":[448,242],"90":[472,242],
+      "17":[118,358],"86":[172,332],"79":[142,332],"16":[158,372],"87":[198,358],"23":[228,352],"19":[232,388],"24":[188,402],"33":[132,418],"47":[172,432],"40":[132,462],"64":[142,492],
+      "15":[318,372],"63":[338,348],"03":[332,312],"42":[388,342],"69":[418,328],"01":[442,308],"74":[478,298],"73":[472,338],"38":[452,358],"07":[402,388],"26":[428,398],"43":[362,378],
+      "46":[238,418],"12":[292,422],"48":[332,418],"30":[358,442],"34":[322,478],"81":[272,452],"82":[252,442],"31":[228,482],"32":[208,468],"65":[198,508],"09":[232,518],"11":[302,508],"66":[272,532],
+      "04":[442,432],"05":[472,402],"06":[512,432],"84":[418,438],"13":[432,472],"83":[472,462],
+      "2A":[538,498],"2B":[548,468]
     };
     Object.keys(deptPositions).forEach(function(code) {
       var pos = deptPositions[code];
-      svg.appendChild(svgEl("text", { x: pos[0], y: pos[1], fill: "rgba(255,255,255,0.55)", "font-size": "7", "font-weight": "700", "text-anchor": "middle", "font-family": "system-ui, sans-serif", "pointer-events": "none" }, [document.createTextNode(code)]));
+      var g = svgEl("g", { "pointer-events": "none" });
+      // Dark circle background
+      g.appendChild(svgEl("circle", { cx: pos[0], cy: pos[1] - 2, r: "8", fill: "rgba(6,11,26,0.7)" }));
+      g.appendChild(svgEl("text", { x: pos[0], y: pos[1] + 1.5, fill: "#ffffff", "font-size": "7.5", "font-weight": "800", "text-anchor": "middle", "font-family": "system-ui, sans-serif", opacity: "0.9" }, [document.createTextNode(code)]));
+      svg.appendChild(g);
     });
 
     // Tooltip
     var tt = svgEl("g", { id: "carte2-tooltip", style: "display:none;pointer-events:none" });
-    tt.appendChild(svgEl("rect", { id: "carte2-tt-bg", rx: "6", fill: "#1a1a2e", stroke: "#f0c040", "stroke-width": "2" }));
+    tt.appendChild(svgEl("rect", { id: "carte2-tt-bg", rx: "8", fill: "#1a1a2e", stroke: "#f0c040", "stroke-width": "2" }));
     tt.appendChild(svgEl("text", { id: "carte2-tt-text", fill: "#f0c040", "font-size": "16", "font-weight": "800", "font-family": "system-ui, sans-serif", "text-anchor": "middle" }));
     svg.appendChild(tt);
     wrap.appendChild(svg);
@@ -295,17 +315,16 @@
     s.id = "carte2-css";
     s.textContent = `
       .carte2-toolbar { display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap; }
-      .carte2-layout { display:flex; gap:20px; }
-      .carte2-map-col { flex:3; min-width:0; }
-      .carte2-info-col { flex:1; background:var(--bg-card,#141833); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:18px; overflow-y:auto; max-height:85vh; min-width:220px; }
-      .carte2-svg-wrap { background:#0a0e27; border:2px solid rgba(255,255,255,0.1); border-radius:14px; padding:12px; }
-      .carte2-svg-wrap svg { display:block; width:100%; }
+      .carte2-layout { display:flex; flex-direction:column; gap:16px; }
+      .carte2-map-col { width:100%; }
+      .carte2-info-col { background:var(--bg-card,#141833); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:18px; overflow-y:auto; max-height:400px; }
+      .carte2-svg-wrap { background:#060b1a; border:2px solid rgba(255,255,255,0.08); border-radius:14px; padding:16px; }
+      .carte2-svg-wrap svg { display:block; width:100%; min-height:500px; }
       .carte2-region { transition: opacity 0.15s, stroke-width 0.15s; }
       .carte2-quiz-bar { background:rgba(240,192,64,0.08); border:1px solid rgba(240,192,64,0.25); border-radius:12px; padding:14px 20px; margin-bottom:12px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; }
       .carte2-quiz-choices { display:flex; flex-direction:column; gap:10px; margin-top:12px; }
-      @media (max-width:700px) {
-        .carte2-layout { flex-direction:column; }
-        .carte2-info-col { max-height:300px; min-width:0; }
+      @media (min-width:900px) {
+        .carte2-svg-wrap svg { min-height:700px; }
       }
     `;
     document.head.appendChild(s);
