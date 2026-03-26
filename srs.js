@@ -10,6 +10,9 @@ const SRS = (function () {
     const data = getData(storageKey);
     return data[cardKey] || { ef: 2.5, interval: 0, reps: 0, next: 0 };
   }
+  function todayMidnight() {
+    const d = new Date(); d.setHours(0, 0, 0, 0); return d.getTime();
+  }
   function update(state, quality) {
     // quality: 1=again, 3=hard, 4=good, 5=easy
     const s = { ...state };
@@ -23,7 +26,9 @@ const SRS = (function () {
       s.interval = 0;
     }
     s.ef = Math.max(1.3, s.ef + (0.1 - (5 - quality) * (0.08 + (5 - quality) * 0.02)));
-    s.next = Date.now() + s.interval * 86400000;
+    // Schedule next review at midnight + interval days (not from exact time!)
+    // So cards reviewed at 11pm are due at midnight tomorrow, not 11pm tomorrow
+    s.next = todayMidnight() + s.interval * 86400000;
     return s;
   }
   function save(storageKey, cardKey, state) {
