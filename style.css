@@ -2219,3 +2219,108 @@ body {
   .schema-box-title { font-size: 14px; }
   .schema-box-facts span { font-size: 11px; }
 }
+
+/* ============ CARTE INTERACTIVE ============ */
+.carte-controls {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.carte-btn {
+  padding: 8px 18px;
+  border-radius: 25px;
+  border: 2px solid rgba(255,255,255,0.1);
+  background: transparent;
+  color: var(--text-dim);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+.carte-btn:hover { border-color: var(--accent); color: var(--text); }
+.carte-btn.active { background: var(--accent); color: #000; border-color: var(--accent); }
+
+.carte-quiz-bar {
+  background: rgba(240,192,64,0.08);
+  border: 1px solid rgba(240,192,64,0.25);
+  border-radius: var(--radius);
+  padding: 14px 20px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.carte-quiz-prompt { font-size: 17px; font-weight: 700; color: var(--accent); }
+.carte-quiz-score { font-size: 16px; font-weight: 800; color: var(--text); }
+
+.carte-container {
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius);
+  padding: 10px;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+.carte-container svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.carte-region {
+  transition: fill 0.15s, stroke-width 0.15s;
+}
+
+.carte-info {
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius);
+  padding: 20px;
+  min-height: 100px;
+}
+.carte-info-placeholder {
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 15px;
+  padding: 20px;
+}
+.carte-region-title {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+.carte-depts-count {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-bottom: 14px;
+}
+.carte-depts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.carte-dept-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: rgba(255,255,255,0.03);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+}
+.carte-dept-name { color: var(--text); font-weight: 600; }
+.carte-dept-chef { color: var(--accent); font-weight: 700; }
+
+.carte-feedback-correct {
+  text-align: center;
+  font-size: 18px;
+  color: var(--green);
+  padding: 20px;
+}
+.carte-feedback-wrong {
+  text-align: center;
+  font-size: 16px;
+  color: var(--red);
+  padding: 20px;
+  line-height: 1.5;
+}
