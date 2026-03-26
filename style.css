@@ -2071,3 +2071,151 @@ body {
   .quiz-result-big { font-size: 36px; }
   .fc-filter-btn { padding: 6px 14px; font-size: 13px; }
 }
+
+/* ============ SCHEMAS VISUELS ============ */
+.schemas-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.schema-diagram {
+  padding: 10px 0 40px;
+}
+.schema-title {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--accent);
+  text-align: center;
+  padding: 16px 0;
+  margin-bottom: 20px;
+  border-bottom: 2px solid rgba(240,192,64,0.3);
+}
+.schema-row {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+.schema-row-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.schema-row-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.schema-box {
+  background: var(--bg-card);
+  border: 2px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius);
+  padding: 18px;
+  text-align: center;
+}
+.schema-box-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.schema-box-detail {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+.schema-box-facts {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.schema-box-facts span {
+  font-size: 12px;
+  color: var(--accent);
+  background: rgba(240,192,64,0.08);
+  padding: 4px 10px;
+  border-radius: 20px;
+  display: inline-block;
+}
+/* Color accents per institution */
+.schema-president { border-color: #e74c3c; border-left: 5px solid #e74c3c; }
+.schema-pm { border-color: #3498db; border-left: 5px solid #3498db; }
+.schema-gouv { border-color: #2ecc71; border-left: 5px solid #2ecc71; }
+.schema-an { border-color: #3498db; border-left: 5px solid #3498db; }
+.schema-senat { border-color: #e74c3c; border-left: 5px solid #e74c3c; }
+.schema-cc { border-color: #9b59b6; border-left: 5px solid #9b59b6; }
+.schema-ce { border-color: #f39c12; border-left: 5px solid #f39c12; }
+.schema-eu1, .schema-eu2, .schema-eu3, .schema-eu4, .schema-eu5, .schema-eu6 {
+  border-color: #3498db; border-left: 5px solid #3498db;
+}
+.schema-onu1 { border-color: #2ecc71; border-left: 5px solid #2ecc71; }
+.schema-onu2 { border-color: #e74c3c; border-left: 5px solid #e74c3c; }
+.schema-onu3, .schema-onu4 { border-color: #9b59b6; border-left: 5px solid #9b59b6; }
+
+.schema-arrow {
+  text-align: center;
+  font-size: 20px;
+  color: var(--text-dim);
+  padding: 4px 0;
+  font-weight: 700;
+}
+.schema-separator {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--accent);
+  padding: 16px 0 8px;
+  margin: 12px 0;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  letter-spacing: 2px;
+}
+.schema-mini {
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-sm);
+  padding: 12px 8px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.4;
+}
+.schema-mini small {
+  font-weight: 400;
+  color: var(--text-dim);
+  font-size: 11px;
+}
+.schema-key {
+  margin-top: 24px;
+  background: rgba(240,192,64,0.05);
+  border: 1px solid rgba(240,192,64,0.2);
+  border-radius: var(--radius);
+  padding: 18px;
+}
+.schema-key-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.schema-key-items {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.schema-key-items span {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.5;
+  padding-left: 12px;
+  border-left: 3px solid var(--accent);
+}
+
+@media (max-width: 600px) {
+  .schema-row-split { grid-template-columns: 1fr; }
+  .schema-row-grid { grid-template-columns: repeat(2, 1fr); }
+  .schema-box { padding: 12px; }
+  .schema-box-title { font-size: 14px; }
+  .schema-box-facts span { font-size: 11px; }
+}
