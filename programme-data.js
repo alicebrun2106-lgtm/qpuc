@@ -631,5 +631,473 @@ const PROGRAMME_WEEKS = [
         ]
       }
     ]
+  },
+
+  // ======================================================================
+  // SEMAINE 2 — CULTURE G+ (Intermédiaire)
+  // ======================================================================
+  {
+    week: 2,
+    title: "Culture G+",
+    description: "Fun facts, anecdotes et détails insolites — le niveau 12 Coups de Midi",
+    days: [
+      // === JOUR 1 : GASTRONOMIE & TERROIR ===
+      {
+        day: 1, label: "Lundi", theme: "Gastronomie & Terroir", icon: "🧀",
+        objectif: "Fromages, plats régionaux, AOP, vins — la France dans l'assiette",
+        tasks: [
+          { id: "w2d1t0", type: "lecture", title: "Les fromages français en 10 min", subtitle: "Un tour de France gastronomique", url: "https://www.youtube.com/watch?v=RMuKbMVuxRY", duration: "12 min" },
+          { id: "w2d1t1", type: "fiche", title: "Fromages & Terroirs",
+            items: [
+              { fact: "Il existe plus de 1 200 variétés de fromages en France", detail: "46 ont une AOP. Le Comté est le fromage AOP le plus produit, devant le Roquefort." },
+              { fact: "Le Roquefort est affiné dans les caves naturelles de Roquefort-sur-Soulzon (Aveyron)", detail: "C'est un fromage au lait cru de brebis. La moisissure Penicillium roqueforti lui donne ses veines bleues." },
+              { fact: "Le Beaufort est surnommé 'le prince des Gruyères'", detail: "Fromage de Savoie au lait cru de vache, il est reconnaissable à son talon concave (creux)." },
+              { fact: "La truffe noire du Périgord s'appelle Tuber melanosporum", detail: "On la cherche avec un cochon ou un chien truffier. 1 kg peut coûter plus de 1 000 €." },
+              { fact: "Le cassoulet a 3 capitales : Castelnaudary, Toulouse et Carcassonne", detail: "Castelnaudary = le pur (pas de saucisse), Toulouse = avec saucisse, Carcassonne = avec perdrix." }
+            ],
+            flashcards: [
+              { q: "Combien de variétés de fromages existe-t-il en France ?", r: "Plus de 1 200" },
+              { q: "Combien ont une AOP ?", r: "46" },
+              { q: "Quel est le fromage AOP le plus produit en France ?", r: "Le Comté" },
+              { q: "Dans quel département est affiné le Roquefort ?", r: "L'Aveyron (Roquefort-sur-Soulzon)" },
+              { q: "Quel lait est utilisé pour le Roquefort ?", r: "Lait cru de brebis" },
+              { q: "Quelle moisissure donne ses veines bleues au Roquefort ?", r: "Penicillium roqueforti" },
+              { q: "Quel fromage est surnommé le prince des Gruyères ?", r: "Le Beaufort" },
+              { q: "De quelle région vient le Beaufort ?", r: "La Savoie" },
+              { q: "Quel est le nom scientifique de la truffe noire du Périgord ?", r: "Tuber melanosporum" },
+              { q: "Quelles sont les 3 capitales du cassoulet ?", r: "Castelnaudary, Toulouse, Carcassonne" },
+              { q: "Quelle ville fait le cassoulet 'pur' sans saucisse ?", r: "Castelnaudary" },
+              { q: "Avec quel animal cherche-t-on traditionnellement les truffes ?", r: "Un cochon (ou un chien truffier)" }
+            ]
+          },
+          { id: "w2d1t2", type: "quiz", title: "Quiz : Fromages & Terroirs",
+            questions: [
+              { q: "Quel fromage est affiné dans les caves de l'Aveyron ?", r: "Le Roquefort", choices: ["Le Comté", "Le Roquefort", "Le Beaufort", "Le Cantal"] },
+              { q: "Quel fromage est surnommé 'le prince des Gruyères' ?", r: "Le Beaufort", choices: ["L'Emmental", "Le Beaufort", "Le Gruyère suisse", "Le Comté"] },
+              { q: "Quelle est la capitale du cassoulet 'pur' ?", r: "Castelnaudary", choices: ["Toulouse", "Carcassonne", "Castelnaudary", "Albi"] },
+              { q: "Combien de fromages AOP en France ?", r: "46", choices: ["28", "46", "64", "102"] },
+              { q: "Quel lait pour le Roquefort ?", r: "Brebis", choices: ["Vache", "Chèvre", "Brebis", "Bufflonne"] },
+              { q: "Quel est le nom scientifique de la truffe noire ?", r: "Tuber melanosporum", choices: ["Tuber magnatum", "Tuber melanosporum", "Tuber aestivum", "Tuber brumale"] }
+            ]
+          },
+          { id: "w2d1t3", type: "fiche", title: "Vins & Cépages",
+            items: [
+              { fact: "Le Champagne ne peut venir QUE de la région Champagne", detail: "Sinon c'est un 'crémant' (Alsace, Bourgogne, Loire). Méthode identique mais appellation protégée." },
+              { fact: "Le cépage le plus planté au monde est le Cabernet Sauvignon", detail: "En France, c'est le Merlot qui domine. Le Pinot Noir est le roi de la Bourgogne." },
+              { fact: "Le Sauternes est un vin liquoreux obtenu grâce à la pourriture noble", detail: "Le champignon Botrytis cinerea concentre les sucres du raisin. Le Château d'Yquem est le plus célèbre." },
+              { fact: "Le rosé de Provence représente plus de 40% de la production française de rosé", detail: "Contrairement à une idée reçue, le rosé n'est PAS un mélange de rouge et de blanc (sauf le Champagne rosé)." },
+              { fact: "Un jéroboam contient 3 litres (4 bouteilles)", detail: "Magnum = 2 bouteilles, Mathusalem = 8, Nabuchodonosor = 20 bouteilles." }
+            ],
+            flashcards: [
+              { q: "Comment appelle-t-on un vin effervescent hors Champagne fait par la même méthode ?", r: "Un crémant" },
+              { q: "Quel est le cépage le plus planté au monde ?", r: "Le Cabernet Sauvignon" },
+              { q: "Quel cépage est le roi de la Bourgogne ?", r: "Le Pinot Noir" },
+              { q: "Comment s'appelle le champignon qui fait le Sauternes ?", r: "Botrytis cinerea (pourriture noble)" },
+              { q: "Quel est le plus célèbre Sauternes ?", r: "Château d'Yquem" },
+              { q: "Combien de bouteilles dans un jéroboam ?", r: "4 (3 litres)" },
+              { q: "Combien de bouteilles dans un Nabuchodonosor ?", r: "20" },
+              { q: "Combien de bouteilles dans un magnum ?", r: "2" },
+              { q: "Le rosé est-il un mélange de rouge et blanc ?", r: "Non (sauf le Champagne rosé)" },
+              { q: "Quelle région produit 40% du rosé français ?", r: "La Provence" },
+              { q: "Quel est le cépage le plus planté en France ?", r: "Le Merlot" },
+              { q: "Combien de bouteilles dans un Mathusalem ?", r: "8" }
+            ]
+          },
+          { id: "w2d1t4", type: "quiz", title: "Quiz : Vins",
+            questions: [
+              { q: "Combien de bouteilles dans un jéroboam ?", r: "4", choices: ["2", "3", "4", "6"] },
+              { q: "Quel champignon crée la pourriture noble du Sauternes ?", r: "Botrytis cinerea", choices: ["Penicillium", "Botrytis cinerea", "Aspergillus", "Saccharomyces"] },
+              { q: "Quel cépage domine en Bourgogne ?", r: "Pinot Noir", choices: ["Merlot", "Cabernet Sauvignon", "Pinot Noir", "Syrah"] },
+              { q: "Comment s'appelle un vin effervescent non-champenois ?", r: "Un crémant", choices: ["Un prosecco", "Un cava", "Un crémant", "Un mousseux"] },
+              { q: "Combien de bouteilles dans un Nabuchodonosor ?", r: "20", choices: ["12", "15", "20", "24"] },
+              { q: "Le rosé est un mélange rouge + blanc ?", r: "Non", choices: ["Oui, toujours", "Non", "Seulement en Provence", "Seulement en été"] }
+            ]
+          }
+        ]
+      },
+
+      // === JOUR 2 : CINÉMA & SÉRIES ===
+      {
+        day: 2, label: "Mardi", theme: "Cinéma & Séries", icon: "🎬",
+        objectif: "Répliques cultes, Oscars, réalisateurs, anecdotes de tournage",
+        tasks: [
+          { id: "w2d2t0", type: "lecture", title: "Les plus grands films de tous les temps", subtitle: "Top 10 des films les plus importants", url: "https://www.youtube.com/watch?v=EYqBN7Jz9uc", duration: "15 min" },
+          { id: "w2d2t1", type: "fiche", title: "Oscars & Records",
+            items: [
+              { fact: "Le film le plus oscarisé est Ben-Hur (1959), Titanic (1997) et Le Seigneur des Anneaux : Le Retour du Roi (2003) — 11 Oscars chacun", detail: "Walt Disney détient le record individuel avec 22 Oscars dans sa carrière." },
+              { fact: "Le plus jeune Oscar du meilleur acteur : Adrien Brody à 29 ans (Le Pianiste, 2003)", detail: "La plus jeune actrice oscarisée : Tatum O'Neal à 10 ans (Paper Moon, 1974)." },
+              { fact: "Hitchcock n'a jamais gagné l'Oscar du meilleur réalisateur", detail: "Il a été nommé 5 fois sans jamais gagner. Kubrick non plus (4 nominations, 0 victoire)." },
+              { fact: "Le premier film parlant : Le Chanteur de Jazz (1927)", detail: "Avant, les films étaient muets avec des cartons. Charlie Chaplin a résisté au parlant jusqu'en 1940 (Le Dictateur)." },
+              { fact: "Le film le plus cher de l'histoire : Pirates des Caraïbes 4 (~400 M$)", detail: "Titanic (1997) coûtait 200 M$ — un record à l'époque. Avatar (2009) a coûté 237 M$." }
+            ],
+            flashcards: [
+              { q: "Quels 3 films ont gagné 11 Oscars ?", r: "Ben-Hur, Titanic, Le Retour du Roi" },
+              { q: "Qui détient le record d'Oscars individuels ?", r: "Walt Disney (22 Oscars)" },
+              { q: "Qui est le plus jeune acteur oscarisé ?", r: "Adrien Brody (29 ans, Le Pianiste)" },
+              { q: "Qui est la plus jeune actrice oscarisée ?", r: "Tatum O'Neal (10 ans, Paper Moon)" },
+              { q: "Hitchcock a-t-il gagné l'Oscar du meilleur réalisateur ?", r: "Non, jamais (5 nominations)" },
+              { q: "Quel est le premier film parlant ?", r: "Le Chanteur de Jazz (1927)" },
+              { q: "Jusqu'à quel film Chaplin a-t-il résisté au parlant ?", r: "Le Dictateur (1940)" },
+              { q: "Quel est le film le plus cher de l'histoire ?", r: "Pirates des Caraïbes 4 (~400 M$)" },
+              { q: "Combien a coûté Titanic ?", r: "200 millions de dollars" },
+              { q: "Kubrick a-t-il gagné l'Oscar du meilleur réalisateur ?", r: "Non, jamais" }
+            ]
+          },
+          { id: "w2d2t2", type: "quiz", title: "Quiz : Oscars",
+            questions: [
+              { q: "Combien d'Oscars pour Titanic ?", r: "11", choices: ["7", "9", "11", "13"] },
+              { q: "Quel réalisateur culte n'a jamais eu l'Oscar ?", r: "Hitchcock", choices: ["Spielberg", "Hitchcock", "Scorsese", "Coppola"] },
+              { q: "Quel est le premier film parlant ?", r: "Le Chanteur de Jazz", choices: ["Metropolis", "Le Chanteur de Jazz", "Les Lumières de la ville", "Nosferatu"] },
+              { q: "Qui détient le record d'Oscars individuels ?", r: "Walt Disney", choices: ["Meryl Streep", "Walt Disney", "Jack Nicholson", "Katharine Hepburn"] },
+              { q: "Quel film a coûté ~400 M$ ?", r: "Pirates des Caraïbes 4", choices: ["Avatar", "Avengers Endgame", "Pirates des Caraïbes 4", "Titanic"] },
+              { q: "Qui est la plus jeune actrice oscarisée ?", r: "Tatum O'Neal", choices: ["Shirley Temple", "Anna Paquin", "Tatum O'Neal", "Jodie Foster"] }
+            ]
+          },
+          { id: "w2d2t3", type: "fiche", title: "Répliques cultes & Anecdotes",
+            items: [
+              { fact: "'Que la Force soit avec toi' — Star Wars (1977)", detail: "La phrase exacte de Dark Vador n'est PAS 'Luke, je suis ton père' mais 'Non, JE suis ton père'." },
+              { fact: "'Frankly, my dear, I don't give a damn' — Autant en emporte le vent (1939)", detail: "Élu meilleure réplique de l'histoire du cinéma par l'American Film Institute." },
+              { fact: "Dans Psychose (1960), le sang sous la douche est du sirop de chocolat", detail: "Le film étant en noir et blanc, Hitchcock a utilisé du sirop Hershey's qui rendait mieux à l'écran." },
+              { fact: "Le Parrain : Marlon Brando avait du coton dans les joues", detail: "Pour grossir ses bajoues et avoir l'air plus âgé. Il a refusé son Oscar en 1973 en signe de protestation." },
+              { fact: "Titanic : le dessin de Rose nue a été fait par James Cameron lui-même", detail: "Les mains qu'on voit dessiner dans le film sont celles du réalisateur, pas de DiCaprio." }
+            ],
+            flashcards: [
+              { q: "Quelle est la vraie réplique de Dark Vador (pas la version populaire) ?", r: "'Non, je suis ton père' (pas 'Luke, je suis ton père')" },
+              { q: "Quel film contient 'Frankly my dear I don't give a damn' ?", r: "Autant en emporte le vent (1939)" },
+              { q: "Quel liquide Hitchcock a utilisé comme sang dans Psychose ?", r: "Du sirop de chocolat Hershey's" },
+              { q: "Pourquoi Brando avait-il les joues gonflées dans Le Parrain ?", r: "Il avait du coton dans les joues" },
+              { q: "Pourquoi Brando a-t-il refusé son Oscar en 1973 ?", r: "En protestation (droits des Amérindiens)" },
+              { q: "Qui a vraiment dessiné le portrait de Rose dans Titanic ?", r: "James Cameron (le réalisateur)" },
+              { q: "Pourquoi le sirop de chocolat marchait comme faux sang dans Psychose ?", r: "Le film était en noir et blanc" },
+              { q: "De quel film vient 'Que la Force soit avec toi' ?", r: "Star Wars (1977)" }
+            ]
+          },
+          { id: "w2d2t4", type: "quiz", title: "Quiz : Répliques & Anecdotes",
+            questions: [
+              { q: "Quelle est la VRAIE réplique de Dark Vador ?", r: "'Non, je suis ton père'", choices: ["'Luke, je suis ton père'", "'Non, je suis ton père'", "'Je suis ton destin'", "'Rejoins le côté obscur'"] },
+              { q: "Qui a dessiné le portrait de Rose dans Titanic ?", r: "James Cameron", choices: ["Leonardo DiCaprio", "James Cameron", "Un artiste professionnel", "Kate Winslet"] },
+              { q: "Quel faux sang dans Psychose ?", r: "Sirop de chocolat", choices: ["Ketchup", "Peinture rouge", "Sirop de chocolat", "Jus de betterave"] },
+              { q: "Pourquoi Brando a refusé son Oscar ?", r: "Protestation pour les Amérindiens", choices: ["Il était malade", "Protestation pour les Amérindiens", "Il n'aimait pas le film", "Conflit avec le studio"] }
+            ]
+          }
+        ]
+      },
+
+      // === JOUR 3 : VRAIS NOMS & CÉLÉBRITÉS ===
+      {
+        day: 3, label: "Mercredi", theme: "Vrais noms & Show-biz", icon: "🌟",
+        objectif: "Les vrais noms que personne ne connaît, les couples, les anecdotes",
+        tasks: [
+          { id: "w2d3t0", type: "lecture", title: "Les vrais noms des stars", subtitle: "Tu ne devineras jamais leur vrai nom", url: "https://www.youtube.com/watch?v=2n_wJ8A-2gQ", duration: "10 min" },
+          { id: "w2d3t1", type: "fiche", title: "Vrais noms des célébrités",
+            items: [
+              { fact: "Voltaire s'appelait François-Marie Arouet", detail: "Voltaire est un anagramme approximatif de AROUET LJ (le jeune). Molière = Jean-Baptiste Poquelin." },
+              { fact: "Édith Piaf s'appelait Édith Giovanna Gassion", detail: "Surnommée 'la Môme Piaf' car un piaf = un moineau en argot. Elle mesurait 1m47." },
+              { fact: "Coluche s'appelait Michel Gérard Joseph Colucci", detail: "D'origine italienne, il s'est présenté à la présidentielle de 1981. Il a créé les Restos du Cœur." },
+              { fact: "Le Corbusier s'appelait Charles-Édouard Jeanneret", detail: "Architecte suisse naturalisé français. La Cité radieuse de Marseille est son œuvre la plus connue." },
+              { fact: "Mère Teresa s'appelait Anjezë Gonxhe Bojaxhiu", detail: "Née en Macédoine (Albanie ottomane), elle a reçu le prix Nobel de la paix en 1979." }
+            ],
+            flashcards: [
+              { q: "Quel est le vrai nom de Voltaire ?", r: "François-Marie Arouet" },
+              { q: "Quel est le vrai nom de Molière ?", r: "Jean-Baptiste Poquelin" },
+              { q: "Quel est le vrai nom d'Édith Piaf ?", r: "Édith Giovanna Gassion" },
+              { q: "Pourquoi le surnom 'Piaf' ?", r: "Un piaf = un moineau en argot" },
+              { q: "Combien mesurait Édith Piaf ?", r: "1m47" },
+              { q: "Quel est le vrai nom de Coluche ?", r: "Michel Colucci" },
+              { q: "Qui a créé les Restos du Cœur ?", r: "Coluche" },
+              { q: "Quel est le vrai nom de Le Corbusier ?", r: "Charles-Édouard Jeanneret" },
+              { q: "Quelle est l'œuvre la plus connue de Le Corbusier ?", r: "La Cité radieuse de Marseille" },
+              { q: "Quel est le vrai nom de Mère Teresa ?", r: "Anjezë Gonxhe Bojaxhiu" },
+              { q: "De quel pays était originaire Mère Teresa ?", r: "Macédoine (Albanie ottomane)" },
+              { q: "Quel prix a reçu Mère Teresa en 1979 ?", r: "Le prix Nobel de la paix" }
+            ]
+          },
+          { id: "w2d3t2", type: "quiz", title: "Quiz : Vrais noms",
+            questions: [
+              { q: "Quel est le vrai nom de Voltaire ?", r: "François-Marie Arouet", choices: ["Jean-Jacques Rousseau", "François-Marie Arouet", "Denis Diderot", "Charles de Montesquieu"] },
+              { q: "Qui a créé les Restos du Cœur ?", r: "Coluche", choices: ["l'Abbé Pierre", "Coluche", "Mère Teresa", "Sœur Emmanuelle"] },
+              { q: "Pourquoi Piaf s'appelle Piaf ?", r: "Un piaf = un moineau", choices: ["Son nom de famille", "Un piaf = un moineau", "Le nom de sa rue", "Son premier rôle"] },
+              { q: "De quel pays venait Mère Teresa ?", r: "Macédoine", choices: ["Inde", "Macédoine", "Albanie", "Italie"] },
+              { q: "Quel est le vrai nom du Corbusier ?", r: "Charles-Édouard Jeanneret", choices: ["Auguste Perret", "Charles-Édouard Jeanneret", "Hector Guimard", "Jean Prouvé"] },
+              { q: "Quel est le vrai nom de Molière ?", r: "Jean-Baptiste Poquelin", choices: ["Pierre Corneille", "Jean-Baptiste Poquelin", "Jean Racine", "François Rabelais"] }
+            ]
+          },
+          { id: "w2d3t3", type: "fiche", title: "Vrais noms modernes",
+            items: [
+              { fact: "Sting s'appelle Gordon Matthew Thomas Sumner", detail: "Surnommé Sting ('piqûre' en anglais) car il portait souvent un pull rayé jaune et noir." },
+              { fact: "Bono (U2) s'appelle Paul David Hewson", detail: "Bono vient de 'Bono Vox' (bonne voix en latin approximatif), nom d'un magasin d'appareils auditifs à Dublin." },
+              { fact: "Elton John s'appelle Reginald Kenneth Dwight", detail: "Il a pris le prénom du saxophoniste Elton Dean et le nom du chanteur Long John Baldry." },
+              { fact: "Whoopi Goldberg s'appelle Caryn Elaine Johnson", detail: "Le 'Goldberg' vient de sa conviction que 'Goldberg' sonne mieux pour Hollywood (origines juives fictives)." },
+              { fact: "Daft Punk : Thomas Bangalter et Guy-Manuel de Homem-Christo", detail: "Le nom vient d'une critique musicale qui qualifiait leur musique de 'daft punky trash'." }
+            ],
+            flashcards: [
+              { q: "Quel est le vrai nom de Sting ?", r: "Gordon Matthew Thomas Sumner" },
+              { q: "Pourquoi le surnom Sting ?", r: "Il portait un pull rayé jaune et noir (comme une guêpe)" },
+              { q: "Quel est le vrai nom de Bono ?", r: "Paul David Hewson" },
+              { q: "D'où vient le surnom Bono ?", r: "D'un magasin d'appareils auditifs à Dublin (Bono Vox)" },
+              { q: "Quel est le vrai nom d'Elton John ?", r: "Reginald Kenneth Dwight" },
+              { q: "D'où vient le nom 'Elton John' ?", r: "Elton Dean (saxophoniste) + Long John Baldry (chanteur)" },
+              { q: "Quel est le vrai nom de Whoopi Goldberg ?", r: "Caryn Elaine Johnson" },
+              { q: "Quels sont les vrais noms des Daft Punk ?", r: "Thomas Bangalter et Guy-Manuel de Homem-Christo" },
+              { q: "D'où vient le nom Daft Punk ?", r: "D'une critique qui qualifiait leur musique de 'daft punky trash'" }
+            ]
+          },
+          { id: "w2d3t4", type: "quiz", title: "Quiz : Vrais noms modernes",
+            questions: [
+              { q: "Quel est le vrai nom de Sting ?", r: "Gordon Sumner", choices: ["James Smith", "Gordon Sumner", "Michael King", "Robert Plant"] },
+              { q: "D'où vient le nom Daft Punk ?", r: "Une critique musicale", choices: ["Un jeu vidéo", "Une critique musicale", "Leur premier album", "Un film de SF"] },
+              { q: "Quel est le vrai nom d'Elton John ?", r: "Reginald Dwight", choices: ["Reginald Dwight", "Edward Smith", "William Jones", "Frederick Brown"] },
+              { q: "D'où vient le surnom Bono ?", r: "Un magasin d'appareils auditifs", choices: ["Un mot irlandais", "Un magasin d'appareils auditifs", "Son prof de musique", "Une chanson de U2"] }
+            ]
+          }
+        ]
+      },
+
+      // === JOUR 4 : INVENTIONS & SCIENCES ===
+      {
+        day: 4, label: "Jeudi", theme: "Inventions & Sciences étonnantes", icon: "💡",
+        objectif: "Qui a inventé quoi, quand, et les histoires folles derrière",
+        tasks: [
+          { id: "w2d4t0", type: "lecture", title: "Les inventions qui ont changé le monde", subtitle: "De la roue à Internet", url: "https://www.youtube.com/watch?v=Q9VKkwL0eGE", duration: "12 min" },
+          { id: "w2d4t1", type: "fiche", title: "Inventions françaises",
+            items: [
+              { fact: "Le cinématographe a été inventé par les frères Lumière (1895)", detail: "La première projection publique a eu lieu au Salon Indien du Grand Café, Paris, le 28 décembre 1895." },
+              { fact: "Le stéthoscope a été inventé par René Laennec (1816)", detail: "Il a roulé un cahier en tube pour écouter le cœur d'une patiente corpulente. L'idée est née de la pudeur !" },
+              { fact: "La pasteurisation a été inventée par Louis Pasteur", detail: "Il a aussi créé le vaccin contre la rage (1885). Premier vacciné : Joseph Meister, un berger de 9 ans." },
+              { fact: "Le Minitel a été lancé en France en 1982", detail: "3615 ULLA était le service le plus rentable. Le Minitel a précédé Internet de 10 ans." },
+              { fact: "La montgolfière : frères Montgolfier, 1783", detail: "Premier vol habité avec un mouton, un coq et un canard à Versailles devant Louis XVI." }
+            ],
+            flashcards: [
+              { q: "Qui a inventé le cinématographe ?", r: "Les frères Lumière (1895)" },
+              { q: "Où a eu lieu la première projection de cinéma ?", r: "Au Grand Café, Paris" },
+              { q: "Qui a inventé le stéthoscope ?", r: "René Laennec (1816)" },
+              { q: "Pourquoi Laennec a-t-il inventé le stéthoscope ?", r: "Par pudeur — il a roulé un cahier pour écouter le cœur d'une patiente" },
+              { q: "Qui a inventé la pasteurisation ?", r: "Louis Pasteur" },
+              { q: "Qui fut le premier vacciné contre la rage ?", r: "Joseph Meister, un berger de 9 ans" },
+              { q: "En quelle année le Minitel a-t-il été lancé ?", r: "1982" },
+              { q: "Quels animaux ont volé dans la première montgolfière ?", r: "Un mouton, un coq et un canard" },
+              { q: "Qui a inventé la montgolfière ?", r: "Les frères Montgolfier (1783)" },
+              { q: "Devant quel roi le premier vol en montgolfière a-t-il eu lieu ?", r: "Louis XVI (à Versailles)" },
+              { q: "Quel était le service Minitel le plus rentable ?", r: "3615 ULLA" }
+            ]
+          },
+          { id: "w2d4t2", type: "quiz", title: "Quiz : Inventions",
+            questions: [
+              { q: "Quels animaux ont volé dans la 1ère montgolfière ?", r: "Mouton, coq et canard", choices: ["Chat et chien", "Mouton, coq et canard", "Deux pigeons", "Un singe"] },
+              { q: "Qui a inventé le stéthoscope ?", r: "Laennec", choices: ["Pasteur", "Laennec", "Lavoisier", "Curie"] },
+              { q: "Qui fut le premier vacciné contre la rage ?", r: "Joseph Meister", choices: ["Louis Pasteur lui-même", "Joseph Meister", "Jenner", "Un chien"] },
+              { q: "Où a eu lieu la 1ère projection de cinéma ?", r: "Grand Café, Paris", choices: ["Hollywood", "Grand Café, Paris", "Lyon", "New York"] },
+              { q: "En quelle année le Minitel ?", r: "1982", choices: ["1978", "1982", "1986", "1990"] },
+              { q: "Qui a inventé la montgolfière ?", r: "Les frères Montgolfier", choices: ["Les frères Wright", "Les frères Montgolfier", "Les frères Lumière", "Les frères Grimm"] }
+            ]
+          },
+          { id: "w2d4t3", type: "fiche", title: "Sciences étonnantes",
+            items: [
+              { fact: "La foudre est 5 fois plus chaude que la surface du Soleil", detail: "Un éclair atteint 30 000°C. La surface du Soleil est à environ 5 500°C." },
+              { fact: "Une cuillère à café d'étoile à neutrons pèserait 6 milliards de tonnes", detail: "La densité est si extrême que la matière est compressée au niveau nucléaire." },
+              { fact: "L'ADN humain déroulé mesurerait 2 mètres par cellule", detail: "Mis bout à bout, l'ADN de toutes nos cellules couvrirait 600 fois la distance Terre-Soleil." },
+              { fact: "L'eau chaude gèle plus vite que l'eau froide", detail: "C'est l'effet Mpemba, observé depuis Aristote mais toujours pas totalement expliqué en 2024." },
+              { fact: "Les neurones du cerveau sont plus nombreux que les étoiles de la Voie Lactée", detail: "~86 milliards de neurones vs ~100 milliards d'étoiles. C'est à peu près équivalent." }
+            ],
+            flashcards: [
+              { q: "Quelle est la température d'un éclair ?", r: "30 000°C (5 fois la surface du Soleil)" },
+              { q: "Combien pèserait une cuillère d'étoile à neutrons ?", r: "6 milliards de tonnes" },
+              { q: "Quelle longueur d'ADN dans une seule cellule ?", r: "2 mètres" },
+              { q: "Comment s'appelle le phénomène : l'eau chaude gèle plus vite que la froide ?", r: "L'effet Mpemba" },
+              { q: "Combien de neurones dans le cerveau humain ?", r: "Environ 86 milliards" },
+              { q: "Quelle est la température à la surface du Soleil ?", r: "Environ 5 500°C" },
+              { q: "Qui a observé en premier l'effet Mpemba ?", r: "Aristote (puis Erasto Mpemba en 1963)" }
+            ]
+          },
+          { id: "w2d4t4", type: "quiz", title: "Quiz : Sciences",
+            questions: [
+              { q: "Température d'un éclair ?", r: "30 000°C", choices: ["5 500°C", "10 000°C", "30 000°C", "100 000°C"] },
+              { q: "Comment s'appelle l'effet eau chaude → gèle plus vite ?", r: "Effet Mpemba", choices: ["Effet Bernoulli", "Effet Mpemba", "Effet Joule", "Effet Venturi"] },
+              { q: "Combien de neurones dans le cerveau ?", r: "86 milliards", choices: ["10 milliards", "86 milliards", "200 milliards", "1 000 milliards"] },
+              { q: "Longueur d'ADN dans une cellule ?", r: "2 mètres", choices: ["2 cm", "2 mètres", "20 mètres", "200 mètres"] }
+            ]
+          }
+        ]
+      },
+
+      // === JOUR 5 : LANGUE FRANÇAISE ===
+      {
+        day: 5, label: "Vendredi", theme: "Langue & Étymologie", icon: "📖",
+        objectif: "Origines des mots, expressions, pièges de la langue française",
+        tasks: [
+          { id: "w2d5t0", type: "lecture", title: "L'étymologie des mots du quotidien", subtitle: "Pourquoi dit-on ça ?", url: "https://www.youtube.com/watch?v=U7xE1qWKPdE", duration: "10 min" },
+          { id: "w2d5t1", type: "fiche", title: "Étymologies surprenantes",
+            items: [
+              { fact: "Salaire vient du latin 'salarium' (ration de sel)", detail: "Les soldats romains étaient payés en partie en sel. D'où aussi 'pas un sou vaillant' (sel = valeur)." },
+              { fact: "Cravate vient de 'Croate'", detail: "Les cavaliers croates portaient un foulard noué autour du cou au XVIIe siècle, mode adoptée par Louis XIV." },
+              { fact: "Bikini vient de l'atoll de Bikini", detail: "Louis Réard a nommé son maillot d'après les essais nucléaires de 1946 à Bikini — l'effet devait être 'explosif'." },
+              { fact: "Algorithme vient de Al-Khwarizmi", detail: "Mathématicien perse du IXe siècle, père de l'algèbre (al-jabr = 'la remise en place')." },
+              { fact: "Vandale vient des Vandales, peuple germanique qui a saccagé Rome en 455", detail: "D'où 'vandalisme'. Barbare vient du grec barbaros = celui dont on ne comprend pas la langue." }
+            ],
+            flashcards: [
+              { q: "D'où vient le mot 'salaire' ?", r: "Du latin salarium (ration de sel)" },
+              { q: "Pourquoi les soldats romains recevaient du sel ?", r: "Le sel servait de paiement/monnaie" },
+              { q: "D'où vient le mot 'cravate' ?", r: "De 'Croate' (foulard des cavaliers croates)" },
+              { q: "Qui a popularisé la cravate en France ?", r: "Louis XIV" },
+              { q: "D'où vient le mot 'bikini' ?", r: "De l'atoll de Bikini (essais nucléaires de 1946)" },
+              { q: "Qui a inventé le bikini ?", r: "Louis Réard" },
+              { q: "D'où vient le mot 'algorithme' ?", r: "Du mathématicien perse Al-Khwarizmi" },
+              { q: "Que signifie 'al-jabr' (origine d'algèbre) ?", r: "La remise en place" },
+              { q: "De quel peuple vient le mot 'vandale' ?", r: "Les Vandales (peuple germanique)" },
+              { q: "Que signifie 'barbaros' en grec ?", r: "Celui dont on ne comprend pas la langue" }
+            ]
+          },
+          { id: "w2d5t2", type: "quiz", title: "Quiz : Étymologie",
+            questions: [
+              { q: "D'où vient 'salaire' ?", r: "Du sel (salarium)", choices: ["De 'salle'", "Du sel (salarium)", "De 'salut'", "De 'salaire minimum'"] },
+              { q: "D'où vient 'cravate' ?", r: "De 'Croate'", choices: ["De 'cravache'", "De 'Croate'", "D'un tissu", "D'un roi"] },
+              { q: "D'où vient 'algorithme' ?", r: "D'Al-Khwarizmi", choices: ["D'un mot grec", "D'Al-Khwarizmi", "D'Alan Turing", "D'un mot latin"] },
+              { q: "Qui a inventé le bikini ?", r: "Louis Réard", choices: ["Coco Chanel", "Louis Réard", "Christian Dior", "Jacques Heim"] },
+              { q: "Que veut dire 'barbaros' en grec ?", r: "Celui qu'on ne comprend pas", choices: ["Sauvage", "Cruel", "Celui qu'on ne comprend pas", "Étranger"] }
+            ]
+          },
+          { id: "w2d5t3", type: "fiche", title: "Expressions françaises",
+            items: [
+              { fact: "'Avoir le cafard' vient de Baudelaire (Les Fleurs du Mal)", detail: "Le cafard = la mélancolie. Baudelaire l'utilise dans son sens d'insecte sombre qui ronge de l'intérieur." },
+              { fact: "'Poser un lapin' vient du XIXe siècle", detail: "À l'origine, c'était ne pas payer une prostituée. Le 'lapin' = le prix non payé." },
+              { fact: "'Tomber dans les pommes' ne vient PAS des pommes", detail: "Probablement une déformation de 'tomber en pâmes' (pâmoison = évanouissement)." },
+              { fact: "'OK' viendrait de 'Oll Korrect'", detail: "Abréviation humoristique de 'All Correct' née dans les journaux américains vers 1839." },
+              { fact: "'Faire la grasse matinée' = matin 'gras' = temps gaspillé", detail: "Comme le 'Mardi gras' (jour où on mange gras avant le Carême), 'gras' = excès, abondance." }
+            ],
+            flashcards: [
+              { q: "D'où vient l'expression 'avoir le cafard' ?", r: "De Baudelaire (Les Fleurs du Mal)" },
+              { q: "Que signifiait 'poser un lapin' à l'origine ?", r: "Ne pas payer une prostituée" },
+              { q: "D'où vient vraiment 'tomber dans les pommes' ?", r: "De 'tomber en pâmes' (pâmoison = évanouissement)" },
+              { q: "D'où viendrait le mot 'OK' ?", r: "De 'Oll Korrect' (abréviation humoristique de 'All Correct')" },
+              { q: "Que signifie 'gras' dans 'grasse matinée' ?", r: "Temps gaspillé / excès (comme Mardi gras)" }
+            ]
+          },
+          { id: "w2d5t4", type: "quiz", title: "Quiz : Expressions",
+            questions: [
+              { q: "D'où vient 'avoir le cafard' ?", r: "De Baudelaire", choices: ["De Molière", "De Baudelaire", "De Victor Hugo", "De Voltaire"] },
+              { q: "'Tomber dans les pommes' vient de quoi ?", r: "Tomber en pâmes", choices: ["Les pommes de Newton", "Tomber en pâmes", "Un conte de fées", "Une recette de cuisine"] },
+              { q: "D'où viendrait 'OK' ?", r: "Oll Korrect", choices: ["Old Kingdom", "Oll Korrect", "Oklahoma", "Ohne Korrektur"] },
+              { q: "Que signifiait 'poser un lapin' à l'origine ?", r: "Ne pas payer", choices: ["Fuir un rendez-vous", "Ne pas payer", "Perdre un pari", "Mentir"] }
+            ]
+          }
+        ]
+      },
+
+      // === JOUR 6 : GÉO MONDE INSOLITE ===
+      {
+        day: 6, label: "Samedi", theme: "Géographie insolite", icon: "🌍",
+        objectif: "Surnoms de villes, records géographiques, frontières bizarres",
+        tasks: [
+          { id: "w2d6t0", type: "lecture", title: "Les frontières les plus bizarres du monde", subtitle: "Géographie absurde", url: "https://www.youtube.com/watch?v=x8bJQLSVjDE", duration: "12 min" },
+          { id: "w2d6t1", type: "fiche", title: "Surnoms de villes",
+            items: [
+              { fact: "Paris = la Ville Lumière", detail: "Pas pour l'éclairage public (bien que Paris fut pionnière) mais pour le siècle des Lumières et son rayonnement intellectuel." },
+              { fact: "New York = la Grosse Pomme (Big Apple)", detail: "Terme popularisé dans les années 1920 par un chroniqueur de courses hippiques, puis adopté par les jazzmen." },
+              { fact: "Rome = la Ville Éternelle (Città Eterna)", detail: "Surnom datant de l'Antiquité, attribué au poète Tibulle (Ier siècle av. J.-C.)." },
+              { fact: "Venise du Nord = Bruges (Belgique)", detail: "Mais aussi Amsterdam, Saint-Pétersbourg et Stockholm revendiquent ce surnom !" },
+              { fact: "Istanbul était Constantinople (puis Byzance avant)", detail: "Byzance → Constantinople (330, Constantin) → Istanbul (1930, Atatürk). Les 3 noms = la même ville." }
+            ],
+            flashcards: [
+              { q: "Quel est le surnom de Paris ?", r: "La Ville Lumière" },
+              { q: "Pourquoi Paris = Ville Lumière ?", r: "Pour le siècle des Lumières (rayonnement intellectuel)" },
+              { q: "Quel est le surnom de New York ?", r: "La Grosse Pomme (Big Apple)" },
+              { q: "D'où vient le surnom Big Apple ?", r: "Des chroniqueurs de courses hippiques des années 1920" },
+              { q: "Quel est le surnom de Rome ?", r: "La Ville Éternelle" },
+              { q: "Quelle ville belge est surnommée 'Venise du Nord' ?", r: "Bruges" },
+              { q: "Quels sont les 3 noms historiques d'Istanbul ?", r: "Byzance, Constantinople, Istanbul" },
+              { q: "Qui a renommé Constantinople en Istanbul ?", r: "Atatürk (1930)" },
+              { q: "Qui a fondé Constantinople ?", r: "Constantin (en 330)" }
+            ]
+          },
+          { id: "w2d6t2", type: "quiz", title: "Quiz : Surnoms de villes",
+            questions: [
+              { q: "Quelle ville est 'la Venise du Nord' ?", r: "Bruges", choices: ["Amsterdam", "Bruges", "Stockholm", "Copenhague"] },
+              { q: "Comment s'appelait Istanbul avant ?", r: "Constantinople", choices: ["Ankara", "Constantinople", "Alexandrie", "Smyrne"] },
+              { q: "Pourquoi Paris = Ville Lumière ?", r: "Le siècle des Lumières", choices: ["L'éclairage public", "Le siècle des Lumières", "La Tour Eiffel illuminée", "Les Champs-Élysées"] },
+              { q: "Quel est le surnom de New York ?", r: "Big Apple", choices: ["Big Apple", "Big City", "City of Dreams", "Empire City"] },
+              { q: "Quel poète a surnommé Rome 'Ville Éternelle' ?", r: "Tibulle", choices: ["Virgile", "Tibulle", "Ovide", "Horace"] }
+            ]
+          },
+          { id: "w2d6t3", type: "fiche", title: "Records & Curiosités géo",
+            items: [
+              { fact: "Le point le plus profond de la Terre : fosse des Mariannes (10 994 m)", detail: "Le Challenger Deep. Si on y mettait l'Everest (8 849 m), il resterait 2 km d'eau au-dessus." },
+              { fact: "Le pays le plus petit du monde : le Vatican (0,44 km²)", detail: "Suivi de Monaco (2 km²). Le Vatican a environ 800 habitants et sa propre armée (la Garde suisse)." },
+              { fact: "La frontière la plus longue du monde : Canada-États-Unis (8 891 km)", detail: "Non surveillée sur la majorité de son tracé. La 2e plus longue : Russie-Kazakhstan (7 644 km)." },
+              { fact: "Le Lesotho et le Vatican sont des enclaves complètes", detail: "Le Lesotho est entièrement entouré par l'Afrique du Sud. Le Vatican par l'Italie. San Marin aussi." },
+              { fact: "La Russie a 11 fuseaux horaires", detail: "Quand il est midi à Kaliningrad (ouest), il est 22h à Kamtchatka (est). Les USA en ont 6." }
+            ],
+            flashcards: [
+              { q: "Quel est le point le plus profond de la Terre ?", r: "La fosse des Mariannes (10 994 m)" },
+              { q: "Comment s'appelle le point précis le plus profond ?", r: "Le Challenger Deep" },
+              { q: "Quel est le plus petit pays du monde ?", r: "Le Vatican (0,44 km²)" },
+              { q: "Combien d'habitants au Vatican ?", r: "Environ 800" },
+              { q: "Quelle est la plus longue frontière du monde ?", r: "Canada-États-Unis (8 891 km)" },
+              { q: "Quel pays africain est une enclave complète ?", r: "Le Lesotho (entouré par l'Afrique du Sud)" },
+              { q: "Combien de fuseaux horaires en Russie ?", r: "11" },
+              { q: "Quelle est la 2e plus longue frontière du monde ?", r: "Russie-Kazakhstan (7 644 km)" },
+              { q: "Si on mettait l'Everest dans la fosse des Mariannes, que se passerait-il ?", r: "Il resterait ~2 km d'eau au-dessus" },
+              { q: "Quelle est l'armée du Vatican ?", r: "La Garde suisse" }
+            ]
+          },
+          { id: "w2d6t4", type: "quiz", title: "Quiz : Records géo",
+            questions: [
+              { q: "Point le plus profond de la Terre ?", r: "Fosse des Mariannes", choices: ["Fosse des Mariannes", "Fosse de Porto Rico", "Fosse du Japon", "Fosse des Tonga"] },
+              { q: "Plus petit pays du monde ?", r: "Vatican", choices: ["Monaco", "Vatican", "San Marin", "Liechtenstein"] },
+              { q: "Plus longue frontière du monde ?", r: "Canada-USA", choices: ["Russie-Chine", "Canada-USA", "Brésil-Argentine", "Inde-Chine"] },
+              { q: "Combien de fuseaux horaires en Russie ?", r: "11", choices: ["7", "9", "11", "13"] },
+              { q: "Quel pays africain est entouré par un seul autre pays ?", r: "Le Lesotho", choices: ["Le Swaziland", "Le Lesotho", "La Gambie", "Djibouti"] }
+            ]
+          }
+        ]
+      },
+
+      // === JOUR 7 : MIX SEMAINE 2 ===
+      {
+        day: 7, label: "Dimanche", theme: "Mix de révision S2", icon: "🏆",
+        objectif: "Test récapitulatif — tous les thèmes de la semaine",
+        tasks: [
+          { id: "w2d7t0", type: "quiz", title: "Quiz mix : Gastronomie & Vins",
+            questions: [
+              { q: "Combien de fromages AOP en France ?", r: "46", choices: ["28", "46", "64", "102"] },
+              { q: "Combien de bouteilles dans un Mathusalem ?", r: "8", choices: ["4", "6", "8", "12"] },
+              { q: "Quel fromage au lait de brebis est affiné dans l'Aveyron ?", r: "Le Roquefort", choices: ["Le Comté", "Le Roquefort", "Le Beaufort", "Le Cantal"] },
+              { q: "Quel champignon crée le Sauternes ?", r: "Botrytis cinerea", choices: ["Penicillium", "Botrytis cinerea", "Aspergillus", "Lactobacillus"] },
+              { q: "Quel cépage domine en Bourgogne ?", r: "Pinot Noir", choices: ["Merlot", "Pinot Noir", "Syrah", "Grenache"] },
+              { q: "Quel est le cassoulet avec perdrix ?", r: "Carcassonne", choices: ["Toulouse", "Castelnaudary", "Carcassonne", "Albi"] }
+            ]
+          },
+          { id: "w2d7t1", type: "quiz", title: "Quiz mix : Cinéma & Célébrités",
+            questions: [
+              { q: "Combien d'Oscars pour Titanic ?", r: "11", choices: ["8", "10", "11", "13"] },
+              { q: "Vrai nom de Coluche ?", r: "Michel Colucci", choices: ["Michel Blanc", "Michel Colucci", "Michel Sardou", "Michel Boujenah"] },
+              { q: "Qui a dessiné Rose dans Titanic ?", r: "James Cameron", choices: ["DiCaprio", "James Cameron", "Un artiste", "Kate Winslet"] },
+              { q: "Vrai nom de Sting ?", r: "Gordon Sumner", choices: ["Gordon Sumner", "Paul Hewson", "Reginald Dwight", "Eric Clapton"] },
+              { q: "Quel faux sang dans Psychose ?", r: "Sirop de chocolat", choices: ["Ketchup", "Sirop de chocolat", "Peinture", "Jus de tomate"] },
+              { q: "Vrai nom d'Elton John ?", r: "Reginald Dwight", choices: ["Reginald Dwight", "Gordon Sumner", "Paul McCartney", "Farrokh Bulsara"] }
+            ]
+          },
+          { id: "w2d7t2", type: "quiz", title: "Quiz mix : Sciences & Langue",
+            questions: [
+              { q: "Température d'un éclair ?", r: "30 000°C", choices: ["5 500°C", "15 000°C", "30 000°C", "100 000°C"] },
+              { q: "D'où vient le mot 'salaire' ?", r: "Du sel", choices: ["De 'salle'", "Du sel", "De 'salut'", "D'un roi"] },
+              { q: "Quels animaux dans la 1ère montgolfière ?", r: "Mouton, coq, canard", choices: ["Chat, chien", "Mouton, coq, canard", "Deux pigeons", "Un singe"] },
+              { q: "D'où vient l'expression 'avoir le cafard' ?", r: "Baudelaire", choices: ["Molière", "Baudelaire", "Hugo", "Zola"] },
+              { q: "Comment s'appelle l'effet eau chaude gèle plus vite ?", r: "Effet Mpemba", choices: ["Effet Doppler", "Effet Mpemba", "Effet Joule", "Effet papillon"] },
+              { q: "D'où vient le mot 'algorithme' ?", r: "Al-Khwarizmi", choices: ["Archimède", "Al-Khwarizmi", "Euclide", "Fibonacci"] }
+            ]
+          },
+          { id: "w2d7t3", type: "quiz", title: "Quiz mix : Géographie",
+            questions: [
+              { q: "Quel est le plus petit pays du monde ?", r: "Le Vatican", choices: ["Monaco", "Le Vatican", "San Marin", "Nauru"] },
+              { q: "Quelle ville est la 'Venise du Nord' ?", r: "Bruges", choices: ["Amsterdam", "Bruges", "Stockholm", "Helsinki"] },
+              { q: "Plus longue frontière du monde ?", r: "Canada-USA", choices: ["Russie-Chine", "Canada-USA", "Brésil-Argentine", "Russie-Kazakhstan"] },
+              { q: "Comment s'appelait Istanbul avant ?", r: "Constantinople", choices: ["Ankara", "Constantinople", "Athènes", "Smyrne"] },
+              { q: "Combien de fuseaux horaires en Russie ?", r: "11", choices: ["6", "9", "11", "14"] },
+              { q: "Point le plus profond de la Terre ?", r: "Fosse des Mariannes", choices: ["Fosse de Porto Rico", "Fosse des Mariannes", "Fosse du Japon", "Grand Canyon"] }
+            ]
+          }
+        ]
+      }
+    ]
   }
 ];
