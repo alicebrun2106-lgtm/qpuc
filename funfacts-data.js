@@ -1434,7 +1434,6 @@ const FUNFACTS_PACKS = [
     name: "Fleuves du monde",
     icon: "🌊",
     description: "Les grands fleuves, où ils coulent, où ils se jettent",
-    reversible: true,
     difficulty: "debutant",
     cards: [
       {front: "Quel est le plus long fleuve du monde ?", back: "Le Nil (6 695 km) — traverse 10 pays d'Afrique"},
@@ -1547,7 +1546,6 @@ const FUNFACTS_PACKS = [
     id: "fleuves-france",
     name: "Fleuves & rivières de France",
     icon: "🏞️",
-    reversible: true,
     description: "Loire, Seine, Rhône, Garonne, Rhin et affluents",
     difficulty: "debutant",
     cards: [
@@ -1887,7 +1885,6 @@ const FUNFACTS_PACKS = [
     icon: "🌍",
     description: "Continents, océans, pays, montagnes et fleuves essentiels",
     difficulty: "debutant",
-    reversible: true,
     cards: [
       {front: "Combien y a-t-il de continents ?", back: "7 (Europe, Asie, Afrique, Amérique du Nord, Amérique du Sud, Océanie, Antarctique)"},
       {front: "Combien y a-t-il d'océans ?", back: "5 (Pacifique, Atlantique, Indien, Arctique, Austral/Antarctique)", memo: "PAAIA — Pacifique Atlantique Austral Indien Arctique"},
