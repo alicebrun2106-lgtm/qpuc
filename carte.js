@@ -18,198 +18,380 @@
   function svgEl(tag, attrs, children) {
     var e = document.createElementNS("http://www.w3.org/2000/svg", tag);
     if (attrs) Object.keys(attrs).forEach(function(k) { e.setAttribute(k, attrs[k]); });
-    if (children) children.forEach(function(c) { if (c) e.appendChild(c); });
+    if (children) children.forEach(function(c) { e.appendChild(c); });
     return e;
   }
+  function shuffle(a) { for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;} return a; }
 
-  var selectedRegion = null;
-  var quizMode = null; // null | "regions" | "chefs"
-  var quizQueue = [], quizIndex = 0, quizScore = 0;
-  var showRivers = false;
+  var selectedRegion = null, quizMode = null, quizScore = 0, quizIndex = 0, quizQueue = [];
+  var showRivers = true, showDepts = true;
+  var zoomLevel = 1, panX = 0, panY = 0, isPanning = false, panStartX = 0, panStartY = 0;
 
-  // ── Build Screen ──
-  window.initCarte = function() {
-    var screen = document.getElementById("screen-carte");
-    if (!screen) {
-      screen = document.createElement("div");
-      screen.id = "screen-carte";
-      screen.className = "screen";
-      document.getElementById("app").appendChild(screen);
-    }
-    quizMode = null;
-    selectedRegion = null;
-    screen.innerHTML = `
-      <div class="game-header">
-        <button class="btn-back" onclick="goHome()">← Retour</button>
-        <h2>🗺️ Carte de France</h2>
-        <div></div>
-      </div>
-      <div class="carte2-toolbar" id="carte2-toolbar">
-        <button class="carte-btn" onclick="toggleRivers()" id="btn-rivers">🌊 Fleuves</button>
-        <button class="carte-btn" onclick="startCarteQuiz('regions')">🎯 Quiz Régions</button>
-        <button class="carte-btn" onclick="startCarteQuiz('chefs')">🏠 Quiz Chef-lieux</button>
-      </div>
-      <div class="carte2-quiz-bar" id="carte2-quiz-bar" style="display:none"></div>
-      <div class="carte2-layout">
-        <div class="carte2-map-col">
-          <div class="carte2-svg-wrap" id="carte2-svg-wrap"></div>
-        </div>
-        <div class="carte2-info-col" id="carte2-info">
-          <div class="carte-info-placeholder">👆 Clique sur une région</div>
-        </div>
-      </div>
-      <div class="carte2-quiz-choices" id="carte2-quiz-choices" style="display:none"></div>
-    `;
-    buildSVG();
-    injectStyles();
-    showScreen("carte");
+  // Department data with NAMES (not just numbers)
+  var DEPT_DATA = {
+    "01":{"name":"Ain","pos":[442,308],"chef":"Bourg-en-Bresse"},
+    "02":{"name":"Aisne","pos":[342,108],"chef":"Laon"},
+    "03":{"name":"Allier","pos":[332,312],"chef":"Moulins"},
+    "04":{"name":"Alpes-de-Hte-Prov.","pos":[442,432],"chef":"Digne"},
+    "05":{"name":"Hautes-Alpes","pos":[472,402],"chef":"Gap"},
+    "06":{"name":"Alpes-Maritimes","pos":[512,432],"chef":"Nice"},
+    "07":{"name":"Ardèche","pos":[402,388],"chef":"Privas"},
+    "08":{"name":"Ardennes","pos":[402,102],"chef":"Charleville-Méz."},
+    "09":{"name":"Ariège","pos":[232,518],"chef":"Foix"},
+    "10":{"name":"Aube","pos":[372,162],"chef":"Troyes"},
+    "11":{"name":"Aude","pos":[302,508],"chef":"Carcassonne"},
+    "12":{"name":"Aveyron","pos":[292,422],"chef":"Rodez"},
+    "13":{"name":"Bouches-du-Rhône","pos":[432,472],"chef":"Marseille"},
+    "14":{"name":"Calvados","pos":[158,158],"chef":"Caen"},
+    "15":{"name":"Cantal","pos":[318,372],"chef":"Aurillac"},
+    "16":{"name":"Charente","pos":[158,372],"chef":"Angoulême"},
+    "17":{"name":"Charente-Maritime","pos":[118,358],"chef":"La Rochelle"},
+    "18":{"name":"Cher","pos":[292,292],"chef":"Bourges"},
+    "19":{"name":"Corrèze","pos":[232,388],"chef":"Tulle"},
+    "21":{"name":"Côte-d'Or","pos":[392,252],"chef":"Dijon"},
+    "22":{"name":"Côtes-d'Armor","pos":[92,188],"chef":"Saint-Brieuc"},
+    "23":{"name":"Creuse","pos":[228,352],"chef":"Guéret"},
+    "24":{"name":"Dordogne","pos":[188,402],"chef":"Périgueux"},
+    "25":{"name":"Doubs","pos":[452,268],"chef":"Besançon"},
+    "26":{"name":"Drôme","pos":[428,398],"chef":"Valence"},
+    "27":{"name":"Eure","pos":[228,150],"chef":"Évreux"},
+    "28":{"name":"Eure-et-Loir","pos":[252,208],"chef":"Chartres"},
+    "29":{"name":"Finistère","pos":[48,205],"chef":"Quimper"},
+    "30":{"name":"Gard","pos":[358,442],"chef":"Nîmes"},
+    "31":{"name":"Haute-Garonne","pos":[228,482],"chef":"Toulouse"},
+    "32":{"name":"Gers","pos":[208,468],"chef":"Auch"},
+    "33":{"name":"Gironde","pos":[132,418],"chef":"Bordeaux"},
+    "34":{"name":"Hérault","pos":[322,478],"chef":"Montpellier"},
+    "35":{"name":"Ille-et-Vilaine","pos":[122,218],"chef":"Rennes"},
+    "36":{"name":"Indre","pos":[258,288],"chef":"Châteauroux"},
+    "37":{"name":"Indre-et-Loire","pos":[228,272],"chef":"Tours"},
+    "38":{"name":"Isère","pos":[452,358],"chef":"Grenoble"},
+    "39":{"name":"Jura","pos":[428,288],"chef":"Lons-le-Saunier"},
+    "40":{"name":"Landes","pos":[132,462],"chef":"Mont-de-Marsan"},
+    "41":{"name":"Loir-et-Cher","pos":[258,242],"chef":"Blois"},
+    "42":{"name":"Loire","pos":[388,342],"chef":"Saint-Étienne"},
+    "43":{"name":"Haute-Loire","pos":[362,378],"chef":"Le Puy-en-Velay"},
+    "44":{"name":"Loire-Atlantique","pos":[102,288],"chef":"Nantes"},
+    "45":{"name":"Loiret","pos":[288,228],"chef":"Orléans"},
+    "46":{"name":"Lot","pos":[238,418],"chef":"Cahors"},
+    "47":{"name":"Lot-et-Garonne","pos":[172,432],"chef":"Agen"},
+    "48":{"name":"Lozère","pos":[332,418],"chef":"Mende"},
+    "49":{"name":"Maine-et-Loire","pos":[142,288],"chef":"Angers"},
+    "50":{"name":"Manche","pos":[112,158],"chef":"Saint-Lô"},
+    "51":{"name":"Marne","pos":[388,132],"chef":"Châlons-en-Ch."},
+    "52":{"name":"Haute-Marne","pos":[402,178],"chef":"Chaumont"},
+    "53":{"name":"Mayenne","pos":[138,248],"chef":"Laval"},
+    "54":{"name":"Meurthe-et-Moselle","pos":[448,138],"chef":"Nancy"},
+    "55":{"name":"Meuse","pos":[422,118],"chef":"Bar-le-Duc"},
+    "56":{"name":"Morbihan","pos":[72,228],"chef":"Vannes"},
+    "57":{"name":"Moselle","pos":[468,112],"chef":"Metz"},
+    "58":{"name":"Nièvre","pos":[348,278],"chef":"Nevers"},
+    "59":{"name":"Nord","pos":[312,58],"chef":"Lille"},
+    "60":{"name":"Oise","pos":[302,124],"chef":"Beauvais"},
+    "61":{"name":"Orne","pos":[192,178],"chef":"Alençon"},
+    "62":{"name":"Pas-de-Calais","pos":[268,68],"chef":"Arras"},
+    "63":{"name":"Puy-de-Dôme","pos":[338,348],"chef":"Clermont-Ferrand"},
+    "64":{"name":"Pyrénées-Atl.","pos":[142,492],"chef":"Pau"},
+    "65":{"name":"Hautes-Pyrénées","pos":[198,508],"chef":"Tarbes"},
+    "66":{"name":"Pyrénées-Or.","pos":[272,532],"chef":"Perpignan"},
+    "67":{"name":"Bas-Rhin","pos":[502,128],"chef":"Strasbourg"},
+    "68":{"name":"Haut-Rhin","pos":[502,168],"chef":"Colmar"},
+    "69":{"name":"Rhône","pos":[418,328],"chef":"Lyon"},
+    "70":{"name":"Haute-Saône","pos":[448,242],"chef":"Vesoul"},
+    "71":{"name":"Saône-et-Loire","pos":[388,298],"chef":"Mâcon"},
+    "72":{"name":"Sarthe","pos":[178,248],"chef":"Le Mans"},
+    "73":{"name":"Savoie","pos":[472,338],"chef":"Chambéry"},
+    "74":{"name":"Haute-Savoie","pos":[478,298],"chef":"Annecy"},
+    "75":{"name":"Paris","pos":[304,178],"chef":"Paris"},
+    "76":{"name":"Seine-Maritime","pos":[208,118],"chef":"Rouen"},
+    "77":{"name":"Seine-et-Marne","pos":[325,198],"chef":"Melun"},
+    "78":{"name":"Yvelines","pos":[278,195],"chef":"Versailles"},
+    "79":{"name":"Deux-Sèvres","pos":[142,332],"chef":"Niort"},
+    "80":{"name":"Somme","pos":[288,95],"chef":"Amiens"},
+    "81":{"name":"Tarn","pos":[272,452],"chef":"Albi"},
+    "82":{"name":"Tarn-et-Garonne","pos":[252,442],"chef":"Montauban"},
+    "83":{"name":"Var","pos":[472,462],"chef":"Toulon"},
+    "84":{"name":"Vaucluse","pos":[418,438],"chef":"Avignon"},
+    "85":{"name":"Vendée","pos":[102,322],"chef":"La Roche-sur-Yon"},
+    "86":{"name":"Vienne","pos":[172,332],"chef":"Poitiers"},
+    "87":{"name":"Haute-Vienne","pos":[198,358],"chef":"Limoges"},
+    "88":{"name":"Vosges","pos":[468,172],"chef":"Épinal"},
+    "89":{"name":"Yonne","pos":[342,242],"chef":"Auxerre"},
+    "90":{"name":"Terr. de Belfort","pos":[472,242],"chef":"Belfort"},
+    "91":{"name":"Essonne","pos":[295,208],"chef":"Évry"},
+    "92":{"name":"Hauts-de-Seine","pos":[289,188],"chef":"Nanterre"},
+    "93":{"name":"Seine-St-Denis","pos":[312,183],"chef":"Bobigny"},
+    "94":{"name":"Val-de-Marne","pos":[310,198],"chef":"Créteil"},
+    "95":{"name":"Val-d'Oise","pos":[298,168],"chef":"Pontoise"},
+    "2A":{"name":"Corse-du-Sud","pos":[538,498],"chef":"Ajaccio"},
+    "2B":{"name":"Haute-Corse","pos":[548,468],"chef":"Bastia"}
   };
 
+  // Region label positions (carefully placed to avoid overlap)
+  var REGION_LABELS = {
+    "ara":    { pos:[410,355], name:"AUVERGNE-\nRHÔNE-ALPES", size:9 },
+    "bfc":    { pos:[410,270], name:"BOURGOGNE-\nFRANCHE-COMTÉ", size:8 },
+    "bre":    { pos:[80,210], name:"BRETAGNE", size:10 },
+    "cvl":    { pos:[255,260], name:"CENTRE-\nVAL DE LOIRE", size:8.5 },
+    "cor":    { pos:[545,482], name:"CORSE", size:9 },
+    "ge":     { pos:[460,148], name:"GRAND EST", size:10 },
+    "hdf":    { pos:[305,85], name:"HAUTS-DE-\nFRANCE", size:9 },
+    "idf":    { pos:[305,190], name:"ÎLE-DE-\nFRANCE", size:7 },
+    "nor":    { pos:[172,148], name:"NORMANDIE", size:10 },
+    "naq":    { pos:[185,395], name:"NOUVELLE-\nAQUITAINE", size:9 },
+    "occ":    { pos:[285,475], name:"OCCITANIE", size:10 },
+    "pdl":    { pos:[120,280], name:"PAYS DE\nLA LOIRE", size:8.5 },
+    "pac":    { pos:[460,448], name:"PROVENCE-ALPES-\nCÔTE D'AZUR", size:7.5 }
+  };
+
+  // ── Build SVG ──
   function buildSVG() {
     var wrap = document.getElementById("carte2-svg-wrap");
-    // BIGGER viewBox with padding for labels outside regions
-    var svg = svgEl("svg", { viewBox: "-20 -20 660 640", width: "100%", height: "100%", preserveAspectRatio: "xMidYMid meet" });
+    if (!wrap) return;
+    wrap.innerHTML = "";
+
+    var svg = svgEl("svg", { viewBox: SVG_VIEWBOX, preserveAspectRatio: "xMidYMid meet", id: "carte2-svg" });
 
     // Background
-    svg.appendChild(svgEl("rect", { x:"-20",y:"-20",width:"680",height:"660",fill:"#060b1a",rx:"8" }));
+    svg.appendChild(svgEl("rect", { x:"0", y:"-10", width:"620", height:"610", fill:"#060b1a" }));
 
-    // Regions — brighter colors, thicker borders
-    REGIONS.forEach(function(reg) {
-      var p = svgEl("path", {
-        d: reg.path, fill: reg.color, stroke: "#ffffff", "stroke-width": "1.2",
-        "data-id": reg.id, class: "carte2-region", cursor: "pointer", opacity: "0.85"
+    // Region paths
+    REGIONS.forEach(function(r) {
+      var path = svgEl("path", {
+        d: r.path, fill: r.color, opacity: "0.82", stroke: "#ffffff", "stroke-width": "1.8",
+        "data-id": r.id, class: "carte2-region", cursor: "pointer"
       });
-      p.addEventListener("mouseenter", function() { p.setAttribute("opacity","1"); p.setAttribute("stroke","#f0c040"); p.setAttribute("stroke-width","3"); showTooltip(reg.name, p); });
-      p.addEventListener("mouseleave", function() { if (selectedRegion !== reg.id) { p.setAttribute("opacity","0.85"); p.setAttribute("stroke","#ffffff"); p.setAttribute("stroke-width","1.2"); } hideTooltip(); });
-      p.addEventListener("click", function() { handleRegionClick(reg); });
-      svg.appendChild(p);
+      path.onmouseenter = function() { if (!quizMode) { this.setAttribute("opacity","1"); this.setAttribute("stroke-width","3"); showTooltip(r.name, this); } };
+      path.onmouseleave = function() { if (!quizMode && selectedRegion !== r.id) { this.setAttribute("opacity","0.82"); this.setAttribute("stroke-width","1.8"); } hideTooltip(); };
+      path.onclick = function() { handleRegionClick(r); };
+      svg.appendChild(path);
     });
 
-    // Region names — BIG, CLEAR, with dark background pill for readability
-    var labelPositions = {
-      hdf:[305,82],ges:[462,148],nor:[175,152],idf:[300,192],bre:[80,205],pdl:[140,280],cvl:[255,252],bfc:[415,262],naq:[178,398],ara:[432,352],occ:[282,478],pac:[465,442],cor:[555,472]
-    };
-    var fullNames = {
-      hdf:"HAUTS-DE-FRANCE",ges:"GRAND EST",nor:"NORMANDIE",idf:"ÎLE-DE-FR.",bre:"BRETAGNE",pdl:"PAYS DE LA LOIRE",cvl:"CENTRE-VDL",bfc:"BOURGOGNE-FC",naq:"NOUVELLE-AQUIT.",ara:"AUVERGNE-RA",occ:"OCCITANIE",pac:"PACA",cor:"CORSE"
-    };
-    REGIONS.forEach(function(reg) {
-      var pos = labelPositions[reg.id];
-      if (!pos) return;
-      var name = fullNames[reg.id] || reg.name;
-      var fontSize = name.length > 14 ? "8" : name.length > 10 ? "9" : "11";
-      // Dark background pill
-      var textWidth = name.length * (parseFloat(fontSize) * 0.55);
+    // Region labels — multiline, BIG
+    Object.keys(REGION_LABELS).forEach(function(id) {
+      var lbl = REGION_LABELS[id];
+      var lines = lbl.name.split("\n");
       var g = svgEl("g", { "pointer-events": "none" });
-      g.appendChild(svgEl("rect", { x: pos[0] - textWidth/2 - 4, y: pos[1] - parseFloat(fontSize) + 1, width: textWidth + 8, height: parseFloat(fontSize) + 6, rx: "4", fill: "rgba(6,11,26,0.75)" }));
-      g.appendChild(svgEl("text", { x: pos[0], y: pos[1] + 2, fill: "#ffffff", "font-size": fontSize, "font-weight": "900", "text-anchor": "middle", "font-family": "system-ui, sans-serif", "letter-spacing": "0.8" }, [document.createTextNode(name)]));
+      var lineH = lbl.size + 3;
+      var startY = lbl.pos[1] - ((lines.length - 1) * lineH) / 2;
+
+      // Background pill
+      var maxW = 0;
+      lines.forEach(function(l) { var w = l.length * lbl.size * 0.58; if (w > maxW) maxW = w; });
+      var totalH = lines.length * lineH + 6;
+      g.appendChild(svgEl("rect", {
+        x: String(lbl.pos[0] - maxW/2 - 6), y: String(startY - lbl.size - 2),
+        width: String(maxW + 12), height: String(totalH),
+        rx: "5", fill: "rgba(6,11,26,0.82)", stroke: "rgba(255,255,255,0.15)", "stroke-width": "0.5"
+      }));
+
+      lines.forEach(function(line, i) {
+        g.appendChild(svgEl("text", {
+          x: String(lbl.pos[0]), y: String(startY + i * lineH),
+          fill: "#ffffff", "font-size": String(lbl.size), "font-weight": "900",
+          "text-anchor": "middle", "font-family": "system-ui, sans-serif",
+          "letter-spacing": "0.6"
+        }, [document.createTextNode(line)]));
+      });
       svg.appendChild(g);
     });
 
-    // Department numbers — BIGGER, with dark background circles for readability
-    var deptPositions = {
-      "59":[312,58],"62":[268,68],"80":[288,95],"02":[342,108],"60":[302,124],
-      "76":[208,118],"27":[228,150],"14":[158,158],"50":[112,158],"61":[192,178],
-      "29":[48,205],"22":[92,188],"56":[72,228],"35":[122,218],
-      "53":[138,248],"72":[178,248],"44":[102,288],"49":[142,288],"85":[102,322],
-      "28":[252,208],"45":[288,228],"41":[258,242],"37":[228,272],"36":[258,288],"18":[292,292],
-      "77":[325,198],"78":[278,195],
-      "08":[402,102],"51":[388,132],"10":[372,162],"52":[402,178],"55":[422,118],"54":[448,138],"57":[468,112],"67":[502,128],"68":[502,168],"88":[468,172],
-      "89":[342,242],"21":[392,252],"58":[348,278],"71":[388,298],"39":[428,288],"25":[452,268],"70":[448,242],"90":[472,242],
-      "17":[118,358],"86":[172,332],"79":[142,332],"16":[158,372],"87":[198,358],"23":[228,352],"19":[232,388],"24":[188,402],"33":[132,418],"47":[172,432],"40":[132,462],"64":[142,492],
-      "15":[318,372],"63":[338,348],"03":[332,312],"42":[388,342],"69":[418,328],"01":[442,308],"74":[478,298],"73":[472,338],"38":[452,358],"07":[402,388],"26":[428,398],"43":[362,378],
-      "46":[238,418],"12":[292,422],"48":[332,418],"30":[358,442],"34":[322,478],"81":[272,452],"82":[252,442],"31":[228,482],"32":[208,468],"65":[198,508],"09":[232,518],"11":[302,508],"66":[272,532],
-      "04":[442,432],"05":[472,402],"06":[512,432],"84":[418,438],"13":[432,472],"83":[472,462],
-      "2A":[538,498],"2B":[548,468]
-    };
-    Object.keys(deptPositions).forEach(function(code) {
-      var pos = deptPositions[code];
-      var g = svgEl("g", { "pointer-events": "none" });
-      // Dark circle background
-      g.appendChild(svgEl("circle", { cx: pos[0], cy: pos[1] - 2, r: "8", fill: "rgba(6,11,26,0.7)" }));
-      g.appendChild(svgEl("text", { x: pos[0], y: pos[1] + 1.5, fill: "#ffffff", "font-size": "7.5", "font-weight": "800", "text-anchor": "middle", "font-family": "system-ui, sans-serif", opacity: "0.9" }, [document.createTextNode(code)]));
-      svg.appendChild(g);
-    });
+    // Department numbers + chef-lieux — visible when zoomed
+    var deptGroup = svgEl("g", { id: "dept-labels-group", "pointer-events": "none" });
+    Object.keys(DEPT_DATA).forEach(function(code) {
+      var d = DEPT_DATA[code];
+      var g = svgEl("g", { class: "dept-label-group" });
 
-    // RIVERS — rendered LAST so they appear ON TOP of everything
+      // Circle background with number
+      g.appendChild(svgEl("circle", {
+        cx: String(d.pos[0]), cy: String(d.pos[1]), r: "9",
+        fill: "rgba(6,11,26,0.85)", stroke: "rgba(255,255,255,0.3)", "stroke-width": "0.8"
+      }));
+      g.appendChild(svgEl("text", {
+        x: String(d.pos[0]), y: String(d.pos[1] + 3),
+        fill: "#ffffff", "font-size": "7", "font-weight": "800",
+        "text-anchor": "middle", "font-family": "monospace", opacity: "0.95"
+      }, [document.createTextNode(code)]));
+
+      // Chef-lieu name below
+      g.appendChild(svgEl("text", {
+        x: String(d.pos[0]), y: String(d.pos[1] + 14),
+        fill: "#f0c040", "font-size": "5", "font-weight": "700",
+        "text-anchor": "middle", "font-family": "system-ui, sans-serif", opacity: "0.9"
+      }, [document.createTextNode(d.chef)]));
+
+      deptGroup.appendChild(g);
+    });
+    svg.appendChild(deptGroup);
+
+    // RIVERS — always on top, thick and glowing
     var rg = svgEl("g", { id: "rivers-group", "pointer-events": "none" });
     var riverLabels = {
-      "La Seine": { x: 230, y: 140, rot: -12 },
-      "La Loire": { x: 220, y: 258, rot: -5 },
-      "Le Rhône": { x: 478, y: 340, rot: -82 },
-      "La Garonne": { x: 260, y: 455, rot: -38 },
-      "Le Rhin": { x: 530, y: 165, rot: -88 }
+      "La Seine":    { x: 255, y: 160, rot: -15 },
+      "La Loire":    { x: 200, y: 270, rot: -8 },
+      "Le Rhône":    { x: 455, y: 370, rot: -75 },
+      "La Garonne":  { x: 230, y: 460, rot: -35 },
+      "Le Rhin":     { x: 515, y: 155, rot: -85 }
     };
     RIVERS.forEach(function(r) {
-      // Wide glow
-      rg.appendChild(svgEl("path", { d: r.path, fill: "none", stroke: "#00e5ff", "stroke-width": "12", "stroke-linecap": "round", "stroke-linejoin": "round", opacity: "0.15" }));
+      // Wide outer glow
+      rg.appendChild(svgEl("path", { d: r.path, fill: "none", stroke: "#00bfff", "stroke-width": "14", "stroke-linecap": "round", "stroke-linejoin": "round", opacity: "0.12" }));
       // Medium glow
-      rg.appendChild(svgEl("path", { d: r.path, fill: "none", stroke: "#00e5ff", "stroke-width": "7", "stroke-linecap": "round", "stroke-linejoin": "round", opacity: "0.35" }));
-      // Main thick line
-      rg.appendChild(svgEl("path", { d: r.path, fill: "none", stroke: "#00e5ff", "stroke-width": "3", "stroke-linecap": "round", "stroke-linejoin": "round", opacity: "1" }));
-      // Label with solid background
+      rg.appendChild(svgEl("path", { d: r.path, fill: "none", stroke: "#00d4ff", "stroke-width": "8", "stroke-linecap": "round", "stroke-linejoin": "round", opacity: "0.3" }));
+      // Core line — THICK
+      rg.appendChild(svgEl("path", { d: r.path, fill: "none", stroke: "#00e5ff", "stroke-width": "3.5", "stroke-linecap": "round", "stroke-linejoin": "round", opacity: "1" }));
+
+      // River label with solid pill background
       var lbl = riverLabels[r.name];
       if (lbl) {
         var g = svgEl("g", { transform: "translate("+lbl.x+","+lbl.y+") rotate("+(lbl.rot||0)+")" });
-        var tw = r.name.length * 6.5 + 12;
-        g.appendChild(svgEl("rect", { x: String(-tw/2), y: "-10", width: String(tw), height: "18", rx: "4", fill: "#060b1a", stroke: "#00e5ff", "stroke-width": "1.5" }));
-        g.appendChild(svgEl("text", { x: "0", y: "4", fill: "#00e5ff", "font-size": "11", "font-weight": "900", "text-anchor": "middle", "font-family": "system-ui, sans-serif" }, [document.createTextNode(r.name)]));
+        var tw = r.name.length * 7 + 16;
+        g.appendChild(svgEl("rect", { x: String(-tw/2), y: "-12", width: String(tw), height: "22", rx: "6", fill: "#001a2e", stroke: "#00e5ff", "stroke-width": "2" }));
+        g.appendChild(svgEl("text", { x: "0", y: "5", fill: "#00e5ff", "font-size": "12", "font-weight": "900", "text-anchor": "middle", "font-family": "system-ui, sans-serif", "letter-spacing": "0.5" }, [document.createTextNode(r.name)]));
         rg.appendChild(g);
       }
     });
     svg.appendChild(rg);
 
-    // Tooltip — very last
+    // Tooltip
     var tt = svgEl("g", { id: "carte2-tooltip", style: "display:none;pointer-events:none" });
     tt.appendChild(svgEl("rect", { id: "carte2-tt-bg", rx: "8", fill: "#1a1a2e", stroke: "#f0c040", "stroke-width": "2" }));
     tt.appendChild(svgEl("text", { id: "carte2-tt-text", fill: "#f0c040", "font-size": "16", "font-weight": "800", "font-family": "system-ui, sans-serif", "text-anchor": "middle" }));
     svg.appendChild(tt);
+
     wrap.appendChild(svg);
+
+    // Setup zoom/pan
+    setupZoomPan(svg);
   }
 
+  // ── Zoom & Pan ──
+  function setupZoomPan(svg) {
+    var inner = svg;
+    function applyTransform() {
+      var vb = SVG_VIEWBOX.split(" ").map(Number);
+      var cx = vb[0] + vb[2]/2, cy = vb[1] + vb[3]/2;
+      var nw = vb[2] / zoomLevel, nh = vb[3] / zoomLevel;
+      var nx = cx - nw/2 + panX, ny = cy - nh/2 + panY;
+      inner.setAttribute("viewBox", nx + " " + ny + " " + nw + " " + nh);
+    }
+
+    // Zoom buttons
+    window.zoomIn = function() { zoomLevel = Math.min(zoomLevel * 1.4, 6); applyTransform(); };
+    window.zoomOut = function() { zoomLevel = Math.max(zoomLevel / 1.4, 0.8); panX = panX * 0.7; panY = panY * 0.7; applyTransform(); };
+    window.zoomReset = function() { zoomLevel = 1; panX = 0; panY = 0; applyTransform(); };
+
+    // Mouse wheel zoom
+    var wrap = svg.parentElement;
+    wrap.addEventListener("wheel", function(e) {
+      e.preventDefault();
+      if (e.deltaY < 0) { zoomLevel = Math.min(zoomLevel * 1.15, 6); }
+      else { zoomLevel = Math.max(zoomLevel / 1.15, 0.8); if (zoomLevel < 1.2) { panX *= 0.5; panY *= 0.5; } }
+      applyTransform();
+    }, { passive: false });
+
+    // Pan with mouse drag
+    wrap.addEventListener("mousedown", function(e) {
+      if (e.target.classList && e.target.classList.contains("carte2-region")) return;
+      isPanning = true; panStartX = e.clientX; panStartY = e.clientY;
+      wrap.style.cursor = "grabbing";
+    });
+    document.addEventListener("mousemove", function(e) {
+      if (!isPanning) return;
+      var scale = 598 / (wrap.clientWidth * zoomLevel);
+      panX -= (e.clientX - panStartX) * scale;
+      panY -= (e.clientY - panStartY) * scale;
+      panStartX = e.clientX; panStartY = e.clientY;
+      applyTransform();
+    });
+    document.addEventListener("mouseup", function() { isPanning = false; wrap.style.cursor = ""; });
+
+    // Touch pan
+    var touchStartX, touchStartY;
+    wrap.addEventListener("touchstart", function(e) {
+      if (e.touches.length === 1) { touchStartX = e.touches[0].clientX; touchStartY = e.touches[0].clientY; }
+    }, { passive: true });
+    wrap.addEventListener("touchmove", function(e) {
+      if (e.touches.length === 1 && zoomLevel > 1.1) {
+        e.preventDefault();
+        var scale = 598 / (wrap.clientWidth * zoomLevel);
+        panX -= (e.touches[0].clientX - touchStartX) * scale;
+        panY -= (e.touches[0].clientY - touchStartY) * scale;
+        touchStartX = e.touches[0].clientX; touchStartY = e.touches[0].clientY;
+        applyTransform();
+      }
+    }, { passive: false });
+
+    // Pinch zoom
+    var lastDist = 0;
+    wrap.addEventListener("touchstart", function(e) {
+      if (e.touches.length === 2) {
+        lastDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+      }
+    }, { passive: true });
+    wrap.addEventListener("touchmove", function(e) {
+      if (e.touches.length === 2) {
+        e.preventDefault();
+        var dist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+        var ratio = dist / lastDist;
+        zoomLevel = Math.min(Math.max(zoomLevel * ratio, 0.8), 6);
+        lastDist = dist;
+        applyTransform();
+      }
+    }, { passive: false });
+  }
+
+  // ── Tooltip ──
   function showTooltip(name, pathEl) {
     var tt = document.getElementById("carte2-tooltip");
     var bg = document.getElementById("carte2-tt-bg");
     var tx = document.getElementById("carte2-tt-text");
     if (!tt) return;
     var bbox = pathEl.getBBox();
-    var cx = bbox.x + bbox.width/2, cy = bbox.y - 10;
+    var cx = bbox.x + bbox.width/2, cy = bbox.y - 14;
     tx.textContent = name;
     tx.setAttribute("x", cx); tx.setAttribute("y", cy);
     var tbox = tx.getBBox();
-    bg.setAttribute("x", tbox.x - 8); bg.setAttribute("y", tbox.y - 4);
-    bg.setAttribute("width", tbox.width + 16); bg.setAttribute("height", tbox.height + 8);
+    bg.setAttribute("x", tbox.x - 10); bg.setAttribute("y", tbox.y - 5);
+    bg.setAttribute("width", tbox.width + 20); bg.setAttribute("height", tbox.height + 10);
     tt.style.display = "";
   }
   function hideTooltip() { var tt = document.getElementById("carte2-tooltip"); if (tt) tt.style.display = "none"; }
 
+  // ── Region click ──
   function handleRegionClick(reg) {
     if (quizMode === "regions") { checkRegionQuiz(reg.id); return; }
     selectedRegion = reg.id;
-    // Highlight
     document.querySelectorAll(".carte2-region").forEach(function(p) {
-      if (p.getAttribute("data-id") === reg.id) { p.setAttribute("opacity","1"); p.setAttribute("stroke","#f0c040"); p.setAttribute("stroke-width","3"); }
-      else { p.setAttribute("opacity","0.6"); p.setAttribute("stroke","#0d1b2a"); p.setAttribute("stroke-width","1.5"); }
+      if (p.getAttribute("data-id") === reg.id) { p.setAttribute("opacity","1"); p.setAttribute("stroke","#f0c040"); p.setAttribute("stroke-width","3.5"); }
+      else { p.setAttribute("opacity","0.55"); p.setAttribute("stroke","#ffffff"); p.setAttribute("stroke-width","1.2"); }
     });
-    // Info panel
     var info = document.getElementById("carte2-info");
-    var html = '<div class="carte-region-title" style="color:'+reg.color+'">' + reg.name + '</div>';
-    html += '<div class="carte-depts-count">' + reg.departments.length + ' départements</div>';
-    html += '<div class="carte-depts-list">';
+    var html = '<div class="carte-region-title" style="color:'+reg.color+';font-size:22px;font-weight:900;margin-bottom:12px">' + reg.name + '</div>';
+    html += '<div style="color:#888;margin-bottom:14px;font-size:15px">' + reg.departments.length + ' départements</div>';
+    html += '<div class="carte-depts-grid">';
     reg.departments.forEach(function(d) {
       var parts = d.split(" → ");
-      html += '<div class="carte-dept-item"><span class="carte-dept-name">' + parts[0] + '</span><span class="carte-dept-chef">' + (parts[1]||'') + '</span></div>';
+      html += '<div class="carte-dept-card"><span class="carte-dept-num">' + (parts[0].match(/\d+[AB]?/) || [""])[0] + '</span><span class="carte-dept-name">' + parts[0].replace(/\d+[AB]?\s*[-–—]\s*/, '') + '</span><span class="carte-dept-chef">→ ' + (parts[1]||'') + '</span></div>';
     });
     html += '</div>';
     info.innerHTML = html;
   }
 
-  // Rivers toggle
+  // ── Toggle fleuves/departments ──
   window.toggleRivers = function() {
     showRivers = !showRivers;
     var rg = document.getElementById("rivers-group");
     if (rg) rg.style.display = showRivers ? "" : "none";
     var btn = document.getElementById("btn-rivers");
     if (btn) btn.className = "carte-btn" + (showRivers ? " active" : "");
+  };
+  window.toggleDepts = function() {
+    showDepts = !showDepts;
+    var dg = document.getElementById("dept-labels-group");
+    if (dg) dg.style.display = showDepts ? "" : "none";
+    var btn = document.getElementById("btn-depts");
+    if (btn) btn.className = "carte-btn" + (showDepts ? " active" : "");
   };
 
   // ── Quiz ──
@@ -221,7 +403,6 @@
       quizQueue = shuffle(REGIONS.slice());
       showRegionQuizQuestion();
     } else {
-      // Chef-lieux quiz
       var allDepts = [];
       REGIONS.forEach(function(r) { r.departments.forEach(function(d) { var parts = d.split(" → "); if (parts[1]) allDepts.push({ dept: parts[0], chef: parts[1], region: r.name }); }); });
       quizQueue = shuffle(allDepts).slice(0, 15);
@@ -229,17 +410,15 @@
     }
   };
 
-  function shuffle(a) { for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;} return a; }
-
   function showRegionQuizQuestion() {
     if (quizIndex >= Math.min(quizQueue.length, 13)) { endCarteQuiz(); return; }
     var reg = quizQueue[quizIndex];
-    document.querySelectorAll(".carte2-region").forEach(function(p) { p.setAttribute("opacity","0.85"); p.setAttribute("stroke","#0d1b2a"); p.setAttribute("stroke-width","1.5"); });
+    document.querySelectorAll(".carte2-region").forEach(function(p) { p.setAttribute("opacity","0.82"); p.setAttribute("stroke","#ffffff"); p.setAttribute("stroke-width","1.8"); });
     var bar = document.getElementById("carte2-quiz-bar");
     bar.style.display = "";
-    bar.innerHTML = '<span class="carte-quiz-prompt">Clique sur : ' + reg.name + '</span><span class="carte-quiz-score">' + quizScore + '/' + quizIndex + '</span>';
+    bar.innerHTML = '<span class="carte-quiz-prompt">🎯 Clique sur : <strong>' + reg.name + '</strong></span><span class="carte-quiz-score">' + quizScore + '/' + quizIndex + '</span>';
     document.getElementById("carte2-quiz-choices").style.display = "none";
-    document.getElementById("carte2-info").innerHTML = '<div class="carte-info-placeholder">🎯 Trouve cette région sur la carte !</div>';
+    document.getElementById("carte2-info").innerHTML = '<div class="carte-info-placeholder" style="font-size:18px;text-align:center;padding:24px">🎯 Trouve <strong>' + reg.name + '</strong> sur la carte !</div>';
   }
 
   function checkRegionQuiz(clickedId) {
@@ -248,13 +427,13 @@
     if (clickedId === correct.id) {
       quizScore++;
       paths.forEach(function(p) { if (p.getAttribute("data-id") === clickedId) { p.setAttribute("stroke","#2ecc71"); p.setAttribute("stroke-width","4"); p.setAttribute("opacity","1"); } });
-      document.getElementById("carte2-info").innerHTML = '<div class="carte-feedback-correct">✅ Bravo !</div>';
+      document.getElementById("carte2-info").innerHTML = '<div style="text-align:center;padding:20px;font-size:20px;color:#2ecc71">✅ Bravo !</div>';
     } else {
       paths.forEach(function(p) {
         if (p.getAttribute("data-id") === clickedId) { p.setAttribute("stroke","#e74c3c"); p.setAttribute("stroke-width","4"); }
         if (p.getAttribute("data-id") === correct.id) { p.setAttribute("stroke","#2ecc71"); p.setAttribute("stroke-width","4"); p.setAttribute("opacity","1"); }
       });
-      document.getElementById("carte2-info").innerHTML = '<div class="carte-feedback-wrong">❌ C\'était ' + correct.name + '</div>';
+      document.getElementById("carte2-info").innerHTML = '<div style="text-align:center;padding:20px;font-size:20px;color:#e74c3c">❌ C\'était <strong>' + correct.name + '</strong></div>';
     }
     quizIndex++;
     setTimeout(function() { showRegionQuizQuestion(); }, 1200);
@@ -265,8 +444,7 @@
     var q = quizQueue[quizIndex];
     var bar = document.getElementById("carte2-quiz-bar");
     bar.style.display = "";
-    bar.innerHTML = '<span class="carte-quiz-prompt">Chef-lieu de ' + q.dept + ' ?</span><span class="carte-quiz-score">' + quizScore + '/' + quizIndex + '</span>';
-    // Generate 4 choices
+    bar.innerHTML = '<span class="carte-quiz-prompt">🏠 Chef-lieu de <strong>' + q.dept + '</strong> ?</span><span class="carte-quiz-score">' + quizScore + '/' + quizIndex + '</span>';
     var allChefs = [];
     REGIONS.forEach(function(r) { r.departments.forEach(function(d) { var p = d.split(" → "); if (p[1] && p[1] !== q.chef) allChefs.push(p[1]); }); });
     var distractors = shuffle(allChefs).slice(0, 3);
@@ -282,14 +460,13 @@
       btn.onclick = function() { checkChefQuiz(c, q.chef, cc); };
       cc.appendChild(btn);
     });
-    document.getElementById("carte2-info").innerHTML = '<div class="carte-info-placeholder">🏠 ' + q.dept + '<br><small style="color:#888">' + q.region + '</small></div>';
+    document.getElementById("carte2-info").innerHTML = '<div style="text-align:center;padding:20px"><span style="font-size:20px;font-weight:800">' + q.dept + '</span><br><small style="color:#888;font-size:14px">' + q.region + '</small></div>';
   }
 
   function checkChefQuiz(answer, correct, cc) {
     var isCorrect = answer === correct;
     if (isCorrect) quizScore++;
-    var btns = cc.querySelectorAll(".quiz-choice-btn");
-    btns.forEach(function(btn) {
+    cc.querySelectorAll(".quiz-choice-btn").forEach(function(btn) {
       btn.disabled = true;
       if (btn.querySelector(".quiz-choice-text").textContent === correct) btn.classList.add("quiz-choice-correct");
       if (btn.querySelector(".quiz-choice-text").textContent === answer && !isCorrect) btn.classList.add("quiz-choice-wrong");
@@ -302,13 +479,46 @@
     var total = quizIndex;
     var pct = Math.round((quizScore / total) * 100);
     var icon = pct >= 80 ? "🏆" : pct >= 50 ? "👍" : "📖";
-    document.getElementById("carte2-quiz-bar").innerHTML = '<span class="carte-quiz-prompt">' + icon + ' ' + quizScore + '/' + total + ' (' + pct + '%)</span><button class="carte-btn" onclick="initCarte()">Rejouer</button>';
+    document.getElementById("carte2-quiz-bar").innerHTML = '<span class="carte-quiz-prompt">' + icon + ' ' + quizScore + '/' + total + ' (' + pct + '%)</span><button class="carte-btn active" onclick="initCarte()">🔄 Rejouer</button>';
     document.getElementById("carte2-quiz-choices").style.display = "none";
-    document.getElementById("carte2-info").innerHTML = '<div class="carte-info-placeholder">' + icon + ' ' + (pct >= 80 ? 'Excellent !' : pct >= 50 ? 'Pas mal !' : 'Continue !') + '<br>' + quizScore + ' / ' + total + '</div>';
+    document.getElementById("carte2-info").innerHTML = '<div style="text-align:center;padding:30px;font-size:22px">' + icon + ' ' + (pct >= 80 ? 'Excellent !' : pct >= 50 ? 'Pas mal !' : 'Continue de réviser !') + '<br><span style="color:#f0c040;font-size:28px;font-weight:900">' + quizScore + ' / ' + total + '</span></div>';
     quizMode = null;
-    // Update stats
-    if (typeof stats !== "undefined") { stats.quizzes = (stats.quizzes||0)+1; stats.quizCorrect = (stats.quizCorrect||0)+quizScore; stats.quizTotal = (stats.quizTotal||0)+total; if (typeof updateStats === "function") updateStats(); }
   }
+
+  // ── Init ──
+  window.initCarte = function() {
+    showScreen("carte");
+    injectStyles();
+    zoomLevel = 1; panX = 0; panY = 0;
+    quizMode = null; selectedRegion = null;
+    var container = document.getElementById("screen-carte");
+    container.innerHTML = `
+      <div class="game-header">
+        <button class="btn-back" onclick="goHome()">← Accueil</button>
+        <h2>🗺️ Carte de France</h2>
+      </div>
+      <div class="carte2-toolbar">
+        <button class="carte-btn" onclick="zoomIn()">🔍+</button>
+        <button class="carte-btn" onclick="zoomOut()">🔍−</button>
+        <button class="carte-btn" onclick="zoomReset()">↻ Reset</button>
+        <span class="carte-sep"></span>
+        <button class="carte-btn active" id="btn-rivers" onclick="toggleRivers()">🌊 Fleuves</button>
+        <button class="carte-btn active" id="btn-depts" onclick="toggleDepts()">📍 Départements</button>
+        <span class="carte-sep"></span>
+        <button class="carte-btn quiz-btn" onclick="startCarteQuiz('regions')">🎯 Quiz Régions</button>
+        <button class="carte-btn quiz-btn" onclick="startCarteQuiz('chefs')">🏠 Quiz Chef-lieux</button>
+      </div>
+      <div id="carte2-quiz-bar" class="carte2-quiz-bar" style="display:none"></div>
+      <div id="carte2-quiz-choices" class="carte2-quiz-choices" style="display:none"></div>
+      <div class="carte2-map-container">
+        <div id="carte2-svg-wrap" class="carte2-svg-wrap"></div>
+      </div>
+      <div id="carte2-info" class="carte2-info-panel">
+        <div class="carte-info-placeholder">👆 Clique sur une région pour voir ses départements et chefs-lieux. Zoome avec 🔍+ ou la molette.</div>
+      </div>
+    `;
+    buildSVG();
+  };
 
   // ── Injected CSS ──
   function injectStyles() {
@@ -316,19 +526,39 @@
     var s = document.createElement("style");
     s.id = "carte2-css";
     s.textContent = `
-      .carte2-toolbar { display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap; }
-      .carte2-layout { display:flex; flex-direction:column; gap:16px; }
-      .carte2-map-col { width:100%; }
-      .carte2-info-col { background:var(--bg-card,#141833); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:18px; overflow-y:auto; max-height:400px; }
-      .carte2-svg-wrap { background:#060b1a; border:2px solid rgba(255,255,255,0.08); border-radius:14px; padding:16px; }
-      .carte2-svg-wrap svg { display:block; width:100%; min-height:500px; }
-      .carte2-region { transition: opacity 0.15s, stroke-width 0.15s; }
+      .carte2-toolbar { display:flex; gap:8px; margin-bottom:12px; flex-wrap:wrap; align-items:center; }
+      .carte-btn { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); color:#ccc; padding:8px 14px; border-radius:8px; cursor:pointer; font-size:14px; font-weight:600; transition:all 0.2s; }
+      .carte-btn:hover { background:rgba(255,255,255,0.12); color:#fff; }
+      .carte-btn.active { background:rgba(240,192,64,0.15); border-color:rgba(240,192,64,0.4); color:#f0c040; }
+      .carte-btn.quiz-btn { background:rgba(46,204,113,0.1); border-color:rgba(46,204,113,0.3); color:#2ecc71; }
+      .carte-btn.quiz-btn:hover { background:rgba(46,204,113,0.2); }
+      .carte-sep { width:1px; height:24px; background:rgba(255,255,255,0.1); margin:0 4px; }
+
+      .carte2-map-container { width:100%; overflow:hidden; border:2px solid rgba(255,255,255,0.08); border-radius:14px; background:#060b1a; }
+      .carte2-svg-wrap { width:100%; cursor:grab; }
+      .carte2-svg-wrap svg { display:block; width:100%; height:auto; min-height:70vh; }
+
       .carte2-quiz-bar { background:rgba(240,192,64,0.08); border:1px solid rgba(240,192,64,0.25); border-radius:12px; padding:14px 20px; margin-bottom:12px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; }
-      .carte2-quiz-choices { display:flex; flex-direction:column; gap:10px; margin-top:12px; }
-      @media (min-width:900px) {
-        .carte2-svg-wrap svg { min-height:700px; }
+      .carte-quiz-prompt { font-size:17px; color:#f0c040; }
+      .carte-quiz-prompt strong { color:#fff; }
+      .carte-quiz-score { font-size:16px; font-weight:900; color:#f0c040; background:rgba(240,192,64,0.15); padding:4px 12px; border-radius:20px; }
+      .carte2-quiz-choices { display:flex; flex-direction:column; gap:10px; margin-bottom:16px; }
+
+      .carte2-info-panel { background:var(--bg-card,#141833); border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:20px; margin-top:16px; }
+      .carte-info-placeholder { color:#888; text-align:center; padding:20px; font-size:16px; line-height:1.6; }
+      .carte-depts-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:10px; }
+      .carte-dept-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:10px 14px; display:flex; flex-direction:column; gap:3px; }
+      .carte-dept-num { font-family:monospace; font-size:13px; color:#f0c040; font-weight:900; }
+      .carte-dept-name { font-size:14px; color:#fff; font-weight:600; }
+      .carte-dept-chef { font-size:13px; color:#2ecc71; }
+
+      @media (max-width:600px) {
+        .carte2-svg-wrap svg { min-height:50vh; }
+        .carte-depts-grid { grid-template-columns:1fr; }
+        .carte-btn { padding:6px 10px; font-size:12px; }
       }
     `;
     document.head.appendChild(s);
   }
+
 })();
