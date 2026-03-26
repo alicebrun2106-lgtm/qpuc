@@ -114,12 +114,23 @@
 
     const queue = [...dueCards, ...newCards.slice(0, NEW_CARDS_PER_SESSION)];
     if (queue.length === 0) {
+      // No due cards — offer to review all anyway
       document.getElementById("fc-session-title").textContent = pack.name;
-      document.getElementById("fc-card-front").textContent = "Aucune carte à revoir !";
-      document.getElementById("fc-card-back").textContent = "Reviens demain.";
+      document.getElementById("fc-card-front").innerHTML = "✅ Toutes les cartes sont à jour !";
+      document.getElementById("fc-card-back").textContent = "";
       document.getElementById("fc-quality-buttons").style.display = "none";
-      document.getElementById("fc-flip-btn").style.display = "none";
-      document.getElementById("fc-progress-text").textContent = "0 / 0";
+      document.getElementById("fc-flip-btn").textContent = "Revoir quand même";
+      document.getElementById("fc-flip-btn").style.display = "";
+      document.getElementById("fc-flip-btn").onclick = function() {
+        // Force review ALL cards in this pack
+        const allIndices = allCards.map((_, i) => i);
+        shuffle(allIndices);
+        session = { packId, pack, allCards, queue: allIndices, index: 0, flipped: false, results: { again: 0, hard: 0, good: 0, easy: 0 } };
+        document.getElementById("fc-flip-btn").textContent = "Voir la réponse";
+        document.getElementById("fc-flip-btn").onclick = flipFlashcard;
+        showFlashcard();
+      };
+      document.getElementById("fc-progress-text").textContent = `${allCards.length} cartes`;
       showScreen("flashcard-session");
       return;
     }
