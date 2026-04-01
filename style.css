@@ -1874,6 +1874,140 @@ body {
 .fc-filter-btn.active .fc-filter-count {
   background: rgba(0,0,0,0.2);
 }
+.fc-filter-btn.fc-locked {
+  opacity: 0.5;
+  border-style: dashed;
+}
+.fc-filter-btn.fc-locked:hover {
+  border-color: rgba(255,255,255,0.2);
+  color: var(--text-dim);
+  cursor: not-allowed;
+}
+
+/* ============ FLASHCARD SUMMARY BAR ============ */
+.fc-summary-bar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  padding: 14px 16px;
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius);
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.fc-summary-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 70px;
+}
+.fc-summary-val {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--accent);
+}
+.fc-summary-label {
+  font-size: 11px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+/* ============ PACK STATUS BADGES ============ */
+.pack-status-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 700;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+.pack-status-complete { background: rgba(46,204,113,0.2); color: #2ecc71; }
+.pack-status-progress { background: rgba(52,152,219,0.2); color: #3498db; }
+.pack-status-new { background: rgba(240,192,64,0.15); color: var(--accent); }
+
+/* ============ PACK MASTERY ROW ============ */
+.pack-mastery-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+.pack-mastery-pct {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--accent);
+  min-width: 32px;
+}
+.pack-mastery-row .pack-progress-bar {
+  flex: 1;
+  margin-top: 0;
+}
+.pack-mastered-count {
+  font-size: 11px;
+  color: var(--text-dim);
+  min-width: 40px;
+  text-align: right;
+}
+
+/* ============ PACK STATS EXTENDED ============ */
+.pack-attempts { color: var(--text-dim); }
+.pack-success-rate { color: var(--green); font-weight: 600; }
+.pack-cards-seen { color: var(--text-dim); }
+
+/* ============ LOCK TOAST ============ */
+.fc-lock-toast {
+  position: fixed;
+  bottom: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(231,76,60,0.95);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  z-index: 9999;
+  transition: bottom 0.3s ease;
+  text-align: center;
+  max-width: 90vw;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+.fc-lock-toast-show {
+  bottom: 30px;
+}
+
+/* ============ RESULT MASTERY ============ */
+.fc-result-mastery {
+  margin-top: 16px;
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.03);
+  border-radius: var(--radius);
+}
+.fc-result-mastery-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.fc-result-mastery-label {
+  font-size: 13px;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+.fc-result-mastery-pct {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--accent);
+}
+.fc-result-mastery-detail {
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--text-dim);
+  text-align: center;
+}
 
 /* ============ QUIZ 12 COUPS ============ */
 .quiz-header-right {
