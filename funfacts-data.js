@@ -2479,4 +2479,74 @@ const FUNFACTS_PACKS = [
       {front: "Qu'est-ce que le 'negative split' en marathon ?", back: "Courir la 2e moitié plus vite que la 1re", memo: "Stratégie des champions : partir calmement, finir fort. La plupart des records du monde = en negative split. L'inverse = exploser dans le mur"},
     ],
   },
+
+  // ===== STATISTIQUES & SONDAGES =====
+  {
+    id: "stats-france",
+    name: "Statistiques & Sondages",
+    icon: "📊",
+    description: "Chiffres clés, pourcentages et sondages sur la France et les Français",
+    difficulty: "intermediaire",
+    cards: [
+      // --- Alimentation & Gastronomie ---
+      {front: "Quel pourcentage de Français consomment du bio au moins une fois par mois ?", back: "71%", memo: "Le bio a explosé en France. Mais depuis 2022, le marché stagne un peu à cause de l'inflation. Le label AB = Agriculture Biologique"},
+      {front: "Combien de litres de vin un Français consomme-t-il par an en moyenne ?", back: "51 litres", memo: "La France reste le 2e pays consommateur de vin au monde (derrière les USA en volume total). Mais la consommation baisse : c'était 100 L/an dans les années 70 !"},
+      {front: "La France est le combientième pays consommateur de pizza au monde ?", back: "2e (après les États-Unis)", memo: "10 kg de pizza par personne et par an ! 80% des Français la mangent de préférence le soir. La France consomme plus de pizza que l'Italie"},
+      {front: "Quel est le 1er critère d'achat alimentaire des Français ?", back: "Le prix", memo: "Selon Deloitte (2025) : prix en 1er, goût en 2e (54%), critères nutritionnels en 3e (49%), éthique en 4e (47%). Chez les -35 ans, l'éthique monte à 60%"},
+      {front: "Quel pourcentage du budget des ménages français est consacré à l'alimentation ?", back: "13%", memo: "C'était 35% dans les années 60 ! La baisse s'explique par la hausse des dépenses de logement et loisirs. En Afrique subsaharienne c'est encore ~40%"},
+      {front: "Combien de variétés de fromages la France compte-t-elle ?", back: "Environ 400 (certains disent 1200+)", memo: "De Gaulle : 'Comment gouverner un pays qui a 246 variétés de fromage ?' Le chiffre varie selon qu'on compte les sous-variétés. La France = 1er producteur européen"},
+      {front: "Quel pourcentage de Français lisent l'étiquette des produits alimentaires ?", back: "56%", memo: "Seulement un peu plus de la moitié ! L'appli Yuka a changé les habitudes : 27 millions d'utilisateurs en France. Le Nutri-Score aide aussi"},
+      {front: "Combien de litres de Coca-Cola un Français boit-il par an ?", back: "22,7 litres", memo: "Ça paraît beaucoup mais c'est 3x moins que les Américains (~70 L). Le Mexicain bat le record mondial (~137 L/an)"},
+
+      // --- Santé & Sommeil ---
+      {front: "Combien de temps les Français dorment-ils en moyenne par nuit (en semaine) ?", back: "6h50", memo: "Étude OpinionWay 2026. On dort 1h30 de moins qu'il y a 50 ans ! 1 Français sur 4 dort moins de 6h. Les écrans sont le principal coupable"},
+      {front: "Quel pourcentage de Français déclarent être stressés au travail ?", back: "73%", memo: "Sondage ADP/IFOP. Le burn-out touche environ 2,5 millions d'actifs en France. Les cadres et les femmes sont les plus touchés"},
+      {front: "Combien de Français ont renoncé à un soin médical ces 5 dernières années ?", back: "3 sur 4 (75%)", memo: "Baromètre FHF/Ipsos 2025. Causes : délais trop longs, coûts, pénurie de médecins. 1 Français sur 2 est déjà allé aux urgences sans urgence réelle"},
+      {front: "Quel pourcentage de Français consomment assez de fruits et légumes (5/jour) ?", back: "Seulement 19% des hommes et 25% des femmes", memo: "Recommandation PNNS : 5 fruits et légumes par jour. La plupart des Français n'y arrivent pas. Le coût et les habitudes sont les freins principaux"},
+      {front: "Quel pourcentage des 15-17 ans consultent leur téléphone toutes les 10 minutes ?", back: "76%", memo: "L'addiction aux écrans chez les ados est un vrai problème de santé publique. Le temps d'écran moyen des 15-17 ans dépasse 4h/jour hors scolaire"},
+      {front: "Quel pourcentage de Français partagent au moins une croyance fausse sur l'alimentation ?", back: "80%", memo: "Baromètre 2025 : 58% croient aux cures détox, 37% pensent que les compléments alimentaires équilibrent tout, 34% que les hommes ont besoin de plus de viande rouge"},
+
+      // --- Sport & Activité physique ---
+      {front: "Quel pourcentage de Français pratiquent un sport au moins 1 fois par semaine ?", back: "63%", memo: "Marche/randonnée, vélo et fitness sont les sports les plus pratiqués. Les Jeux de Paris 2024 ont boosté la pratique sportive"},
+      {front: "Combien de coureurs compte la France ?", back: "12,4 millions (2024)", memo: "Le running a doublé depuis 2020 (6,6 millions). L'effet post-Covid et les JO 2024 ont tout changé. Le marathon de Paris = ~60 000 coureurs"},
+      {front: "Quel pourcentage d'adolescents français ne font pas assez d'activité physique ?", back: "79%", memo: "Recommandation OMS : 60 min/jour d'activité modérée à intense. 4 ados sur 5 n'y arrivent pas. La sédentarité augmente à cause des écrans"},
+      {front: "Quel est le frein n°1 à la pratique sportive en France ?", back: "Le manque de temps (45%)", memo: "45% manque de temps, 37% manque de motivation, 25% le coût financier. Les femmes citent plus souvent le manque de temps que les hommes"},
+
+      // --- Société & Mode de vie ---
+      {front: "Quel pourcentage de Français sont propriétaires de leur logement ?", back: "64%", memo: "Ce taux stagne depuis 10 ans. En Roumanie c'est 96% ! En Allemagne seulement 51%. L'accès à la propriété recule chez les jeunes à cause des prix"},
+      {front: "Combien de Français ont un animal de compagnie ?", back: "30 millions", memo: "1 foyer sur 2 a un animal. 15 millions de chats, 7,5 millions de chiens. La France est le pays n°1 d'Europe pour les animaux domestiques"},
+      {front: "Quel pourcentage de Français sont superstitieux ?", back: "41%", memo: "Vendredi 13, trèfle à 4 feuilles, chat noir... Les femmes sont plus superstitieuses (48%) que les hommes (34%). Le chiffre 13 reste le tabou n°1"},
+      {front: "Combien de femmes y a-t-il pour 100 hommes en France ?", back: "107 femmes pour 100 hommes", memo: "Il naît plus de garçons que de filles (105/100), mais les femmes vivent plus longtemps (+6 ans). Après 75 ans, il y a 2 femmes pour 1 homme"},
+      {front: "Quel pourcentage de Français ont un niveau d'anglais suffisant pour converser ?", back: "39%", memo: "La France est régulièrement mal classée en Europe pour l'anglais. Les Pays-Bas = 90%+, la Suède = 85%+. Le système scolaire français est souvent critiqué"},
+      {front: "Quel pourcentage de jeunes adultes français vivent chez leurs parents ?", back: "15%", memo: "En Italie c'est 50%+ ! Le phénomène 'Tanguy' reste limité en France. Les raisons : coût du logement, études longues, chômage des jeunes"},
+      {front: "Combien de minutes par jour les Français consacrent-ils en moyenne à la lecture d'un livre ?", back: "2 minutes", memo: "Chiffre choc. Les Français lisent de moins en moins : 80% du temps libre va aux écrans. Pourtant la France compte 3 000 librairies indépendantes"},
+
+      // --- Économie & Travail ---
+      {front: "Quel est le salaire net annuel moyen en France ?", back: "34 224 € (environ 2 850 €/mois)", memo: "Attention c'est la moyenne, pas la médiane ! Le salaire médian = ~2 100 €/mois net. La moyenne est tirée vers le haut par les hauts revenus"},
+      {front: "Quel pourcentage de l'énergie nucléaire européenne est produit par la France ?", back: "57%", memo: "La France = 56 réacteurs nucléaires, 2e parc mondial après les USA. Le nucléaire = ~70% de l'électricité française. Record mondial de dépendance au nucléaire"},
+      {front: "Combien de voitures particulières circulent en France ?", back: "32 millions", memo: "Soit environ 1 voiture pour 2 habitants. La voiture reste le 1er mode de transport des Français (75% des trajets domicile-travail)"},
+      {front: "La France possède combien de têtes nucléaires ?", back: "Environ 300", memo: "3e arsenal mondial derrière les USA (~5 500) et la Russie (~6 200). La France = seule puissance nucléaire de l'UE (depuis le Brexit). Force de dissuasion = sous-marins + avions"},
+      {front: "Combien de représentations diplomatiques la France a-t-elle dans le monde ?", back: "266", memo: "3e réseau diplomatique mondial derrière les USA et la Chine. La France a des ambassades et consulats sur tous les continents grâce aux DOM-TOM aussi"},
+
+      // --- Numérique & Technologie ---
+      {front: "Quel pourcentage de Français utilisent les réseaux sociaux quotidiennement ?", back: "70%", memo: "Facebook reste n°1 en France, Instagram n°2, TikTok n°3 chez les jeunes. 58% des Français estiment que les plateformes occupent une place importante dans leur vie (85% chez les 18-34 ans)"},
+      {front: "Combien de bornes WiFi publiques la France possède-t-elle ?", back: "13 millions", memo: "La France dépasse les États-Unis (9,58 millions) ! 1ère en Europe pour les services en ligne de l'administration (classement ONU)"},
+      {front: "Quel pourcentage de Français font confiance aux influenceurs pour l'alimentation ?", back: "Seulement 22%", memo: "Les Français font bien plus confiance aux médecins (79%), à leur entourage (72%), aux organismes publics (71%) et aux scientifiques (66%)"},
+      {front: "Quel pourcentage du contenu Internet est en français ?", back: "4%", memo: "L'anglais domine avec ~60%. Le français = 4e langue du web. Pourtant la Francophonie = 321 millions de locuteurs dans le monde"},
+
+      // --- Opinion & Moral ---
+      {front: "Quel pourcentage de Français étaient optimistes pour 2026 ?", back: "41% (dernier du classement mondial)", memo: "Sondage Ipsos fin 2025. Moyenne mondiale = 71%. La France = pire score mondial. 85% des Français jugent 2025 mauvaise pour le pays. Mais 55% disent que ça va sur le plan personnel !"},
+      {front: "Quel pourcentage de Français ont peur du changement climatique ?", back: "83%", memo: "La prise de conscience est massive mais les actions suivent moins : seulement 1% du PIB est consacré à la protection de l'environnement"},
+      {front: "Quel pourcentage de Français sont favorables à l'interdiction de l'élevage intensif ?", back: "Plus de 80%", memo: "Baromètre 30 Millions d'Amis / IFOP 2025. 67% des Français estiment que les politiques n'en font pas assez pour les animaux (+9 pts depuis 2022)"},
+      {front: "Quel pourcentage de Français estiment que le gouvernement n'agit pas dans leur intérêt ?", back: "78%", memo: "Sondage MIS Group, février 2026. 73% de défiance envers le gouvernement. 58% jugent la Justice pas indépendante. Crise de confiance historique"},
+      {front: "La France est-elle 1ère au classement FIFA en 2026 ?", back: "Oui, depuis avril 2026 (1 877 pts)", memo: "Grâce aux victoires contre le Brésil (2-1) et la Colombie (3-1). 3e fois n°1 mondial après 2001-2002 et 2018. Coupe du monde 2026 = aux USA/Canada/Mexique"},
+
+      // --- Records & Classements France ---
+      {front: "De quel classement européen la France est-elle la championne pour l'agriculture ?", back: "1er producteur agricole de l'UE", memo: "Devant l'Allemagne et l'Italie. Blé, vin, sucre, viande bovine. La PAC (Politique Agricole Commune) = 1er budget de l'UE, la France en est le 1er bénéficiaire"},
+      {front: "Combien de châteaux sont à vendre en France ?", back: "Environ 1 500", memo: "La France compte ~45 000 châteaux et manoirs au total. L'entretien coûte ~100 000 €/an minimum. Certains se vendent moins cher qu'un appart parisien !"},
+      {front: "Quel est le taux de fécondité en France ?", back: "1,88 enfant par femme (le plus élevé d'Europe)", memo: "Record européen ! La moyenne UE = 1,5. L'Italie et l'Espagne = ~1,2. Mais ce taux baisse en France aussi (il était à 2,0 en 2010). Seuil de remplacement = 2,1"},
+      {front: "Combien de Français sont parmi les 50 plus riches du monde ?", back: "3 (dont Bernard Arnault, souvent n°1)", memo: "Bernard Arnault (LVMH) alterne entre 1ère et 2e fortune mondiale avec Elon Musk. La Bettencourt-Meyers (L'Oréal) et François Pinault (Kering) complètent le podium français"},
+      {front: "Quel pourcentage de femmes siègent aux conseils d'administration en France ?", back: "43,4%", memo: "Grâce à la loi Copé-Zimmermann (2011) qui impose 40% minimum. La France = championne d'Europe sur ce critère ! Avant la loi c'était ~10%"},
+    ],
+  },
 ];

@@ -40,7 +40,30 @@
   function shuffle(a) { for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;} return a; }
 
   var selectedRegion = null, quizMode = null, quizScore = 0, quizIndex = 0, quizQueue = [];
-  var showRivers = true, showDepts = true;
+  var showRivers = true, showDepts = false;
+
+  // River descriptions — shown in info panel on click
+  var RIVER_INFO = {
+    "La Seine":      { length: "777 km", source: "Plateau de Langres (Côte-d'Or)", mouth: "Manche (Le Havre)", fact: "Traverse Paris. 3e plus long fleuve de France. Son nom vient de Sequana, déesse gallo-romaine." },
+    "La Loire":      { length: "1 006 km", source: "Mont Gerbier-de-Jonc (Ardèche)", mouth: "Océan Atlantique (Saint-Nazaire)", fact: "Le plus long fleuve de France ! Traverse Orléans, Tours, Nantes. Ses châteaux sont classés UNESCO." },
+    "Le Rhône":      { length: "812 km (dont 545 en France)", source: "Glacier du Rhône (Suisse)", mouth: "Mer Méditerranée (Camargue)", fact: "Le plus puissant fleuve de France (débit). Traverse Lyon, Avignon. Alimente 14 centrales hydroélectriques." },
+    "La Garonne":    { length: "647 km", source: "Val d'Aran (Pyrénées espagnoles)", mouth: "Estuaire de la Gironde (Atlantique)", fact: "Traverse Toulouse et Bordeaux. Forme avec la Dordogne l'estuaire de la Gironde (plus grand d'Europe)." },
+    "Le Rhin":       { length: "1 233 km (190 km en France)", source: "Alpes suisses", mouth: "Mer du Nord (Pays-Bas)", fact: "Fleuve frontière entre France et Allemagne. Traverse Strasbourg. Le plus long fleuve d'Europe occidentale." },
+    "La Marne":      { length: "514 km", source: "Plateau de Langres (Haute-Marne)", mouth: "Confluence avec la Seine", fact: "Plus long affluent de la Seine. Célèbre pour la bataille de la Marne (1914) et le Champagne." },
+    "L'Oise":        { length: "341 km", source: "Belgique", mouth: "Confluence avec la Seine (Conflans)", fact: "Traverse Compiègne. A donné son nom au département de l'Oise." },
+    "La Saône":      { length: "473 km", source: "Vioménil (Vosges)", mouth: "Confluence avec le Rhône (Lyon)", fact: "Principal affluent du Rhône. Traverse Mâcon et Chalon. Donne son nom à la Saône-et-Loire." },
+    "L'Allier":      { length: "420 km", source: "Lozère (Mont Lozère)", mouth: "Confluence avec la Loire (Nevers)", fact: "Principal affluent de la Loire. Dernière rivière sauvage d'Europe. Traverse Vichy et Moulins." },
+    "La Dordogne":   { length: "483 km", source: "Puy de Sancy (Auvergne)", mouth: "Estuaire de la Gironde", fact: "Traverse Bergerac et Libourne. Célèbre pour ses vignobles et ses châteaux du Périgord." },
+    "Le Tarn":       { length: "380 km", source: "Mont Lozère", mouth: "Confluence avec la Garonne", fact: "Célèbre pour ses gorges spectaculaires. Traverse Albi (cathédrale UNESCO)." },
+    "L'Adour":       { length: "335 km", source: "Col du Tourmalet (Pyrénées)", mouth: "Océan Atlantique (Bayonne)", fact: "Fleuve côtier du Sud-Ouest. Traverse Tarbes, Dax, Bayonne." },
+    "La Somme":      { length: "245 km", source: "Fonsomme (Aisne)", mouth: "Baie de Somme (Manche)", fact: "Célèbre pour la bataille de la Somme (1916). Sa baie est un site classé, paradis des oiseaux." },
+    "La Meuse":      { length: "950 km (486 km en France)", source: "Pouilly-en-Bassigny (Haute-Marne)", mouth: "Mer du Nord (Pays-Bas)", fact: "Traverse Verdun (bataille 1916). Passe en Belgique et aux Pays-Bas avant de rejoindre le Rhin." },
+    "La Moselle":    { length: "560 km", source: "Col de Bussang (Vosges)", mouth: "Confluence avec le Rhin (Coblence)", fact: "Traverse Epinal, Nancy, Metz. A donné son nom au département de la Moselle." },
+    "La Charente":   { length: "381 km", source: "Chéronnac (Haute-Vienne)", mouth: "Océan Atlantique (Rochefort)", fact: "Traverse Angoulême et Cognac. Berceau de l'eau-de-vie de Cognac." },
+    "L'Isère":       { length: "286 km", source: "Glacier des Sources (Savoie)", mouth: "Confluence avec le Rhône", fact: "Traverse Grenoble. A donné son nom au département de l'Isère." },
+    "Le Lot":        { length: "485 km", source: "Mont Lozère", mouth: "Confluence avec la Garonne", fact: "Rivière pittoresque du Sud-Ouest. Traverse Cahors (vin noir) et Villeneuve-sur-Lot." },
+    "La Vilaine":    { length: "225 km", source: "Juvigné (Mayenne)", mouth: "Océan Atlantique (Arzal)", fact: "Fleuve côtier breton. Traverse Rennes. Son nom vient du celte 'gwilen' (celle qui serpente)." }
+  };
   var zoomLevel = 1, panX = 0, panY = 0, isPanning = false, panStartX = 0, panStartY = 0;
 
   // Department data with NAMES (not just numbers)
@@ -212,8 +235,8 @@
       svg.appendChild(g);
     });
 
-    // Department numbers + chef-lieux — visible when zoomed
-    var deptGroup = svgEl("g", { id: "dept-labels-group", "pointer-events": "none" });
+    // Department numbers + chef-lieux — hidden by default, zoom to reveal
+    var deptGroup = svgEl("g", { id: "dept-labels-group", "pointer-events": "none", style: "display:none" });
     Object.keys(DEPT_DATA).forEach(function(code) {
       var d = DEPT_DATA[code];
       var g = svgEl("g", { class: "dept-label-group" });
@@ -241,7 +264,7 @@
     svg.appendChild(deptGroup);
 
     // RIVERS — always on top, major = thick cyan, minor = thinner teal
-    var rg = svgEl("g", { id: "rivers-group", "pointer-events": "none" });
+    var rg = svgEl("g", { id: "rivers-group" });
     var riverLabels = {
       "La Seine":      { x: 248, y: 155, rot: -12 },
       "La Loire":      { x: 195, y: 268, rot: -5 },
@@ -266,17 +289,33 @@
     // Draw minor rivers first (behind), then major rivers on top
     var minorRivers = RIVERS.filter(function(r) { return !r.major; });
     var majorRivers = RIVERS.filter(function(r) { return r.major; });
+    function attachRiverHandlers(hitPath, r) {
+      hitPath.style.cursor = "pointer";
+      hitPath.onmouseenter = function() { showRiverLabel(r.name); };
+      hitPath.onmouseleave = function() { hideRiverLabel(); };
+      hitPath.onclick = function(e) { e.stopPropagation(); showRiverInfo(r); };
+    }
     minorRivers.forEach(function(r) {
-      rg.appendChild(svgEl("path", { d: r.path, fill: "none", stroke: r.color, "stroke-width": "5", "stroke-linecap": "round", "stroke-linejoin": "round", opacity: "0.12" }));
-      rg.appendChild(svgEl("path", { d: r.path, fill: "none", stroke: r.color, "stroke-width": "2", "stroke-linecap": "round", "stroke-linejoin": "round", opacity: "0.6", "stroke-dasharray": "8,4" }));
+      rg.appendChild(svgEl("path", { d: r.path, fill: "none", stroke: r.color, "stroke-width": "5", "stroke-linecap": "round", "stroke-linejoin": "round", opacity: "0.12", "pointer-events": "none" }));
+      rg.appendChild(svgEl("path", { d: r.path, fill: "none", stroke: r.color, "stroke-width": "2", "stroke-linecap": "round", "stroke-linejoin": "round", opacity: "0.6", "stroke-dasharray": "8,4", "pointer-events": "none" }));
+      // Invisible hit area (wide) for clicks
+      var hit = svgEl("path", { d: r.path, fill: "none", stroke: "transparent", "stroke-width": "14", "stroke-linecap": "round", "data-river": r.name, class: "river-hit" });
+      attachRiverHandlers(hit, r);
+      rg.appendChild(hit);
     });
     majorRivers.forEach(function(r) {
-      rg.appendChild(svgEl("path", { d: r.path, fill: "none", stroke: "#00bfff", "stroke-width": "16", "stroke-linecap": "round", "stroke-linejoin": "round", opacity: "0.12" }));
-      rg.appendChild(svgEl("path", { d: r.path, fill: "none", stroke: "#00d4ff", "stroke-width": "8", "stroke-linecap": "round", "stroke-linejoin": "round", opacity: "0.3" }));
-      rg.appendChild(svgEl("path", { d: r.path, fill: "none", stroke: "#00e5ff", "stroke-width": "3.5", "stroke-linecap": "round", "stroke-linejoin": "round", opacity: "1" }));
+      rg.appendChild(svgEl("path", { d: r.path, fill: "none", stroke: "#00bfff", "stroke-width": "16", "stroke-linecap": "round", "stroke-linejoin": "round", opacity: "0.12", "pointer-events": "none" }));
+      rg.appendChild(svgEl("path", { d: r.path, fill: "none", stroke: "#00d4ff", "stroke-width": "8", "stroke-linecap": "round", "stroke-linejoin": "round", opacity: "0.3", "pointer-events": "none" }));
+      rg.appendChild(svgEl("path", { d: r.path, fill: "none", stroke: "#00e5ff", "stroke-width": "3.5", "stroke-linecap": "round", "stroke-linejoin": "round", opacity: "1", "pointer-events": "none" }));
+      // Invisible hit area (wide) for clicks
+      var hit = svgEl("path", { d: r.path, fill: "none", stroke: "transparent", "stroke-width": "20", "stroke-linecap": "round", "data-river": r.name, class: "river-hit" });
+      attachRiverHandlers(hit, r);
+      rg.appendChild(hit);
     });
 
     // River labels — pill background, bigger for major rivers
+    // Minor river labels hidden by default (only visible on hover or zoom ≥ 2)
+    var riverLabelGroup = svgEl("g", { id: "river-labels-group", "pointer-events": "none" });
     RIVERS.forEach(function(r) {
       var lbl = riverLabels[r.name];
       if (lbl) {
@@ -287,14 +326,15 @@
         var bgFill = isMajor ? "#001a2e" : "#0a1628";
         var strokeColor = isMajor ? "#00e5ff" : "#4dd0e1";
         var strokeW = isMajor ? "1.5" : "1";
-        var g = svgEl("g", { transform: "translate("+lbl.x+","+lbl.y+") rotate("+(lbl.rot||0)+")" });
+        var g = svgEl("g", { transform: "translate("+lbl.x+","+lbl.y+") rotate("+(lbl.rot||0)+")", "data-river-label": r.name, style: isMajor ? "" : "display:none" });
         var tw = r.name.length * (isMajor ? 6.5 : 5) + 14;
         var th = isMajor ? 20 : 16;
         g.appendChild(svgEl("rect", { x: String(-tw/2), y: String(-th/2 - 2), width: String(tw), height: String(th), rx: "5", fill: bgFill, stroke: strokeColor, "stroke-width": strokeW, opacity: "0.92" }));
         g.appendChild(svgEl("text", { x: "0", y: String(fontSize/3), fill: fillColor, "font-size": String(fontSize), "font-weight": fontWeight, "text-anchor": "middle", "font-family": "system-ui, sans-serif", "letter-spacing": "0.3" }, [document.createTextNode(r.name)]));
-        rg.appendChild(g);
+        riverLabelGroup.appendChild(g);
       }
     });
+    rg.appendChild(riverLabelGroup);
     svg.appendChild(rg);
 
     // Tooltip
@@ -321,9 +361,9 @@
     }
 
     // Zoom buttons
-    window.zoomIn = function() { zoomLevel = Math.min(zoomLevel * 1.4, 6); applyTransform(); };
-    window.zoomOut = function() { zoomLevel = Math.max(zoomLevel / 1.4, 0.8); panX = panX * 0.7; panY = panY * 0.7; applyTransform(); };
-    window.zoomReset = function() { zoomLevel = 1; panX = 0; panY = 0; applyTransform(); };
+    window.zoomIn = function() { zoomLevel = Math.min(zoomLevel * 1.4, 6); applyTransform(); updateLabelsForZoom(); };
+    window.zoomOut = function() { zoomLevel = Math.max(zoomLevel / 1.4, 0.8); panX = panX * 0.7; panY = panY * 0.7; applyTransform(); updateLabelsForZoom(); };
+    window.zoomReset = function() { zoomLevel = 1; panX = 0; panY = 0; applyTransform(); updateLabelsForZoom(); };
 
     // Mouse wheel zoom
     var wrap = svg.parentElement;
@@ -331,7 +371,7 @@
       e.preventDefault();
       if (e.deltaY < 0) { zoomLevel = Math.min(zoomLevel * 1.15, 6); }
       else { zoomLevel = Math.max(zoomLevel / 1.15, 0.8); if (zoomLevel < 1.2) { panX *= 0.5; panY *= 0.5; } }
-      applyTransform();
+      applyTransform(); updateLabelsForZoom();
     }, { passive: false });
 
     // Pan with mouse drag
@@ -380,7 +420,7 @@
         var ratio = dist / lastDist;
         zoomLevel = Math.min(Math.max(zoomLevel * ratio, 0.8), 6);
         lastDist = dist;
-        applyTransform();
+        applyTransform(); updateLabelsForZoom();
       }
     }, { passive: false });
   }
@@ -401,6 +441,67 @@
     tt.style.display = "";
   }
   function hideTooltip() { var tt = document.getElementById("carte2-tooltip"); if (tt) tt.style.display = "none"; }
+
+  // ── River hover/click ──
+  function showRiverLabel(name) {
+    // Highlight the hovered river label
+    var labels = document.querySelectorAll("[data-river-label]");
+    labels.forEach(function(lbl) {
+      if (lbl.getAttribute("data-river-label") === name) {
+        lbl.style.display = "";
+        var rect = lbl.querySelector("rect");
+        if (rect) { rect.setAttribute("stroke-width", "2.5"); rect.setAttribute("stroke", "#f0c040"); }
+      }
+    });
+  }
+  function hideRiverLabel() {
+    var labels = document.querySelectorAll("[data-river-label]");
+    labels.forEach(function(lbl) {
+      var rName = lbl.getAttribute("data-river-label");
+      var r = RIVERS.find(function(rv) { return rv.name === rName; });
+      // Restore original style: hide minor if zoom < 2
+      if (r && !r.major && zoomLevel < 2) { lbl.style.display = "none"; }
+      var rect = lbl.querySelector("rect");
+      if (rect) {
+        var sw = r && r.major ? "1.5" : "1";
+        var sc = r && r.major ? "#00e5ff" : "#4dd0e1";
+        rect.setAttribute("stroke-width", sw); rect.setAttribute("stroke", sc);
+      }
+    });
+  }
+  function showRiverInfo(r) {
+    var info = document.getElementById("carte2-info");
+    if (!info) return;
+    var ri = RIVER_INFO[r.name] || {};
+    var color = r.major ? "#00e5ff" : "#4dd0e1";
+    var html = '<div class="carte-region-title" style="color:'+color+';font-size:22px;font-weight:900;margin-bottom:12px">🌊 ' + r.name + '</div>';
+    if (ri.length) html += '<div class="carte-river-stat"><span class="carte-river-label">Longueur</span><span class="carte-river-val">' + ri.length + '</span></div>';
+    if (ri.source) html += '<div class="carte-river-stat"><span class="carte-river-label">Source</span><span class="carte-river-val">' + ri.source + '</span></div>';
+    if (ri.mouth) html += '<div class="carte-river-stat"><span class="carte-river-label">Embouchure</span><span class="carte-river-val">' + ri.mouth + '</span></div>';
+    if (ri.fact) html += '<div class="carte-river-fact">' + ri.fact + '</div>';
+    html += '<div style="margin-top:12px;font-size:12px;color:#666">' + (r.major ? '⭐ Fleuve majeur' : 'Affluent / fleuve côtier') + '</div>';
+    info.innerHTML = html;
+    // Deselect region
+    selectedRegion = null;
+    document.querySelectorAll(".carte2-region").forEach(function(p) { p.setAttribute("opacity","0.82"); p.setAttribute("stroke","#ffffff"); p.setAttribute("stroke-width","1.8"); });
+  }
+
+  // ── Update labels visibility based on zoom ──
+  function updateLabelsForZoom() {
+    // Dept labels: show only when zoom ≥ 1.8 AND toggled on
+    var dg = document.getElementById("dept-labels-group");
+    if (dg) dg.style.display = (showDepts && zoomLevel >= 1.8) ? "" : "none";
+
+    // Minor river labels: show when zoom ≥ 2
+    var labels = document.querySelectorAll("[data-river-label]");
+    labels.forEach(function(lbl) {
+      var rName = lbl.getAttribute("data-river-label");
+      var r = RIVERS.find(function(rv) { return rv.name === rName; });
+      if (r && !r.major) {
+        lbl.style.display = (zoomLevel >= 2) ? "" : "none";
+      }
+    });
+  }
 
   // ── Region click ──
   function handleRegionClick(reg) {
@@ -432,10 +533,14 @@
   };
   window.toggleDepts = function() {
     showDepts = !showDepts;
-    var dg = document.getElementById("dept-labels-group");
-    if (dg) dg.style.display = showDepts ? "" : "none";
+    updateLabelsForZoom();
     var btn = document.getElementById("btn-depts");
     if (btn) btn.className = "carte-btn" + (showDepts ? " active" : "");
+    // Show hint if zoom is too low
+    if (showDepts && zoomLevel < 1.8) {
+      var info = document.getElementById("carte2-info");
+      if (info) info.innerHTML = '<div style="text-align:center;padding:20px;color:#f0c040;font-size:15px">🔍 Zoome pour voir les départements !</div>';
+    }
   };
 
   // ── Quiz ──

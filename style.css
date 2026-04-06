@@ -2445,6 +2445,43 @@ body {
 .carte-dept-name { color: var(--text); font-weight: 600; }
 .carte-dept-chef { color: var(--accent); font-weight: 700; }
 
+/* ============ RIVER INFO PANEL ============ */
+.carte-river-stat {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: rgba(0,229,255,0.05);
+  border-radius: 8px;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+.carte-river-label {
+  color: #4dd0e1;
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+.carte-river-val {
+  color: var(--text);
+  font-weight: 600;
+  text-align: right;
+  max-width: 60%;
+}
+.carte-river-fact {
+  margin-top: 12px;
+  padding: 12px;
+  background: rgba(0,229,255,0.08);
+  border-left: 3px solid #00e5ff;
+  border-radius: 0 8px 8px 0;
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.5;
+}
+.river-hit:hover ~ path {
+  opacity: 1 !important;
+}
+
 .carte-feedback-correct {
   text-align: center;
   font-size: 18px;
