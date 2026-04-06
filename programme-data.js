@@ -1099,5 +1099,388 @@ const PROGRAMME_WEEKS = [
         ]
       }
     ]
+  },
+
+  // =============================================
+  // SEMAINE 3 : SCIENCES
+  // =============================================
+  {
+    week: 3,
+    title: "Sciences",
+    description: "Physique, chimie, inventions, astronomie, biologie, mathématiques — la culture scientifique",
+    days: [
+
+      // === JOUR 1 : PHYSIQUE & CHIMIE ===
+      {
+        day: 1, label: "Lundi", theme: "Physique & Chimie", icon: "⚗️",
+        objectif: "Connaître les lois fondamentales et les éléments chimiques incontournables",
+        tasks: [
+          {
+            id: "w3d1t1", type: "fiche",
+            title: "Les grandes lois de la physique",
+            items: [
+              { fact: "La vitesse de la lumière est de 299 792 km/s", detail: "Notée 'c'. C'est la vitesse maximale dans l'univers. Einstein a montré que rien ne peut aller plus vite (E=mc²). La lumière du Soleil met 8 min 20 s à nous atteindre." },
+              { fact: "La gravité sur Terre est de 9,81 m/s²", detail: "Notée 'g'. Elle varie légèrement selon l'altitude et la latitude. Sur la Lune c'est 1,62 m/s² (6 fois moins). Sur Jupiter c'est 24,8 m/s²." },
+              { fact: "L'eau bout à 100°C et gèle à 0°C (au niveau de la mer)", detail: "L'échelle Celsius est basée sur ces deux points. En altitude, l'eau bout plus tôt (85°C au sommet de l'Everest). L'eau salée gèle à -2°C." },
+              { fact: "Le zéro absolu est -273,15°C (0 Kelvin)", detail: "C'est la température la plus basse possible. Les atomes cessent tout mouvement. On ne l'a jamais atteint exactement, mais on s'en est approché à un milliardième de degré." },
+              { fact: "Newton a formulé 3 lois du mouvement", detail: "1) Inertie : un objet reste immobile ou en mouvement sauf si une force agit. 2) F=ma. 3) Action-réaction : toute force entraîne une force opposée égale." },
+              { fact: "La relativité d'Einstein : E = mc²", detail: "L'énergie (E) = masse (m) × vitesse de la lumière au carré (c²). 1 kg de matière = 90 000 milliards de joules. C'est le principe de la bombe atomique et des centrales nucléaires." },
+              { fact: "Le son se déplace à ~343 m/s dans l'air", detail: "C'est environ 1 235 km/h. Mach 1 = la vitesse du son. Le Concorde volait à Mach 2. Le son ne se propage pas dans le vide (pas de son dans l'espace)." },
+              { fact: "Les 4 forces fondamentales : gravité, électromagnétisme, force nucléaire forte, force nucléaire faible", detail: "La gravité est la plus faible mais agit à distance infinie. La force nucléaire forte est la plus puissante mais n'agit qu'à l'échelle du noyau atomique." }
+            ],
+            flashcards: [
+              { q: "Quelle est la vitesse de la lumière ?", r: "299 792 km/s (environ 300 000 km/s)" },
+              { q: "Quelle est la formule d'Einstein pour l'énergie ?", r: "E = mc²" },
+              { q: "Quelle est la gravité sur Terre ?", r: "9,81 m/s²" },
+              { q: "Qu'est-ce que le zéro absolu ?", r: "-273,15°C (0 Kelvin)" },
+              { q: "Combien de lois du mouvement Newton a-t-il formulées ?", r: "3 lois" },
+              { q: "À quelle vitesse le son se déplace-t-il dans l'air ?", r: "~343 m/s (1 235 km/h)" },
+              { q: "Quelles sont les 4 forces fondamentales ?", r: "Gravité, électromagnétisme, force nucléaire forte, force nucléaire faible" },
+              { q: "Quelle est la force fondamentale la plus puissante ?", r: "La force nucléaire forte" },
+              { q: "Combien de temps met la lumière du Soleil pour atteindre la Terre ?", r: "8 minutes 20 secondes" },
+              { q: "À quelle température l'eau bout-elle au sommet de l'Everest ?", r: "~85°C (pression atmosphérique plus faible)" },
+              { q: "Qu'est-ce que Mach 1 ?", r: "La vitesse du son (~1 235 km/h)" },
+              { q: "La 3e loi de Newton s'appelle comment ?", r: "Le principe d'action-réaction" }
+            ]
+          },
+          {
+            id: "w3d1t2", type: "fiche",
+            title: "Le tableau périodique : les éléments à connaître",
+            items: [
+              { fact: "L'hydrogène (H) est l'élément le plus abondant de l'univers", detail: "75% de la matière de l'univers. C'est le carburant des étoiles (fusion nucléaire). Numéro atomique 1. Le plus léger de tous." },
+              { fact: "L'or (Au) a le symbole Au, du latin 'aurum'", detail: "Numéro atomique 79. Métal rare et inaltérable (ne rouille pas). Tout l'or extrait dans l'histoire tiendrait dans 3 piscines olympiques." },
+              { fact: "Le mercure (Hg) est le seul métal liquide à température ambiante", detail: "Son symbole Hg vient du latin 'hydrargyrum' (argent liquide). Très toxique. Utilisé dans les thermomètres avant d'être interdit." },
+              { fact: "L'oxygène (O) représente 21% de l'air que nous respirons", detail: "L'azote (N) = 78%, l'oxygène = 21%, le reste = 1% (argon, CO2...). L'oxygène a été découvert par Lavoisier en 1778." },
+              { fact: "Le fer (Fe) est le métal le plus utilisé au monde", detail: "Symbole Fe du latin 'ferrum'. Le noyau de la Terre est composé principalement de fer. L'acier = fer + carbone." },
+              { fact: "L'uranium (U) est utilisé dans les centrales nucléaires", detail: "Numéro atomique 92. L'isotope U-235 est fissile. 1 kg d'uranium = autant d'énergie que 20 000 kg de charbon." },
+              { fact: "Le carbone (C) est la base de toute la chimie organique", detail: "Numéro atomique 6. Peut former 4 liaisons → molécules très complexes (ADN, protéines). Diamant et graphite sont tous deux du carbone pur." },
+              { fact: "Le tableau périodique a été créé par Mendeleïev en 1869", detail: "Dmitri Mendeleïev a classé les 63 éléments connus par masse atomique. Il a prédit l'existence d'éléments pas encore découverts ! Aujourd'hui : 118 éléments." }
+            ],
+            flashcards: [
+              { q: "Quel est l'élément le plus abondant de l'univers ?", r: "L'hydrogène (H)" },
+              { q: "Pourquoi le symbole de l'or est-il Au ?", r: "Du latin 'aurum'" },
+              { q: "Quel est le seul métal liquide à température ambiante ?", r: "Le mercure (Hg)" },
+              { q: "Quel pourcentage de l'air est de l'oxygène ?", r: "21%" },
+              { q: "Qui a créé le tableau périodique ?", r: "Dmitri Mendeleïev (1869)" },
+              { q: "Combien d'éléments le tableau périodique compte-t-il aujourd'hui ?", r: "118 éléments" },
+              { q: "Quel élément est la base de la chimie organique ?", r: "Le carbone (C)" },
+              { q: "Diamant et graphite sont composés du même élément. Lequel ?", r: "Le carbone" },
+              { q: "Qui a découvert l'oxygène ?", r: "Lavoisier (1778)" },
+              { q: "L'acier est un alliage de fer et de quel élément ?", r: "Le carbone" },
+              { q: "1 kg d'uranium produit autant d'énergie que combien de kg de charbon ?", r: "20 000 kg" },
+              { q: "Quel pourcentage de l'air est de l'azote ?", r: "78%" }
+            ]
+          },
+          {
+            id: "w3d1t3", type: "quiz",
+            title: "Quiz : Physique & Chimie",
+            questions: [
+              { q: "Quelle est la vitesse de la lumière ?", r: "~300 000 km/s", choices: ["150 000 km/s", "~300 000 km/s", "1 million km/s", "30 000 km/s"] },
+              { q: "Quelle est la formule d'Einstein ?", r: "E = mc²", choices: ["E = mv²", "E = mc²", "F = ma", "P = mgh"] },
+              { q: "Qui a créé le tableau périodique ?", r: "Mendeleïev", choices: ["Einstein", "Newton", "Mendeleïev", "Lavoisier"] },
+              { q: "Quel est le seul métal liquide à température ambiante ?", r: "Le mercure", choices: ["Le plomb", "Le mercure", "L'aluminium", "Le gallium"] },
+              { q: "Quel est l'élément le plus abondant de l'univers ?", r: "L'hydrogène", choices: ["L'hélium", "L'oxygène", "L'hydrogène", "Le carbone"] },
+              { q: "Combien y a-t-il de forces fondamentales en physique ?", r: "4", choices: ["2", "3", "4", "5"] },
+              { q: "Le zéro absolu est à quelle température ?", r: "-273,15°C", choices: ["-100°C", "-273,15°C", "-459°C", "-300°C"] },
+              { q: "L'air est composé principalement de quel gaz ?", r: "Azote (78%)", choices: ["Oxygène", "Azote (78%)", "CO2", "Argon"] }
+            ]
+          }
+        ]
+      },
+
+      // === JOUR 2 : INVENTIONS SCIENTIFIQUES ===
+      {
+        day: 2, label: "Mardi", theme: "Inventions scientifiques", icon: "💡",
+        objectif: "Les grandes inventions qui ont changé le monde et leurs inventeurs",
+        tasks: [
+          {
+            id: "w3d2t1", type: "fiche",
+            title: "Inventions qui ont changé le monde",
+            items: [
+              { fact: "L'imprimerie a été inventée par Gutenberg (1450)", detail: "Johannes Gutenberg a créé la presse à caractères mobiles à Mayence (Allemagne). Son premier livre : la Bible à 42 lignes. L'imprimerie a révolutionné la diffusion du savoir." },
+              { fact: "La machine à vapeur perfectionnée par James Watt (1769)", detail: "Thomas Newcomen l'avait inventée en 1712, mais Watt l'a rendue efficace. Ça a lancé la révolution industrielle. L'unité de puissance 'watt' porte son nom." },
+              { fact: "L'ampoule électrique inventée par Thomas Edison (1879)", detail: "Edison a trouvé le filament en bambou carbonisé qui dure 1200h. Il a aussi inventé le phonographe et fondé General Electric. 1093 brevets au total !" },
+              { fact: "Le téléphone inventé par Alexander Graham Bell (1876)", detail: "Bell a déposé son brevet 2 heures avant son rival Elisha Gray. Ses premiers mots au téléphone : 'Mr. Watson, come here, I want to see you.'" },
+              { fact: "La pénicilline découverte par Alexander Fleming (1928)", detail: "Fleming a découvert par accident qu'une moisissure tuait les bactéries. Le 1er antibiotique a sauvé des millions de vies. Prix Nobel 1945." },
+              { fact: "Internet créé en 1969 (ARPANET) par le Département de la Défense américain", detail: "Le 1er message envoyé était 'LO' (le système a planté avant de finir 'LOGIN'). Tim Berners-Lee a inventé le World Wide Web en 1989 au CERN." },
+              { fact: "La dynamite inventée par Alfred Nobel (1867)", detail: "Nobel a stabilisé la nitroglycérine avec de la terre de diatomée. Il a créé le prix Nobel avec sa fortune pour promouvoir la paix (ironie !)" },
+              { fact: "Le vaccin inventé par Edward Jenner (1796)", detail: "Jenner a inoculé la variole de la vache (vaccine) à un enfant pour le protéger. Pasteur a perfectionné la méthode en 1885 avec le vaccin contre la rage." }
+            ],
+            flashcards: [
+              { q: "Qui a inventé l'imprimerie à caractères mobiles ?", r: "Johannes Gutenberg (1450)" },
+              { q: "Qui a perfectionné la machine à vapeur ?", r: "James Watt (1769)" },
+              { q: "Qui a inventé l'ampoule électrique ?", r: "Thomas Edison (1879)" },
+              { q: "Qui a inventé le téléphone ?", r: "Alexander Graham Bell (1876)" },
+              { q: "Qui a découvert la pénicilline ?", r: "Alexander Fleming (1928)" },
+              { q: "Quel était le premier réseau Internet ?", r: "ARPANET (1969)" },
+              { q: "Qui a inventé la dynamite ?", r: "Alfred Nobel (1867)" },
+              { q: "Qui a inventé le premier vaccin ?", r: "Edward Jenner (1796, variole)" },
+              { q: "Qui a inventé le World Wide Web ?", r: "Tim Berners-Lee (1989, au CERN)" },
+              { q: "Combien de brevets Edison a-t-il déposés ?", r: "1 093 brevets" },
+              { q: "Quels sont les premiers mots prononcés au téléphone ?", r: "'Mr. Watson, come here, I want to see you'" },
+              { q: "Quel est le premier livre imprimé par Gutenberg ?", r: "La Bible à 42 lignes" }
+            ]
+          },
+          {
+            id: "w3d2t2", type: "fiche",
+            title: "Inventions françaises et modernes",
+            items: [
+              { fact: "Le cinématographe inventé par les frères Lumière (1895)", detail: "Auguste et Louis Lumière à Lyon. Première projection publique payante le 28 décembre 1895 au Grand Café à Paris. Le premier film : 'La Sortie de l'usine Lumière'." },
+              { fact: "Le stéthoscope inventé par René Laennec (1816)", detail: "Médecin breton qui a roulé un cahier pour écouter le cœur d'une patiente. Le nom vient du grec 'stethos' (poitrine) et 'skopein' (examiner)." },
+              { fact: "La pasteurisation inventée par Louis Pasteur (1863)", detail: "Chauffer un liquide pour tuer les microbes sans altérer le goût. Pasteur a aussi créé le vaccin contre la rage et prouvé que les germes causent les maladies." },
+              { fact: "Le braille inventé par Louis Braille (1824)", detail: "Louis Braille, aveugle depuis l'âge de 3 ans, a inventé ce système d'écriture à 15 ans. 6 points en relief = 64 combinaisons. Utilisé dans le monde entier." },
+              { fact: "L'avion des frères Wright (1903) — mais Clément Ader revendique 1890", detail: "Les frères Wright (USA) ont volé 12 secondes à Kitty Hawk. Clément Ader (France) prétend avoir volé en 1890 avec l'Éole, mais c'est contesté." },
+              { fact: "Le GPS lancé par l'armée américaine (1978-1995)", detail: "24 satellites en orbite à 20 200 km d'altitude. Ouvert aux civils en 2000 par Bill Clinton. Précision : ~1 mètre. La version européenne s'appelle Galileo." },
+              { fact: "Le smartphone : iPhone lancé par Apple en 2007", detail: "Steve Jobs a présenté le premier iPhone le 9 janvier 2007. Il combinait téléphone, iPod et navigateur web. Ça a tué le BlackBerry et le Nokia." }
+            ],
+            flashcards: [
+              { q: "Qui a inventé le cinématographe ?", r: "Les frères Lumière (1895, Lyon)" },
+              { q: "Quelle est la date de la 1ère projection de cinéma payante ?", r: "28 décembre 1895" },
+              { q: "Qui a inventé le stéthoscope ?", r: "René Laennec (1816)" },
+              { q: "Qui a inventé la pasteurisation ?", r: "Louis Pasteur (1863)" },
+              { q: "Qui a inventé le braille ?", r: "Louis Braille (1824, à 15 ans)" },
+              { q: "Quand le premier iPhone a-t-il été présenté ?", r: "9 janvier 2007" },
+              { q: "Comment s'appelle le GPS européen ?", r: "Galileo" },
+              { q: "Qui revendique le premier vol motorisé en France ?", r: "Clément Ader (1890, avec l'Éole)" },
+              { q: "Combien de satellites composent le GPS ?", r: "24 satellites" },
+              { q: "Quel Français a prouvé que les germes causent les maladies ?", r: "Louis Pasteur" }
+            ]
+          },
+          {
+            id: "w3d2t3", type: "quiz",
+            title: "Quiz : Inventions",
+            questions: [
+              { q: "Qui a inventé l'imprimerie ?", r: "Gutenberg", choices: ["Galilée", "Gutenberg", "Newton", "Da Vinci"] },
+              { q: "La pénicilline a été découverte par accident en quelle année ?", r: "1928", choices: ["1895", "1912", "1928", "1945"] },
+              { q: "Qui a inventé le cinématographe ?", r: "Les frères Lumière", choices: ["Thomas Edison", "Les frères Lumière", "Georges Méliès", "Charlie Chaplin"] },
+              { q: "Qui a perfectionné la machine à vapeur ?", r: "James Watt", choices: ["Thomas Edison", "James Watt", "Benjamin Franklin", "Nikola Tesla"] },
+              { q: "Quel était le premier réseau Internet ?", r: "ARPANET", choices: ["Ethernet", "ARPANET", "World Wide Web", "Minitel"] },
+              { q: "Qui a inventé le braille ?", r: "Louis Braille", choices: ["Louis Pasteur", "Louis Braille", "Louis Lumière", "Louis XIV"] },
+              { q: "Le premier iPhone date de quelle année ?", r: "2007", choices: ["2004", "2005", "2007", "2010"] },
+              { q: "Qui a créé le prix Nobel ?", r: "Alfred Nobel", choices: ["Albert Einstein", "Alfred Nobel", "Isaac Newton", "Marie Curie"] }
+            ]
+          }
+        ]
+      },
+
+      // === JOUR 3 : ASTRONOMIE & ESPACE ===
+      {
+        day: 3, label: "Mercredi", theme: "Astronomie & Espace", icon: "🚀",
+        objectif: "Le système solaire, les étoiles et les missions spatiales marquantes",
+        tasks: [
+          {
+            id: "w3d3t1", type: "fiche",
+            title: "Le système solaire",
+            items: [
+              { fact: "Les 8 planètes dans l'ordre : Mercure, Vénus, Terre, Mars, Jupiter, Saturne, Uranus, Neptune", detail: "Moyen mnémotechnique : 'Me Voici Tout Mouillé, Je Suis Un Nageur'. Pluton a été rétrogradée en planète naine en 2006." },
+              { fact: "Jupiter est la plus grande planète (11× le diamètre de la Terre)", detail: "Sa Grande Tache Rouge est une tempête plus grande que la Terre, active depuis 350 ans. Jupiter a 95 lunes connues, dont Europa (peut-être de l'eau liquide)." },
+              { fact: "Le Soleil représente 99,86% de la masse du système solaire", detail: "C'est une étoile naine jaune. Sa température de surface = 5 500°C. Son cœur = 15 millions de degrés. Il brûlera encore 5 milliards d'années." },
+              { fact: "La Lune est à 384 400 km de la Terre", detail: "C'est le seul corps céleste visité par l'homme (Apollo 11, 1969). La Lune s'éloigne de 3,8 cm par an. Elle met 27,3 jours pour faire le tour de la Terre." },
+              { fact: "Mars est surnommée la planète rouge à cause de l'oxyde de fer", detail: "Mars a le plus grand volcan du système solaire : Olympus Mons (21 km de haut, 3× l'Everest). Une journée sur Mars = 24h37." },
+              { fact: "Saturne a des anneaux composés de glace et de roches", detail: "Les anneaux font 280 000 km de diamètre mais seulement 10 m d'épaisseur ! Saturne est si légère qu'elle flotterait sur l'eau (densité < 1)." },
+              { fact: "Une année-lumière = 9 461 milliards de km", detail: "C'est la distance parcourue par la lumière en 1 an. L'étoile la plus proche (Proxima Centauri) est à 4,24 années-lumière. Notre galaxie fait 100 000 années-lumière de diamètre." }
+            ],
+            flashcards: [
+              { q: "Citez les 8 planètes du système solaire dans l'ordre", r: "Mercure, Vénus, Terre, Mars, Jupiter, Saturne, Uranus, Neptune" },
+              { q: "Quelle est la plus grande planète du système solaire ?", r: "Jupiter" },
+              { q: "En quelle année Pluton a-t-elle perdu son statut de planète ?", r: "2006" },
+              { q: "Quel pourcentage de la masse du système solaire le Soleil représente-t-il ?", r: "99,86%" },
+              { q: "À quelle distance est la Lune de la Terre ?", r: "384 400 km" },
+              { q: "Quel est le plus grand volcan du système solaire ?", r: "Olympus Mons (sur Mars, 21 km de haut)" },
+              { q: "Pourquoi Mars est-elle rouge ?", r: "À cause de l'oxyde de fer (rouille) à sa surface" },
+              { q: "De quoi sont composés les anneaux de Saturne ?", r: "De glace et de roches" },
+              { q: "Qu'est-ce qu'une année-lumière en km ?", r: "9 461 milliards de km" },
+              { q: "Quelle est l'étoile la plus proche de la Terre (hors Soleil) ?", r: "Proxima Centauri (4,24 années-lumière)" },
+              { q: "Combien de lunes connues Jupiter a-t-elle ?", r: "95 lunes" },
+              { q: "Quelle planète flotterait sur l'eau ?", r: "Saturne (densité < 1)" }
+            ]
+          },
+          {
+            id: "w3d3t2", type: "fiche",
+            title: "Les grandes missions spatiales",
+            items: [
+              { fact: "Spoutnik : 1er satellite artificiel (1957, URSS)", detail: "Une simple sphère de 58 cm avec 4 antennes. Son 'bip-bip' a choqué le monde et lancé la course à l'espace." },
+              { fact: "Youri Gagarine : 1er humain dans l'espace (12 avril 1961)", detail: "Vol de 108 minutes en orbite autour de la Terre dans Vostok 1. Sa phrase célèbre : 'La Terre est bleue... c'est magnifique.'" },
+              { fact: "Apollo 11 : 1er pas sur la Lune (20 juillet 1969)", detail: "Neil Armstrong : 'Un petit pas pour l'homme, un bond de géant pour l'humanité.' Buzz Aldrin l'a rejoint. Michael Collins est resté en orbite." },
+              { fact: "Voyager 1 : l'objet humain le plus éloigné de la Terre", detail: "Lancé en 1977, il est à plus de 24 milliards de km. Il transporte un disque d'or avec des sons et images de la Terre pour d'éventuels extraterrestres." },
+              { fact: "Le télescope spatial Hubble lancé en 1990", detail: "Orbite à 547 km d'altitude. Il a révolutionné l'astronomie avec des images incroyables. Remplacé progressivement par le James Webb (lancé en 2021)." },
+              { fact: "Thomas Pesquet : 1er Français commandant de l'ISS (2021)", detail: "Astronaute de l'ESA. 2 missions : Proxima (2016-2017) et Alpha (2021). Il a passé 396 jours dans l'espace au total." }
+            ],
+            flashcards: [
+              { q: "Quel est le 1er satellite artificiel de l'histoire ?", r: "Spoutnik (1957, URSS)" },
+              { q: "Qui est le 1er humain dans l'espace ?", r: "Youri Gagarine (12 avril 1961)" },
+              { q: "Qui a été le 1er homme à marcher sur la Lune ?", r: "Neil Armstrong (20 juillet 1969)" },
+              { q: "Quel est l'objet humain le plus éloigné de la Terre ?", r: "Voyager 1 (lancé en 1977)" },
+              { q: "En quelle année le télescope Hubble a-t-il été lancé ?", r: "1990" },
+              { q: "Comment s'appelle le successeur de Hubble ?", r: "Le télescope James Webb (2021)" },
+              { q: "Qui est le 1er Français commandant de l'ISS ?", r: "Thomas Pesquet (2021)" },
+              { q: "Que transporte Voyager 1 pour les extraterrestres ?", r: "Un disque d'or avec des sons et images de la Terre" },
+              { q: "Quelle est la phrase célèbre de Gagarine ?", r: "'La Terre est bleue... c'est magnifique'" },
+              { q: "Qui est resté en orbite pendant qu'Armstrong marchait sur la Lune ?", r: "Michael Collins" }
+            ]
+          },
+          {
+            id: "w3d3t3", type: "quiz",
+            title: "Quiz : Astronomie",
+            questions: [
+              { q: "Quelle est la plus grande planète du système solaire ?", r: "Jupiter", choices: ["Saturne", "Jupiter", "Neptune", "Uranus"] },
+              { q: "Qui est le premier homme à marcher sur la Lune ?", r: "Neil Armstrong", choices: ["Buzz Aldrin", "Neil Armstrong", "Youri Gagarine", "John Glenn"] },
+              { q: "Quel télescope spatial a été lancé en 1990 ?", r: "Hubble", choices: ["James Webb", "Hubble", "Kepler", "Spitzer"] },
+              { q: "En quelle année Pluton a perdu son statut de planète ?", r: "2006", choices: ["2000", "2003", "2006", "2012"] },
+              { q: "Combien de planètes dans le système solaire ?", r: "8", choices: ["7", "8", "9", "10"] },
+              { q: "Quel Français a commandé l'ISS en 2021 ?", r: "Thomas Pesquet", choices: ["Jean-Loup Chrétien", "Thomas Pesquet", "Claudie Haigneré", "Patrick Baudry"] },
+              { q: "Quel est le plus grand volcan du système solaire ?", r: "Olympus Mons", choices: ["Mauna Kea", "Olympus Mons", "Everest", "Etna"] },
+              { q: "Le 1er satellite artificiel s'appelait ?", r: "Spoutnik", choices: ["Explorer", "Spoutnik", "Vostok", "Apollo"] }
+            ]
+          }
+        ]
+      },
+
+      // === JOUR 4 : BIOLOGIE & CORPS HUMAIN ===
+      {
+        day: 4, label: "Jeudi", theme: "Biologie & Corps humain", icon: "🧬",
+        objectif: "ADN, cellules, organes et grandes découvertes biologiques",
+        tasks: [
+          {
+            id: "w3d4t1", type: "fiche",
+            title: "Les bases de la biologie",
+            items: [
+              { fact: "L'ADN contient le code génétique de tout être vivant", detail: "ADN = Acide DésoxyriboNucléique. Double hélice découverte par Watson & Crick (1953). Déroulé, l'ADN d'une cellule mesure ~2 mètres. Le génome humain = 3,2 milliards de paires de bases." },
+              { fact: "Le corps humain contient environ 37 200 milliards de cellules", detail: "Mais aussi 38 000 milliards de bactéries ! On a plus de bactéries que de cellules propres. Les cellules se renouvellent : peau = 2-3 semaines, sang = 120 jours." },
+              { fact: "Charles Darwin a proposé la théorie de l'évolution (1859)", detail: "Dans 'L'Origine des espèces'. Sélection naturelle : les individus les mieux adaptés survivent et se reproduisent. Voyage sur le Beagle aux Galapagos = inspiration clé." },
+              { fact: "Les mitochondries sont les 'centrales énergétiques' de la cellule", detail: "Elles produisent l'ATP (énergie). Fait étonnant : elles ont leur propre ADN et étaient probablement des bactéries indépendantes il y a 2 milliards d'années (endosymbiose)." },
+              { fact: "La photosynthèse transforme le CO2 en oxygène grâce à la lumière", detail: "6 CO2 + 6 H2O + lumière → C6H12O6 (glucose) + 6 O2. Se déroule dans les chloroplastes. Les plantes produisent ~50% de l'oxygène terrestre (le reste = océans)." },
+              { fact: "Le cerveau humain contient ~86 milliards de neurones", detail: "Il consomme 20% de l'énergie du corps alors qu'il ne pèse que 1,4 kg (2% du poids). Les signaux nerveux voyagent à ~400 km/h." }
+            ],
+            flashcards: [
+              { q: "Que signifie ADN ?", r: "Acide DésoxyriboNucléique" },
+              { q: "Qui a découvert la structure en double hélice de l'ADN ?", r: "Watson & Crick (1953)" },
+              { q: "Combien de cellules dans le corps humain ?", r: "~37 200 milliards" },
+              { q: "Qui a proposé la théorie de l'évolution ?", r: "Charles Darwin (1859)" },
+              { q: "Quel organe consomme 20% de l'énergie du corps ?", r: "Le cerveau" },
+              { q: "Combien de neurones dans le cerveau humain ?", r: "~86 milliards" },
+              { q: "Qu'est-ce que la photosynthèse produit ?", r: "Du glucose et de l'oxygène à partir de CO2 et d'eau" },
+              { q: "Comment s'appelle la 'centrale énergétique' de la cellule ?", r: "La mitochondrie" },
+              { q: "Combien pèse le cerveau humain ?", r: "~1,4 kg" },
+              { q: "À quelle vitesse les signaux nerveux voyagent-ils ?", r: "~400 km/h" },
+              { q: "Déroulé, l'ADN d'une cellule mesure combien ?", r: "~2 mètres" },
+              { q: "Quel est le livre majeur de Darwin ?", r: "L'Origine des espèces (1859)" }
+            ]
+          },
+          {
+            id: "w3d4t2", type: "fiche",
+            title: "Le corps humain : records et chiffres",
+            items: [
+              { fact: "Le cœur bat environ 100 000 fois par jour", detail: "Soit ~3 milliards de battements dans une vie. Le cœur pompe ~7 000 litres de sang par jour. Le sang fait le tour du corps en ~1 minute." },
+              { fact: "Le fémur est l'os le plus long du corps (environ 1/4 de la taille)", detail: "Le corps humain a 206 os chez l'adulte (mais 270 à la naissance — ils fusionnent). L'os le plus petit : l'étrier dans l'oreille (3 mm)." },
+              { fact: "L'intestin grêle mesure environ 6 mètres de long", detail: "Le gros intestin fait ~1,5 m. La surface totale des intestins (avec les villosités) = ~32 m², soit un demi-terrain de badminton." },
+              { fact: "Les poumons contiennent ~300 millions d'alvéoles", detail: "Surface d'échange = ~70 m² (un court de tennis). On respire ~20 000 fois par jour et on inhale ~10 000 litres d'air." },
+              { fact: "Le foie est le plus gros organe interne (~1,5 kg)", detail: "Il remplit plus de 500 fonctions : détoxification, production de bile, stockage du glucose, synthèse des protéines. Il peut se régénérer !" },
+              { fact: "L'être humain a 5 sens principaux mais en réalité bien plus", detail: "En plus de la vue, l'ouïe, l'odorat, le goût et le toucher, on a la proprioception (position du corps), la thermoception (température), la nociception (douleur), l'équilibrioception..." }
+            ],
+            flashcards: [
+              { q: "Combien de fois le cœur bat-il par jour ?", r: "~100 000 fois" },
+              { q: "Combien d'os un adulte a-t-il ?", r: "206 os" },
+              { q: "Quel est l'os le plus long du corps ?", r: "Le fémur" },
+              { q: "Quel est l'os le plus petit du corps ?", r: "L'étrier (dans l'oreille, 3 mm)" },
+              { q: "Quelle est la longueur de l'intestin grêle ?", r: "~6 mètres" },
+              { q: "Combien d'alvéoles dans les poumons ?", r: "~300 millions" },
+              { q: "Quel est le plus gros organe interne ?", r: "Le foie (~1,5 kg)" },
+              { q: "Combien de litres de sang le cœur pompe-t-il par jour ?", r: "~7 000 litres" },
+              { q: "Combien de fonctions le foie remplit-il ?", r: "Plus de 500" },
+              { q: "Qu'est-ce que la proprioception ?", r: "Le sens de la position du corps dans l'espace" },
+              { q: "Combien d'os un bébé a-t-il à la naissance ?", r: "270 (ils fusionnent en 206)" },
+              { q: "Combien de fois respire-t-on par jour ?", r: "~20 000 fois" }
+            ]
+          },
+          {
+            id: "w3d4t3", type: "quiz",
+            title: "Quiz : Biologie",
+            questions: [
+              { q: "Que signifie ADN ?", r: "Acide DésoxyriboNucléique", choices: ["Acide DiNitrique", "Acide DésoxyriboNucléique", "Amine DéNaturée", "Atome DiNucléaire"] },
+              { q: "Combien d'os chez un adulte ?", r: "206", choices: ["186", "206", "256", "270"] },
+              { q: "Quel est le plus gros organe interne ?", r: "Le foie", choices: ["Le cerveau", "Le foie", "Les poumons", "L'estomac"] },
+              { q: "Qui a proposé la théorie de l'évolution ?", r: "Darwin", choices: ["Pasteur", "Darwin", "Mendel", "Lamarck"] },
+              { q: "Combien de neurones dans le cerveau ?", r: "~86 milliards", choices: ["10 milliards", "~86 milliards", "200 milliards", "1 billion"] },
+              { q: "Qu'est-ce que la mitochondrie ?", r: "La centrale énergétique de la cellule", choices: ["Le noyau de la cellule", "La centrale énergétique de la cellule", "La membrane cellulaire", "Un type de bactérie"] },
+              { q: "Combien de fois le cœur bat-il par jour ?", r: "~100 000", choices: ["50 000", "~100 000", "200 000", "500 000"] },
+              { q: "Quel est l'os le plus petit du corps ?", r: "L'étrier", choices: ["La rotule", "L'étrier", "Le coccyx", "La phalange"] }
+            ]
+          }
+        ]
+      },
+
+      // === JOUR 5 : MATHÉMATIQUES & GRANDS SCIENTIFIQUES ===
+      {
+        day: 5, label: "Vendredi", theme: "Maths & Grands scientifiques", icon: "🧮",
+        objectif: "Les nombres célèbres, les théorèmes et les scientifiques incontournables",
+        tasks: [
+          {
+            id: "w3d5t1", type: "fiche",
+            title: "Nombres et concepts mathématiques célèbres",
+            items: [
+              { fact: "Pi (π) ≈ 3,14159... — rapport du périmètre d'un cercle à son diamètre", detail: "Nombre irrationnel (décimales infinies sans motif). Record : calculé à 100 000 milliards de décimales (2024). Le 14 mars = Pi Day (3/14 en format US)." },
+              { fact: "Le nombre d'or (φ) ≈ 1,618", detail: "Présent dans la nature (coquillage nautile, tournesol), l'architecture (Parthénon) et l'art (Léonard de Vinci). La suite de Fibonacci converge vers φ." },
+              { fact: "Le théorème de Pythagore : a² + b² = c²", detail: "Dans un triangle rectangle, le carré de l'hypoténuse = somme des carrés des deux autres côtés. Connu des Babyloniens 1000 ans avant Pythagore." },
+              { fact: "L'infini (∞) n'est pas un nombre, c'est un concept", detail: "Georg Cantor a montré qu'il existe plusieurs tailles d'infini. L'ensemble des nombres réels est 'plus infini' que l'ensemble des entiers naturels !" },
+              { fact: "Le zéro a été inventé en Inde au Ve siècle", detail: "Les mathématiciens indiens (Brahmagupta, ~628) ont été les premiers à traiter le zéro comme un nombre. Les Mayas l'avaient aussi indépendamment. Il est arrivé en Europe via les Arabes." },
+              { fact: "Un googol = 10^100 (1 suivi de 100 zéros)", detail: "Le nom 'Google' vient d'une faute d'orthographe de 'googol'. Un googolplex = 10^googol, un nombre si grand qu'on ne pourrait pas l'écrire même en utilisant tout l'univers." }
+            ],
+            flashcards: [
+              { q: "Que vaut approximativement Pi (π) ?", r: "3,14159..." },
+              { q: "Que vaut le nombre d'or (φ) ?", r: "~1,618" },
+              { q: "Quel est le théorème de Pythagore ?", r: "a² + b² = c² (triangle rectangle)" },
+              { q: "Qui a montré qu'il existe plusieurs tailles d'infini ?", r: "Georg Cantor" },
+              { q: "Où et quand le zéro a-t-il été inventé ?", r: "En Inde, au Ve siècle" },
+              { q: "Combien vaut un googol ?", r: "10^100 (1 suivi de 100 zéros)" },
+              { q: "D'où vient le nom 'Google' ?", r: "D'une faute d'orthographe de 'googol'" },
+              { q: "Quelle suite mathématique converge vers le nombre d'or ?", r: "La suite de Fibonacci" },
+              { q: "Quand est le Pi Day ?", r: "Le 14 mars (3/14)" },
+              { q: "Les Babyloniens connaissaient quel théorème 1000 ans avant son auteur ?", r: "Le théorème de Pythagore" }
+            ]
+          },
+          {
+            id: "w3d5t2", type: "fiche",
+            title: "Les grands scientifiques à connaître",
+            items: [
+              { fact: "Marie Curie : 1ère femme prix Nobel, 2 prix Nobel (physique 1903, chimie 1911)", detail: "Née en Pologne, naturalisée française. A découvert le radium et le polonium. Morte d'une leucémie causée par ses recherches. Ses carnets sont encore radioactifs aujourd'hui." },
+              { fact: "Albert Einstein : prix Nobel de physique 1921 (effet photoélectrique)", detail: "Pas pour la relativité ! Né en Allemagne, naturalisé américain. A refusé la présidence d'Israël. Son cerveau a été conservé après sa mort." },
+              { fact: "Isaac Newton : gravitation universelle, optique, calcul infinitésimal", detail: "La légende de la pomme tombée sur sa tête est probablement vraie (racontée par Newton lui-même). Né le 25 décembre 1642. A aussi été alchimiste." },
+              { fact: "Galilée : père de l'astronomie moderne, a amélioré le télescope", detail: "A observé les lunes de Jupiter (1610). Condamné par l'Inquisition pour avoir dit que la Terre tourne autour du Soleil. Phrase apocryphe : 'Et pourtant elle tourne.'" },
+              { fact: "Nikola Tesla : courant alternatif, bobine Tesla, transmission sans fil", detail: "Génie visionnaire rival d'Edison. 300 brevets. A imaginé le WiFi, les drones et les robots 100 ans avant. Mort seul et ruiné en 1943. L'unité tesla (T) mesure le champ magnétique." },
+              { fact: "Ada Lovelace : 1ère programmeuse de l'histoire (1843)", detail: "Fille de Lord Byron. A écrit le premier algorithme destiné à être exécuté par une machine (la machine analytique de Babbage). Le langage Ada porte son nom." }
+            ],
+            flashcards: [
+              { q: "Combien de prix Nobel Marie Curie a-t-elle reçus ?", r: "2 (physique 1903, chimie 1911)" },
+              { q: "Pour quelle découverte Einstein a-t-il eu le Nobel ?", r: "L'effet photoélectrique (pas la relativité)" },
+              { q: "Qui est considéré comme le père de la gravitation universelle ?", r: "Isaac Newton" },
+              { q: "Qui a été condamné par l'Inquisition pour l'héliocentrisme ?", r: "Galilée" },
+              { q: "Qui est le rival d'Edison pour le courant alternatif ?", r: "Nikola Tesla" },
+              { q: "Qui est la 1ère programmeuse de l'histoire ?", r: "Ada Lovelace (1843)" },
+              { q: "Quels éléments Marie Curie a-t-elle découverts ?", r: "Le radium et le polonium" },
+              { q: "Combien de brevets Tesla a-t-il déposés ?", r: "~300 brevets" },
+              { q: "De qui Ada Lovelace est-elle la fille ?", r: "Lord Byron (le poète)" },
+              { q: "Qu'a refusé Einstein en 1952 ?", r: "La présidence d'Israël" },
+              { q: "Quelle phrase est attribuée (à tort) à Galilée ?", r: "'Et pourtant elle tourne'" },
+              { q: "Quand est né Newton ?", r: "Le 25 décembre 1642" }
+            ]
+          },
+          {
+            id: "w3d5t3", type: "quiz",
+            title: "Quiz final : Sciences",
+            questions: [
+              { q: "Combien de prix Nobel Marie Curie a-t-elle reçus ?", r: "2", choices: ["1", "2", "3", "4"] },
+              { q: "Que vaut approximativement Pi ?", r: "3,14159", choices: ["2,71828", "3,14159", "1,61803", "9,80665"] },
+              { q: "Qui est la 1ère programmeuse de l'histoire ?", r: "Ada Lovelace", choices: ["Grace Hopper", "Ada Lovelace", "Marie Curie", "Hedy Lamarr"] },
+              { q: "Le théorème de Pythagore concerne quel type de triangle ?", r: "Triangle rectangle", choices: ["Triangle isocèle", "Triangle rectangle", "Triangle équilatéral", "Triangle quelconque"] },
+              { q: "Pour quelle découverte Einstein a-t-il eu le Nobel ?", r: "L'effet photoélectrique", choices: ["La relativité", "L'effet photoélectrique", "La fission nucléaire", "Les ondes gravitationnelles"] },
+              { q: "Qui a inventé le courant alternatif ?", r: "Nikola Tesla", choices: ["Thomas Edison", "Nikola Tesla", "Benjamin Franklin", "Michael Faraday"] },
+              { q: "Où le zéro a-t-il été inventé ?", r: "En Inde", choices: ["En Grèce", "En Egypte", "En Inde", "En Chine"] },
+              { q: "D'où vient le nom de la société Google ?", r: "Du nombre googol (10^100)", choices: ["D'un algorithme", "Du nombre googol (10^100)", "Du nom d'un fondateur", "D'un mot allemand"] }
+            ]
+          }
+        ]
+      }
+    ]
   }
 ];
