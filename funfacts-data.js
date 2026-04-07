@@ -2549,4 +2549,142 @@ const FUNFACTS_PACKS = [
       {front: "Quel pourcentage de femmes siègent aux conseils d'administration en France ?", back: "43,4%", memo: "Grâce à la loi Copé-Zimmermann (2011) qui impose 40% minimum. La France = championne d'Europe sur ce critère ! Avant la loi c'était ~10%"},
     ],
   },
+
+  // ===== ABRÉVIATIONS & SIGLES =====
+  {
+    id: "abreviations",
+    name: "Abréviations & Sigles",
+    icon: "🔤",
+    description: "ONU, OTAN, PIB, ADN... les sigles incontournables en quiz",
+    difficulty: "intermediaire",
+    reversible: true,
+    cards: [
+      // --- Organisations internationales ---
+      {front: "ONU", back: "Organisation des Nations Unies", memo: "Créée en 1945 après la 2nde Guerre mondiale. Siège à New York. 193 États membres. Le Conseil de sécurité a 5 membres permanents (France, USA, UK, Russie, Chine)"},
+      {front: "OTAN", back: "Organisation du Traité de l'Atlantique Nord", memo: "Alliance militaire créée en 1949. Siège à Bruxelles. 32 membres (2024). En anglais : NATO. Article 5 = clause de défense collective"},
+      {front: "UE", back: "Union européenne", memo: "27 États membres (depuis le Brexit en 2020). Siège à Bruxelles. Fondée par le traité de Maastricht (1992). L'euro = monnaie de 20 pays"},
+      {front: "UNESCO", back: "Organisation des Nations Unies pour l'éducation, la science et la culture", memo: "Siège à Paris (place de Fontenoy). Classe les sites du patrimoine mondial. Créée en 1945. La France compte 52 sites UNESCO"},
+      {front: "OMS", back: "Organisation mondiale de la santé", memo: "Siège à Genève. Agence spécialisée de l'ONU. A géré la pandémie de COVID-19. En anglais : WHO (World Health Organization)"},
+      {front: "FMI", back: "Fonds monétaire international", memo: "Siège à Washington. 190 pays membres. Prête de l'argent aux pays en difficulté. Créé en 1944 (accords de Bretton Woods)"},
+      {front: "UNICEF", back: "Fonds des Nations Unies pour l'enfance", memo: "Créé en 1946. Protège les droits des enfants dans le monde. Prix Nobel de la paix 1965. Ambassadeurs célèbres : Audrey Hepburn, David Beckham"},
+      {front: "OPEP", back: "Organisation des pays exportateurs de pétrole", memo: "13 pays membres. Contrôle ~40% de la production mondiale de pétrole. Siège à Vienne. En anglais : OPEC. Fondée en 1960"},
+      {front: "G7", back: "Groupe des 7 (USA, Canada, UK, France, Allemagne, Italie, Japon)", memo: "Les 7 économies les plus avancées. Sommet annuel. La Russie en faisait partie (G8) avant son exclusion en 2014 (annexion de la Crimée)"},
+      {front: "CPI", back: "Cour pénale internationale", memo: "Siège à La Haye (Pays-Bas). Juge les crimes de guerre, génocides et crimes contre l'humanité. Créée en 2002. Les USA, la Russie et la Chine n'en sont pas membres"},
+
+      // --- France & Politique ---
+      {front: "PIB", back: "Produit Intérieur Brut", memo: "Mesure la richesse produite par un pays en un an. PIB France ≈ 2 800 milliards €. La France = 7e économie mondiale"},
+      {front: "SMIC", back: "Salaire Minimum Interprofessionnel de Croissance", memo: "~1 400 € net/mois en 2025. Créé en 1970. Concerne ~2 millions de salariés en France. Revalorisé au 1er janvier chaque année"},
+      {front: "RSA", back: "Revenu de Solidarité Active", memo: "~607 € / mois pour une personne seule (2025). A remplacé le RMI en 2009. Environ 1,8 million de bénéficiaires en France"},
+      {front: "CSG", back: "Contribution Sociale Généralisée", memo: "Impôt prélevé sur tous les revenus (salaires, retraites, placements). Créée en 1991 par Michel Rocard. Taux : 9,2% sur les salaires"},
+      {front: "ENA", back: "École Nationale d'Administration", memo: "A formé la plupart des présidents français (Chirac, Hollande, Macron). Remplacée par l'INSP en 2022. Symbole de l'élitisme à la française"},
+      {front: "DGSE", back: "Direction Générale de la Sécurité Extérieure", memo: "Les services secrets français (l'équivalent de la CIA). Siège à Paris (boulevard Mortier). Surnommée 'la Piscine' car à côté d'une piscine municipale"},
+      {front: "SNCF", back: "Société Nationale des Chemins de fer Français", memo: "Créée en 1938. Gère les TGV, TER, Intercités. 14 000 trains/jour. Le TGV = record du monde de vitesse sur rail (574,8 km/h en 2007)"},
+      {front: "INSEE", back: "Institut National de la Statistique et des Études Économiques", memo: "Produit les statistiques officielles de la France : PIB, chômage, inflation, population. Siège à Montrouge"},
+
+      // --- Sciences & Santé ---
+      {front: "ADN", back: "Acide DésoxyriboNucléique", memo: "Le code génétique de tout être vivant. Double hélice découverte par Watson & Crick (1953). Le génome humain = 3,2 milliards de paires de bases"},
+      {front: "ARN", back: "Acide RiboNucléique", memo: "Copie de l'ADN qui sert de messager pour fabriquer des protéines. Les vaccins Pfizer et Moderna contre le COVID utilisent l'ARN messager (ARNm)"},
+      {front: "QI", back: "Quotient Intellectuel", memo: "Moyenne = 100. Créé par Alfred Binet (français !) en 1905. Un QI de 130+ = surdoué (2% de la population). Einstein avait ~160"},
+      {front: "IRM", back: "Imagerie par Résonance Magnétique", memo: "Utilise un aimant puissant (pas de rayons X). Inventée dans les années 1970. Examen de 30-60 min. Interdit avec un pacemaker ou des implants métalliques"},
+      {front: "OGM", back: "Organisme Génétiquement Modifié", memo: "ADN modifié en laboratoire. Très répandus aux USA (soja, maïs). Interdits en culture en France et dans la plupart de l'UE"},
+
+      // --- Technologie & Médias ---
+      {front: "IA", back: "Intelligence Artificielle", memo: "Machines qui simulent l'intelligence humaine. ChatGPT (2022) a popularisé l'IA générative. Le terme date de 1956 (conférence de Dartmouth)"},
+      {front: "GPS", back: "Global Positioning System", memo: "Système de géolocalisation par satellite. 24 satellites américains. Précision ~1 m. La version européenne = Galileo. Ouvert aux civils en 2000"},
+      {front: "GAFAM", back: "Google, Apple, Facebook (Meta), Amazon, Microsoft", memo: "Les 5 géants du numérique américain. Capitalisation combinée > 10 000 milliards $. Critiqués pour leur position dominante et l'évasion fiscale"},
+      {front: "URL", back: "Uniform Resource Locator (adresse web)", memo: "Inventé par Tim Berners-Lee en 1994 avec le World Wide Web. Commence par http:// ou https:// (s = sécurisé)"},
+      {front: "RGPD", back: "Règlement Général sur la Protection des Données", memo: "Loi européenne entrée en vigueur en 2018. Protège les données personnelles. Amende max = 4% du chiffre d'affaires mondial. C'est pour ça qu'on accepte les cookies"},
+      {front: "FAQ", back: "Foire Aux Questions (Frequently Asked Questions)", memo: "Acronyme hybride français-anglais devenu universel. Utilisé sur tous les sites web. En anglais pur : FAQ aussi !"},
+
+      // --- Divers culture G ---
+      {front: "SOS", back: "Save Our Souls (signal de détresse)", memo: "Adopté en 1906. En morse : ··· −−− ··· (3 points, 3 traits, 3 points). Choisi car facile à émettre, pas vraiment pour 'Save Our Souls' (c'est un rétronyme)"},
+      {front: "PDG", back: "Président-Directeur Général", memo: "En anglais : CEO (Chief Executive Officer). En France, le PDG cumule la présidence du conseil d'administration et la direction générale"},
+      {front: "TVA", back: "Taxe sur la Valeur Ajoutée", memo: "Inventée en France en 1954 par Maurice Lauré ! Taux normal = 20%. Taux réduit = 5,5% (alimentation). Rapporte ~200 milliards €/an à l'État"},
+      {front: "OVNI", back: "Objet Volant Non Identifié", memo: "En anglais : UFO (Unidentified Flying Object). Depuis 2020, le Pentagone utilise le terme UAP (Unidentified Aerial Phenomena)"},
+      {front: "VTT", back: "Vélo Tout Terrain", memo: "Inventé en Californie dans les années 1970. Sport olympique depuis 1996 (Atlanta). La France = Julien Absalon, double champion olympique"},
+      {front: "JO", back: "Jeux Olympiques", memo: "Créés en 1896 à Athènes par Pierre de Coubertin (français !). Paris a accueilli les JO en 1900, 1924 et 2024. Devise : Citius, Altius, Fortius (Plus vite, plus haut, plus fort)"},
+    ],
+  },
+
+  // ===== HOMONYMES =====
+  {
+    id: "homonymes",
+    name: "Homonymes & Paronymes",
+    icon: "🔀",
+    description: "Les mots qui se prononcent pareil mais s'écrivent différemment",
+    difficulty: "debutant",
+    cards: [
+      // --- Homonymes classiques ---
+      {front: "ver / vers / vert / verre / vair", back: "ver = animal (ver de terre)\nvers = direction / poésie\nvert = couleur\nverre = matériau / récipient\nvair = fourrure d'écureuil", memo: "La pantoufle de Cendrillon était en vair (fourrure), pas en verre ! C'est Perrault qui a écrit 'verre' par erreur (ou exprès)"},
+      {front: "air / aire / ère / erre / hère", back: "air = atmosphère / mélodie\naire = surface\nère = époque\nerre = vitesse acquise (marine)\nhère = pauvre diable", memo: "'Un pauvre hère' = un malheureux. L'erre d'un navire = la vitesse qu'il garde quand on coupe le moteur. L'aire d'un triangle = base × hauteur / 2"},
+      {front: "ancre / encre", back: "ancre = objet pour fixer un bateau\nencre = liquide pour écrire", memo: "L'ancre ⚓ s'enfonce dans le fond marin. L'encre 🖋️ s'enfonce dans le papier. Jeter l'ancre = s'arrêter. Tache d'encre"},
+      {front: "conte / comte / compte", back: "conte = histoire (conte de fées)\ncomte = titre de noblesse\ncompte = calcul / bancaire", memo: "Le Comte de Monte-Cristo (Dumas) ≠ un conte pour enfants. Rendre des comptes = justifier ses actions. Régler son compte = punir"},
+      {front: "cour / cours / court / courre", back: "cour = espace ouvert / tribunal\ncours = leçon / rivière / prix\ncourt = adjectif (petit)\ncourre = chasse à courre", memo: "La cour du roi. Un cours d'eau. Un court de tennis. La chasse à courre = chasse à cheval avec des chiens"},
+      {front: "foi / foie / fois", back: "foi = croyance\nfoie = organe\nfois = occasion", memo: "Avoir la foi = croire. Le foie = plus gros organe interne (1,5 kg). 'Il était une fois' = début des contes. Le foie gras = spécialité française"},
+      {front: "mer / mère / maire", back: "mer = océan\nmère = maman\nmaire = élu municipal", memo: "La mer Méditerranée. La fête des Mères. Le maire de Paris = Anne Hidalgo (2014-2026). Grand-mère ≠ grande mer !"},
+      {front: "pain / pin / peint", back: "pain = aliment\npin = arbre\npeint = verbe peindre", memo: "La France = 1er consommateur de pain d'Europe (~120 baguettes/an par foyer). Le pin maritime = arbre typique des Landes. 'Il a peint un tableau'"},
+      {front: "saut / sceau / seau / sot", back: "saut = bond\nsceau = cachet officiel\nseau = récipient\nsot = idiot", memo: "Le saut en longueur. Le sceau du roi = marque officielle. Un seau d'eau. 'Quel sot !' = quel imbécile. Garde des Sceaux = ministre de la Justice"},
+      {front: "sans / sang / cent / sent / s'en", back: "sans = privé de\nsang = liquide rouge\ncent = 100\nsent = verbe sentir\ns'en = pronom", memo: "Sans = without. Le sang = 5 litres dans le corps. Cent = 100. 'Ça sent bon'. 'Il s'en va'. Sang-froid = calme"},
+      {front: "tant / temps / tend / taon", back: "tant = tellement\ntemps = durée / météo\ntend = verbe tendre\ntaon = insecte piqueur", memo: "Tant pis ! Le temps passe. Il tend la main. Le taon = grosse mouche qui pique (et ça fait très mal !)"},
+      {front: "voie / voix", back: "voie = chemin / route\nvoix = son de la parole", memo: "La voie ferrée. Voie de garage = impasse. La voix du chanteur. Voix active/passive (grammaire). À haute voix = en parlant fort"},
+
+      // --- Homonymes fréquents en quiz ---
+      {front: "amande / amende", back: "amande = fruit sec\namende = sanction financière", memo: "L'amande 🥜 se mange. L'amende 💰 se paye. PV = procès-verbal = amende de stationnement. Lait d'amande = boisson végétale"},
+      {front: "autel / hôtel", back: "autel = table sacrée (église)\nhôtel = hébergement", memo: "Se marier devant l'autel. Réserver un hôtel. L'Hôtel de Ville = la mairie (pas un hôtel !). L'Hôtel-Dieu = ancien nom des hôpitaux"},
+      {front: "balade / ballade", back: "balade = promenade\nballade = poème / chanson", memo: "Faire une balade en forêt (1 seul 'l'). Une ballade de Chopin (2 'l' = musique). La Ballade des pendus de Villon"},
+      {front: "canot / canaux", back: "canot = petit bateau\ncanaux = pluriel de canal", memo: "Un canot de sauvetage. Les canaux de Venise. Le canal de Suez / de Panama. Attention : canaux ≠ cannots"},
+      {front: "censé / sensé", back: "censé = supposé (être censé faire)\nsensé = raisonnable", memo: "Tu es censé travailler = tu es supposé travailler. Une personne sensée = qui a du bon sens. Piège classique en dictée !"},
+      {front: "cygne / signe", back: "cygne = oiseau blanc\nsigne = geste / symbole", memo: "Le Lac des cygnes (Tchaïkovski). Faire un signe de la main. Le chant du cygne = dernière œuvre avant la mort"},
+      {front: "différend / différent", back: "différend = désaccord\ndifférent = pas pareil", memo: "Régler un différend = résoudre un conflit. C'est différent = c'est pas pareil. Piège à l'écrit : le 'd' final du désaccord"},
+      {front: "entre / antre", back: "entre = préposition (au milieu)\nantre = grotte / repaire", memo: "Entre toi et moi. L'antre du dragon = sa caverne. L'antre du loup. Au figuré : 'son bureau, c'est un antre'"},
+      {front: "filtre / philtre", back: "filtre = pour filtrer (café, photo)\nphiltre = potion magique", memo: "Un filtre à café. Un filtre Instagram. Un philtre d'amour = potion magique (Tristan et Iseut). Le 'ph' = grec ancien"},
+      {front: "héros / héraut", back: "héros = personnage courageux\nhéraut = messager du roi", memo: "Le héros du film. Le héraut d'armes annonçait les tournois au Moyen Âge. Attention : 'héros' commence par un h aspiré (pas d'élision : LE héros)"},
+      {front: "martyr / martyre", back: "martyr = la personne qui souffre\nmartyre = la souffrance elle-même", memo: "Saint Sébastien est un martyr. Il a subi le martyre. Un enfant martyr = victime de maltraitance. Endurer un vrai martyre"},
+      {front: "pause / pose", back: "pause = arrêt\npose = action de poser / posture", memo: "Faire une pause café. La pose de carrelage. Prendre la pose (photo). Pause = break. La pause déjeuner"},
+      {front: "poids / pois / poix", back: "poids = masse\npois = légume\npoix = résine noire", memo: "Prendre du poids. Des petits pois. La poix = goudron (on l'utilisait pour brûler au Moyen Âge : 'verser de la poix bouillante'). Pois chiche = base du houmous"},
+      {front: "repaire / repère", back: "repaire = cachette (brigands)\nrepère = point de référence", memo: "Le repaire des voleurs = leur cachette. Un point de repère = un point de référence. Se repérer sur une carte. Perdre ses repères"},
+      {front: "teinte / tinte / thym", back: "teinte = couleur / nuance\ntinte = verbe tinter (sonner)\nthym = herbe aromatique", memo: "Une teinte de bleu. La cloche tinte. Le thym = herbe de Provence (avec le romarin et le laurier). Bouquet garni = thym + laurier + persil"},
+      {front: "tribu / tribut", back: "tribu = groupe / clan\ntribut = ce qu'on paie (impôt / prix)", memo: "Une tribu indienne. Payer un lourd tribut à la guerre = perdre beaucoup. Le tribut = l'impôt versé au vainqueur"},
+    ],
+  },
+
+  // ===== PRÉSIDENTS DES ÉTATS-UNIS =====
+  {
+    id: "presidents-usa",
+    name: "Présidents des États-Unis",
+    icon: "🇺🇸",
+    description: "Les 47 présidents américains, leurs mandats et anecdotes marquantes",
+    difficulty: "intermediaire",
+    cards: [
+      // --- Les incontournables ---
+      {front: "Qui est le 1er président des États-Unis ?", back: "George Washington (1789-1797)", memo: "Commandant en chef pendant la guerre d'Indépendance. Seul président élu à l'unanimité. A refusé un 3e mandat. La capitale porte son nom"},
+      {front: "Qui est le 3e président, auteur de la Déclaration d'Indépendance ?", back: "Thomas Jefferson (1801-1809)", memo: "A rédigé la Déclaration d'Indépendance en 1776. A acheté la Louisiane à Napoléon en 1803 (doublant la taille des USA). Fondateur de l'Université de Virginie"},
+      {front: "Qui est le 16e président, celui qui a aboli l'esclavage ?", back: "Abraham Lincoln (1861-1865)", memo: "A mené la guerre de Sécession (Nord vs Sud). 13e amendement = abolition de l'esclavage. Assassiné au théâtre par John Wilkes Booth. Son visage est sur le billet de 5$"},
+      {front: "Qui est le 26e président, le plus jeune à accéder au poste (42 ans) ?", back: "Theodore Roosevelt (1901-1909)", memo: "Surnommé 'Teddy'. Le nounours 'Teddy Bear' vient de lui. Prix Nobel de la paix 1906. A lancé le canal de Panama. Grand défenseur de l'environnement"},
+      {front: "Qui est le 32e président, élu 4 fois ?", back: "Franklin D. Roosevelt (1933-1945)", memo: "FDR. Le seul président élu 4 fois (après lui, le 22e amendement limite à 2 mandats). New Deal pendant la Grande Dépression. A dirigé les USA pendant la 2nde GM. Paralysé par la polio"},
+      {front: "Qui est le 35e président, assassiné à Dallas en 1963 ?", back: "John F. Kennedy (1961-1963)", memo: "JFK. Plus jeune président élu (43 ans). Crise des missiles de Cuba. Discours 'Ich bin ein Berliner'. Assassiné le 22 novembre 1963. Son frère Robert aussi assassiné (1968)"},
+      {front: "Qui est le 37e président, le seul à avoir démissionné ?", back: "Richard Nixon (1969-1974)", memo: "Scandale du Watergate = espionnage du Parti démocrate. A ouvert les relations avec la Chine (1972). A mis fin à la guerre du Vietnam. Phrase célèbre : 'I am not a crook'"},
+      {front: "Qui est le 40e président, ancien acteur de Hollywood ?", back: "Ronald Reagan (1981-1989)", memo: "Acteur avant la politique. A contribué à la fin de la Guerre froide avec Gorbatchev. 'Mr. Gorbachev, tear down this wall!' (mur de Berlin). Survivant d'une tentative d'assassinat"},
+      {front: "Qui est le 44e président, premier président afro-américain ?", back: "Barack Obama (2009-2017)", memo: "Né à Hawaï. Prix Nobel de la paix 2009. Obamacare = réforme de la santé. Slogan : 'Yes We Can'. Avant lui : sénateur de l'Illinois"},
+      {front: "Qui est le 45e et 47e président (élu deux fois non consécutivement en 2024) ?", back: "Donald Trump (2017-2021, puis 2025-)", memo: "Homme d'affaires et star de TV (The Apprentice). 1er président sans expérience politique ou militaire. Destitué 2 fois (acquitté). Grover Cleveland (22e et 24e) est le seul autre à avoir fait 2 mandats non consécutifs"},
+
+      // --- Présidents importants ---
+      {front: "Quel président a lancé le programme Apollo (aller sur la Lune) ?", back: "John F. Kennedy (1961)", memo: "'We choose to go to the Moon' (discours de Rice, 1962). Il n'a pas vu l'alunissage (assassiné en 1963). Apollo 11 = 20 juillet 1969"},
+      {front: "Quel président a ordonné le largage des bombes atomiques sur le Japon ?", back: "Harry Truman (33e, 1945-1953)", memo: "Hiroshima (6 août 1945) et Nagasaki (9 août 1945). A succédé à Roosevelt mort en fonction. A lancé le plan Marshall et l'OTAN"},
+      {front: "Quel président a acheté la Louisiane à Napoléon ?", back: "Thomas Jefferson (1803)", memo: "15 millions de dollars pour 2,1 millions de km² (3 cents l'acre !). Napoléon avait besoin d'argent pour ses guerres. Ça a doublé la taille des USA"},
+      {front: "Quel président a libéré les otages en Iran en 1981 ?", back: "Les otages ont été libérés le jour de l'investiture de Reagan", memo: "444 jours de captivité (1979-1981). C'est l'échec du sauvetage (Operation Eagle Claw) qui a coûté sa réélection à Jimmy Carter"},
+      {front: "Quel président était au pouvoir le 11 septembre 2001 ?", back: "George W. Bush (43e, 2001-2009)", memo: "Fils de George H.W. Bush (41e). A lancé la guerre en Afghanistan (2001) et en Irak (2003). Lisait un livre à des écoliers quand on lui a annoncé l'attaque"},
+      {front: "Quel président a fait le Watergate ?", back: "Richard Nixon (37e)", memo: "Cambriolage du siège du Parti démocrate au Watergate Hotel (1972). Nixon a nié puis a dû démissionner en 1974. Son vice-président Ford lui a accordé le pardon"},
+
+      // --- Anecdotes & Records ---
+      {front: "Quel président a le mandat le plus court de l'histoire ?", back: "William Henry Harrison (9e) : 31 jours", memo: "Mort de pneumonie en 1841 après un discours d'investiture de 2h sous la pluie (le plus long de l'histoire). Il n'a pratiquement rien fait comme président"},
+      {front: "Combien de présidents américains ont été assassinés ?", back: "4 : Lincoln (1865), Garfield (1881), McKinley (1901), Kennedy (1963)", memo: "Lincoln au théâtre Ford's. Garfield dans une gare. McKinley lors d'une exposition. Kennedy à Dallas. Reagan a survécu à une tentative (1981)"},
+      {front: "Quel est le visage sculpté au Mont Rushmore ?", back: "Washington, Jefferson, Lincoln, Theodore Roosevelt", memo: "Sculpture géante dans le Dakota du Sud (1927-1941). Chaque visage fait 18 m de haut. Choisis car ils représentent la naissance, la croissance, le développement et la préservation des USA"},
+      {front: "Sur quels billets de dollar apparaissent des présidents ?", back: "1$ Washington, 5$ Lincoln, 20$ Jackson, 50$ Grant", memo: "Le billet de 10$ = Alexander Hamilton (pas président !). Le billet de 100$ = Benjamin Franklin (pas président non plus !). Les deux seuls non-présidents sur les billets courants"},
+      {front: "Quel président a créé le FBI ?", back: "Theodore Roosevelt (1908)", memo: "Initialement le Bureau of Investigation. Devenu FBI (Federal Bureau of Investigation) en 1935. J. Edgar Hoover l'a dirigé pendant 48 ans (1924-1972)"},
+      {front: "Quel président américain a aussi été Chief Justice (juge en chef) ?", back: "William Howard Taft (27e président, puis juge en chef)", memo: "Seule personne à avoir dirigé les 2 branches. Président de 1909 à 1913, puis juge en chef de 1921 à 1930. Il pesait ~150 kg et avait une baignoire spéciale à la Maison Blanche"},
+      {front: "Qui est le plus jeune président élu ? Et le plus vieux ?", back: "Plus jeune élu : JFK (43 ans). Plus vieux : Joe Biden (78 ans en 2021)", memo: "Theodore Roosevelt est devenu président à 42 ans mais par succession (assassinat de McKinley), pas par élection. Trump avait 78 ans à sa 2e élection (2024)"},
+      {front: "Combien de présidents des États-Unis y a-t-il eu au total ?", back: "47 (de Washington à Trump)", memo: "Grover Cleveland compte 2 fois (22e et 24e). Donc 46 personnes distinctes pour 47 présidences. Le mandat = 4 ans, max 2 mandats (depuis 1951, 22e amendement)"},
+    ],
+  },
 ];
