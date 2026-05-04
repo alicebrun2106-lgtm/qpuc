@@ -1,20 +1,18 @@
-// Flashcards — SM-2 via shared SRS module + Difficulty filtering + Clean progress
+// Flashcards — SM-2 SRS + Chapters + Streak + Combo + Celebrations
 (function () {
   const SRS_KEY = "qpuc-srs";
   const TRACK_KEY = "qpuc-tracking";
   const NEW_CARDS_PER_SESSION = 15;
-  const MASTERY_THRESHOLD = 80;
-  let currentFilter = "all";
+  const MASTERY_THRESHOLD_PCT = 100; // a pack is "maîtrisé" at 100%
+  const REFRESH_DAYS = 30; // mastered pack older than 30d → "à rafraîchir"
+
+  let currentChapter = null; // null = home view, "chapId" = chapter detail
 
   function getCardKey(packId, idx) { return packId + ":" + idx; }
 
-  // --- Tracking System ---
-  function getTracking() {
-    try { return JSON.parse(localStorage.getItem(TRACK_KEY)) || {}; } catch { return {}; }
-  }
-  function saveTracking(data) {
-    localStorage.setItem(TRACK_KEY, JSON.stringify(data));
-  }
+  // --- TRACKING ---
+  function getTracking() { try { return JSON.parse(localStorage.getItem(TRACK_KEY)) || {}; } catch { return {}; } }
+  function saveTracking(d) { localStorage.setItem(TRACK_KEY, JSON.stringify(d)); }
   function trackAnswer(packId, cardIdx, quality) {
     const data = getTracking();
     if (!data[packId]) data[packId] = { attempts: 0, correct: 0, wrong: 0, cards: {}, lastPlayed: 0 };
@@ -43,32 +41,10 @@
   function getPackStats(packId) {
     const data = getTracking();
     const ps = data[packId];
-    if (!ps) return { attempts: 0, correct: 0, wrong: 0, successRate: 0, started: false, cardsAttempted: 0, lastPlayed: 0 };
-    return {
-      attempts: ps.attempts, correct: ps.correct, wrong: ps.wrong,
-      successRate: ps.attempts > 0 ? Math.round((ps.correct / ps.attempts) * 100) : 0,
-      started: ps.attempts > 0,
-      cardsAttempted: Object.keys(ps.cards).length,
-      lastPlayed: ps.lastPlayed || 0
-    };
+    if (!ps) return { attempts: 0, correct: 0, wrong: 0, started: false, lastPlayed: 0 };
+    return { attempts: ps.attempts, correct: ps.correct, wrong: ps.wrong, started: ps.attempts > 0, lastPlayed: ps.lastPlayed || 0 };
   }
 
-  function getDifficultyMastery(difficulty) {
-    const packs = FLASHCARD_PACKS.filter(p => p.difficulty === difficulty);
-    if (packs.length === 0) return 100;
-    let total = 0;
-    packs.forEach(p => { total += getPackMastery(p.id, p.cards.length); });
-    return Math.round(total / packs.length);
-  }
-
-  function isDifficultyUnlocked(difficulty) {
-    if (difficulty === "debutant" || !difficulty) return true;
-    if (difficulty === "intermediaire") return getDifficultyMastery("debutant") >= MASTERY_THRESHOLD;
-    if (difficulty === "expert") return getDifficultyMastery("intermediaire") >= MASTERY_THRESHOLD;
-    return true;
-  }
-
-  // Get due count for a pack (cards needing review today)
   function getPackDue(packId, totalCards) {
     const srsData = SRS.getData(SRS_KEY);
     let due = 0, newCards = 0;
@@ -80,8 +56,16 @@
     return { due, newCards };
   }
 
-  // --- Build a single pack card (clean version) ---
-  function buildPackCard(pack) {
+  function isPackMastered(pack) { return getPackMastery(pack.id, pack.cards.length) >= MASTERY_THRESHOLD_PCT; }
+
+  function isPackStaleAfterMastery(pack) {
+    if (!isPackMastered(pack)) return false;
+    const days = GAM.getPackDaysSinceReview(pack.id);
+    return days !== null && days >= REFRESH_DAYS;
+  }
+
+  // --- BUILD COMPACT PACK CARD ---
+  function buildPackCard(pack, opts = {}) {
     const total = pack.cards.length;
     const mastery = getPackMastery(pack.id, total);
     const stats = getPackStats(pack.id);
@@ -97,26 +81,26 @@
     card.className = "pack-card";
     card.onclick = () => startFlashcardSession(pack.id);
 
-    // Progress bar color based on mastery
     let barColor = "var(--accent)";
-    let barBg = "rgba(255,255,255,0.06)";
     if (mastery >= 100) barColor = "#2ecc71";
     else if (mastery >= 50) barColor = "#f0c040";
     else if (stats.started) barColor = "#3498db";
 
-    // Simple status line — one clean message
     let statusText = "";
-    if (mastery >= 100) {
-      statusText = '<span class="pack-status-done">✅ Maîtrisé</span>';
+    if (opts.showRefreshFlag && isPackStaleAfterMastery(pack)) {
+      statusText = '<span class="pack-status-refresh">🔄 À rafraîchir</span>';
+      card.classList.add("pack-needs-refresh");
+    } else if (mastery >= 100) {
+      statusText = '<span class="pack-status-done">⭐ Maîtrisé</span>';
     } else if (stats.started) {
       const todoCount = due + Math.min(newCards, NEW_CARDS_PER_SESSION);
-      statusText = `<span class="pack-status-todo">${todoCount > 0 ? todoCount + " à revoir" : "À jour !"}</span>`;
+      statusText = `<span class="pack-status-todo">${todoCount > 0 ? todoCount + " à revoir" : "À jour"}</span>`;
     } else {
       statusText = `<span class="pack-status-new">${total} cartes</span>`;
     }
 
     card.innerHTML = `
-      <div class="pack-icon">${pack.icon}</div>
+      <div class="pack-icon">${pack.icon || "📚"}</div>
       <div class="pack-info">
         <div class="pack-name">${pack.name}</div>
         <div class="pack-progress-bar"><div class="pack-progress-fill" style="width:${mastery}%;background:${barColor}"></div></div>
@@ -129,132 +113,218 @@
     return card;
   }
 
-  // --- Pack Selection Screen ---
+  // --- TOP "AUJOURD'HUI" BAR ---
+  function buildTodayBar() {
+    const streak = GAM.getStreakStatus();
+    const xp = GAM.getXP().total;
+    const lvl = GAM.getLevel(xp);
+
+    // Count total mastered packs across the whole library
+    const allPacks = (typeof FLASHCARD_PACKS !== "undefined" ? FLASHCARD_PACKS : []);
+    let masteredTotal = 0;
+    allPacks.forEach((p) => { if (isPackMastered(p)) masteredTotal++; });
+
+    const todayCount = streak.todayCount;
+    const goalPct = Math.min(100, Math.round(todayCount / GAM.DAILY_GOAL * 100));
+    const goalDone = todayCount >= GAM.DAILY_GOAL;
+
+    const bar = document.createElement("div");
+    bar.className = "today-bar";
+    bar.innerHTML = `
+      <div class="today-item today-streak ${streak.atRisk ? "today-at-risk" : ""}">
+        <div class="today-icon">🔥</div>
+        <div class="today-stack">
+          <div class="today-value">${streak.current}</div>
+          <div class="today-label">${streak.current > 1 ? "jours" : "jour"}</div>
+        </div>
+      </div>
+      <div class="today-item today-goal">
+        <div class="today-ring" style="--goal-pct:${goalPct}%">
+          <div class="today-ring-inner">${todayCount}/${GAM.DAILY_GOAL}</div>
+        </div>
+        <div class="today-stack">
+          <div class="today-label">Objectif jour</div>
+          <div class="today-sub">${goalDone ? "✅ Atteint !" : (GAM.DAILY_GOAL - todayCount) + " à faire"}</div>
+        </div>
+      </div>
+      <div class="today-item today-mastered">
+        <div class="today-icon">⭐</div>
+        <div class="today-stack">
+          <div class="today-value">${masteredTotal}</div>
+          <div class="today-label">maîtrisés</div>
+        </div>
+      </div>
+      <div class="today-item today-level">
+        <div class="today-icon">🎖️</div>
+        <div class="today-stack">
+          <div class="today-value">Nv ${lvl.level}</div>
+          <div class="today-label">${xp} XP</div>
+        </div>
+      </div>
+    `;
+    return bar;
+  }
+
+  // --- "À FAIRE MAINTENANT" — smart suggestions ---
+  function buildPriorityList() {
+    const allPacks = (typeof FLASHCARD_PACKS !== "undefined" ? FLASHCARD_PACKS : []);
+    const priority = [];
+
+    // 1. Packs in progress with due cards (urgent SRS)
+    const dueInProgress = allPacks.filter((p) => {
+      const m = getPackMastery(p.id, p.cards.length);
+      const stats = getPackStats(p.id);
+      const { due } = getPackDue(p.id, p.cards.length);
+      return stats.started && m < 100 && due > 0;
+    });
+    dueInProgress.sort((a, b) => getPackDue(b.id, b.cards.length).due - getPackDue(a.id, a.cards.length).due);
+    dueInProgress.slice(0, 3).forEach((p) => priority.push({ pack: p, reason: "due" }));
+
+    // 2. Mastered packs needing refresh (decay)
+    const stale = allPacks.filter((p) => isPackStaleAfterMastery(p));
+    stale.sort((a, b) => GAM.getPackDaysSinceReview(b.id) - GAM.getPackDaysSinceReview(a.id));
+    stale.slice(0, 2).forEach((p) => priority.push({ pack: p, reason: "refresh" }));
+
+    return priority;
+  }
+
+  // --- BUILD CHAPTER CARD ---
+  function buildChapterCard(chapter) {
+    const allPacks = (typeof FLASHCARD_PACKS !== "undefined" ? FLASHCARD_PACKS : []);
+    const packs = allPacks.filter((p) => chapter.packIds.includes(p.id));
+    const total = packs.length;
+    let mastered = 0;
+    let started = 0;
+    packs.forEach((p) => {
+      if (isPackMastered(p)) mastered++;
+      else if (getPackStats(p.id).started) started++;
+    });
+    const pct = total > 0 ? Math.round(mastered / total * 100) : 0;
+
+    const card = document.createElement("button");
+    card.className = "chapter-card";
+    card.onclick = () => { currentChapter = chapter.id; window.initFlashcards(); };
+
+    card.innerHTML = `
+      <div class="chapter-icon">${chapter.icon}</div>
+      <div class="chapter-info">
+        <div class="chapter-name">${chapter.name}</div>
+        <div class="chapter-progress-bar"><div class="chapter-progress-fill" style="width:${pct}%"></div></div>
+        <div class="chapter-bottom">
+          <span class="chapter-mastered">${mastered}/${total} maîtrisés</span>
+          ${started > 0 ? `<span class="chapter-in-progress">${started} en cours</span>` : ""}
+        </div>
+      </div>
+      <div class="chapter-arrow">›</div>
+    `;
+    return card;
+  }
+
+  // --- MAIN INIT ---
   window.initFlashcards = function () {
     const container = document.getElementById("flashcard-packs");
     container.innerHTML = "";
+    container.appendChild(buildTodayBar());
 
-    // Count packs per difficulty
-    const counts = { all: FLASHCARD_PACKS.length, debutant: 0, intermediaire: 0, expert: 0 };
-    FLASHCARD_PACKS.forEach(p => { if (p.difficulty && counts[p.difficulty] !== undefined) counts[p.difficulty]++; });
+    if (currentChapter) {
+      // Detail view of one chapter
+      const chapter = CHAPTERS.find((c) => c.id === currentChapter);
+      if (!chapter) { currentChapter = null; window.initFlashcards(); return; }
 
-    const debutantMastery = getDifficultyMastery("debutant");
-    const intermMastery = getDifficultyMastery("intermediaire");
-    const interLocked = !isDifficultyUnlocked("intermediaire");
-    const expertLocked = !isDifficultyUnlocked("expert");
+      // Header with back button
+      const head = document.createElement("div");
+      head.className = "chapter-detail-header";
+      head.innerHTML = `
+        <button class="btn-chapter-back">← Tous les thèmes</button>
+        <div class="chapter-detail-title"><span class="chapter-detail-icon">${chapter.icon}</span> ${chapter.name}</div>
+        <div class="chapter-detail-desc">${chapter.description}</div>
+      `;
+      head.querySelector(".btn-chapter-back").onclick = () => { currentChapter = null; window.initFlashcards(); };
+      container.appendChild(head);
 
-    // Filter tabs — clean, no counts
-    const filterBar = document.createElement("div");
-    filterBar.className = "fc-filter-bar";
-    [
-      { key: "all", label: "Tous", emoji: "📚", locked: false },
-      { key: "debutant", label: "Facile", emoji: "🟢", locked: false },
-      { key: "intermediaire", label: "Moyen", emoji: interLocked ? "🔒" : "🟠", locked: interLocked },
-      { key: "expert", label: "Difficile", emoji: expertLocked ? "🔒" : "🔴", locked: expertLocked },
-    ].forEach(({ key, label, emoji, locked }) => {
-      const btn = document.createElement("button");
-      btn.className = "fc-filter-btn" + (currentFilter === key ? " active" : "") + (locked ? " fc-locked" : "");
-      btn.textContent = `${emoji} ${label}`;
-      if (locked) {
-        btn.onclick = () => showLockMessage(key === "intermediaire"
-          ? `Maîtrise 80% des Faciles pour débloquer ! (${debutantMastery}%)`
-          : `Maîtrise 80% des Moyens pour débloquer ! (${intermMastery}%)`);
-      } else {
-        btn.onclick = () => { currentFilter = key; initFlashcards(); };
-      }
-      filterBar.appendChild(btn);
-    });
-    container.appendChild(filterBar);
+      const allPacks = (typeof FLASHCARD_PACKS !== "undefined" ? FLASHCARD_PACKS : []);
+      const packs = allPacks.filter((p) => chapter.packIds.includes(p.id));
 
-    // Reset locked filter
-    if ((currentFilter === "intermediaire" && interLocked) || (currentFilter === "expert" && expertLocked)) {
-      currentFilter = "all";
-    }
+      const inProgress = [];
+      const done = [];
+      const notStarted = [];
+      packs.forEach((p) => {
+        const m = getPackMastery(p.id, p.cards.length);
+        const s = getPackStats(p.id);
+        if (m >= 100) done.push(p);
+        else if (s.started) inProgress.push(p);
+        else notStarted.push(p);
+      });
+      inProgress.sort((a, b) => getPackMastery(a.id, a.cards.length) - getPackMastery(b.id, b.cards.length));
+      done.sort((a, b) => (getPackStats(b.id).lastPlayed || 0) - (getPackStats(a.id).lastPlayed || 0));
+      notStarted.sort((a, b) => a.name.localeCompare(b.name, "fr"));
 
-    // Filter packs
-    let packs = currentFilter === "all"
-      ? FLASHCARD_PACKS
-      : FLASHCARD_PACKS.filter(p => p.difficulty === currentFilter);
+      addSection(container, "À continuer", "🔄", inProgress, false);
+      addSection(container, "À découvrir", "✨", notStarted, false);
+      addSection(container, "Maîtrisés", "⭐", done, false, { showRefreshFlag: true });
 
-    if (packs.length === 0) {
-      container.innerHTML += '<p style="text-align:center;color:#aaa;padding:2rem;">Aucun pack ici.</p>';
       showScreen("flashcards");
       return;
     }
 
-    // Split into 3 groups: in progress, mastered, new
-    const inProgress = [];
-    const done = [];
-    const notStarted = [];
-
-    packs.forEach(pack => {
-      const mastery = getPackMastery(pack.id, pack.cards.length);
-      const stats = getPackStats(pack.id);
-      if (mastery >= 100) done.push(pack);
-      else if (stats.started) inProgress.push(pack);
-      else notStarted.push(pack);
-    });
-
-    // Sort in-progress: lowest mastery first (most urgent)
-    inProgress.sort((a, b) => getPackMastery(a.id, a.cards.length) - getPackMastery(b.id, b.cards.length));
-    // Sort done: most recent first
-    done.sort((a, b) => (getPackStats(b.id).lastPlayed || 0) - (getPackStats(a.id).lastPlayed || 0));
-    // Sort new: alphabetical
-    notStarted.sort((a, b) => a.name.localeCompare(b.name, "fr"));
-
-    // Render sections
-    function addSection(title, icon, packList, collapsed) {
-      if (packList.length === 0) return;
+    // HOME VIEW: priority + chapters
+    const priority = buildPriorityList();
+    if (priority.length > 0) {
       const section = document.createElement("div");
-      section.className = "fc-section";
-
-      const header = document.createElement("div");
-      header.className = "fc-section-header";
-      header.innerHTML = `<span>${icon} ${title}</span><span class="fc-section-count">${packList.length}</span>`;
-      if (collapsed) {
-        header.classList.add("fc-section-collapsible");
-        header.onclick = () => {
-          section.classList.toggle("fc-section-collapsed");
-          header.classList.toggle("fc-section-open");
-        };
-        section.classList.add("fc-section-collapsed");
-      }
-      section.appendChild(header);
-
+      section.className = "fc-section fc-section-priority";
+      section.innerHTML = `<div class="fc-section-header"><span>🎯 À faire maintenant</span><span class="fc-section-count">${priority.length}</span></div>`;
       const list = document.createElement("div");
       list.className = "fc-section-list";
-      packList.forEach(pack => list.appendChild(buildPackCard(pack)));
+      priority.forEach(({ pack, reason }) => {
+        const card = buildPackCard(pack, { showRefreshFlag: reason === "refresh" });
+        list.appendChild(card);
+      });
       section.appendChild(list);
-
       container.appendChild(section);
     }
 
-    addSection("À continuer", "🔄", inProgress, false);
-    addSection("À découvrir", "✨", notStarted, false);
-    addSection("Maîtrisés", "✅", done, done.length > 3);
+    // Chapters
+    const chapSection = document.createElement("div");
+    chapSection.className = "fc-section";
+    chapSection.innerHTML = `<div class="fc-section-header"><span>🗺️ Parcours par thème</span><span class="fc-section-count">${CHAPTERS.length}</span></div>`;
+    const chapList = document.createElement("div");
+    chapList.className = "chapter-list";
+    CHAPTERS.forEach((ch) => chapList.appendChild(buildChapterCard(ch)));
+    chapSection.appendChild(chapList);
+    container.appendChild(chapSection);
 
     showScreen("flashcards");
   };
 
-  function showLockMessage(msg) {
-    let el = document.getElementById("fc-lock-toast");
-    if (!el) {
-      el = document.createElement("div");
-      el.id = "fc-lock-toast";
-      el.className = "fc-lock-toast";
-      document.body.appendChild(el);
+  function addSection(container, title, icon, packList, collapsed, opts = {}) {
+    if (packList.length === 0) return;
+    const section = document.createElement("div");
+    section.className = "fc-section";
+    const header = document.createElement("div");
+    header.className = "fc-section-header";
+    header.innerHTML = `<span>${icon} ${title}</span><span class="fc-section-count">${packList.length}</span>`;
+    if (collapsed) {
+      header.classList.add("fc-section-collapsible");
+      header.onclick = () => { section.classList.toggle("fc-section-collapsed"); header.classList.toggle("fc-section-open"); };
+      section.classList.add("fc-section-collapsed");
     }
-    el.textContent = msg;
-    el.classList.add("fc-lock-toast-show");
-    setTimeout(() => el.classList.remove("fc-lock-toast-show"), 3000);
+    section.appendChild(header);
+    const list = document.createElement("div");
+    list.className = "fc-section-list";
+    packList.forEach((p) => list.appendChild(buildPackCard(p, opts)));
+    section.appendChild(list);
+    container.appendChild(section);
   }
 
-  // --- Session ---
+  // ---------- SESSION ----------
   let session = {};
+  let masteryAtSessionStart = 0;
 
   function startFlashcardSession(packId) {
     const pack = FLASHCARD_PACKS.find((p) => p.id === packId);
     if (!pack) return;
+    masteryAtSessionStart = getPackMastery(packId, pack.cards.length);
+    GAM.resetCombo();
     const srsData = SRS.getData(SRS_KEY);
 
     const allCards = pack.cards.map((card, i) => ({ front: card.front, back: card.back, memo: card.memo || null, srsKey: getCardKey(packId, i), cardIdx: i }));
@@ -273,19 +343,32 @@
       if (!st) newCards.push(i);
       else if (st.next <= Date.now()) dueCards.push(i);
     });
-
-    shuffle(dueCards);
-    shuffle(newCards);
-
+    shuffle(dueCards); shuffle(newCards);
     const queue = [...dueCards, ...newCards.slice(0, NEW_CARDS_PER_SESSION)];
+
     if (queue.length === 0) {
+      // For mastered packs, allow a quick refresh session
+      if (isPackMastered(pack)) {
+        const allIndices = allCards.map((_, i) => i);
+        shuffle(allIndices);
+        const quickQueue = allIndices.slice(0, Math.min(5, allIndices.length));
+        session = { packId, pack, allCards, queue: quickQueue, index: 0, flipped: false, results: { again: 0, hard: 0, good: 0, easy: 0 }, isRefresh: true };
+        document.getElementById("fc-session-title").textContent = pack.name + " — Refresh";
+        document.getElementById("fc-quality-buttons").style.display = "none";
+        document.getElementById("fc-flip-btn").style.display = "";
+        document.getElementById("fc-flip-btn").textContent = "Voir la réponse";
+        document.getElementById("fc-flip-btn").onclick = flipFlashcard;
+        showFlashcard();
+        showScreen("flashcard-session");
+        return;
+      }
       document.getElementById("fc-session-title").textContent = pack.name;
       document.getElementById("fc-card-front").innerHTML = "✅ Toutes les cartes sont à jour !";
       document.getElementById("fc-card-back").textContent = "";
       document.getElementById("fc-quality-buttons").style.display = "none";
       document.getElementById("fc-flip-btn").textContent = "Revoir quand même";
       document.getElementById("fc-flip-btn").style.display = "";
-      document.getElementById("fc-flip-btn").onclick = function() {
+      document.getElementById("fc-flip-btn").onclick = function () {
         const allIndices = allCards.map((_, i) => i);
         shuffle(allIndices);
         session = { packId, pack, allCards, queue: allIndices, index: 0, flipped: false, results: { again: 0, hard: 0, good: 0, easy: 0 } };
@@ -310,6 +393,7 @@
     const { allCards, queue, index } = session;
     const card = allCards[queue[index]];
     document.getElementById("fc-progress-text").textContent = `${index + 1} / ${queue.length}`;
+    updateComboBadge();
     document.getElementById("fc-card-front").textContent = card.front;
     document.getElementById("fc-card-back").textContent = "";
     document.getElementById("fc-card").classList.remove("flipped");
@@ -317,6 +401,24 @@
     document.getElementById("fc-quality-buttons").style.display = "none";
     document.getElementById("fc-flip-btn").style.display = "";
     if (typeof MEMO !== "undefined") MEMO.hideTip("fc-memo-tip");
+  }
+
+  function updateComboBadge() {
+    let badge = document.getElementById("fc-combo-badge");
+    if (!badge) {
+      badge = document.createElement("div");
+      badge.id = "fc-combo-badge";
+      badge.className = "fc-combo-badge";
+      const sessionScreen = document.getElementById("screen-flashcard-session");
+      if (sessionScreen) sessionScreen.appendChild(badge);
+    }
+    const c = GAM.getCombo();
+    if (c >= 3) {
+      badge.textContent = `🔥 ${c}`;
+      badge.classList.add("fc-combo-badge-show");
+    } else {
+      badge.classList.remove("fc-combo-badge-show");
+    }
   }
 
   window.flipFlashcard = function () {
@@ -336,17 +438,57 @@
   };
 
   window.rateFlashcard = function (quality) {
-    const { allCards, queue, index, packId } = session;
+    const { allCards, queue, index, packId, pack } = session;
     const card = allCards[queue[index]];
     const state = SRS.getState(SRS_KEY, card.srsKey);
     const newState = SRS.update(state, quality);
     SRS.save(SRS_KEY, card.srsKey, newState);
     trackAnswer(packId, card.cardIdx, quality);
 
+    // Streak + XP
+    const streakBefore = GAM.getStreakStatus();
+    const goalBefore = streakBefore.todayCount;
+    const wasGoalDone = goalBefore >= GAM.DAILY_GOAL;
+    GAM.recordCardActivity();
+    const streakAfter = GAM.getStreakStatus();
+    if (streakBefore.current === 0 && streakAfter.current === 1) {
+      // First card of a new streak day
+      GAM.showStreakToast(streakAfter.current);
+    } else if (streakBefore.atRisk && !streakAfter.atRisk && streakAfter.current > streakBefore.current) {
+      GAM.showStreakToast(streakAfter.current);
+    }
+    if (!wasGoalDone && streakAfter.todayCount >= GAM.DAILY_GOAL) {
+      GAM.showDailyGoalToast();
+    }
+
+    // XP rewards
+    let xpGain = 0;
+    if (quality === 3) xpGain = 1;
+    else if (quality === 4) xpGain = 2;
+    else if (quality === 5) xpGain = 3;
+    if (xpGain > 0) GAM.addXP(xpGain);
+
+    // Combo
+    if (quality >= 4) {
+      const c = GAM.bumpCombo();
+      if (c === 3 || c === 5 || c === 10 || c === 15 || c === 20) GAM.showComboToast(c);
+    } else {
+      GAM.resetCombo();
+    }
+    updateComboBadge();
+
     if (quality <= 1) { session.results.again++; session.queue.push(queue[index]); }
     else if (quality === 3) session.results.hard++;
     else if (quality === 4) session.results.good++;
     else session.results.easy++;
+
+    // Mastery celebration on 100% reached
+    const newMastery = getPackMastery(packId, pack.cards.length);
+    if (masteryAtSessionStart < 100 && newMastery >= 100) {
+      const isFirst = GAM.recordMastery(packId);
+      if (isFirst) GAM.celebratePackMastered(pack.name);
+      masteryAtSessionStart = 100;
+    }
 
     session.index++;
     if (session.index >= session.queue.length) showFlashcardResult();
@@ -354,9 +496,11 @@
   };
 
   function showFlashcardResult() {
-    const { pack, packId, results } = session;
+    const { pack, packId, results, isRefresh } = session;
     const total = results.again + results.hard + results.good + results.easy;
     const mastery = getPackMastery(packId, pack.cards.length);
+
+    if (isRefresh) GAM.recordPackReview(packId);
 
     document.getElementById("fc-result-title").textContent = pack.name;
     document.getElementById("fc-result-total").textContent = total;
@@ -383,7 +527,7 @@
     showScreen("flashcard-result");
   }
 
-  window.backToFlashcards = function () { initFlashcards(); };
+  window.backToFlashcards = function () { window.initFlashcards(); };
 
   document.addEventListener("keydown", function (e) {
     const fcScreen = document.getElementById("screen-flashcard-session");
