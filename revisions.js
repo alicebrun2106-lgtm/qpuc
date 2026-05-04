@@ -35,6 +35,38 @@
     const now = Date.now();
     return getData().cards.filter(c => (c.next || c.nextReview || 0) <= now);
   }
+
+  // Pull individual flashcards from the flashcards SRS pool (qpuc-srs)
+  // Returns cards that have been seen at least once and are due now.
+  function getDueFlashcards() {
+    if (typeof SRS === "undefined" || typeof FLASHCARD_PACKS === "undefined") return [];
+    const srsData = SRS.getData("qpuc-srs") || {};
+    const due = [];
+    const now = Date.now();
+    FLASHCARD_PACKS.forEach((pack) => {
+      pack.cards.forEach((card, idx) => {
+        const key = pack.id + ":" + idx;
+        const st = srsData[key];
+        if (st && (st.next || 0) <= now && (st.reps || 0) > 0) {
+          due.push({
+            q: card.front,
+            r: card.back,
+            memo: card.memo || null,
+            source: pack.id,
+            sourceTitle: pack.name,
+            srsKey: key,
+            ef: st.ef, interval: st.interval, reps: st.reps, next: st.next,
+            fromFlashcards: true,
+          });
+        }
+      });
+    });
+    return due;
+  }
+
+  function getAllDue() {
+    return [...getDueCards(), ...getDueFlashcards()];
+  }
   function shuffle(a) {
     for (let i = a.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -70,7 +102,7 @@
     save(data);
   };
 
-  window.getRevisionsDueCount = function () { return getDueCards().length; };
+  window.getRevisionsDueCount = function () { return getAllDue().length; };
 
   // --- DASHBOARD ---
   window.initRevisions = function () {
@@ -89,16 +121,41 @@
     const badge = document.getElementById("rev-due-badge");
 
     const groups = {};
+    // 1. Programme fiches
     data.cards.forEach(c => {
       const next = c.next || c.nextReview || 0;
       if (!groups[c.sourceTitle]) groups[c.sourceTitle] = { title: c.sourceTitle, due: 0, scheduled: 0, nextDate: Infinity };
       if (next <= now) groups[c.sourceTitle].due++;
       else { groups[c.sourceTitle].scheduled++; if (next < groups[c.sourceTitle].nextDate) groups[c.sourceTitle].nextDate = next; }
     });
+    // 2. Flashcards SRS pool (cards seen at least once)
+    if (typeof SRS !== "undefined" && typeof FLASHCARD_PACKS !== "undefined") {
+      const srsData = SRS.getData("qpuc-srs") || {};
+      FLASHCARD_PACKS.forEach((pack) => {
+        const title = pack.name;
+        pack.cards.forEach((card, idx) => {
+          const key = pack.id + ":" + idx;
+          const st = srsData[key];
+          if (!st || (st.reps || 0) <= 0) return; // unseen → ignore
+          const next = st.next || 0;
+          if (!groups[title]) groups[title] = { title, due: 0, scheduled: 0, nextDate: Infinity };
+          if (next <= now) groups[title].due++;
+          else { groups[title].scheduled++; if (next < groups[title].nextDate) groups[title].nextDate = next; }
+        });
+      });
+    }
 
     const packs = Object.values(groups);
-    const totalDue = data.cards.filter(c => (c.next || c.nextReview || 0) <= now).length;
-    const totalCards = data.cards.length;
+    const totalDue = getAllDue().length;
+    const totalCards = data.cards.length + (typeof SRS !== "undefined" && typeof FLASHCARD_PACKS !== "undefined" ? (function () {
+      const srsData = SRS.getData("qpuc-srs") || {};
+      let count = 0;
+      FLASHCARD_PACKS.forEach((p) => p.cards.forEach((_, idx) => {
+        const st = srsData[p.id + ":" + idx];
+        if (st && (st.reps || 0) > 0) count++;
+      }));
+      return count;
+    })() : 0);
 
     badge.textContent = totalDue;
     badge.style.background = totalDue > 0 ? "var(--orange, #f39c12)" : "var(--green, #2ecc71)";
@@ -129,7 +186,7 @@
   let revCards = [], revIndex = 0, revAgainCount = 0;
 
   window.startRevisionSession = function () {
-    const due = getDueCards();
+    const due = getAllDue();
     if (due.length === 0) return;
     revCards = shuffle(due.slice());
     revIndex = 0; revAgainCount = 0;
@@ -154,7 +211,9 @@
   window.revealRevisionCard = function () {
     const c = revCards[revIndex];
     document.getElementById("rev-fc-prompt").textContent = "Réponse";
-    document.getElementById("rev-fc-reveal").textContent = c.r;
+    let answer = c.r;
+    if (c.memo) answer += "\n\n🧠 " + c.memo;
+    document.getElementById("rev-fc-reveal").textContent = answer;
     document.getElementById("rev-fc-reveal").style.display = "";
     document.getElementById("rev-fc-buttons").style.display = "none";
     document.getElementById("rev-fc-rate").style.display = "";
@@ -163,19 +222,37 @@
   window.rateRevisionCard = function (quality) {
     // quality: 1=again, 3=hard, 4=good, 5=easy
     const card = revCards[revIndex];
-    const data = getData();
-    for (let i = 0; i < data.cards.length; i++) {
-      if (data.cards[i].source === card.source && data.cards[i].q === card.q) {
-        const state = { ef: data.cards[i].ef || 2.5, interval: data.cards[i].interval || 0, reps: data.cards[i].reps || 0, next: 0 };
-        const newState = SRS.update(state, quality);
-        data.cards[i].ef = newState.ef;
-        data.cards[i].interval = newState.interval;
-        data.cards[i].reps = newState.reps;
-        data.cards[i].next = newState.next;
-        break;
+
+    if (card.fromFlashcards && card.srsKey && typeof SRS !== "undefined") {
+      // Update flashcards SRS pool (qpuc-srs)
+      const state = SRS.getState("qpuc-srs", card.srsKey);
+      const newState = SRS.update(state, quality);
+      SRS.save("qpuc-srs", card.srsKey, newState);
+    } else {
+      // Update programme fiches pool (qpuc-revisions)
+      const data = getData();
+      for (let i = 0; i < data.cards.length; i++) {
+        if (data.cards[i].source === card.source && data.cards[i].q === card.q) {
+          const state = { ef: data.cards[i].ef || 2.5, interval: data.cards[i].interval || 0, reps: data.cards[i].reps || 0, next: 0 };
+          const newState = SRS.update(state, quality);
+          data.cards[i].ef = newState.ef;
+          data.cards[i].interval = newState.interval;
+          data.cards[i].reps = newState.reps;
+          data.cards[i].next = newState.next;
+          break;
+        }
       }
+      save(data);
     }
-    save(data);
+
+    // Bump streak + XP via gamification module if available
+    if (typeof GAM !== "undefined") {
+      GAM.recordCardActivity();
+      if (quality === 3) GAM.addXP(1);
+      else if (quality === 4) GAM.addXP(2);
+      else if (quality === 5) GAM.addXP(3);
+    }
+
     if (quality <= 1) { revAgainCount++; revCards.push(card); document.getElementById("rev-fc-total").textContent = revCards.length; }
     revIndex++;
     showRevCard();
