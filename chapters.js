@@ -14,6 +14,7 @@ const CHAPTERS = [
       "gastronomie", "gastronomie-pdf", "gastronomie-techniques", "vins-cepages",
       "vie-quotidienne-admin", "gentiles-geographie", "geo-insolite",
       "pop-culture-fr", "pop-culture-bases", "stats-france", "actu-societe",
+      "politique-france-recente",
     ],
   },
   {

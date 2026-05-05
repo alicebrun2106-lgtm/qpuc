@@ -1269,4 +1269,49 @@ const FLASHCARD_PACKS = [
       {front: "Quel est le plus grand désert chaud du monde ?", back: "Le Sahara (~9 millions de km²)", memo: "Antarctique = plus grand désert tout court"},
     ],
   },
+
+  // ===== 37. POLITIQUE FRANÇAISE RÉCENTE =====
+  {
+    id: "politique-france-recente",
+    name: "Politique française récente",
+    icon: "🇫🇷",
+    description: "Premiers ministres, ministres, nominations et personnalités politiques (2020-2025)",
+    difficulty: "intermediaire",
+    cards: [
+      // Premiers ministres successifs
+      {front: "Qui a succédé à Élisabeth Borne comme Premier ministre en janvier 2024 ?", back: "Gabriel Attal", memo: "Plus jeune Premier ministre de la Ve République (34 ans)"},
+      {front: "Qui a été nommé Premier ministre en septembre 2024 après les législatives ?", back: "Michel Barnier", memo: "Ex-négociateur en chef du Brexit pour l'UE"},
+      {front: "Quel Premier ministre a été renversé par une motion de censure le 4 décembre 2024 ?", back: "Michel Barnier", memo: "1re motion de censure adoptée depuis 1962"},
+      {front: "Qui a remplacé Michel Barnier à Matignon le 13 décembre 2024 ?", back: "François Bayrou", memo: "Maire de Pau, président du MoDem"},
+      {front: "Qui a remplacé François Bayrou à Matignon en septembre 2025 ?", back: "Sébastien Lecornu", memo: "Ex-ministre des Armées sous Macron"},
+      // Présidents des assemblées
+      {front: "Qui préside le Sénat français depuis 2014 ?", back: "Gérard Larcher", memo: "Les Républicains, deux mandats non consécutifs"},
+      {front: "Qui préside l'Assemblée nationale depuis juillet 2024 ?", back: "Yaël Braun-Pivet", memo: "Renaissance, 1re femme présidente de l'Assemblée"},
+      // Ministres clés Barnier/Bayrou
+      {front: "Qui était ministre de l'Intérieur sous Barnier (sept-déc 2024) ?", back: "Bruno Retailleau", memo: "Sénateur LR de la Vendée"},
+      {front: "Qui est devenu Garde des Sceaux sous Bayrou en décembre 2024 ?", back: "Gérald Darmanin", memo: "Ex-ministre de l'Intérieur sous Macron"},
+      {front: "Qui a été ministre de l'Éducation nationale dans le gouvernement Bayrou ?", back: "Élisabeth Borne", memo: "Ancienne Première ministre 2022-2024"},
+      {front: "Qui a été nommé ministre des Outre-mer sous Bayrou ?", back: "Manuel Valls", memo: "Ex-Premier ministre 2014-2016 sous Hollande"},
+      // Maire de Paris
+      {front: "Qui a été maire de Paris de 2014 à 2026 ?", back: "Anne Hidalgo", memo: "Première femme à occuper ce poste"},
+      {front: "Qui a remporté les municipales 2026 à Paris ?", back: "Emmanuel Grégoire", memo: "PS, ancien 1er adjoint d'Anne Hidalgo"},
+      // Personnalités politiques
+      {front: "Qui dirige Les Républicains (LR) depuis fin 2022 ?", back: "Éric Ciotti puis Bruno Retailleau (selon période)", memo: "Ciotti exclu en juin 2024 après alliance avec le RN"},
+      {front: "Qui préside le Rassemblement national depuis novembre 2022 ?", back: "Jordan Bardella", memo: "A succédé à Marine Le Pen à la tête du parti"},
+      {front: "Qui dirige La France insoumise (LFI) ?", back: "Jean-Luc Mélenchon (figure tutélaire)", memo: "Manuel Bompard est coordinateur du mouvement"},
+      {front: "Qui est Premier secrétaire du Parti socialiste depuis 2023 ?", back: "Olivier Faure", memo: "Réélu en juin 2023"},
+      {front: "Qui dirige Europe Écologie Les Verts (EELV/Les Écologistes) ?", back: "Marine Tondelier", memo: "Élue secrétaire nationale en décembre 2022"},
+      // Ambassadeurs / nominations
+      {front: "Quelle femme politique française a été nommée ambassadrice à l'UNESCO en décembre 2010 ?", back: "Rama Yade", memo: "Question piège : c'est 2010, pas 2024 !"},
+      {front: "Qui est l'actuel président d'EDF, nommé en 2022 ?", back: "Luc Rémont", memo: "Ex-dirigeant de Schneider Electric"},
+      // Élections marquantes
+      {front: "En quelle année Emmanuel Macron a-t-il été réélu président ?", back: "2022 (24 avril, 2e tour contre Marine Le Pen)", memo: "58,55% contre 41,45%"},
+      {front: "Quel parti est arrivé en tête au 1er tour des législatives 2024 ?", back: "Le Rassemblement national (RN)", memo: "33% des voix au 1er tour, 30 juin 2024"},
+      {front: "Quelle alliance de gauche a remporté les législatives 2024 (en sièges) ?", back: "Le Nouveau Front Populaire (NFP)", memo: "182 sièges, devant Ensemble (168) et RN (143)"},
+      {front: "Quand Emmanuel Macron a-t-il dissous l'Assemblée nationale ?", back: "Le 9 juin 2024", memo: "Soir des élections européennes, surprise générale"},
+      // Ministres iconiques
+      {front: "Qui a été ministre de la Culture de 2022 à 2024 ?", back: "Rachida Dati", memo: "Ex-Garde des Sceaux sous Sarkozy"},
+      {front: "Qui a été ministre de l'Économie de 2017 à 2024 ?", back: "Bruno Le Maire", memo: "Record de longévité à Bercy sous la Ve République"},
+    ],
+  },
 ];
