@@ -4,12 +4,54 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>12 Coups de Midi — Entraînement</title>
-  <link rel="stylesheet" href="style.css?v=8">
+  <link rel="stylesheet" href="style.css?v=9">
 </head>
 <body>
   <div id="app">
-    <!-- ACCUEIL -->
-    <div id="screen-home" class="screen active">
+    <!-- ===== TAB: AUJOURD'HUI ===== -->
+    <div id="screen-today" class="screen active tab-screen">
+      <div class="tab-content" id="today-content"></div>
+    </div>
+
+    <!-- Daily session in progress -->
+    <div id="screen-today-session" class="screen tab-screen">
+      <div class="game-header">
+        <button class="btn-back" onclick="goToTab('today')">← Retour</button>
+        <h2>Session du jour</h2>
+        <div></div>
+      </div>
+      <div class="ts-container" id="today-session-content"></div>
+    </div>
+
+    <!-- ===== TAB: EXPLORER ===== -->
+    <div id="screen-explorer" class="screen tab-screen">
+      <div class="tab-content" id="explorer-content"></div>
+    </div>
+
+    <!-- ===== TAB: CARTES ===== -->
+    <div id="screen-cartes" class="screen tab-screen">
+      <div class="tab-content">
+        <div class="explorer-header">
+          <h1 class="explorer-title">Cartes</h1>
+          <p class="explorer-sub">Mémorise géographie & territoires en cliquant sur la carte.</p>
+        </div>
+        <div class="cartes-grid">
+          <button class="carte-mode-btn" onclick="initCarte()">
+            <div class="carte-mode-icon">🗺️</div>
+            <div class="carte-mode-name">Carte de France</div>
+            <div class="carte-mode-desc">Régions, départements, fleuves</div>
+          </button>
+          <button class="carte-mode-btn" onclick="initSchemas()">
+            <div class="carte-mode-icon">📊</div>
+            <div class="carte-mode-name">Schémas</div>
+            <div class="carte-mode-desc">Ve République, UE, ONU en visuel</div>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- HOME (legacy, kept hidden but reachable for backward compat) -->
+    <div id="screen-home" class="screen">
       <div class="home-container">
         <div class="logo">
           <div class="logo-q">12</div>
@@ -24,54 +66,27 @@
           <button class="mode-card" onclick="initQuiz12Coups()">
             <div class="mode-icon">⚡</div>
             <div class="mode-title">Quiz 12 Coups</div>
-            <div class="mode-desc">QCM à choix multiples. Rapide, par thème ou progressif.</div>
-          </button>
-
-          <button class="mode-card" onclick="initFlashcards()">
-            <div class="mode-icon">🃏</div>
-            <div class="mode-title">Flashcards</div>
-            <div class="mode-desc">Débutant, Intermédiaire ou Expert. Répétition espacée Anki.</div>
+            <div class="mode-desc">QCM à choix multiples.</div>
           </button>
 
           <button class="mode-card" onclick="initProgramme()">
             <div class="mode-icon">📅</div>
             <div class="mode-title">Programme</div>
-            <div class="mode-desc">3 semaines progressives : bases → culture G → expert.</div>
-          </button>
-
-          <button class="mode-card" onclick="initCarte()">
-            <div class="mode-icon">🗺️</div>
-            <div class="mode-title">Carte de France</div>
-            <div class="mode-desc">Régions, départements, fleuves — carte interactive + quiz.</div>
-          </button>
-
-          <button class="mode-card" onclick="initSchemas()">
-            <div class="mode-icon">📊</div>
-            <div class="mode-title">Schémas</div>
-            <div class="mode-desc">Ve République, UE, ONU — les institutions en un coup d'œil.</div>
+            <div class="mode-desc">3 semaines progressives.</div>
           </button>
 
           <button class="mode-card" onclick="initRevisions()" id="mode-card-revisions">
             <div class="mode-icon">🔁</div>
             <div class="mode-title">Révisions du jour</div>
-            <div class="mode-desc">Cartes dues aujourd'hui. La répétition espacée consolide ta mémoire.</div>
+            <div class="mode-desc">Cartes dues.</div>
             <span class="rev-home-badge" id="rev-home-badge" style="display:none">0</span>
           </button>
         </div>
 
         <div class="stats-bar">
-          <div class="stat">
-            <span class="stat-label">Quiz joués</span>
-            <span class="stat-value" id="stat-games">0</span>
-          </div>
-          <div class="stat">
-            <span class="stat-label">Bonnes réponses</span>
-            <span class="stat-value" id="stat-correct">0</span>
-          </div>
-          <div class="stat">
-            <span class="stat-label">Taux</span>
-            <span class="stat-value" id="stat-rate">-</span>
-          </div>
+          <div class="stat"><span class="stat-label">Quiz joués</span><span class="stat-value" id="stat-games">0</span></div>
+          <div class="stat"><span class="stat-label">Bonnes réponses</span><span class="stat-value" id="stat-correct">0</span></div>
+          <div class="stat"><span class="stat-label">Taux</span><span class="stat-value" id="stat-rate">-</span></div>
         </div>
       </div>
     </div>
@@ -360,27 +375,47 @@
         <button class="btn-quality btn-easy" onclick="rateRevisionCard(5)"><span class="quality-key">4</span> Facile</button>
       </div>
     </div>
+
+    <!-- ===== BOTTOM NAV ===== -->
+    <nav class="bottom-nav" id="bottom-nav">
+      <button class="bottom-nav-btn active" data-tab="today" onclick="goToTab('today')">
+        <span class="bn-icon">🔥</span>
+        <span class="bn-label">Aujourd'hui</span>
+      </button>
+      <button class="bottom-nav-btn" data-tab="explorer" onclick="goToTab('explorer')">
+        <span class="bn-icon">🧭</span>
+        <span class="bn-label">Explorer</span>
+      </button>
+      <button class="bottom-nav-btn" data-tab="cartes" onclick="goToTab('cartes')">
+        <span class="bn-icon">🗺️</span>
+        <span class="bn-label">Cartes</span>
+      </button>
+    </nav>
   </div>
 
   <!-- Scripts -->
-  <script src="flashcards-data.js?v=8"></script>
-  <script src="funfacts-data.js?v=8"></script>
+  <script src="flashcards-data.js?v=9"></script>
+  <script src="funfacts-data.js?v=9"></script>
   <script>
     if (typeof FUNFACTS_PACKS !== "undefined") {
       FUNFACTS_PACKS.forEach(function(p) { FLASHCARD_PACKS.push(p); });
     }
   </script>
-  <script src="programme-data.js?v=8"></script>
-  <script src="memo.js?v=8"></script>
-  <script src="srs.js?v=8"></script>
-  <script src="gamification.js?v=8"></script>
-  <script src="chapters.js?v=8"></script>
-  <script src="app.js?v=8"></script>
-  <script src="flashcards.js?v=8"></script>
-  <script src="quiz-12coups.js?v=8"></script>
-  <script src="revisions.js?v=8"></script>
-  <script src="programme.js?v=8"></script>
-  <script src="carte.js?v=8"></script>
-  <script src="schemas.js?v=8"></script>
+  <script src="programme-data.js?v=9"></script>
+  <script src="daily-lessons.js?v=9"></script>
+  <script src="memo.js?v=9"></script>
+  <script src="srs.js?v=9"></script>
+  <script src="gamification.js?v=9"></script>
+  <script src="chapters.js?v=9"></script>
+  <script src="categories.js?v=9"></script>
+  <script src="app.js?v=9"></script>
+  <script src="today.js?v=9"></script>
+  <script src="explorer.js?v=9"></script>
+  <script src="flashcards.js?v=9"></script>
+  <script src="quiz-12coups.js?v=9"></script>
+  <script src="revisions.js?v=9"></script>
+  <script src="programme.js?v=9"></script>
+  <script src="carte.js?v=9"></script>
+  <script src="schemas.js?v=9"></script>
 </body>
 </html>

@@ -84,11 +84,52 @@ function playSound(type) {
 
 // --- Navigation ---
 function goHome() {
-  showScreen("home");
-  updateStats();
-  if (typeof updateRevisionBadge === "function") updateRevisionBadge();
+  goToTab("today");
 }
+
+// 3-tab navigation
+function goToTab(tab) {
+  // Hide all screens
+  document.querySelectorAll(".screen").forEach((s) => s.classList.remove("active"));
+  // Show the right tab screen
+  const map = { today: "screen-today", explorer: "screen-explorer", cartes: "screen-cartes" };
+  const el = document.getElementById(map[tab]);
+  if (el) el.classList.add("active");
+  // Update bottom nav active state
+  document.querySelectorAll(".bottom-nav-btn").forEach((b) => {
+    b.classList.toggle("active", b.dataset.tab === tab);
+  });
+  // Show bottom nav
+  const nav = document.getElementById("bottom-nav");
+  if (nav) nav.style.display = "";
+  // Init the right module
+  if (tab === "today" && typeof initToday === "function") initToday();
+  else if (tab === "explorer" && typeof initExplorer === "function") initExplorer();
+}
+
+// Hide bottom nav during sub-screens
+function hideBottomNav() {
+  const nav = document.getElementById("bottom-nav");
+  if (nav) nav.style.display = "none";
+}
+
+// Override showScreen to hide bottom nav on non-tab screens
+const _origShowScreen = showScreen;
+showScreen = function (id) {
+  _origShowScreen(id);
+  const tabIds = ["today", "explorer", "cartes"];
+  const nav = document.getElementById("bottom-nav");
+  if (nav) {
+    nav.style.display = tabIds.includes(id) ? "" : "none";
+  }
+};
 
 // --- Init ---
 updateStats();
 if (typeof updateRevisionBadge === "function") updateRevisionBadge();
+// Open today tab on load
+document.addEventListener("DOMContentLoaded", function () {
+  if (typeof initToday === "function") initToday();
+});
+// Fallback in case DOMContentLoaded already fired
+setTimeout(function () { if (typeof initToday === "function") initToday(); }, 50);
